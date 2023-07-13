@@ -20,5 +20,4 @@ class Assets {
   static const String iconsWalletActive = 'Assets/icons/wallet_active.svg';
   static const String imagesBackground = 'Assets/images/Background.png';
   static const String imagesLogo = 'Assets/images/logo.png';
-
 }

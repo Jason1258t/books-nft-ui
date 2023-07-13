@@ -16,19 +16,21 @@ class CustomTextFieldWithButton extends StatelessWidget {
   final ValueChanged<String>? onChange;
   final String icon;
   final Widget suffixIcon;
+  final String hintText;
 
   const CustomTextFieldWithButton(
       {Key? key,
-        required this.controller,
-        required this.suffixIcon,
-        this.width = double.infinity,
-        this.height = 50,
-        this.obscureText = false,
-        this.maxLines = 1,
-        this.maxLength,
-        this.keyBoardType = TextInputType.text,
-        this.onChange,
-        this.icon = "",})
+      required this.controller,
+      required this.suffixIcon,
+      this.width = double.infinity,
+      this.height = 50,
+      this.obscureText = false,
+      this.maxLines = 1,
+      this.maxLength,
+      this.keyBoardType = TextInputType.text,
+      this.onChange,
+      this.icon = "",
+      required this.hintText})
       : super(key: key);
 
   @override
@@ -56,6 +58,8 @@ class CustomTextFieldWithButton extends StatelessWidget {
           controller: controller,
           decoration: InputDecoration(
             counterText: '',
+            hintText: hintText,
+            hintStyle: AppTypography.font16dirtyGold,
             suffixIcon: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
@@ -64,14 +68,11 @@ class CustomTextFieldWithButton extends StatelessWidget {
               ],
             ),
             border: const OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.empty)
-            ),
+                borderSide: BorderSide(color: AppColors.empty)),
             enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.empty)
-            ),
+                borderSide: BorderSide(color: AppColors.empty)),
             focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.empty)
-            ),
+                borderSide: BorderSide(color: AppColors.empty)),
           ),
         ),
       ),

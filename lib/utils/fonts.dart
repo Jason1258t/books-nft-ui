@@ -86,6 +86,12 @@ class AppTypography {
     fontWeight: FontWeight.w700,
   );
 
+  static final font16dirtyGold = _font.copyWith(
+    color: AppColors.font16dirtyGold,
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+  );
+
   static final font14whiteShadow = _font.copyWith(
       color: Colors.white,
       fontSize: 14,

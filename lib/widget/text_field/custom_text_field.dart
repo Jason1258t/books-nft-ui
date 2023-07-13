@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
   final int? maxLength;
   final ValueChanged<String>? onChange;
   final String icon;
+  final String hintText;
 
   const CustomTextField(
       {Key? key,
@@ -26,7 +27,8 @@ class CustomTextField extends StatelessWidget {
       this.maxLength,
       this.keyBoardType = TextInputType.text,
       this.onChange,
-      this.icon = ""})
+      this.icon = "",
+      this.hintText = ""})
       : super(key: key);
 
   @override
@@ -50,14 +52,16 @@ class CustomTextField extends StatelessWidget {
           style: AppTypography.font20gold,
           textAlignVertical: TextAlignVertical.center,
           controller: controller,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(
+          decoration: InputDecoration(
+            hintText: hintText,
+            hintStyle: AppTypography.font16dirtyGold,
+            border: const OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.empty)
             ),
-            enabledBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: AppColors.empty)
             ),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: AppColors.empty)
             ),
           ),

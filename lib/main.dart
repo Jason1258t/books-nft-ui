@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'feature/describe_problem/ui/describe_problem_screen.dart';
 import 'feature/home/home.dart';
 import 'feature/auth/ui/auth_screen.dart';
 import 'feature/home/home.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/login_screen': (context) => const LoginScreen(),
         '/register_screen': (context) => const RegisterScreen(),
         '/' : (context) => const AuthScreen(),
+        '/describe_problem_screen' : (context) => const DescribeProblem(),
       },
     );
   }
