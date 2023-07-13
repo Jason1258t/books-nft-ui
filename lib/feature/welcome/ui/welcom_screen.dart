@@ -17,7 +17,12 @@ class WelcomeScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-
+            Column(
+              children: [],
+            ),
+            Column(
+              children: [],
+            ),
           ],
         ),
       ),
