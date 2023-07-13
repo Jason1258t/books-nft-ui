@@ -62,7 +62,7 @@ class AppTypography {
   );
 
   static final font36w800 = _font.copyWith(
-    color: AppColors.numberKeyboard,
+    color: AppColors.darkText,
     fontSize: 36,
     fontWeight: FontWeight.w800,
   );
@@ -75,7 +75,7 @@ class AppTypography {
   );
 
   static final font20w800 = _font.copyWith(
-    color: AppColors.lightText,
+    color: AppColors.goldText,
     fontSize: 20,
     fontWeight: FontWeight.w800,
   );
