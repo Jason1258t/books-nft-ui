@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-<<<<<<< HEAD
+      routes: {
+        '/': (context) => const WelcomeScreen(),
+      },
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -69,12 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
-=======
-      routes: {
-        '/': (context) => const WelcomeScreen(),
-      },
-      initialRoute: '/',
->>>>>>> origin/develop
+
+
+
     );
   }
 }
