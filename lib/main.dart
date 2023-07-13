@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nft/widget/buttons/text_button.dart';
 
+import 'feature/welcome/ui/welcom_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -16,6 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+<<<<<<< HEAD
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -66,6 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
+=======
+      routes: {
+        '/': (context) => const WelcomeScreen(),
+      },
+      initialRoute: '/',
+>>>>>>> origin/develop
     );
   }
 }
