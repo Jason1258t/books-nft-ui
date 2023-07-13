@@ -31,4 +31,10 @@ class AppTypography {
       ),
     ]
   );
+
+  static final font12w700 = _font.copyWith(
+    color: AppColors.bottomNavigationBarText,
+    fontSize: 12,
+    fontWeight: FontWeight.w700,
+  );
 }

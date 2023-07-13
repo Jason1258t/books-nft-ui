@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'feature/login/ui/login_screen.dart';
+import 'feature/home/home.dart';
 import 'feature/welcome/ui/welcom_screen.dart';
 
 import 'feature/welcome/ui/welcom_screen.dart';
@@ -16,10 +17,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.transparent),
-        useMaterial3: true,
-      ),
       routes: {
         '/': (context) => const WelcomeScreen(),
         '/login_screen': (context) => const LoginScreen(),

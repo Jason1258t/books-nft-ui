@@ -8,4 +8,6 @@ class AppColors {
   static const goldBorder = Color(0xffFFD69D);
   static const milk = Color(0xffFFF5E7);
   static const bottomNavigationBackground = Color(0xFF63594B);
+  static const bottomNavigationBarText = Color(0xFFFFD99F);
+  static const bottomNavigationBackground = Color(0xFF63594B);
 }
