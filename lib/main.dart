@@ -3,6 +3,8 @@ import 'package:nft/widget/buttons/text_button.dart';
 
 import 'feature/welcome/ui/welcom_screen.dart';
 
+import 'feature/welcome/ui/welcom_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -71,9 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
-
-
-
     );
   }
 }
