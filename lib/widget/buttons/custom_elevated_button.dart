@@ -4,10 +4,20 @@ import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  const CustomElevatedButton({super.key, required this.text, required this.onTap, this.width});
+  const CustomElevatedButton(
+      {super.key,
+      required this.text,
+      required this.onTap,
+      this.width,
+      this.gradient = const RadialGradient(colors: [
+        AppColors.buttonLightColor,
+        AppColors.buttonDarkColor,
+      ], radius: 3)});
+
   final String text;
   final VoidCallback onTap;
   final double? width;
+  final Gradient gradient;
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +32,17 @@ class CustomElevatedButton extends StatelessWidget {
             decoration: BoxDecoration(
                 border: Border.all(color: AppColors.goldBorder, width: 2),
                 borderRadius: BorderRadius.circular(8),
-                gradient: const RadialGradient(colors: [
-                  AppColors.buttonLightColor,
-                  AppColors.buttonDarkColor,
-                ], radius: 3)),
+                gradient: gradient),
             alignment: Alignment.center,
             child: ShaderMask(
-              shaderCallback: (Rect rect) {
-                return AppGradients.goldWhiteGr.createShader(rect);
-              },
+              shaderCallback: (Rect rect) =>
+                  AppGradients.goldWhiteGr.createShader(rect),
               child: Text(
                 text,
                 textAlign: TextAlign.center,
-                style: AppTypography.buttonText20,
+                style: AppTypography.buttonText20
               ),
-            )
-        ),
+            )),
       ),
     );
   }

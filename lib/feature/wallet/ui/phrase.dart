@@ -87,9 +87,17 @@ class Phrase extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0,20,0, 32),
-                child: CustomElevatedButton(text: 'Confirm', onTap: confirm),
-              ),
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 32),
+                child: CustomElevatedButton(
+                  text: 'Confirm',
+                  onTap: confirm,
+                  gradient: const LinearGradient(
+                    begin: Alignment(-1.00, 0.00),
+                    end: Alignment(1, 0),
+                    colors: [Color(0xFF8E7B61),  Color(0xFFD1B991)],
+                  ),
+                ),
+              )
             ],
           ),
         ),

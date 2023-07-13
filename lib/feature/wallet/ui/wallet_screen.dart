@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nft/feature/wallet/ui/create_wallet.dart';
 import 'package:nft/feature/wallet/ui/phrase.dart';
 import 'package:nft/feature/wallet/ui/pincode.dart';
 import 'package:nft/feature/wallet/ui/wallet.dart';
@@ -22,7 +23,7 @@ class _WalletScreenState extends State<WalletScreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> screens = [
-      Wallet(
+      CreateWallet(
         createWallet: () {
           changeScreen(1);
         },
@@ -34,8 +35,17 @@ class _WalletScreenState extends State<WalletScreen> {
           changeScreen(2);
         },
       ),
-      Phrase(confirm: () {changeScreen(3);},),
-      PhraseConfirm(),
+      Phrase(
+        confirm: () {
+          changeScreen(3);
+        },
+      ),
+      PhraseConfirm(
+        confirm: () {
+          changeScreen(4);
+        },
+      ),
+      Wallet(),
     ];
 
     return screens[currentScreen];

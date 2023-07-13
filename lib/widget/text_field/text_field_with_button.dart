@@ -23,7 +23,7 @@ class CustomTextFieldWithButton extends StatelessWidget {
       required this.controller,
       required this.suffixIcon,
       this.width = double.infinity,
-      this.height = 50,
+      this.height = 56,
       this.obscureText = false,
       this.maxLines = 1,
       this.maxLength,

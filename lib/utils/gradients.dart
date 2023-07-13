@@ -5,6 +5,6 @@ class AppGradients{
   static const LinearGradient goldWhiteGr  = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
-      colors: <Color>[Colors.white, AppColors.goldBorder]
+      colors: <Color>[Color(0xffFFF4E4), AppColors.goldBorder]
   );
 }

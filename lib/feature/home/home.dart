@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nft/feature/wallet/ui/wallet.dart';
+import 'package:nft/feature/wallet/ui/create_wallet.dart';
 import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/stats/stat.dart';

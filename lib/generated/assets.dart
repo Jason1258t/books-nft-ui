@@ -4,6 +4,7 @@ class Assets {
 
   static const String iconsBooks = 'Assets/icons/books.svg';
   static const String iconsBooksActive = 'Assets/icons/books_active.svg';
+  static const String iconsClc = 'Assets/icons/clc.svg';
   static const String iconsDelete = 'Assets/icons/delete.svg';
   static const String iconsEnergy = 'Assets/icons/energy.svg';
   static const String iconsEvents = 'Assets/icons/events.svg';
@@ -12,12 +13,16 @@ class Assets {
   static const String iconsLigth = 'Assets/icons/ligth.svg';
   static const String iconsPinSymbol = 'Assets/icons/pin_symbol.svg';
   static const String iconsPinSymbolActive = 'Assets/icons/pin_symbol_active.svg';
+  static const String iconsReceive = 'Assets/icons/receive.svg';
   static const String iconsShield = 'Assets/icons/shield.svg';
   static const String iconsStore = 'Assets/icons/store.svg';
   static const String iconsStoreActive = 'Assets/icons/store_active.svg';
+  static const String iconsTick = 'Assets/icons/tick.svg';
   static const String iconsVector2 = 'Assets/icons/Vector-2.svg';
   static const String iconsWallet = 'Assets/icons/wallet.svg';
   static const String iconsWalletActive = 'Assets/icons/wallet_active.svg';
+  static const String iconsWithdraw = 'Assets/icons/withdraw.svg';
   static const String imagesBackground = 'Assets/images/Background.png';
   static const String imagesLogo = 'Assets/images/logo.png';
+
 }

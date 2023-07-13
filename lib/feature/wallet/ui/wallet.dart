@@ -1,47 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:nft/utils/fonts.dart';
-import 'package:nft/widget/buttons/custom_elevated_button.dart';
+import 'package:nft/widget/buttons/row_elevated_button.dart';
+
+import '../../../utils/fonts.dart';
+import '../../../widget/containers/token_container.dart';
 
 class Wallet extends StatelessWidget {
-  const Wallet({super.key, required this.createWallet, required this.importWallet});
-
-  final VoidCallback createWallet;
-  final VoidCallback importWallet;
+  const Wallet({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 16,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(
-                height: 16,
-              ),
-              Text(
-                'Wallet',
-                style: AppTypography.font24w700Gilroy
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CustomElevatedButton(
-                        text: 'Create new wallet', onTap: createWallet),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    CustomElevatedButton(
-                        text: 'Import wallet by secret phrase', onTap: importWallet),
-                  ],
-                ),
-              )
+              Text('Wallet', style: AppTypography.font24w700Gilroy),
+              RowElevatedButton(
+                  text: 'Receive',
+                  onTap: () {},
+                  asset: 'Assets/icons/receive.svg')
             ],
           ),
-        ),
-
-    );
+          const SizedBox(
+            height: 35,
+          ),
+          Expanded(
+              child: ListView.separated(
+                  itemBuilder: (context, ind) => const TokenContainer(),
+                  separatorBuilder: (context, ind) => const SizedBox(
+                        height: 16,
+                      ),
+                  itemCount: 5))
+        ],
+      ),
+    ));
   }
 }
