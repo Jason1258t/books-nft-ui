@@ -3,6 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/feature/wallet/ui/wallet.dart';
 import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:nft/widget/stats/stat.dart';
+
+import '../wallet/ui/wallet_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,7 +36,34 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return WillPopScope(
       child: Scaffold(
-        body: widgetOptions[_selectedTab],
+        appBar: AppBar(
+          elevation: 5,
+          backgroundColor: AppColors.bottomNavigationBackground,
+          title: const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              UserStat(
+                  text: 'x1.4', fill: 0, asset: 'Assets/icons/Vector-2.svg'),
+              UserStat(
+                  text: '3,3/5',
+                  fill: 3.3 / 5,
+                  asset: 'Assets/icons/energy.svg'),
+              UserStat(
+                  text: '85%', fill: 0.85, asset: 'Assets/icons/shield.svg'),
+            ],
+          ),
+        ),
+        body: Container(
+            width: double.infinity,
+            height: double.infinity,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage('Assets/images/Background.png'),
+              fit: BoxFit.cover,
+            )),
+            child: widgetOptions[_selectedTab]),
         bottomNavigationBar: Container(
           color: AppColors.bottomNavigationBackground,
           child: Row(
@@ -141,11 +171,12 @@ class NavigatorBarItem extends StatelessWidget {
               width: 72,
               height: 64,
               decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                const Color(0xffA4A697).withAlpha(100),
-                const Color.fromARGB(0, 1, 1, 1)
-              ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-            )
+              //     gradient: LinearGradient(colors: [
+              //   Colors.white.withAlpha(100),
+              //   const Color.fromARGB(0, 1, 1, 1)
+              // ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+                color: Colors.orange.withAlpha(50)
+            ))
           ]
         ]),
       ),
