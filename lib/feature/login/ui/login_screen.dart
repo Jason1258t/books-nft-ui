@@ -73,9 +73,9 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('Assets/images/Background.png'),
-                fit: BoxFit.cover,
-              )),
+            image: AssetImage('Assets/images/Background.png'),
+            fit: BoxFit.cover,
+          )),
           child: Stack(
             children: [
               Container(
@@ -127,6 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 56,
                     obscureText: true,
                     maxLength: 18,
+                    hintText: 'Verification code',
                     suffixIcon: SmallElevatedButton(
                       text: codeState,
                       onTap: () {
@@ -149,22 +150,30 @@ class _LoginScreenState extends State<LoginScreen> {
                           'i can’t get it',
                           style: AppTypography.font14whiteShadow,
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, '/describe_problem_screen');
+                        },
                       )
                     ],
                   ),
                   const SizedBox(
                     height: 48,
                   ),
-                  CustomElevatedButton(text: 'LOGIN', onTap: () {
-                    Navigator.pushReplacementNamed(context, '/home_screen');
-                  }),
-                  const SizedBox(height: 16,),
+                  CustomElevatedButton(
+                      text: 'LOGIN',
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, '/home_screen');
+                      }),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   ElevatedButtonWithCheckBox(
                     text: 'I accept the user agreement',
-                    style: isTap ? AppTypography.font14whiteShadow.copyWith(
-                        fontSize: 16) : AppTypography.font14whiteShadow.copyWith(
-                        fontSize: 16, color: AppColors.isNotSelectText),
+                    style: isTap
+                        ? AppTypography.font14whiteShadow.copyWith(fontSize: 16)
+                        : AppTypography.font14whiteShadow.copyWith(
+                            fontSize: 16, color: AppColors.isNotSelectText),
                     onTap: () {
                       setState(() {
                         isTap = !isTap;

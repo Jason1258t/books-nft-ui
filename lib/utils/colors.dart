@@ -23,4 +23,5 @@ class AppColors {
   static const statColor = Color(0xFF9D8B6E);
   static const darkText = Color(0xFF3A2635);
   static const redText = Color(0xFFFF0000);
+  static const font16dirtyGold = Color(0xFFA2A28C);
 }
