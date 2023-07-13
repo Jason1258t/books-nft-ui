@@ -13,40 +13,45 @@ class WelcomeScreen extends StatelessWidget {
         height: double.infinity,
         decoration: const BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('Assets/images/Background.png'),
-          fit: BoxFit.cover,
-        )),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image(image: AssetImage('Assets/images/logo.png'),),
-                ],
+              image: AssetImage('Assets/images/Background.png'),
+              fit: BoxFit.cover,
+            )),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image(image: AssetImage('Assets/images/logo.png'),),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  CustomElevatedButton(text: 'LOGIN', onTap: () {
-                    Navigator.pushReplacementNamed(context, '/login_screen');
-                  }),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  CustomTextButton(text: 'REGISTER', onTap: () {}),
-                  const SizedBox(
-                    height: 30,
-                  )
-                ],
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    CustomElevatedButton(text: 'LOGIN', onTap: () {
+                      Navigator.pushReplacementNamed(context, '/login_screen');
+                    }),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    CustomTextButton(text: 'REGISTER', onTap: () {
+                      Navigator.pushReplacementNamed(context, '/register_screen');
+                    }),
+                    const SizedBox(
+                      height: 30,
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

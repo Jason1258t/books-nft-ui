@@ -7,5 +7,4 @@ class AppGradients{
       end: Alignment.bottomCenter,
       colors: <Color>[Colors.white, AppColors.goldBorder]
   );
-
 }

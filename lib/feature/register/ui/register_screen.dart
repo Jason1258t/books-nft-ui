@@ -8,14 +8,14 @@ import '../../../utils/colors.dart';
 import '../../../widget/buttons/elvated_button_with_check_box.dart';
 import '../../../widget/text_field/text_field_with_button.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -135,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 48,
                   ),
-                  CustomElevatedButton(text: 'LOGIN', onTap: () {}),
+                  CustomElevatedButton(text: 'REGISTER', onTap: () {}),
                   const SizedBox(height: 16,),
                   ElevatedButtonWithCheckBox(
                     text: 'I accept the user agreement',

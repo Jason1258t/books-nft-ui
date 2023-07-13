@@ -20,7 +20,7 @@ class CustomTextButton extends StatelessWidget {
           child: Text(
               text,
               textAlign: TextAlign.center,
-              style: AppTypography.buttonText
+              style: AppTypography.buttonText20
           ),
         ),
       ),
