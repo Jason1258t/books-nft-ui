@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'feature/login/ui/login_screen.dart';
-import 'feature/register/ui/register_screen.dart';
-import 'feature/welcome/ui/welcom_screen.dart';
-
-import 'feature/welcome/ui/welcom_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
-        '/': (context) => const WelcomeScreen(),
+        '/': (context) => const HomeScreen(),
         '/login_screen': (context) => const LoginScreen(),
         '/register_screen': (context) => const RegisterScreen(),
       },

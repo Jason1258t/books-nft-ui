@@ -6,6 +6,7 @@ class AppTypography {
   const AppTypography._();
 
   static final _font = GoogleFonts.nunitoSans();
+  static const _fontGilroy = TextStyle(fontFamily: 'Gilroy');
 
   static final buttonText20 = _font.copyWith(
     foreground: Paint()
@@ -46,6 +47,37 @@ class AppTypography {
     color: Colors.white,
     fontSize: 16,
     fontWeight: FontWeight.w700,
+  );
+
+  static final font12w700 = _font.copyWith(
+    color: AppColors.bottomNavigationBarText,
+    fontSize: 12,
+    fontWeight: FontWeight.w700,
+  );
+
+  static final font24w700Gilroy = _fontGilroy.copyWith(
+    color: Colors.white,
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+  );
+
+  static final font36w800 = _font.copyWith(
+    color: AppColors.numberKeyboard,
+    fontSize: 36,
+    fontWeight: FontWeight.w800,
+  );
+
+  static final font12dark = _fontGilroy.copyWith(
+    color: AppColors.darkText,
+    fontSize: 12,
+    fontFamily: 'Gilroy',
+    fontWeight: FontWeight.w300,
+  );
+
+  static final font20w800 = _font.copyWith(
+    color: AppColors.lightText,
+    fontSize: 20,
+    fontWeight: FontWeight.w800,
   );
 
   static final font20gold = _font.copyWith(
