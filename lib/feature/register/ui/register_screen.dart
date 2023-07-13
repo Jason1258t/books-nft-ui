@@ -76,10 +76,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 image: AssetImage('Assets/images/Background.png'),
                 fit: BoxFit.cover,
               )),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Stack(
             children: [
+              Container(
+                alignment: Alignment.bottomCenter,
+                padding: EdgeInsets.only(bottom: 32),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () {},
+                      child: Text(
+                        'Privacy policy',
+                        style: AppTypography.font20whiteShadow,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Text(
+                        'Term of Use',
+                        style: AppTypography.font20whiteShadow,
+                      ),
+                    )
+                  ],
+                ),
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -135,7 +156,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(
                     height: 48,
                   ),
-                  CustomElevatedButton(text: 'REGISTER', onTap: () {}),
+                  CustomElevatedButton(text: 'REGISTER', onTap: () {
+                    Navigator.pushReplacementNamed(context, '/home_screen');
+                  }),
                   const SizedBox(height: 16,),
                   ElevatedButtonWithCheckBox(
                     text: 'I accept the user agreement',
@@ -150,28 +173,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     isTap: isTap,
                   ),
                 ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 32),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Text(
-                        'Privacy policy',
-                        style: AppTypography.font20whiteShadow,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Text(
-                        'Term of Use',
-                        style: AppTypography.font20whiteShadow,
-                      ),
-                    )
-                  ],
-                ),
               ),
             ],
           ),

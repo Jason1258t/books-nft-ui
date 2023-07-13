@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
 import 'package:nft/widget/buttons/custom_text_button.dart';
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+class AuthScreen extends StatelessWidget {
+  const AuthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

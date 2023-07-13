@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'feature/home/home.dart';
+import 'feature/auth/ui/auth_screen.dart';
+import 'feature/home/home.dart';
 import 'feature/login/ui/login_screen.dart';
 import 'feature/register/ui/register_screen.dart';
 
@@ -21,9 +23,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
-        '/': (context) => const HomeScreen(),
+        '/home_screen': (context) => const HomeScreen(),
         '/login_screen': (context) => const LoginScreen(),
         '/register_screen': (context) => const RegisterScreen(),
+        '/' : (context) => const AuthScreen(),
       },
     );
   }
