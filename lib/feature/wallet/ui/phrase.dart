@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nft/utils/colors.dart';
-import 'package:nft/widget/buttons/custom_elevated_button.dart';
 
 import '../../../utils/fonts.dart';
+import '../../../widget/buttons/custom_elevated_button.dart';
 
 class Phrase extends StatelessWidget {
   Phrase({super.key, required this.confirm});
@@ -91,7 +91,7 @@ class Phrase extends StatelessWidget {
                 child: CustomElevatedButton(
                   text: 'Confirm',
                   onTap: confirm,
-                  gradient: const LinearGradient(
+                  gradient: LinearGradient(
                     begin: Alignment(-1.00, 0.00),
                     end: Alignment(1, 0),
                     colors: [Color(0xFF8E7B61),  Color(0xFFD1B991)],

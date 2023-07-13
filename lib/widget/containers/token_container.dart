@@ -34,7 +34,7 @@ class TokenContainer extends StatelessWidget {
                 children: [
                   Text(
                     'CLC',
-                    style: AppTypography.font20whiteW800,
+                    style: AppTypography.font20white,
                   ),
                   Text(
                     '0.0000025',

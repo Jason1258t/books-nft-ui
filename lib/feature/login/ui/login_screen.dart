@@ -118,6 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   CustomTextField(
                     controller: emailController,
                     height: 56,
+                    hintText: 'Email',
                   ),
                   const SizedBox(
                     height: 16,

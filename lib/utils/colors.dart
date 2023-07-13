@@ -17,11 +17,13 @@ class AppColors {
   static const borderCheckBox = Color(0xff9B9C87);
   static const borderBackground = Color(0xff536262);
   static const cursorBackground = Colors.black26;
-  static const isNotSelectText = Color(0xff958768);
+  static const isNotSelectText = Color(0xffAF9E79);
   static const bottomNavigationBarText = Color(0xFFFFD99F);
   static const filedStatColor = Color(0xff6A5D46);
   static const statColor = Color(0xFF9D8B6E);
   static const darkText = Color(0xFF3A2635);
   static const redText = Color(0xFFFF0000);
-  static const font16dirtyGold = Color(0xFFA2A28C);
+  static const dirtyGold = Color(0xFFA2A28C);
+  static const isNoActiveSwitchToggle = Color(0xFF6B5E46);
+  static const isActiveSwitchToggle = Color(0xFFB29E7E);
 }

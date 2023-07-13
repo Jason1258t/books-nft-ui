@@ -6,13 +6,13 @@ import 'package:nft/utils/gradients.dart';
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton(
       {super.key,
-      required this.text,
-      required this.onTap,
-      this.width,
-      this.gradient = const RadialGradient(colors: [
-        AppColors.buttonLightColor,
-        AppColors.buttonDarkColor,
-      ], radius: 3)});
+        required this.text,
+        required this.onTap,
+        this.width,
+        this.gradient = const RadialGradient(colors: [
+          AppColors.buttonLightColor,
+          AppColors.buttonDarkColor,
+        ], radius: 3)});
 
   final String text;
   final VoidCallback onTap;
@@ -38,9 +38,9 @@ class CustomElevatedButton extends StatelessWidget {
               shaderCallback: (Rect rect) =>
                   AppGradients.goldWhiteGr.createShader(rect),
               child: Text(
-                text,
-                textAlign: TextAlign.center,
-                style: AppTypography.buttonText20
+                  text,
+                  textAlign: TextAlign.center,
+                  style: AppTypography.buttonText20
               ),
             )),
       ),

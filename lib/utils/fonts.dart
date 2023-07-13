@@ -76,6 +76,12 @@ class AppTypography {
     fontWeight: FontWeight.w300,
   );
 
+  static final font12white = _font.copyWith(
+    color: Colors.white,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+
   static final font20w800 = _font.copyWith(
     color: AppColors.goldText,
     fontSize: 20,
@@ -88,8 +94,14 @@ class AppTypography {
     fontWeight: FontWeight.w700,
   );
 
+  static final font20white = _font.copyWith(
+    color: Colors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+  );
+
   static final font16dirtyGold = _font.copyWith(
-    color: AppColors.font16dirtyGold,
+    color: AppColors.dirtyGold,
     fontSize: 16,
     fontWeight: FontWeight.w700,
   );
@@ -106,9 +118,27 @@ class AppTypography {
         ),
       ]);
 
-  static final font20whiteW800 = _fontGilroy.copyWith(
-      color: Colors.white, fontSize: 20, fontWeight: FontWeight.w800);
+  static final font24darkShadow = _font.copyWith(
+      color: AppColors.goldBorder,
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
+      shadows: [
+        const Shadow(
+          offset: Offset(0, 5.0),
+          blurRadius: 10.0,
+          color: Colors.black12,
+        ),
+      ]);
 
-  static final font12white = _fontGilroy.copyWith(
-      color: Colors.white, fontSize: 12, fontWeight: FontWeight.w400);
+  static final font24goldShadow = _font.copyWith(
+      color: AppColors.goldBorder,
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
+      shadows: [
+        const Shadow(
+          offset: Offset(0, 5.0),
+          blurRadius: 10.0,
+          color: Colors.black12,
+        ),
+      ]);
 }
