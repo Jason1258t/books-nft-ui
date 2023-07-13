@@ -3,6 +3,8 @@ import 'package:nft/feature/wallet/ui/phrase.dart';
 import 'package:nft/feature/wallet/ui/pincode.dart';
 import 'package:nft/feature/wallet/ui/wallet.dart';
 
+import 'confirm_phrase.dart';
+
 class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
 
@@ -32,7 +34,8 @@ class _WalletScreenState extends State<WalletScreen> {
           changeScreen(2);
         },
       ),
-      Phrase()
+      Phrase(confirm: () {changeScreen(3);},),
+      PhraseConfirm(),
     ];
 
     return screens[currentScreen];

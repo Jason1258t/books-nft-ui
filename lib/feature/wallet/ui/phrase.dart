@@ -5,7 +5,9 @@ import 'package:nft/widget/buttons/custom_elevated_button.dart';
 import '../../../utils/fonts.dart';
 
 class Phrase extends StatelessWidget {
-  Phrase({super.key});
+  Phrase({super.key, required this.confirm});
+
+  final VoidCallback confirm;
 
   List<String> words = [
     'Skill',
@@ -24,8 +26,8 @@ class Phrase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: SafeArea(
+    return SafeArea(
+      child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
@@ -86,7 +88,7 @@ class Phrase extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0,20,0, 32),
-                child: CustomElevatedButton(text: 'Confirm', onTap: () {}),
+                child: CustomElevatedButton(text: 'Confirm', onTap: confirm),
               ),
             ],
           ),
