@@ -31,11 +31,14 @@ class ColumnElevatedButton extends StatelessWidget {
         child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.transparent,
             backgroundColor: Colors.transparent,
-            elevation: 5,
+            disabledBackgroundColor: Colors.transparent,
+            disabledForegroundColor: Colors.transparent,
+            shadowColor: Colors.black12,
             padding: EdgeInsets.zero,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8)),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,

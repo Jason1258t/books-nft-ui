@@ -52,6 +52,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: 20,),
               Text(
                 'Das Kapital. Kritik der politischen...',
                 style: AppTypography.font20white.copyWith(fontSize: 24),
@@ -129,7 +130,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SvgPicture.asset('Assets/icons/brain.svg'),
-                  SvgPicture.asset('Assets/icons/shield.svg'),
+                  SvgPicture.asset('Assets/icons/shield_with_background.svg'),
                   SvgPicture.asset('Assets/icons/lightning.svg'),
                   SvgPicture.asset('Assets/icons/clever.svg'),
                 ],

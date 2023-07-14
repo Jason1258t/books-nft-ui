@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nft/utils/colors.dart';
 
 import '../../../utils/fonts.dart';
+import '../../../utils/gradients.dart';
 import '../../../widget/buttons/custom_elevated_button.dart';
 
 class Phrase extends StatelessWidget {
