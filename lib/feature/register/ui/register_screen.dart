@@ -33,6 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: AppColors.bottomNavigationBackground,
           flexibleSpace: Container(
             alignment: Alignment.center,

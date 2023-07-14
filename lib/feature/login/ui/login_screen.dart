@@ -34,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: AppColors.bottomNavigationBackground,
+          automaticallyImplyLeading: false,
           flexibleSpace: Container(
             alignment: Alignment.center,
             height: 115,
