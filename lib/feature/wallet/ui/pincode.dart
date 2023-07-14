@@ -35,7 +35,6 @@ class _PincodeScreenState extends State<PincodeScreen> {
       if (pin.length < 4) {
         pin += n;
       }
-
     });
 
     if (pin.length == 4) {
@@ -53,7 +52,8 @@ class _PincodeScreenState extends State<PincodeScreen> {
             pin = '';
             pinToVerify = '';
             _creating = true;
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Pin is wrong. Please try again!')));
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text('Pin is wrong. Please try again!')));
           }
         }
       });
@@ -63,7 +63,7 @@ class _PincodeScreenState extends State<PincodeScreen> {
   void delete() {
     setState(() {
       if (pin.isNotEmpty) {
-        pin  = pin.substring(0, pin.length - 1);
+        pin = pin.substring(0, pin.length - 1);
       }
     });
   }
@@ -100,9 +100,21 @@ class _PincodeScreenState extends State<PincodeScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CustomNumberButton(callback: () {setNumber('1');}, text: '1'),
-                            CustomNumberButton(callback: () {setNumber('2');}, text: '2'),
-                            CustomNumberButton(callback: () {setNumber('3');}, text: '3'),
+                            CustomNumberButton(
+                                callback: () {
+                                  setNumber('1');
+                                },
+                                text: '1'),
+                            CustomNumberButton(
+                                callback: () {
+                                  setNumber('2');
+                                },
+                                text: '2'),
+                            CustomNumberButton(
+                                callback: () {
+                                  setNumber('3');
+                                },
+                                text: '3'),
                           ],
                         ),
                         const SizedBox(
@@ -111,9 +123,21 @@ class _PincodeScreenState extends State<PincodeScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CustomNumberButton(callback: () {setNumber('4');}, text: '4'),
-                            CustomNumberButton(callback: () {setNumber('5');}, text: '5'),
-                            CustomNumberButton(callback: () {setNumber('6');}, text: '6'),
+                            CustomNumberButton(
+                                callback: () {
+                                  setNumber('4');
+                                },
+                                text: '4'),
+                            CustomNumberButton(
+                                callback: () {
+                                  setNumber('5');
+                                },
+                                text: '5'),
+                            CustomNumberButton(
+                                callback: () {
+                                  setNumber('6');
+                                },
+                                text: '6'),
                           ],
                         ),
                         const SizedBox(
@@ -122,9 +146,21 @@ class _PincodeScreenState extends State<PincodeScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CustomNumberButton(callback: () {setNumber('7');}, text: '7'),
-                            CustomNumberButton(callback: () {setNumber('8');}, text: '8'),
-                            CustomNumberButton(callback: () {setNumber('9');}, text: '9'),
+                            CustomNumberButton(
+                                callback: () {
+                                  setNumber('7');
+                                },
+                                text: '7'),
+                            CustomNumberButton(
+                                callback: () {
+                                  setNumber('8');
+                                },
+                                text: '8'),
+                            CustomNumberButton(
+                                callback: () {
+                                  setNumber('9');
+                                },
+                                text: '9'),
                           ],
                         ),
                         const SizedBox(
@@ -136,7 +172,11 @@ class _PincodeScreenState extends State<PincodeScreen> {
                             const SizedBox(
                               width: 64,
                             ),
-                            CustomNumberButton(callback: () {setNumber('0');}, text: '0'),
+                            CustomNumberButton(
+                                callback: () {
+                                  setNumber('0');
+                                },
+                                text: '0'),
                             CustomDeleteButton(callback: delete),
                           ],
                         ),
@@ -163,7 +203,7 @@ class CustomNumberButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      splashColor: Colors.white,
+        splashColor: Colors.white,
         onTap: callback,
         child: SizedBox(
           width: 64,

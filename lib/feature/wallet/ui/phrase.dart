@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nft/utils/colors.dart';
-import 'package:nft/utils/gradients.dart';
 
 import '../../../utils/fonts.dart';
 import '../../../widget/buttons/custom_elevated_button.dart';
