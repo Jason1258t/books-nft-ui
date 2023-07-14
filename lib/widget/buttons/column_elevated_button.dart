@@ -44,18 +44,14 @@ class ColumnElevatedButton extends StatelessWidget {
                 asset,
                 width: 24,
               ),
-              ShaderMask(
-                shaderCallback: (Rect rect) =>
-                    AppGradients.goldWhiteGr.createShader(rect),
-                child: Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Color(0xFFFFF1DE),
-                    fontSize: 10,
-                    fontFamily: 'Nunito Sans',
-                    fontWeight: FontWeight.w700,
-                  ),
+              Text(
+                text,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Color(0xFFFFF1DE),
+                  fontSize: 10,
+                  fontFamily: 'Nunito Sans',
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ],

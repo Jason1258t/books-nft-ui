@@ -59,30 +59,25 @@ class RowElevatedButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ShaderMask(
-                    shaderCallback: (Rect rect) {
-                      return AppGradients.goldWhiteGr.createShader(rect);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            asset,
-                            width: 24,
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            text,
-                            textAlign: TextAlign.center,
-                            style: AppTypography.buttonText20,
-                          ),
-                        ],
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          asset,
+                          width: 24,
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          text,
+                          textAlign: TextAlign.center,
+                          style: AppTypography.buttonText20,
+                        ),
+                      ],
                     ),
                   ),
                 ],

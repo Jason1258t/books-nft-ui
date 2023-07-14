@@ -15,7 +15,6 @@ class AppTypography {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter)
             .createShader(const Rect.fromLTWH(0, 0, 200, 20)),
-      //color: AppColors.buttonText,
       fontSize: 20,
       fontWeight: FontWeight.w700,
       shadows: [

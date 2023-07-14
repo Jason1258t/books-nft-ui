@@ -47,12 +47,9 @@ class CustomElevatedButton extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ShaderMask(
-                    shaderCallback: (Rect rect) =>
-                        AppGradients.goldWhiteGr.createShader(rect),
-                    child: Text(text,
-                        textAlign: TextAlign.center, style: AppTypography.buttonText20),
-                  ),
+                  Text(text,
+                      textAlign: TextAlign.center,
+                      style: AppTypography.buttonText20),
                 ],
               ),
             ],

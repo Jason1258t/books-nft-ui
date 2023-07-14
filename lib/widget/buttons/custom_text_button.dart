@@ -13,15 +13,10 @@ class CustomTextButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       child: InkWell(
         onTap: onTap,
-        child: ShaderMask(
-          shaderCallback: (Rect rect){
-            return AppGradients.goldWhiteGr.createShader(rect);
-          },
-          child: Text(
-              text,
-              textAlign: TextAlign.center,
-              style: AppTypography.buttonText20
-          ),
+        child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: AppTypography.buttonText20
         ),
       ),
     );

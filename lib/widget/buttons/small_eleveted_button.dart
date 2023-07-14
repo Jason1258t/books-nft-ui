@@ -43,15 +43,10 @@ class SmallElevatedButton extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                       gradient: AppGradients.smallButtonBackground),
                   alignment: Alignment.center,
-                  child: ShaderMask(
-                    shaderCallback: (Rect rect) {
-                      return AppGradients.goldWhiteGr.createShader(rect);
-                    },
-                    child: Text(
-                      text,
-                      textAlign: TextAlign.center,
-                      style: AppTypography.font16white,
-                    ),
+                  child: Text(
+                    text,
+                    textAlign: TextAlign.center,
+                    style: AppTypography.font16white,
                   )),
             ),
           ),
