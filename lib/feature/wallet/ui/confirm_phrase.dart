@@ -103,7 +103,7 @@ class _PhraseConfirmState extends State<PhraseConfirm> {
                 height: 16,
               ),
               Container(
-                constraints: const BoxConstraints(minHeight: 100),
+                constraints: const BoxConstraints(minHeight: 0),
                 width: double.infinity,
                 child: Wrap(
                   alignment: WrapAlignment.start,
