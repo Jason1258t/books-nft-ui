@@ -37,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return WillPopScope(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 5,
           backgroundColor: AppColors.bottomNavigationBackground,
           title: const Row(

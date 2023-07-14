@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/utils/colors.dart';
-import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 
 class ColumnElevatedButton extends StatelessWidget {
   const ColumnElevatedButton(
       {super.key,
-        required this.text,
-        required this.asset,
-        required this.onTap,
-        this.gradient = const RadialGradient(colors: [
-          AppColors.buttonLightColor,
-          AppColors.buttonDarkColor,
-        ], radius: 0.8, center: Alignment(0, -0.6))});
+      required this.text,
+      required this.asset,
+      required this.onTap,
+      this.gradient = const RadialGradient(colors: [
+        AppColors.buttonLightColor,
+        AppColors.buttonDarkColor,
+      ], radius: 0.8, center: Alignment(0, -0.6))});
 
   final String text;
   final String asset;
@@ -22,34 +21,43 @@ class ColumnElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-          decoration: BoxDecoration(
-              border: Border.all(color: AppColors.goldBorder, width: 2),
-              borderRadius: BorderRadius.circular(8),
-              gradient: gradient),
-          alignment: Alignment.center,
+    return Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: AppColors.goldBorder, width: 2),
+            borderRadius: BorderRadius.circular(8),
+            gradient: gradient),
+        alignment: Alignment.center,
+        child: ElevatedButton(
+          onPressed: onTap,
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.zero,
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+            elevation: 2,
+          ),
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             children: [
-              SvgPicture.asset(asset, width: 24,),
+              SvgPicture.asset(
+                asset,
+                width: 24,
+              ),
               ShaderMask(
                 shaderCallback: (Rect rect) =>
                     AppGradients.goldWhiteGr.createShader(rect),
                 child: Text(
-                    text,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Color(0xFFFFF1DE),
-                      fontSize: 10,
-                      fontFamily: 'Nunito Sans',
-                      fontWeight: FontWeight.w700,
-                    ),
+                  text,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Color(0xFFFFF1DE),
+                    fontSize: 10,
+                    fontFamily: 'Nunito Sans',
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
             ],
-          )),
-    );
+          ),
+        ));
   }
 }

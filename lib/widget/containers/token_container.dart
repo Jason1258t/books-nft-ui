@@ -5,7 +5,9 @@ import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/buttons/column_elevated_button.dart';
 
 class TokenContainer extends StatelessWidget {
-  const TokenContainer({super.key});
+  const TokenContainer({super.key, required this.withdraw});
+
+  final VoidCallback withdraw;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class TokenContainer extends StatelessWidget {
               )
             ],
           ),
-          ColumnElevatedButton(text: 'Withdraw', asset: 'Assets/icons/withdraw.svg', onTap: () {})
+          ColumnElevatedButton(text: 'Withdraw', asset: 'Assets/icons/withdraw.svg', onTap: withdraw)
         ],
       ),
     );
