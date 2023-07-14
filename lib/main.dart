@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'feature/book_info/ui/book_info_screen.dart';
 import 'feature/describe_problem/ui/describe_problem_screen.dart';
 import 'feature/home/home.dart';
 import 'feature/auth/ui/auth_screen.dart';
-import 'feature/home/home.dart';
 import 'feature/login/ui/login_screen.dart';
 import 'feature/register/ui/register_screen.dart';
 
@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/register_screen': (context) => const RegisterScreen(),
         '/' : (context) => const AuthScreen(),
         '/describe_problem_screen' : (context) => const DescribeProblem(),
+        '/book_info_screen' : (context) => const BookInfoScreen(),
       },
     );
   }
