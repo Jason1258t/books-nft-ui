@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nft/utils/fonts.dart';
-import 'package:nft/utils/gradients.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({super.key, required this.text, required this.onTap});

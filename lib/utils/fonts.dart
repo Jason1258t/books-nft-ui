@@ -11,10 +11,10 @@ class AppTypography {
   static final buttonText20 = _font.copyWith(
       foreground: Paint()
         ..shader = const LinearGradient(
-                colors: [Color(0xffFFF5E7), Color(0xffFFD69D)],
+                colors: [AppColors.milk, AppColors.goldBorder],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter)
-            .createShader(const Rect.fromLTWH(0, 0, 200, 20)),
+            .createShader(const Rect.fromLTWH(0, 0, 100, 20)),
       fontSize: 20,
       fontWeight: FontWeight.w700,
       shadows: [
@@ -24,7 +24,7 @@ class AppTypography {
   static final buttonText16 = _font.copyWith(
     foreground: Paint()
       ..shader = const LinearGradient(
-              colors: [Color(0xffFFF5E7), Color(0xffFFD69D)],
+              colors: [AppColors.milk, AppColors.goldBorder],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter)
           .createShader(const Rect.fromLTWH(0, 0, 100, 16)),
