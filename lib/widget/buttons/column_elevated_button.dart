@@ -22,6 +22,7 @@ class ColumnElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        height: 50,
         decoration: BoxDecoration(
             border: Border.all(color: AppColors.goldBorder, width: 2),
             borderRadius: BorderRadius.circular(8),
@@ -30,10 +31,11 @@ class ColumnElevatedButton extends StatelessWidget {
         child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.zero,
             backgroundColor: Colors.transparent,
-            shadowColor: Colors.transparent,
-            elevation: 2,
+            elevation: 5,
+            padding: EdgeInsets.zero,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
