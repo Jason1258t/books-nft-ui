@@ -118,6 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   CustomTextField(
                     controller: emailController,
                     height: 56,
+                    hintText: 'Email',
                   ),
                   const SizedBox(
                     height: 16,

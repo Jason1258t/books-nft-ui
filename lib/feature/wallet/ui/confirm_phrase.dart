@@ -136,7 +136,7 @@ class _PhraseConfirmState extends State<PhraseConfirm> {
                   gradient: const LinearGradient(
                       begin: Alignment(-1.00, 0.00),
                       end: Alignment(1, 0),
-                      colors: [Color(0xFF8E7B61),  Color(0xFFD1B991)]),
+                      colors: [Color(0xFF8E7B61), Color(0xFFD1B991)]),
                 ),
               ),
             ],

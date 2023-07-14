@@ -52,7 +52,7 @@ class _ElevatedButtonWithCheckBoxState
                   textAlign: TextAlign.center,
                   style: widget.style,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 24,
                 ),
               ],

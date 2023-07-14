@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nft/feature/wallet/ui/create_wallet.dart';
+import 'package:nft/feature/wallet/ui/wallet.dart';
 import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/stats/stat.dart';
 
+import '../my_books/ui/my_books.dart';
 import '../wallet/ui/wallet_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final List<Widget> widgetOptions = <Widget>[
       const Text('Store'),
-      const Text('Messages'),
+      const MyBooksScreen(),
       const Text('Delection'),
       const Text('Events'),
       const WalletScreen()

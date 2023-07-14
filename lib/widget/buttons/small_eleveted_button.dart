@@ -30,7 +30,7 @@ class SmallElevatedButton extends StatelessWidget {
               height: height + 10,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  gradient: const LinearGradient(
+                  gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                     stops: [0.8, 1],
@@ -49,7 +49,7 @@ class SmallElevatedButton extends StatelessWidget {
                   height: height,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      gradient: const LinearGradient(
+                      gradient: LinearGradient(
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                         colors: [

@@ -104,6 +104,7 @@ class DescribeProblem extends StatelessWidget {
                   CustomTextField(
                     controller: TextEditingController(),
                     height: 56,
+                    hintText: 'Email',
                   ),
                   const SizedBox(
                     height: 16,
@@ -112,6 +113,7 @@ class DescribeProblem extends StatelessWidget {
                     controller: TextEditingController(),
                     height: 160,
                     hintText: '*Describe your problem',
+                    maxLines: 100,
                   ),
                   const SizedBox(
                     height: 48,

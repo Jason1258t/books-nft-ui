@@ -30,7 +30,8 @@ class CustomTextFieldWithButton extends StatelessWidget {
       this.keyBoardType = TextInputType.text,
       this.onChange,
       this.icon = "",
-      required this.hintText})
+      required this.hintText,
+      })
       : super(key: key);
 
   @override
@@ -42,7 +43,7 @@ class CustomTextFieldWithButton extends StatelessWidget {
       child: Container(
         width: width,
         height: height,
-        alignment: Alignment.center,
+        alignment: Alignment.topLeft,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -54,7 +55,7 @@ class CustomTextFieldWithButton extends StatelessWidget {
           maxLength: maxLength,
           onChanged: onChange ?? (value) {},
           style: AppTypography.font20gold,
-          textAlignVertical: TextAlignVertical.center,
+          textAlignVertical: TextAlignVertical.top,
           controller: controller,
           decoration: InputDecoration(
             counterText: '',
