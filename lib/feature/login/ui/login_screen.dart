@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20,)
+                const SizedBox(height: 20,)
               ],
             ),
           ),
@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Container(
                 alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.only(bottom: 32),
+                padding: const EdgeInsets.only(bottom: 32),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Text(
                     'Enter your email address and a verification code',
-                    style: AppTypography.font16white,
+                    style: AppTypography.font16white.copyWith(fontSize: 20),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(

@@ -8,7 +8,7 @@ import '../../../utils/fonts.dart';
 import '../../../widget/text_field/text_field_with_button.dart';
 
 class PhraseConfirm extends StatefulWidget {
-  PhraseConfirm({super.key, required this.confirm});
+  const PhraseConfirm({super.key, required this.confirm});
 
   final VoidCallback confirm;
 

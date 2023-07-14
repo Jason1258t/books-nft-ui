@@ -5,6 +5,7 @@ import '../../../utils/fonts.dart';
 import '../../../utils/gradients.dart';
 import '../../../widget/buttons/custom_elevated_button.dart';
 
+// ignore: must_be_immutable
 class Phrase extends StatelessWidget {
   Phrase({super.key, required this.confirm});
 

@@ -52,7 +52,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Text(
                 'Das Kapital. Kritik der politischen...',
                 style: AppTypography.font20white.copyWith(fontSize: 24),

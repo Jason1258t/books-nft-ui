@@ -128,6 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+// ignore: must_be_immutable
 class NavigatorBarItem extends StatelessWidget {
   NavigatorBarItem(
       {Key? key,
