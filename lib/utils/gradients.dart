@@ -15,5 +15,50 @@ class AppGradients {
   static const lightButton = LinearGradient(
       begin: Alignment(-1.00, 0.00),
       end: Alignment(1, 0),
-      colors: [Color(0xFF8E7B61), Color(0xFFD1B991)]);
+      colors: [
+        AppColors.smallEvButtonBackgroundDark,
+        AppColors.smallEvButtonBackgroundLight
+      ]);
+
+  static const bottomSheet = LinearGradient(
+      begin: Alignment(0.00, -1.00),
+      end: Alignment(0, 1),
+      colors: [
+        AppColors.smallEvButtonBackgroundLight,
+        AppColors.bottomSheetDark
+      ]);
+
+  static const smallButtonBorder = LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    stops: [0.8, 1],
+    colors: [
+      AppColors.smallEvButtonBorderDark,
+      AppColors.smallEvButtonBorderLight,
+    ],
+  );
+
+  static const smallButtonBackground = LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: [
+      AppColors.smallEvButtonBackgroundDark,
+      AppColors.smallEvButtonBackgroundLight,
+    ],
+  );
+
+  static const wordContainer = LinearGradient(
+    begin: Alignment(-1.00, 0.00),
+    end: Alignment(1, 0),
+    colors: [
+      AppColors.smallEvButtonBackgroundLight,
+      AppColors.smallEvButtonBackgroundDark
+    ],
+  );
+
+  static const appBar = LinearGradient(
+    begin: Alignment(0.00, -1.00),
+    end: Alignment(0, 1),
+    colors: [AppColors.appBarDark, AppColors.appBarLight],
+  );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nft/utils/gradients.dart';
 
 import '../../../utils/colors.dart';
 import '../../../utils/fonts.dart';
@@ -19,11 +20,7 @@ class DescribeProblem extends StatelessWidget {
           flexibleSpace: Container(
             height: 64,
             decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment(0.00, -1.00),
-                end: Alignment(0, 1),
-                colors: [Color(0xFF796C5B), Color(0xFF92836F)],
-              ),
+              gradient: AppGradients.appBar,
               boxShadow: [
                 BoxShadow(
                   color: Color(0x8C000000),

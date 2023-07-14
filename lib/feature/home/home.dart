@@ -173,10 +173,6 @@ class NavigatorBarItem extends StatelessWidget {
               width: 72,
               height: 64,
               decoration: BoxDecoration(
-              //     gradient: LinearGradient(colors: [
-              //   Colors.white.withAlpha(100),
-              //   const Color.fromARGB(0, 1, 1, 1)
-              // ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
                 color: Colors.orange.withAlpha(50)
             ))
           ]

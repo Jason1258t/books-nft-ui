@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nft/utils/gradients.dart';
 
 class WordContainer extends StatelessWidget {
   const WordContainer({super.key, required this.callback, required this.text});
@@ -15,11 +16,7 @@ class WordContainer extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: ShapeDecoration(
-              gradient: const LinearGradient(
-                begin: Alignment(-1.00, 0.00),
-                end: Alignment(1, 0),
-                colors: [Color(0xFFD1B991), Color(0xFF8E7B61)],
-              ),
+              gradient: AppGradients.wordContainer,
               shape: RoundedRectangleBorder(
                 side: const BorderSide(width: 1, color: Color(0xFF948B85)),
                 borderRadius: BorderRadius.circular(8),

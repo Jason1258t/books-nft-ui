@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
 import 'package:nft/widget/buttons/small_eleveted_button.dart';
 import 'package:nft/widget/containers/word_container.dart';
@@ -133,10 +134,7 @@ class _PhraseConfirmState extends State<PhraseConfirm> {
                 child: CustomElevatedButton(
                   text: 'Confirm',
                   onTap: widget.confirm,
-                  gradient: const LinearGradient(
-                      begin: Alignment(-1.00, 0.00),
-                      end: Alignment(1, 0),
-                      colors: [Color(0xFF8E7B61), Color(0xFFD1B991)]),
+                  gradient: AppGradients.lightButton,
                 ),
               ),
             ],

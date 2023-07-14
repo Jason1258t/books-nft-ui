@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nft/utils/gradients.dart';
 
 import '../utils/fonts.dart';
 
@@ -47,11 +48,7 @@ class CustomBottomSheet extends StatelessWidget {
         height: 398,
         width: double.infinity,
         decoration: const ShapeDecoration(
-          gradient: LinearGradient(
-            begin: Alignment(0.00, -1.00),
-            end: Alignment(0, 1),
-            colors: [Color(0xFFC0A16F), Color(0xFF7B6E54)],
-          ),
+          gradient: AppGradients.bottomSheet,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(8),

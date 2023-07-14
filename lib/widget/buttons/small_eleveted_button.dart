@@ -30,15 +30,7 @@ class SmallElevatedButton extends StatelessWidget {
               height: height + 10,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    stops: [0.8, 1],
-                    colors: [
-                      AppColors.smallEvButtonBorderDark,
-                      AppColors.smallEvButtonBorderLight,
-                    ],
-                  )),
+                  gradient: AppGradients.smallButtonBorder),
             ),
           ),
           Center(
@@ -49,14 +41,7 @@ class SmallElevatedButton extends StatelessWidget {
                   height: height,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          AppColors.smallEvButtonBackgroundLight,
-                          AppColors.smallEvButtonBackgroundDark,
-                        ],
-                      )),
+                      gradient: AppGradients.smallButtonBackground),
                   alignment: Alignment.center,
                   child: ShaderMask(
                     shaderCallback: (Rect rect) {

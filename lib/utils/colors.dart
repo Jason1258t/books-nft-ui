@@ -10,8 +10,8 @@ class AppColors {
   static const milk = Color(0xffFFF5E7);
   static const bottomNavigationBackground = Color(0xFF63594B);
   static const textFieldBackground = Color(0xFF80847F);
-  static const smallEvButtonBackgroundDark = Color(0xFFD1B991);
-  static const smallEvButtonBackgroundLight = Color(0xFF8E7B61);
+  static const smallEvButtonBackgroundLight = Color(0xFFD1B991);
+  static const smallEvButtonBackgroundDark = Color(0xFF8E7B61);
   static const smallEvButtonBorderLight = Color(0xff918883);
   static const smallEvButtonBorderDark = Color(0xff544043);
   static const borderCheckBox = Color(0xff9B9C87);
@@ -26,4 +26,7 @@ class AppColors {
   static const dirtyGold = Color(0xFFA2A28C);
   static const isNoActiveSwitchToggle = Color(0xFF6B5E46);
   static const isActiveSwitchToggle = Color(0xFFB29E7E);
+  static const bottomSheetDark = Color(0xFF7B6E54);
+  static const appBarLight = Color(0xFF92836F);
+  static const appBarDark = Color(0xFF796C5B);
 }

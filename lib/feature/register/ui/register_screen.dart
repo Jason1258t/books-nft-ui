@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
 import 'package:nft/widget/buttons/small_eleveted_button.dart';
 import 'package:nft/widget/text_field/custom_text_field.dart';
@@ -32,12 +33,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           backgroundColor: AppColors.bottomNavigationBackground,
           flexibleSpace: Container(
             height: 64,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment(0.00, -1.00),
-                end: Alignment(0, 1),
-                colors: [Color(0xFF796C5B), Color(0xFF92836F)],
-              ),
+            decoration:  const BoxDecoration(
+              gradient: AppGradients.appBar,
               boxShadow: [
                 BoxShadow(
                   color: Color(0x8C000000),

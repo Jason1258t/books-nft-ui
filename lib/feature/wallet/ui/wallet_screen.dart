@@ -31,7 +31,6 @@ class _WalletScreenState extends State<WalletScreen> {
       ),
       PincodeScreen(
         continueFunction: () {
-          print('2 screen');
           changeScreen(2);
         },
       ),
@@ -45,7 +44,7 @@ class _WalletScreenState extends State<WalletScreen> {
           changeScreen(4);
         },
       ),
-      Wallet(),
+      const Wallet(),
     ];
 
     return screens[currentScreen];

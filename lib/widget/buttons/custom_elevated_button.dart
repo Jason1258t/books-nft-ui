@@ -41,23 +41,21 @@ class CustomElevatedButton extends StatelessWidget {
               shadowColor: Colors.transparent,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8))),
-          child: Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ShaderMask(
-                      shaderCallback: (Rect rect) =>
-                          AppGradients.goldWhiteGr.createShader(rect),
-                      child: Text(text,
-                          textAlign: TextAlign.center, style: AppTypography.buttonText20),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ShaderMask(
+                    shaderCallback: (Rect rect) =>
+                        AppGradients.goldWhiteGr.createShader(rect),
+                    child: Text(text,
+                        textAlign: TextAlign.center, style: AppTypography.buttonText20),
+                  ),
+                ],
+              ),
+            ],
           ),
         ));
   }
