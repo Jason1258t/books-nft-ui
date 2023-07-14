@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:nft/utils/colors.dart';
 
-import '../../utils/fonts.dart';
 
 class DarkCustomTextField extends StatelessWidget {
   final double width;

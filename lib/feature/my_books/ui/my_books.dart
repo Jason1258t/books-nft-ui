@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nft/utils/fonts.dart';
 
-import '../../../utils/colors.dart';
 import '../../../widget/containers/books_container.dart';
 import '../../../widget/switch/custom_switch.dart';
 

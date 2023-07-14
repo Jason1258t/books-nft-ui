@@ -33,6 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: AppColors.bottomNavigationBackground,
           flexibleSpace: Container(
             alignment: Alignment.center,
@@ -68,7 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20,)
+                const SizedBox(height: 20,)
               ],
             ),
           ),
@@ -87,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               Container(
                 alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.only(bottom: 32),
+                padding: const EdgeInsets.only(bottom: 32),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -116,7 +117,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   Text(
                     'Enter your email address and a verification code',
-                    style: AppTypography.font16white,
+                    style: AppTypography.font16white.copyWith(fontSize: 20),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(

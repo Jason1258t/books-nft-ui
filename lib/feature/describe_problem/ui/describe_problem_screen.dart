@@ -21,7 +21,8 @@ class DescribeProblem extends StatelessWidget {
           automaticallyImplyLeading: false,
           backgroundColor: AppColors.bottomNavigationBackground,
           flexibleSpace: Container(
-            height: 64,
+            alignment: Alignment.center,
+            height: 115,
             decoration: const BoxDecoration(
               gradient: AppGradients.appBar,
               boxShadow: [
@@ -33,21 +34,27 @@ class DescribeProblem extends StatelessWidget {
                 )
               ],
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const SizedBox(
-                  width: 20,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    InkWell(
+                      child: const Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                      ),
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, '/');
+                      },
+                    ),
+                  ],
                 ),
-                InkWell(
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.white,
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
+                const SizedBox(height: 15,)
               ],
             ),
           ),
@@ -96,7 +103,7 @@ class DescribeProblem extends StatelessWidget {
                     ),
                     Text(
                       'Describe your problem',
-                      style: AppTypography.font16white,
+                      style: AppTypography.font16white.copyWith(fontSize: 24),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(

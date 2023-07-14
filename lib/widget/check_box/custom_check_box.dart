@@ -19,7 +19,7 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
       child: Container(
         width: 24,
         height: 24,
-        padding: EdgeInsets.all(3),
+        padding: const EdgeInsets.all(3),
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.borderCheckBox),
           color: AppColors.borderBackground,

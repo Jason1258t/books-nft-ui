@@ -17,8 +17,8 @@ class _PincodeScreenState extends State<PincodeScreen> {
   String pin = '';
   String pinToVerify = '';
 
-  String _active = 'Assets/icons/pin_symbol_active.svg';
-  String _notActive = 'Assets/icons/pin_symbol.svg';
+  final String _active = 'Assets/icons/pin_symbol_active.svg';
+  final String _notActive = 'Assets/icons/pin_symbol.svg';
 
   Widget _buildPincodeSymbols() => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,7 +46,6 @@ class _PincodeScreenState extends State<PincodeScreen> {
           pin = '';
         } else {
           if (pin == pinToVerify) {
-            print('next');
             widget.continueFunction();
           } else {
             pin = '';
