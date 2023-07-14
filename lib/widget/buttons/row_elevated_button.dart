@@ -10,8 +10,8 @@ class RowElevatedButton extends StatelessWidget {
       required this.text,
       required this.onTap,
       required this.asset,
-      this.width,
-      this.height})
+      this.width = 150,
+      this.height = 36})
       : gradient = AppGradients.darkButton;
 
   const RowElevatedButton.big({
@@ -46,37 +46,46 @@ class RowElevatedButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.transparent,
             elevation: 5,
-            padding: EdgeInsets.zero
+            padding: EdgeInsets.zero,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           ),
-          child: Row(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ShaderMask(
-                shaderCallback: (Rect rect) {
-                  return AppGradients.goldWhiteGr.createShader(rect);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        asset,
-                        width: 24,
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ShaderMask(
+                    shaderCallback: (Rect rect) {
+                      return AppGradients.goldWhiteGr.createShader(rect);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            asset,
+                            width: 24,
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            text,
+                            textAlign: TextAlign.center,
+                            style: AppTypography.buttonText20,
+                          ),
+                        ],
                       ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        text,
-                        textAlign: TextAlign.center,
-                        style: AppTypography.buttonText20,
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
