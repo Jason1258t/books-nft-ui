@@ -19,9 +19,6 @@ class _BooksContainerState extends State<BooksContainer> {
       width: width * 0.9,
       alignment: Alignment.center,
       child: Stack(children: [
-        Container(
-            alignment: Alignment.center,
-            child: Image.asset('Assets/images/backgroundBooks.png')),
         Column(
           children: [
             Row(
