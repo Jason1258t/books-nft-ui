@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
-import 'package:nft/widget/buttons/small_eleveted_button.dart';
+import 'package:nft/widget/buttons/small_elevated_button.dart';
 import 'package:nft/widget/text_field/custom_text_field.dart';
 
 import '../../../utils/colors.dart';
-import '../../../widget/buttons/elvated_button_with_check_box.dart';
+import '../../../widget/buttons/elevated_button_with_check_box.dart';
 import '../../../widget/text_field/text_field_with_button.dart';
 
 class LoginScreen extends StatefulWidget {
