@@ -11,7 +11,7 @@ class CustomToggleSwitch extends StatefulWidget {
 }
 
 List<bool> isSelected = [false, false];
-int selectIndex = -1;
+int selectIndex = 0;
 
 class _CustomToggleSwitchState extends State<CustomToggleSwitch> {
   @override
