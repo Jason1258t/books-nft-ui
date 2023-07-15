@@ -18,139 +18,155 @@ class WardrobeScreen extends StatefulWidget {
 class _WardrobeScreenState extends State<WardrobeScreen> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    final height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
         body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("Assets/images/backgroundHome.png"),
-                  fit: BoxFit.cover
-              )
-          ),
-          child: const SafeArea(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-            Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Row(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("Assets/images/backgroundHome.png"),
+                    fit: BoxFit.cover)),
+            child: SafeArea(
+                child: SingleChildScrollView(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const UserStat(
-                                  text: 'x1.4',
-                                  fill: 0,
-                                  asset: 'Assets/icons/Vector-2.svg'),
-                              const SizedBox(height: 18,),
-                              const Column(
-                                children: [
-                                  StatisticsContainer(),
-                                  SizedBox(height: 5,),
-                                  StatisticsContainer(),
-                                ],
-                              ),
-                              const SizedBox(height: 12,),
-                              ConstIconsWithTextElevatedButton(
-                                onTap: () {},
-                                text: 'Level Up',
-                                height: 26,
-                                width: 86,
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const UserStat(
-                                  text: '3,3/5',
-                                  fill: 3.3 / 5,
-                                  asset: 'Assets/icons/energy.svg'),
-                              const SizedBox(height: 18,),
-                              const Column(
-                                children: [
-                                  StatisticsContainer(),
-                                  SizedBox(height: 5,),
-                                  StatisticsContainer(),
-                                ],
-                              ),
-                              const SizedBox(height: 12,),
-                              IconElevatedButton(
-                                onTap: () {},
-                                asset1: 'Assets/icons/key.svg',
-                                height: 26,
-                                width: 86,
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const UserStat(
-                                  text: '85%',
-                                  fill: 0.85,
-                                  asset: 'Assets/icons/shield.svg'),
-                              const SizedBox(height: 18,),
-                              Container(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      10, 0, 20, 0),
-                                  child: const LvlContainer()),
-                              const SizedBox(height: 22,),
-                              ConstIconsWithTextElevatedButton(
-                                onTap: () {},
-                                text: 'Level Up',
-                                height: 26,
-                                width: 86,
-                              ),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const UserStat(
+                                            text: 'x1.4',
+                                            fill: 0,
+                                            asset: 'Assets/icons/Vector-2.svg'),
+                                        const SizedBox(
+                                          height: 12,
+                                        ),
+                                        const Column(
+                                          children: [
+                                            StatisticsContainer(),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            StatisticsContainer(),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 12,
+                                        ),
+                                        ConstIconsWithTextElevatedButton(
+                                          onTap: () {},
+                                          text: 'Level Up',
+                                          height: 26,
+                                          width: 86,
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const UserStat(
+                                            text: '3,3/5',
+                                            fill: 3.3 / 5,
+                                            asset: 'Assets/icons/energy.svg'),
+                                        const SizedBox(
+                                          height: 12,
+                                        ),
+                                        const Column(
+                                          children: [
+                                            StatisticsContainer(),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            StatisticsContainer(),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 12,
+                                        ),
+                                        IconElevatedButton(
+                                          onTap: () {},
+                                          asset1: 'Assets/icons/key.svg',
+                                          height: 26,
+                                          width: 86,
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const UserStat(
+                                            text: '85%',
+                                            fill: 0.85,
+                                            asset: 'Assets/icons/shield.svg'),
+                                        const SizedBox(
+                                          height: 12,
+                                        ),
+                                        Container(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                10, 0, 20, 0),
+                                            child: const LvlContainer()),
+                                        const SizedBox(
+                                          height: 22,
+                                        ),
+                                        ConstIconsWithTextElevatedButton(
+                                          onTap: () {},
+                                          text: 'Level Up',
+                                          height: 26,
+                                          width: 86,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         ],
-                      )
-                    ],
-                  ),
-                ),
-                Column(
-                  children: [
-                    TopShelf(
-                      addBooks: 2,
-                      lockedBooks: 1,
+                      ),
                     ),
-                    MiddleShelf(
-                      addBooks: 4,
-                      lockedBooks: 1,
-                    ),
-                    MiddleShelf(
-                      addBooks: 4,
-                      lockedBooks: 1,
-                    ),
-                    BottomShelf(addBooks: 4,
-                      lockedBooks: 1,)
-                  ],
-                )
-              ],
-            ),
-          ),
-        ));
+                    const Column(
+                      children: [
+                        TopShelf(
+                          addBooks: 2,
+                          lockedBooks: 1,
+                        ),
+                        MiddleShelf(
+                          addBooks: 4,
+                          lockedBooks: 1,
+                        ),
+                        MiddleShelf(
+                          addBooks: 4,
+                          lockedBooks: 1,
+                        ),
+                        BottomShelf(
+                          addBooks: 4,
+                          lockedBooks: 1,
+                        )
+                      ],
+                    )
+                  ]),
+            ))));
   }
 }
 
@@ -183,11 +199,11 @@ class _TopShelfState extends State<TopShelf> {
     return Container(
       height: 191,
       padding:
-      const EdgeInsets.only(top: 32.4, left: 36, right: 36, bottom: 21.5),
+          const EdgeInsets.only(top: 32.4, left: 36, right: 36, bottom: 21.5),
       decoration: const BoxDecoration(
         image: DecorationImage(
             image: AssetImage('Assets/images/shelf_top.png'),
-            fit: BoxFit.fitWidth),
+            fit: BoxFit.fill),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -246,7 +262,6 @@ class _MiddleShelfState extends State<MiddleShelf> {
           )
         ],
       ),
-
     );
   }
 }
@@ -274,7 +289,6 @@ class _BottomShelfState extends State<BottomShelf> {
 
     return books;
   }
-
 
   @override
   Widget build(BuildContext context) {
