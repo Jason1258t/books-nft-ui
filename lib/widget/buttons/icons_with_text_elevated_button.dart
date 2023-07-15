@@ -4,27 +4,16 @@ import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 
-class RowElevatedButton extends StatelessWidget {
-  const RowElevatedButton(
+class ConstIconsWithTextElevatedButton extends StatelessWidget {
+  const ConstIconsWithTextElevatedButton(
       {super.key,
-      required this.text,
-      required this.onTap,
-      required this.asset1,
-      this.width = 150,
-      this.height = 36})
+        required this.onTap,
+        required this.text,
+        this.width = 150,
+        this.height = 36})
       : gradient = AppGradients.darkButton;
 
-  const RowElevatedButton.big({
-    super.key,
-    required this.asset1,
-    required this.text,
-    required this.onTap,
-  })  : width = double.infinity,
-        height = 56,
-        gradient = AppGradients.darkButton;
-
   final String text;
-  final String asset1;
   final Gradient gradient;
   final double? width;
   final double? height;
@@ -36,7 +25,7 @@ class RowElevatedButton extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-            border: Border.all(color: AppColors.goldBorder, width: 2),
+            border: Border.all(color: AppColors.darkBorder, width: 2),
             borderRadius: BorderRadius.circular(8),
             gradient: gradient),
         alignment: Alignment.center,
@@ -51,7 +40,7 @@ class RowElevatedButton extends StatelessWidget {
             shadowColor: Colors.black12,
             padding: EdgeInsets.zero,
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -61,26 +50,22 @@ class RowElevatedButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          asset1,
-                          width: 24,
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Text(
-                          text,
-                          textAlign: TextAlign.center,
-                          style: AppTypography.buttonText20,
-                        ),
-                      ],
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        'Assets/icons/treangle_left.svg',
+                        width: 16,
+                      ),
+                      SizedBox(width: 4,),
+                      Text(text, style: AppTypography.font10gold,),
+                      SizedBox(width: 4,),
+                      SvgPicture.asset(
+                        'Assets/icons/treangle_right.svg',
+                        width: 16,
+                      ),
+                    ],
                   ),
                 ],
               ),

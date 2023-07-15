@@ -6,6 +6,7 @@ class AppColors {
   static const buttonText = Color(0xFFFFF4E6);
   static const empty = Colors.transparent;
   static const goldBorder = Color(0xffFFD69D);
+  static const darkBorder = Color(0xFF48373A);
   static const goldText = Color(0xFFEBD7B2);
   static const milk = Color(0xffFFF5E7);
   static const bottomNavigationBackground = Color(0xFF63594B);
@@ -31,4 +32,6 @@ class AppColors {
   static const appBarDark = Color(0xFF796C5B);
   static const statistic = Color(0xff68CDFE);
   static const lvlBackground = Color(0xFF6E5C59);
+  static const lvlBorder = Color(0xFF3A2635);
+  static const lvlText = Color(0xFF7DE0F8);
 }

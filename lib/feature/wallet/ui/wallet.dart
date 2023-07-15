@@ -139,7 +139,7 @@ class Wallet extends StatelessWidget {
               RowElevatedButton(
                   text: 'Receive',
                   onTap: showReceive,
-                  asset: 'Assets/icons/receive.svg')
+                  asset1: 'Assets/icons/receive.svg')
             ],
           ),
           const SizedBox(
@@ -157,7 +157,7 @@ class Wallet extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: RowElevatedButton.big(
-                asset: 'Assets/icons/refresh.svg',
+                asset1: 'Assets/icons/refresh.svg',
                 text: 'Refresh',
                 onTap: () {}),
           )
