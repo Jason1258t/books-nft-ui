@@ -35,7 +35,6 @@ class RowElevatedButton extends StatelessWidget {
     return Container(
         width: width,
         height: height,
-        //padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
         decoration: BoxDecoration(
             border: Border.all(color: AppColors.goldBorder, width: 2),
             borderRadius: BorderRadius.circular(8),

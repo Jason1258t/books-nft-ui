@@ -29,4 +29,6 @@ class AppColors {
   static const bottomSheetDark = Color(0xFF7B6E54);
   static const appBarLight = Color(0xFF92836F);
   static const appBarDark = Color(0xFF796C5B);
+  static const statistic = Color(0xff68CDFE);
+  static const lvlBackground = Color(0xFF6E5C59);
 }

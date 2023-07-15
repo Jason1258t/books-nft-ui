@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nft/feature/home/data/homa_repository.dart';
 import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/stats/stat.dart';
 
 import '../my_books/ui/my_books.dart';
 import '../wallet/ui/wallet_screen.dart';
+import '../wardrobe/ui/wardrobe_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,10 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final homeRepository = RepositoryProvider.of<HomeRepository>(context);
+
     final List<Widget> widgetOptions = <Widget>[
       const Text('Store'),
       const MyBooksScreen(),
-      const Text('Delection'),
+      const WardrobeScreen(),
       const Text('Events'),
       const WalletScreen()
     ];
@@ -30,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     void onSelectTab(int index) {
       if (_selectedTab == index) return;
       setState(() {
+        homeRepository.setIsSecondScreen(index != 2);
         _selectedTab = index;
       });
     }
@@ -40,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
           FocusScope.of(context).requestFocus(FocusNode());
         },
         child: Scaffold(
-          appBar: AppBar(
+          appBar: homeRepository.isSecondScreen ? AppBar(
             automaticallyImplyLeading: false,
             elevation: 5,
             backgroundColor: AppColors.bottomNavigationBackground,
@@ -57,8 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     text: '85%', fill: 0.85, asset: 'Assets/icons/shield.svg'),
               ],
             ),
-          ),
-          body: Container(
+          ) : null,
+          body: homeRepository.isSecondScreen ? Container(
               width: double.infinity,
               height: double.infinity,
               alignment: Alignment.center,
@@ -68,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 image: AssetImage('Assets/images/Background.png'),
                 fit: BoxFit.cover,
               )),
-              child: widgetOptions[_selectedTab]),
+              child: widgetOptions[_selectedTab]) : widgetOptions[_selectedTab],
           bottomNavigationBar: Container(
             color: AppColors.bottomNavigationBackground,
             child: Row(
