@@ -41,15 +41,15 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
+                            child: SizedBox(
+                              height: height * 0.19,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -80,7 +80,9 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                         ),
                                       ],
                                     ),
-                                    Column(
+                                  ),
+                                  Expanded(
+                                    child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -111,7 +113,9 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                         ),
                                       ],
                                     ),
-                                    Column(
+                                  ),
+                                  Expanded(
+                                    child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -119,16 +123,12 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                             text: '85%',
                                             fill: 0.85,
                                             asset: 'Assets/icons/shield.svg'),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
+
                                         Container(
                                             padding: const EdgeInsets.fromLTRB(
                                                 10, 0, 20, 0),
                                             child: const LvlContainer()),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
+
                                         ConstIconsWithTextElevatedButton(
                                           onTap: () {},
                                           text: 'Level Up',
@@ -137,9 +137,9 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                         ),
                                       ],
                                     ),
-                                  ],
-                                )
-                              ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
