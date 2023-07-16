@@ -42,10 +42,9 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: SizedBox(
-                              height: height * 0.19,
+                              height: height * 0.2,
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Expanded(
@@ -57,20 +56,18 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                             text: 'x1.4',
                                             fill: 0,
                                             asset: 'Assets/icons/Vector-2.svg'),
-                                        const SizedBox(
-                                          height: 12,
-                                        ),
                                         const Column(
                                           children: [
-                                            StatisticsContainer(fill: 0.6,),
+                                            StatisticsContainer(
+                                              fill: 0.6,
+                                            ),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            StatisticsContainer(fill: 0.4,),
+                                            StatisticsContainer(
+                                              fill: 0.4,
+                                            ),
                                           ],
-                                        ),
-                                        const SizedBox(
-                                          height: 12,
                                         ),
                                         ConstIconsWithTextElevatedButton(
                                           onTap: () {},
@@ -90,20 +87,18 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                             text: '3,3/5',
                                             fill: 3.3 / 5,
                                             asset: 'Assets/icons/energy.svg'),
-                                        const SizedBox(
-                                          height: 12,
-                                        ),
                                         const Column(
                                           children: [
-                                            StatisticsContainer(fill: 0.2,),
+                                            StatisticsContainer(
+                                              fill: 0.2,
+                                            ),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            StatisticsContainer(fill: 1,),
+                                            StatisticsContainer(
+                                              fill: 1,
+                                            ),
                                           ],
-                                        ),
-                                        const SizedBox(
-                                          height: 12,
                                         ),
                                         IconElevatedButton(
                                           onTap: () {},
@@ -123,12 +118,10 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                             text: '85%',
                                             fill: 0.85,
                                             asset: 'Assets/icons/shield.svg'),
-
                                         Container(
                                             padding: const EdgeInsets.fromLTRB(
                                                 10, 0, 20, 0),
                                             child: const LvlContainer()),
-
                                         ConstIconsWithTextElevatedButton(
                                           onTap: () {},
                                           text: 'Level Up',
@@ -202,8 +195,7 @@ class _TopShelfState extends State<TopShelf> {
           const EdgeInsets.only(top: 32.4, left: 36, right: 36, bottom: 21.5),
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('Assets/images/shelf_top.png'),
-            fit: BoxFit.fill),
+            image: AssetImage('Assets/images/shelf_top.png'), fit: BoxFit.fill),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
