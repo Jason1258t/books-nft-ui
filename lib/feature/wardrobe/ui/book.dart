@@ -7,7 +7,7 @@ class Book extends StatelessWidget {
       : _width = 27.4,
         _height = 105;
 
-  Book.add({required double shelfWidth})
+  Book.add({super.key, required double shelfWidth})
       : decoration = BoxDecoration(color: Colors.black.withOpacity(0.4)),
         child = DottedBorder(
             strokeWidth: 1.48,
@@ -23,7 +23,7 @@ class Book extends StatelessWidget {
         _width = shelfWidth * (27.4 / 360),
         _height = shelfWidth * (100 / 360);
 
-  Book.lock({required double shelfWidth})
+  Book.lock({super.key, required double shelfWidth})
       : decoration = BoxDecoration(color: Colors.black.withOpacity(0.4)),
         child = DottedBorder(
             strokeWidth: 1.48,
@@ -39,7 +39,7 @@ class Book extends StatelessWidget {
         _width = shelfWidth * (27.4 / 360),
         _height = shelfWidth * (100 / 360);
 
-  Book.empty({required double shelfWidth})
+  Book.empty({super.key, required double shelfWidth})
       : decoration = BoxDecoration(
           borderRadius: BorderRadius.circular(3),
           color: Colors.red,

@@ -174,7 +174,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
 
 class _TextAndDescription extends StatelessWidget {
   const _TextAndDescription(
-      {super.key, required this.name, required this.description});
+      {required this.name, required this.description});
 
   final String name;
   final String description;

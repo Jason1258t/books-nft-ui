@@ -7,6 +7,7 @@ import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/stats/stat.dart';
 
 import '../my_books/ui/my_books.dart';
+import '../store/ui/store_screen.dart';
 import '../wallet/ui/wallet_screen.dart';
 import '../wardrobe/ui/wardrobe_screen.dart';
 
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final homeRepository = RepositoryProvider.of<HomeRepository>(context);
 
     final List<Widget> widgetOptions = <Widget>[
-      const Text('Store'),
+      const StoreScreen(),
       const MyBooksScreen(),
       const WardrobeScreen(),
       const Text('Events'),
@@ -68,12 +69,11 @@ class _HomeScreenState extends State<HomeScreen> {
               width: double.infinity,
               height: double.infinity,
               alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                image: AssetImage('Assets/images/Background.png'),
-                fit: BoxFit.cover,
-              )),
+                    image: AssetImage('Assets/images/Background.png'),
+                    fit: BoxFit.cover,
+                  )),
               child: widgetOptions[_selectedTab]) : widgetOptions[_selectedTab],
           bottomNavigationBar: Container(
             color: AppColors.bottomNavigationBackground,
@@ -136,13 +136,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
 // ignore: must_be_immutable
 class NavigatorBarItem extends StatelessWidget {
-  NavigatorBarItem(
-      {Key? key,
-      required this.asset,
-      this.activeAsset,
-      required this.isSelected,
-      required this.text,
-      required this.onTap})
+  NavigatorBarItem({Key? key,
+    required this.asset,
+    this.activeAsset,
+    required this.isSelected,
+    required this.text,
+    required this.onTap})
       : super(key: key) {
     activeAsset = activeAsset ?? asset;
   }

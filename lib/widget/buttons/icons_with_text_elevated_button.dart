@@ -58,9 +58,9 @@ class ConstIconsWithTextElevatedButton extends StatelessWidget {
                         'Assets/icons/treangle_left.svg',
                         width: 16,
                       ),
-                      SizedBox(width: 4,),
+                      const SizedBox(width: 4,),
                       Text(text, style: AppTypography.font10gold,),
-                      SizedBox(width: 4,),
+                      const SizedBox(width: 4,),
                       SvgPicture.asset(
                         'Assets/icons/treangle_right.svg',
                         width: 16,

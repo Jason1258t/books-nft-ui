@@ -11,12 +11,13 @@ import 'feature/home/home.dart';
 import 'feature/auth/ui/auth_screen.dart';
 import 'feature/login/ui/login_screen.dart';
 import 'feature/register/ui/register_screen.dart';
+import 'feature/store/ui/category_books_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   Bloc.observer = CustomBlocObserver();
-  runApp(MyRepositoryProviders());
+  runApp(const MyRepositoryProviders());
 }
 
 class MyApp extends StatelessWidget {
@@ -42,24 +43,25 @@ class MyApp extends StatelessWidget {
         '/': (context) => const AuthScreen(),
         '/describe_problem_screen': (context) => const DescribeProblem(),
         '/book_info_screen': (context) => const BookInfoScreen(),
+        '/category_books_screen': (context) => const CategoryBooksScreen(),
       },
     );
   }
 }
 
 class MyRepositoryProviders extends StatelessWidget {
-  MyRepositoryProviders({Key? key}) : super(key: key);
+  const MyRepositoryProviders({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider(create: (_) => HomeRepository()),
-    ], child: MyBlocProviders());
+    ], child: const MyBlocProviders());
   }
 }
 
 class MyBlocProviders extends StatelessWidget {
-  MyBlocProviders({Key? key}) : super(key: key);
+  const MyBlocProviders({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

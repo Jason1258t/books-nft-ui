@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:nft/utils/gradients.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton(
@@ -8,15 +9,14 @@ class CustomElevatedButton extends StatelessWidget {
       required this.text,
       required this.onTap,
       this.width,
+        this.height = 56,
       this.borderColor,
-      this.gradient = const RadialGradient(colors: [
-        AppColors.buttonLightColor,
-        AppColors.buttonDarkColor,
-      ], radius: 3)});
+      this.gradient =  AppGradients.buttonGold});
 
   final String text;
   final VoidCallback onTap;
   final double? width;
+  final double? height;
   final Gradient gradient;
   final Color? borderColor;
 
@@ -24,7 +24,7 @@ class CustomElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: width ?? double.infinity,
-        height: 56,
+        height: height,
         decoration: BoxDecoration(
             border: Border.all(
                 color: borderColor ?? AppColors.goldBorder, width: 2),

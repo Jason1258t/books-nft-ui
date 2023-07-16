@@ -17,8 +17,8 @@ class WalletScreen extends StatefulWidget {
 class _WalletScreenState extends State<WalletScreen> {
   int currentScreen = 0;
 
-  void changeScreen(int ind) => setState(() {
-        currentScreen = ind;
+  void changeScreen(int index) => setState(() {
+        currentScreen = index;
       });
 
   @override
