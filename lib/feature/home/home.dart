@@ -71,9 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
               alignment: Alignment.center,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                image: AssetImage('Assets/images/Background.png'),
-                fit: BoxFit.cover,
-              )),
+                    image: AssetImage('Assets/images/Background.png'),
+                    fit: BoxFit.cover,
+                  )),
               child: widgetOptions[_selectedTab]) : widgetOptions[_selectedTab],
           bottomNavigationBar: Container(
             color: AppColors.bottomNavigationBackground,
@@ -136,13 +136,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
 // ignore: must_be_immutable
 class NavigatorBarItem extends StatelessWidget {
-  NavigatorBarItem(
-      {Key? key,
-      required this.asset,
-      this.activeAsset,
-      required this.isSelected,
-      required this.text,
-      required this.onTap})
+  NavigatorBarItem({Key? key,
+    required this.asset,
+    this.activeAsset,
+    required this.isSelected,
+    required this.text,
+    required this.onTap})
       : super(key: key) {
     activeAsset = activeAsset ?? asset;
   }

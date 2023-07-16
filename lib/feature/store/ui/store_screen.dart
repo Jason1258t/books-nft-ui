@@ -10,6 +10,8 @@ class StoreScreen extends StatefulWidget {
   State<StoreScreen> createState() => _StoreScreenState();
 }
 
+List<String> list = ['Economy','Fantasy','Romantic',];
+
 class _StoreScreenState extends State<StoreScreen> {
   @override
   Widget build(BuildContext context) {
@@ -27,11 +29,11 @@ class _StoreScreenState extends State<StoreScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CustomSwitchCategories(),
-              SizedBox(height: 20,),
-              CustomCategoryScroller(title: 'Economy',),
-              CustomCategoryScroller(title: 'Fantasy',),
-              CustomCategoryScroller(title: 'Romantic',),
+              const CustomSwitchCategories(),
+              const SizedBox(height: 20,),
+              Column(
+                children: list.map((e) => CustomCategoryScroller(title: e,)).toList(),
+              )
             ],
           ),
         ),

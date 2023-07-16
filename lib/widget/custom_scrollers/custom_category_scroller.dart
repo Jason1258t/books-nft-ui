@@ -59,8 +59,7 @@ class CustomCategoryScroller extends StatelessWidget {
                     height: 170,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
-                      children: [
-                      ],
+                      children: const [],
                     ),
                   ),
                   Container(
@@ -75,17 +74,20 @@ class CustomCategoryScroller extends StatelessWidget {
             height: 178,
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.only(right: 20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: 33,
-                    child: Text(
-                  'Show More',
-                  style: AppTypography.font20gold.copyWith(fontSize: 12),
-                )),
-                SvgPicture.asset('Assets/icons/arrow.svg')
-              ],
+            child: InkWell(
+              onTap: () {Navigator.pushReplacementNamed(context, '/category_books_screen');},
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                      width: 33,
+                      child: Text(
+                        'Show More',
+                        style: AppTypography.font20gold.copyWith(fontSize: 12),
+                      )),
+                  SvgPicture.asset('Assets/icons/arrow.svg')
+                ],
+              ),
             ),
           ),
         ]),
@@ -100,7 +102,9 @@ class CustomCategoryScroller extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 20,)
+        const SizedBox(
+          height: 20,
+        )
       ],
     );
   }
