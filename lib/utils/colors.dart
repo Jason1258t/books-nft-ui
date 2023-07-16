@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const buttonLightColor = Color(0xff948867);
   static const buttonDarkColor = Color(0xff6A5D45);
+  static const wardrobeButtonLight = Color(0xff938667);
   static const buttonText = Color(0xFFFFF4E6);
   static const empty = Colors.transparent;
   static const goldBorder = Color(0xffFFD69D);
