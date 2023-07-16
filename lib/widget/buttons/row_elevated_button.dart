@@ -11,17 +11,17 @@ class RowElevatedButton extends StatelessWidget {
       required this.onTap,
       required this.asset1,
       this.width = 150,
-      this.height = 36})
-      : gradient = AppGradients.darkButton;
+      this.gradient = AppGradients.darkButton,
+      this.height = 36});
 
   const RowElevatedButton.big({
     super.key,
     required this.asset1,
     required this.text,
     required this.onTap,
-  })  : width = double.infinity,
-        height = 56,
-        gradient = AppGradients.darkButton;
+    this.width = double.infinity,
+    this.gradient = AppGradients.darkButton,
+  }) : height = 56;
 
   final String text;
   final String asset1;

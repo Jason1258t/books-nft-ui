@@ -14,6 +14,7 @@ class Assets {
   static const String iconsEvents = 'Assets/icons/events.svg';
   static const String iconsHome = 'Assets/icons/home.svg';
   static const String iconsHomeActive = 'Assets/icons/home_active.svg';
+  static const String iconsKey = 'Assets/icons/key.svg';
   static const String iconsLightning = 'Assets/icons/lightning.svg';
   static const String iconsLigth = 'Assets/icons/ligth.svg';
   static const String iconsLock = 'Assets/icons/lock.svg';
@@ -21,14 +22,18 @@ class Assets {
   static const String iconsPinSymbol = 'Assets/icons/pin_symbol.svg';
   static const String iconsPinSymbolActive = 'Assets/icons/pin_symbol_active.svg';
   static const String iconsPlus = 'Assets/icons/plus.svg';
+  static const String iconsRead = 'Assets/icons/read.svg';
   static const String iconsReceive = 'Assets/icons/receive.svg';
   static const String iconsRefresh = 'Assets/icons/refresh.svg';
   static const String iconsShield = 'Assets/icons/shield.svg';
   static const String iconsShieldWithBackground = 'Assets/icons/shield_with_background.svg';
+  static const String iconsShoppingBag = 'Assets/icons/shopping-bag.svg';
   static const String iconsStore = 'Assets/icons/store.svg';
   static const String iconsStoreActive = 'Assets/icons/store_active.svg';
   static const String iconsSubtract = 'Assets/icons/Subtract.svg';
   static const String iconsTick = 'Assets/icons/tick.svg';
+  static const String iconsTreangleLeft = 'Assets/icons/treangle_left.svg';
+  static const String iconsTreangleRight = 'Assets/icons/treangle_right.svg';
   static const String iconsVector2 = 'Assets/icons/Vector-2.svg';
   static const String iconsWallet = 'Assets/icons/wallet.svg';
   static const String iconsWalletActive = 'Assets/icons/wallet_active.svg';
@@ -37,13 +42,15 @@ class Assets {
   static const String imagesBackgroundBooks = 'Assets/images/backgroundBooks.png';
   static const String imagesBackgroundHome = 'Assets/images/backgroundHome.png';
   static const String imagesBackgroundStatisctic = 'Assets/images/backgroundStatisctic.png';
+  static const String imagesBillet = 'Assets/images/billet.png';
   static const String imagesBlueBook = 'Assets/images/blueBook.png';
   static const String imagesGrandpa = 'Assets/images/grandpa.png';
+  static const String imagesLockedShelfCounter = 'Assets/images/locked_shelf_counter.png';
   static const String imagesLogo = 'Assets/images/logo.png';
   static const String imagesQRcode = 'Assets/images/QRcode.png';
   static const String imagesRedBook = 'Assets/images/redBook.png';
   static const String imagesShelfBottom = 'Assets/images/shelf_bottom.png';
-  static const String imagesShelfMidle = 'Assets/images/shelf_midle.png';
+  static const String imagesShelfMiddle = 'Assets/images/shelf_middle.png';
   static const String imagesShelfTop = 'Assets/images/shelf_top.png';
 
 }

@@ -61,4 +61,9 @@ class AppGradients {
     end: Alignment(0, 1),
     colors: [AppColors.appBarDark, AppColors.appBarLight],
   );
+
+  static const wardrobeButtons = RadialGradient(
+      colors: [AppColors.wardrobeButtonLight, AppColors.buttonDarkColor],
+      radius: 1.2,
+      center: Alignment(0, -0.3));
 }
