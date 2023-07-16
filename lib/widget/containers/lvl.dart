@@ -8,9 +8,11 @@ class LvlContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Container(
-      width: 60,
-      height: 60,
+      width: width * 0.162,
+      height: width * 0.162,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: AppColors.lvlBackground,

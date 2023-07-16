@@ -38,7 +38,6 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                     image: AssetImage("Assets/images/backgroundHome.png"),
                     fit: BoxFit.cover)),
             child: SafeArea(
-                child: SingleChildScrollView(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -49,105 +48,98 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
+                            child: SizedBox(
+                              height: height * 0.2,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                       children: [
                                         const UserStat(
                                             text: 'x1.4',
                                             fill: 0,
                                             asset: 'Assets/icons/Vector-2.svg'),
-                                        const SizedBox(
-                                          height: 12,
-                                        ),
                                         const Column(
                                           children: [
-                                            StatisticsContainer(),
+                                            StatisticsContainer(
+                                              fill: 0.6,
+                                            ),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            StatisticsContainer(),
+                                            StatisticsContainer(
+                                              fill: 0.4,
+                                            ),
                                           ],
-                                        ),
-                                        const SizedBox(
-                                          height: 12,
                                         ),
                                         ConstIconsWithTextElevatedButton(
                                           onTap: () {},
                                           text: 'Level Up',
-                                          height: 26,
-                                          width: 86,
+                                          height: height * 0.03,
+                                          width: (width - 40) * 0.3,
                                         ),
                                       ],
                                     ),
-                                    Column(
+                                  ),
+                                  Expanded(
+                                    child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                       children: [
                                         const UserStat(
                                             text: '3,3/5',
                                             fill: 3.3 / 5,
                                             asset: 'Assets/icons/energy.svg'),
-                                        const SizedBox(
-                                          height: 12,
-                                        ),
                                         const Column(
                                           children: [
-                                            StatisticsContainer(),
+                                            StatisticsContainer(
+                                              fill: 0.2,
+                                            ),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            StatisticsContainer(),
+                                            StatisticsContainer(
+                                              fill: 1,
+                                            ),
                                           ],
-                                        ),
-                                        const SizedBox(
-                                          height: 12,
                                         ),
                                         IconElevatedButton(
                                           onTap: () {},
                                           asset1: 'Assets/icons/key.svg',
-                                          height: 26,
-                                          width: 86,
+                                          height: height * 0.03,
+                                          width: (width - 40) * 0.3,
                                         ),
                                       ],
                                     ),
-                                    Column(
+                                  ),
+                                  Expanded(
+                                    child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                       children: [
                                         const UserStat(
                                             text: '85%',
                                             fill: 0.85,
                                             asset: 'Assets/icons/shield.svg'),
-                                        const SizedBox(
-                                          height: 12,
-                                        ),
                                         Container(
                                             padding: const EdgeInsets.fromLTRB(
                                                 10, 0, 20, 0),
                                             child: const LvlContainer()),
-                                        const SizedBox(
-                                          height: 22,
-                                        ),
                                         ConstIconsWithTextElevatedButton(
                                           onTap: () {},
                                           text: 'Level Up',
-                                          height: 26,
-                                          width: 86,
+                                          height: height * 0.03,
+                                          width: (width - 40) * 0.3,
                                         ),
                                       ],
                                     ),
-                                  ],
-                                )
-                              ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
