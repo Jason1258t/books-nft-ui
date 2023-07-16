@@ -62,11 +62,11 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                         ),
                                         const Column(
                                           children: [
-                                            StatisticsContainer(),
+                                            StatisticsContainer(fill: 0.6,),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            StatisticsContainer(),
+                                            StatisticsContainer(fill: 0.4,),
                                           ],
                                         ),
                                         const SizedBox(
@@ -75,8 +75,8 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                         ConstIconsWithTextElevatedButton(
                                           onTap: () {},
                                           text: 'Level Up',
-                                          height: 26,
-                                          width: 86,
+                                          height: height * 0.03,
+                                          width: (width - 40) * 0.3,
                                         ),
                                       ],
                                     ),
@@ -93,11 +93,11 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                         ),
                                         const Column(
                                           children: [
-                                            StatisticsContainer(),
+                                            StatisticsContainer(fill: 0.2,),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            StatisticsContainer(),
+                                            StatisticsContainer(fill: 1,),
                                           ],
                                         ),
                                         const SizedBox(
@@ -106,8 +106,8 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                         IconElevatedButton(
                                           onTap: () {},
                                           asset1: 'Assets/icons/key.svg',
-                                          height: 26,
-                                          width: 86,
+                                          height: height * 0.03,
+                                          width: (width - 40) * 0.3,
                                         ),
                                       ],
                                     ),
@@ -120,20 +120,20 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                             fill: 0.85,
                                             asset: 'Assets/icons/shield.svg'),
                                         const SizedBox(
-                                          height: 12,
+                                          height: 20,
                                         ),
                                         Container(
                                             padding: const EdgeInsets.fromLTRB(
                                                 10, 0, 20, 0),
                                             child: const LvlContainer()),
                                         const SizedBox(
-                                          height: 22,
+                                          height: 20,
                                         ),
                                         ConstIconsWithTextElevatedButton(
                                           onTap: () {},
                                           text: 'Level Up',
-                                          height: 26,
-                                          width: 86,
+                                          height: height * 0.03,
+                                          width: (width - 40) * 0.3,
                                         ),
                                       ],
                                     ),

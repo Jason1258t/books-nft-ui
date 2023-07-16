@@ -125,7 +125,7 @@ class AppTypography {
 
   static final font24blue = _font.copyWith(
     color: AppColors.lvlText,
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: FontWeight.w700,
     height: 0
   );

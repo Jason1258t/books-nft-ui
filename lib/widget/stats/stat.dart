@@ -13,9 +13,12 @@ class UserStat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
     return Container(
-      width: 100,
-      height: 24,
+      width: (width - 40) * 0.3,
+      height: height * 0.03,
       padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
       decoration: ShapeDecoration(
         color: AppColors.statColor,
@@ -26,9 +29,8 @@ class UserStat extends StatelessWidget {
             ? ClipPath(
                 clipper: MyCustomClipper(),
                 child: Container(
-                  width: 96 * fill,
-                  height: 20,
-                  //color: const Color(0xff6A5D46),
+                  width: (width - 40) * 0.3 * fill,
+                  height: height * 0.03 - 3,
                   decoration: const BoxDecoration(
                     color: AppColors.filedStatColor,
                     borderRadius: BorderRadius.only(
@@ -38,9 +40,8 @@ class UserStat extends StatelessWidget {
                 ),
               )
             : Container(
-                width: 96 * fill,
-                height: 20,
-                //color: const Color(0xff6A5D46),
+                width: (width - 40) * 0.3 * fill,
+                height: height * 0.03 - 3,
                 decoration: BoxDecoration(
                   color: AppColors.filedStatColor,
                   borderRadius: BorderRadius.circular(8),
