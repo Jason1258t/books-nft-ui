@@ -7,6 +7,7 @@ import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/stats/stat.dart';
 
 import '../my_books/ui/my_books.dart';
+import '../store/ui/store_screen.dart';
 import '../wallet/ui/wallet_screen.dart';
 import '../wardrobe/ui/wardrobe_screen.dart';
 
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final homeRepository = RepositoryProvider.of<HomeRepository>(context);
 
     final List<Widget> widgetOptions = <Widget>[
-      const Text('Store'),
+      const StoreScreen(),
       const MyBooksScreen(),
       const WardrobeScreen(),
       const Text('Events'),
@@ -68,7 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
               width: double.infinity,
               height: double.infinity,
               alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
               decoration: const BoxDecoration(
                   image: DecorationImage(
                 image: AssetImage('Assets/images/Background.png'),
