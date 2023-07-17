@@ -32,7 +32,7 @@ class _WalletScreenState extends State<WalletScreen> {
           changeScreen(5);
         },
       ),
-      PincodeScreen(
+      PINScreen(
         continueFunction: () {
           changeScreen(2);
         },

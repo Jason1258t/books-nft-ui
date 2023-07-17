@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nft/feature/wardrobe/ui/shelf.dart';
 import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/buttons/row_elevated_button.dart';
 
@@ -8,6 +7,7 @@ import '../../../widget/buttons/icons_with_text_elevated_button.dart';
 import '../../../widget/containers/lvl.dart';
 import '../../../widget/containers/statistics.dart';
 import '../../../widget/stats/stat.dart';
+import '../../../widget/wardrobe/wardrobe.dart';
 
 class WardrobeScreen extends StatefulWidget {
   const WardrobeScreen({super.key});
@@ -153,53 +153,3 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
   }
 }
 
-class Wardrobe extends StatefulWidget {
-  const Wardrobe({super.key});
-
-  @override
-  State<Wardrobe> createState() => _WardrobeState();
-}
-
-class _WardrobeState extends State<Wardrobe> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Shelf.top(
-          width: MediaQuery.of(context).size.width,
-          shelfData: ShelfData(booksData: [
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-          ], lockedBooks: 1),
-        ),
-        Shelf.middle(
-          width: MediaQuery.of(context).size.width,
-          shelfData: ShelfData(booksData: [
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-          ], lockedBooks: 1),
-        ),
-        Shelf.middle(
-          width: MediaQuery.of(context).size.width,
-          shelfData: ShelfData(booksData: [
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-          ], lockedBooks: 1),
-        ),
-        Shelf.bottom(
-          width: MediaQuery.of(context).size.width,
-          isLocked: true,
-          shelfData: ShelfData(booksData: [
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-          ], lockedBooks: 1),
-        ),
-      ],
-    );
-  }
-}

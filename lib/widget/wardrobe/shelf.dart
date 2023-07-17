@@ -3,7 +3,7 @@ import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/buttons/row_elevated_button.dart';
 
-import 'book.dart';
+import '../../../widget/wardrobe/book.dart';
 
 class Shelf extends StatefulWidget {
   const Shelf(

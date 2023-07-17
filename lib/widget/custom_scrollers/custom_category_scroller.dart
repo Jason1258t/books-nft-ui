@@ -75,7 +75,7 @@ class CustomCategoryScroller extends StatelessWidget {
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.only(right: 20),
             child: InkWell(
-              onTap: () {Navigator.pushReplacementNamed(context, '/category_books_screen');},
+              onTap: () {Navigator.pushNamed(context, '/category_books_screen');},
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

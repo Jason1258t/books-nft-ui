@@ -14,7 +14,11 @@ class CategoryBooksScreen extends StatefulWidget {
   State<CategoryBooksScreen> createState() => _CategoryBooksScreenState();
 }
 
-List<String> list = ['Recommended', 'Price (low to high)'];
+List<String> list = [
+  'Recommended',
+  'Price (low to high)',
+  'Popular',
+];
 
 class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
   String activeValue = '';
@@ -37,7 +41,7 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
                 color: Colors.white,
               ),
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/home_screen');
+                Navigator.pop(context);
               },
             ),
             const UserStat(
@@ -73,11 +77,26 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
                     DropdownButtonHideUnderline(
                       child: DropdownButton2(
                         isExpanded: true,
-                        dropdownStyleData: const DropdownStyleData(
-                            width: 150,
+                        menuItemStyleData: const MenuItemStyleData(
+                          height: 19,
+                          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2)
+                        ),
+                        dropdownStyleData: DropdownStyleData(
+                            elevation: 0,
+                            offset: const Offset(0, 10),
                             decoration: BoxDecoration(
-                                color: Colors.grey,
-                                borderRadius: BorderRadius.vertical(
+                                gradient: LinearGradient(
+                                  stops: const [0, 0.1, 0.15, 1],
+                                  begin: const Alignment(0.00, -1.00),
+                                  end: const Alignment(0, 1),
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.transparent,
+                                    const Color(0x824F483D).withOpacity(0.2),
+                                    const Color(0xFF4F483D).withOpacity(0.5)
+                                  ],
+                                ),
+                                borderRadius: const BorderRadius.vertical(
                                     bottom: Radius.circular(10)))),
                         customButton: Container(
                           width: 150,
@@ -114,28 +133,32 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
                           bool isActive = value == activeValue;
 
                           return DropdownMenuItem<String>(
+                            alignment: Alignment.topLeft,
                             value: value,
                             child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                SvgPicture.asset(
-                                  'Assets/icons/point.svg',
-                                  color: !isActive
-                                      ? AppColors.goldBorder
-                                      : Colors.white,
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8),
+                                  child: SvgPicture.asset(
+                                    'Assets/icons/point.svg',
+                                    color: !isActive
+                                        ? AppColors.goldBorder
+                                        : Colors.white,
+                                  ),
                                 ),
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                SizedBox(
-                                    width: 100,
-                                    child: Text(
-                                      value,
-                                      style: !isActive
-                                          ? AppTypography.font20gold
-                                              .copyWith(fontSize: 14)
-                                          : AppTypography.font16white
-                                              .copyWith(fontSize: 14),
-                                    )),
+                                Text(
+                                  value,
+                                  style: !isActive
+                                      ? AppTypography.font20gold
+                                          .copyWith(fontSize: 14)
+                                      : AppTypography.font16white
+                                          .copyWith(fontSize: 14),
+                                ),
                               ],
                             ),
                           );

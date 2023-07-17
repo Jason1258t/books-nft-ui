@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../utils/fonts.dart';
+import '../../../widget/buttons/keyboard/delete_button.dart';
+import '../../../widget/buttons/keyboard/number_button.dart';
 
-class PincodeScreen extends StatefulWidget {
-  const PincodeScreen({super.key, required this.continueFunction});
+class PINScreen extends StatefulWidget {
+  const PINScreen({super.key, required this.continueFunction});
 
   final VoidCallback continueFunction;
 
   @override
-  State<PincodeScreen> createState() => _PincodeScreenState();
+  State<PINScreen> createState() => _PINScreenState();
 }
 
-class _PincodeScreenState extends State<PincodeScreen> {
+class _PINScreenState extends State<PINScreen> {
   bool _creating = true;
   String pin = '';
   String pinToVerify = '';
@@ -20,10 +22,10 @@ class _PincodeScreenState extends State<PincodeScreen> {
   final String _active = 'Assets/icons/pin_symbol_active.svg';
   final String _notActive = 'Assets/icons/pin_symbol.svg';
 
-  Widget _buildPincodeSymbols() => Row(
+  Widget _buildPINSymbols() => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SvgPicture.asset(pin.length > 0 ? _active : _notActive),
+          SvgPicture.asset(pin.isNotEmpty ? _active : _notActive),
           SvgPicture.asset(pin.length > 1 ? _active : _notActive),
           SvgPicture.asset(pin.length > 2 ? _active : _notActive),
           SvgPicture.asset(pin.length > 3 ? _active : _notActive),
@@ -67,6 +69,44 @@ class _PincodeScreenState extends State<PincodeScreen> {
     });
   }
 
+  Column _buildKeyboard() {
+    List<Widget> children = [];
+
+    for (int i = 0; i < 3; i++) {
+      List<Widget> rowChildren = [];
+      for (int j = 1; j < 4; j++) {
+        rowChildren.add(CustomNumberButton(
+            callback: () {
+              setNumber('${j + i * 3}');
+            },
+            text: '${j + i * 3}'));
+      }
+      children.add(Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: rowChildren,
+      ));
+      children.add(const SizedBox(
+        height: 32,
+      ));
+    }
+    children.add(Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const SizedBox(
+          width: 64,
+        ),
+        CustomNumberButton(
+            callback: () {
+              setNumber('0');
+            },
+            text: '0'),
+        CustomDeleteButton(callback: delete),
+      ],
+    ));
+
+    return Column(children: children);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -90,97 +130,11 @@ class _PincodeScreenState extends State<PincodeScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: _buildPincodeSymbols(),
+                    child: _buildPINSymbols(),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CustomNumberButton(
-                                callback: () {
-                                  setNumber('1');
-                                },
-                                text: '1'),
-                            CustomNumberButton(
-                                callback: () {
-                                  setNumber('2');
-                                },
-                                text: '2'),
-                            CustomNumberButton(
-                                callback: () {
-                                  setNumber('3');
-                                },
-                                text: '3'),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 32,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CustomNumberButton(
-                                callback: () {
-                                  setNumber('4');
-                                },
-                                text: '4'),
-                            CustomNumberButton(
-                                callback: () {
-                                  setNumber('5');
-                                },
-                                text: '5'),
-                            CustomNumberButton(
-                                callback: () {
-                                  setNumber('6');
-                                },
-                                text: '6'),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 32,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CustomNumberButton(
-                                callback: () {
-                                  setNumber('7');
-                                },
-                                text: '7'),
-                            CustomNumberButton(
-                                callback: () {
-                                  setNumber('8');
-                                },
-                                text: '8'),
-                            CustomNumberButton(
-                                callback: () {
-                                  setNumber('9');
-                                },
-                                text: '9'),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 32,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const SizedBox(
-                              width: 64,
-                            ),
-                            CustomNumberButton(
-                                callback: () {
-                                  setNumber('0');
-                                },
-                                text: '0'),
-                            CustomDeleteButton(callback: delete),
-                          ],
-                        ),
-                      ],
-                    ),
+                    child: _buildKeyboard(),
                   )
                 ],
               ),
@@ -192,44 +146,6 @@ class _PincodeScreenState extends State<PincodeScreen> {
   }
 }
 
-class CustomNumberButton extends StatelessWidget {
-  const CustomNumberButton(
-      {super.key, required this.callback, required this.text});
 
-  final VoidCallback callback;
-  final String text;
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-        splashColor: Colors.white,
-        onTap: callback,
-        child: SizedBox(
-          width: 64,
-          height: 64,
-          child: Center(
-            child: Text(text,
-                textAlign: TextAlign.center, style: AppTypography.font36w800),
-          ),
-        ));
-  }
-}
 
-class CustomDeleteButton extends StatelessWidget {
-  const CustomDeleteButton({super.key, required this.callback});
-
-  final VoidCallback callback;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-        onTap: callback,
-        child: Container(
-            padding: const EdgeInsets.all(16),
-            child: SvgPicture.asset(
-              'Assets/icons/delete.svg',
-              width: 32,
-              height: 32,
-            )));
-  }
-}
