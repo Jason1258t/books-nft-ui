@@ -5,6 +5,18 @@ import 'package:nft/widget/buttons/row_elevated_button.dart';
 
 import '../../../widget/wardrobe/book.dart';
 
+const String _topShelfBackground = 'Assets/images/shelf_top.png';
+const String _middleShelfBackground = 'Assets/images/shelf_middle.png';
+const String _bottomShelfBackground = 'Assets/images/shelf_bottom.png';
+
+const double _topShelfHeightRatio = 191 / 359;
+const double _middleShelfHeightRatio = 156 / 359;
+const double _bottomShelfHeightRatio = 250 / 359;
+
+const double _topShelfPaddingTopRatio = 30 / 360;
+const double _defaultBottomPaddingRatio = 0.061;
+const double _bottomShelfBottomPaddingRatio = 1 / 3;
+
 class Shelf extends StatefulWidget {
   const Shelf(
       {super.key,
@@ -16,23 +28,23 @@ class Shelf extends StatefulWidget {
       required this.shelfData});
 
   Shelf.top({super.key, required this.width, required this.shelfData})
-      : asset = 'Assets/images/shelf_top.png',
-        height = (191 / 359) * width,
+      : asset = _topShelfBackground,
+        height = _topShelfHeightRatio * width,
         isLocked = false,
         padding = EdgeInsets.only(
-            top: width * (30 / 360),
+            top: width * _topShelfPaddingTopRatio,
             left: width * 0.1,
             right: width * 0.1,
-            bottom: width * 0.061);
+            bottom: width * _defaultBottomPaddingRatio);
 
   Shelf.middle({super.key, required this.width, required this.shelfData})
-      : asset = 'Assets/images/shelf_middle.png',
-        height = (156 / 359) * width,
+      : asset = _middleShelfBackground,
+        height = _middleShelfHeightRatio * width,
         isLocked = false,
         padding = EdgeInsets.only(
             left: width * 0.1,
             right: width * 0.1,
-            bottom: width * 0.061,
+            bottom: width * _defaultBottomPaddingRatio,
             top: 0);
 
   Shelf.bottom(
@@ -40,10 +52,13 @@ class Shelf extends StatefulWidget {
       required this.width,
       required this.shelfData,
       this.isLocked = true})
-      : asset = 'Assets/images/shelf_bottom.png',
-        height = (250 / 359) * width,
+      : asset = _bottomShelfBackground,
+        height = _bottomShelfHeightRatio * width,
         padding = EdgeInsets.only(
-            top: 0, left: width * 0.1, right: width * 0.1, bottom: width / 3);
+            top: 0,
+            left: width * 0.1,
+            right: width * 0.1,
+            bottom: width * _bottomShelfBottomPaddingRatio);
 
   final double width;
   final double height;
@@ -60,16 +75,17 @@ class _ShelfState extends State<Shelf> {
   List<Widget> createList() {
     List<Widget> books = [];
 
-    books.addAll(List.generate(widget.shelfData.booksData.length,
-        (index) => Book.empty(shelfWidth: widget.width)));
+    books.addAll(List.generate(
+        widget.shelfData.booksData.length,
+        (index) => Book(
+              shelfWidth: widget.width,
+              bookType: BookType.empty,
+            )));
     books.addAll(List.generate(
         7 - widget.shelfData.booksData.length - widget.shelfData.lockedBooks,
-        (index) => Book.add(shelfWidth: widget.width)));
-    books.addAll(List.generate(
-        widget.shelfData.lockedBooks,
-        (index) => Book.lock(
-              shelfWidth: widget.width,
-            )));
+        (index) => Book(shelfWidth: widget.width, bookType: BookType.add)));
+    books.addAll(List.generate(widget.shelfData.lockedBooks,
+        (index) => Book(shelfWidth: widget.width, bookType: BookType.lock)));
 
     return books;
   }
@@ -103,7 +119,8 @@ class _ShelfState extends State<Shelf> {
                         alignment: Alignment.center,
                         child: Text(
                           '${widget.shelfData.booksData.length}/7',
-                          style: AppTypography.font12white.copyWith(fontWeight: FontWeight.w700),
+                          style: AppTypography.font12white
+                              .copyWith(fontWeight: FontWeight.w700),
                         ),
                       )
                     ],
@@ -153,7 +170,8 @@ class LockedShelf extends StatelessWidget {
             boxShadow: const [
               BoxShadow(
                   offset: Offset.zero, blurRadius: 20, color: Colors.black54)
-            ]),
+            ]
+        ),
       ),
       Container(
         alignment: Alignment.topRight,

@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String iconsArrow = 'Assets/icons/arrow.svg';
   static const String iconsBlueBrain = 'Assets/icons/blue_brain.svg';
   static const String iconsBooks = 'Assets/icons/books.svg';
   static const String iconsBooksActive = 'Assets/icons/books_active.svg';
@@ -22,6 +23,7 @@ class Assets {
   static const String iconsPinSymbol = 'Assets/icons/pin_symbol.svg';
   static const String iconsPinSymbolActive = 'Assets/icons/pin_symbol_active.svg';
   static const String iconsPlus = 'Assets/icons/plus.svg';
+  static const String iconsPoint = 'Assets/icons/point.svg';
   static const String iconsRead = 'Assets/icons/read.svg';
   static const String iconsReceive = 'Assets/icons/receive.svg';
   static const String iconsRefresh = 'Assets/icons/refresh.svg';
@@ -38,6 +40,7 @@ class Assets {
   static const String iconsWallet = 'Assets/icons/wallet.svg';
   static const String iconsWalletActive = 'Assets/icons/wallet_active.svg';
   static const String iconsWithdraw = 'Assets/icons/withdraw.svg';
+  static const String imagesActiveStoreCategory = 'Assets/images/activeStoreCategory.png';
   static const String imagesBackground = 'Assets/images/Background.png';
   static const String imagesBackgroundBooks = 'Assets/images/backgroundBooks.png';
   static const String imagesBackgroundHome = 'Assets/images/backgroundHome.png';
@@ -47,6 +50,7 @@ class Assets {
   static const String imagesGrandpa = 'Assets/images/grandpa.png';
   static const String imagesLockedShelfCounter = 'Assets/images/locked_shelf_counter.png';
   static const String imagesLogo = 'Assets/images/logo.png';
+  static const String imagesNoActiveStoreCategory = 'Assets/images/noActiveStoreCategory.png';
   static const String imagesQRcode = 'Assets/images/QRcode.png';
   static const String imagesRedBook = 'Assets/images/redBook.png';
   static const String imagesShelfBottom = 'Assets/images/shelf_bottom.png';
