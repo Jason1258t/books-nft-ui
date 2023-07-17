@@ -80,9 +80,10 @@ class CustomCategoryScroller extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(
-                      width: 33,
+                      width: 40,
                       child: Text(
                         'Show More',
+                        textAlign: TextAlign.center,
                         style: AppTypography.font20gold.copyWith(fontSize: 12),
                       )),
                   SvgPicture.asset('Assets/icons/arrow.svg')
