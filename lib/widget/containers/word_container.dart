@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nft/utils/colors.dart';
+import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 
 class WordContainer extends StatelessWidget {
@@ -14,23 +16,15 @@ class WordContainer extends StatelessWidget {
       child: InkWell(
           onTap: callback,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
             decoration: ShapeDecoration(
-              gradient: AppGradients.darkButton,
+              color: AppColors.buttonDarkColor,
               shape: RoundedRectangleBorder(
-                side: const BorderSide(width: 1, color: Color(0xFF948B85)),
+                side: const BorderSide(width: 1, color: AppColors.goldBorder),
                 borderRadius: BorderRadius.circular(8),
               ),
-              shadows: const [
-                BoxShadow(
-                  color: Color(0xA5000000),
-                  blurRadius: 4,
-                  offset: Offset(0, 4),
-                  spreadRadius: 0,
-                )
-              ],
             ),
-            child: Text(text),
+            child: Text(text, style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.goldBorder),),
           )),
     );
   }

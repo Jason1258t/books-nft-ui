@@ -79,15 +79,7 @@ class _PhraseConfirmState extends State<PhraseConfirm> {
                       borderRadius: BorderRadius.circular(8),
                       gradient: const RadialGradient(
                           colors: [Color(0xff7C837E), Color(0xff647166)],
-                          radius: 1),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color(0x72000000),
-                          blurRadius: 6,
-                          offset: Offset(0, 4),
-                          spreadRadius: 0,
-                        )
-                      ]),
+                          radius: 1),),
                   padding: const EdgeInsets.all(20),
                   width: double.infinity,
                   child: Wrap(
@@ -134,7 +126,7 @@ class _PhraseConfirmState extends State<PhraseConfirm> {
                 child: CustomElevatedButton(
                   text: 'Confirm',
                   onTap: widget.confirm,
-                  gradient: AppGradients.lightButton,
+                  gradient: AppGradients.darkButton,
                 ),
               ),
             ],

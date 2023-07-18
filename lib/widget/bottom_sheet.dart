@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nft/feature/home/data/homa_repository.dart';
 import 'package:nft/utils/gradients.dart';
 
 import '../utils/fonts.dart';
@@ -31,6 +33,7 @@ class CustomBottomSheet extends StatelessWidget {
                 child: SvgPicture.asset('Assets/icons/chevron-left.svg'),
                 onTap: () {
                   Navigator.of(context).pop();
+                  RepositoryProvider.of<HomeRepository>(context).showBottomSheet = false;
                 },
               ),
             )

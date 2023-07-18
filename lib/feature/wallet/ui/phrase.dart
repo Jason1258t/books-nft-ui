@@ -93,7 +93,7 @@ class Phrase extends StatelessWidget {
                 child: CustomElevatedButton(
                   text: 'Confirm',
                   onTap: confirm,
-                  gradient: AppGradients.lightButton,
+                  gradient: AppGradients.darkButton,
                 ),
               )
             ],

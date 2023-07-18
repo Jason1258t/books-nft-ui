@@ -38,7 +38,7 @@ class DarkCustomTextField extends StatelessWidget {
         maxLines: 1,
         onChanged: onChange ?? (value) {},
         style: const TextStyle(
-          color: Color(0xFFB8B89C),
+          color: Colors.white,
           fontSize: 20,
           fontFamily: 'Gilroy',
           fontWeight: FontWeight.w700,

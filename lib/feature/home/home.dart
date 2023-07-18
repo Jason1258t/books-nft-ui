@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
+          if (homeRepository.showBottomSheet) Navigator.pop(context);
         },
         child: Scaffold(
           appBar: homeRepository.isSecondScreen ? AppBar(
@@ -62,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     asset: 'Assets/icons/energy.svg'),
                 UserStat(
                     text: '85%', fill: 0.85, asset: 'Assets/icons/shield.svg'),
+                Icon(Icons.person, size: 30,)
               ],
             ),
           ) : null,
