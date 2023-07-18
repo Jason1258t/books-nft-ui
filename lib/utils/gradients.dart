@@ -38,15 +38,6 @@ class AppGradients {
     ],
   );
 
-  static const smallButtonBackground = LinearGradient(
-    begin: Alignment.centerLeft,
-    end: Alignment.centerRight,
-    colors: [
-      AppColors.smallEvButtonBackgroundDark,
-      AppColors.smallEvButtonBackgroundLight,
-    ],
-  );
-
   static const wordContainer = LinearGradient(
     begin: Alignment(-1.00, 0.00),
     end: Alignment(1, 0),
