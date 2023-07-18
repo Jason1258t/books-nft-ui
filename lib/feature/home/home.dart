@@ -63,61 +63,61 @@ class _HomeScreenState extends State<HomeScreen> {
                         text: 'x1.4',
                         fill: 0,
                         asset: 'Assets/icons/Vector-2.svg',
-                        width: (width - 40) * 0.2,
+                        width: (width - 40) * 0.3,
                         height: height * 0.03,
                       ),
                       UserStat(
                         text: '3,3/5',
                         fill: 3.3 / 5,
                         asset: 'Assets/icons/energy.svg',
-                        width: (width - 40) * 0.2,
+                        width: (width - 40) * 0.3,
                         height: height * 0.03,
                       ),
                       UserStat(
                         text: '85%',
                         fill: 0.85,
                         asset: 'Assets/icons/shield.svg',
-                        width: (width - 40) * 0.2,
+                        width: (width - 40) * 0.3,
                         height: height * 0.03,
                       ),
-                      Container(
-                        height: height * 0.03,
-                        width: width * 0.08,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: AppColors.statColor,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Text(
-                          '1213',
-                          style:
-                              AppTypography.font14white.copyWith(fontSize: 10),
-                        ),
-                      ),
-                      Container(
-                        height: height * 0.03,
-                        width: width * 0.08,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: AppColors.statColor,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Text(
-                          '1213',
-                          style:
-                              AppTypography.font14white.copyWith(fontSize: 10),
-                        ),
-                      ),
-                      Container(
-                        height: height * 0.03,
-                        width: width * 0.08,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: AppColors.statColor,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: SvgPicture.asset('Assets/icons/profile.svg'),
-                      )
+                      // Container(
+                      //   height: height * 0.03,
+                      //   width: width * 0.08,
+                      //   alignment: Alignment.center,
+                      //   decoration: BoxDecoration(
+                      //     color: AppColors.statColor,
+                      //     borderRadius: BorderRadius.circular(8),
+                      //   ),
+                      //   child: Text(
+                      //     '1213',
+                      //     style:
+                      //         AppTypography.font14white.copyWith(fontSize: 10),
+                      //   ),
+                      // ),
+                      // Container(
+                      //   height: height * 0.03,
+                      //   width: width * 0.08,
+                      //   alignment: Alignment.center,
+                      //   decoration: BoxDecoration(
+                      //     color: AppColors.statColor,
+                      //     borderRadius: BorderRadius.circular(8),
+                      //   ),
+                      //   child: Text(
+                      //     '1213',
+                      //     style:
+                      //         AppTypography.font14white.copyWith(fontSize: 10),
+                      //   ),
+                      // ),
+                      // Container(
+                      //   height: height * 0.03,
+                      //   width: width * 0.08,
+                      //   alignment: Alignment.center,
+                      //   decoration: BoxDecoration(
+                      //     color: AppColors.statColor,
+                      //     borderRadius: BorderRadius.circular(8),
+                      //   ),
+                      //   child: SvgPicture.asset('Assets/icons/profile.svg'),
+                      // )
                     ],
                   ),
                 )

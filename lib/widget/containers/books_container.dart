@@ -80,7 +80,7 @@ class _BooksContainerState extends State<BooksContainer> {
                               height: 32,
                             ),
                             Container(
-                              padding: const EdgeInsets.fromLTRB(7, 5, 0, 0),
+                              padding: const EdgeInsets.fromLTRB(9, 7, 0, 0),
                               child: Text(
                                 '78%',
                                 style: AppTypography.font20white
@@ -160,7 +160,7 @@ class _BooksContainerState extends State<BooksContainer> {
                               height: 32,
                             ),
                             Container(
-                              padding: const EdgeInsets.fromLTRB(7, 5, 0, 0),
+                              padding: const EdgeInsets.fromLTRB(9, 7, 0, 0),
                               child: Text(
                                 '78%',
                                 style: AppTypography.font20white
