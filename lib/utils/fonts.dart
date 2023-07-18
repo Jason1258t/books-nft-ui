@@ -30,12 +30,6 @@ class AppTypography {
     fontWeight: FontWeight.w700,
   );
 
-  static final font20whiteShadow = _font.copyWith(
-      color: Colors.white,
-      fontSize: 20,
-      fontWeight: FontWeight.w700,
-      );
-
   static final font16white = _font.copyWith(
     color: Colors.white,
     fontSize: 16,
