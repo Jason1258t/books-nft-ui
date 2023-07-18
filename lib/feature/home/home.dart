@@ -25,6 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final homeRepository = RepositoryProvider.of<HomeRepository>(context);
 
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
     final List<Widget> widgetOptions = <Widget>[
       const StoreScreen(),
       const MyBooksScreen(),
@@ -48,35 +51,89 @@ class _HomeScreenState extends State<HomeScreen> {
           if (homeRepository.showBottomSheet) Navigator.pop(context);
         },
         child: Scaffold(
-          appBar: homeRepository.isSecondScreen ? AppBar(
-            automaticallyImplyLeading: false,
-            elevation: 5,
-            backgroundColor: AppColors.bottomNavigationBackground,
-            title: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                UserStat(
-                    text: 'x1.4', fill: 0, asset: 'Assets/icons/Vector-2.svg'),
-                UserStat(
-                    text: '3,3/5',
-                    fill: 3.3 / 5,
-                    asset: 'Assets/icons/energy.svg'),
-                UserStat(
-                    text: '85%', fill: 0.85, asset: 'Assets/icons/shield.svg'),
-                Icon(Icons.person, size: 30,)
-              ],
-            ),
-          ) : null,
-          body: homeRepository.isSecondScreen ? Container(
-              width: double.infinity,
-              height: double.infinity,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
+          appBar: homeRepository.isSecondScreen
+              ? AppBar(
+                  automaticallyImplyLeading: false,
+                  elevation: 5,
+                  backgroundColor: AppColors.bottomNavigationBackground,
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UserStat(
+                        text: 'x1.4',
+                        fill: 0,
+                        asset: 'Assets/icons/Vector-2.svg',
+                        width: (width - 40) * 0.2,
+                        height: height * 0.03,
+                      ),
+                      UserStat(
+                        text: '3,3/5',
+                        fill: 3.3 / 5,
+                        asset: 'Assets/icons/energy.svg',
+                        width: (width - 40) * 0.2,
+                        height: height * 0.03,
+                      ),
+                      UserStat(
+                        text: '85%',
+                        fill: 0.85,
+                        asset: 'Assets/icons/shield.svg',
+                        width: (width - 40) * 0.2,
+                        height: height * 0.03,
+                      ),
+                      Container(
+                        height: height * 0.03,
+                        width: width * 0.08,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: AppColors.statColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          '1213',
+                          style:
+                              AppTypography.font14white.copyWith(fontSize: 10),
+                        ),
+                      ),
+                      Container(
+                        height: height * 0.03,
+                        width: width * 0.08,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: AppColors.statColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          '1213',
+                          style:
+                              AppTypography.font14white.copyWith(fontSize: 10),
+                        ),
+                      ),
+                      Container(
+                        height: height * 0.03,
+                        width: width * 0.08,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: AppColors.statColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: SvgPicture.asset('Assets/icons/profile.svg'),
+                      )
+                    ],
+                  ),
+                )
+              : null,
+          body: homeRepository.isSecondScreen
+              ? Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
                     image: AssetImage('Assets/images/Background.png'),
                     fit: BoxFit.cover,
                   )),
-              child: widgetOptions[_selectedTab]) : widgetOptions[_selectedTab],
+                  child: widgetOptions[_selectedTab])
+              : widgetOptions[_selectedTab],
           bottomNavigationBar: Container(
             color: AppColors.bottomNavigationBackground,
             child: Row(
@@ -138,12 +195,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
 // ignore: must_be_immutable
 class NavigatorBarItem extends StatelessWidget {
-  NavigatorBarItem({Key? key,
-    required this.asset,
-    this.activeAsset,
-    required this.isSelected,
-    required this.text,
-    required this.onTap})
+  NavigatorBarItem(
+      {Key? key,
+      required this.asset,
+      this.activeAsset,
+      required this.isSelected,
+      required this.text,
+      required this.onTap})
       : super(key: key) {
     activeAsset = activeAsset ?? asset;
   }
@@ -164,7 +222,9 @@ class NavigatorBarItem extends StatelessWidget {
         child: Stack(children: [
           Container(
             alignment: Alignment.center,
-            color: isSelected ? AppColors.selectedBottomNavBarItem : AppColors.empty,
+            color: isSelected
+                ? AppColors.selectedBottomNavBarItem
+                : AppColors.empty,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,

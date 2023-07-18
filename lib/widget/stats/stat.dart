@@ -5,20 +5,24 @@ import 'package:nft/utils/fonts.dart';
 
 class UserStat extends StatelessWidget {
   const UserStat(
-      {super.key, required this.text, required this.fill, required this.asset});
+      {super.key,
+      required this.text,
+      required this.fill,
+      required this.asset,
+      required this.width,
+      required this.height});
 
   final String text;
   final String asset;
   final double fill;
+  final double width;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-
     return Container(
-      width: (width - 40) * 0.25,
-      height: height * 0.03,
+      width: width,
+      height: height,
       padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
       decoration: ShapeDecoration(
         color: AppColors.statColor,
@@ -29,8 +33,8 @@ class UserStat extends StatelessWidget {
             ? ClipPath(
                 clipper: MyCustomClipper(),
                 child: Container(
-                  width: (width - 40) * 0.25 * fill,
-                  height: height * 0.03 - 3,
+                  width: width * fill,
+                  height: height,
                   decoration: const BoxDecoration(
                     color: AppColors.filedStatColor,
                     borderRadius: BorderRadius.only(
@@ -40,8 +44,8 @@ class UserStat extends StatelessWidget {
                 ),
               )
             : Container(
-                width: (width - 40) * 0.25 * fill,
-                height: height * 0.03 - 3,
+                width: width * fill,
+                height: height,
                 decoration: BoxDecoration(
                   color: AppColors.filedStatColor,
                   borderRadius: BorderRadius.circular(8),
@@ -58,11 +62,10 @@ class UserStat extends StatelessWidget {
               const SizedBox(
                 width: 2,
               ),
-              Text(
-                text,
-                textAlign: TextAlign.center,
-                style: AppTypography.font12w700.copyWith(color: Colors.white)
-              ),
+              Text(text,
+                  textAlign: TextAlign.center,
+                  style:
+                      AppTypography.font12w700.copyWith(color: Colors.white)),
             ],
           ),
         ),

@@ -44,12 +44,27 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
                 Navigator.pop(context);
               },
             ),
-            const UserStat(
-                text: 'x1.4', fill: 0, asset: 'Assets/icons/Vector-2.svg'),
-            const UserStat(
-                text: '3,3/5', fill: 3.3 / 5, asset: 'Assets/icons/energy.svg'),
-            const UserStat(
-                text: '85%', fill: 0.85, asset: 'Assets/icons/shield.svg'),
+            UserStat(
+              text: 'x1.4',
+              fill: 0,
+              asset: 'Assets/icons/Vector-2.svg',
+              width: (width - 40) * 0.3,
+              height: height * 0.03,
+            ),
+            UserStat(
+              text: '3,3/5',
+              fill: 3.3 / 5,
+              asset: 'Assets/icons/energy.svg',
+              width: (width - 40) * 0.3,
+              height: height * 0.03,
+            ),
+            UserStat(
+              text: '85%',
+              fill: 0.85,
+              asset: 'Assets/icons/shield.svg',
+              width: (width - 40) * 0.3,
+              height: height * 0.03,
+            ),
           ],
         ),
       ),
@@ -78,9 +93,9 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
                       child: DropdownButton2(
                         isExpanded: true,
                         menuItemStyleData: const MenuItemStyleData(
-                          height: 19,
-                          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2)
-                        ),
+                            height: 19,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 2)),
                         dropdownStyleData: DropdownStyleData(
                             elevation: 0,
                             offset: const Offset(0, 10),
