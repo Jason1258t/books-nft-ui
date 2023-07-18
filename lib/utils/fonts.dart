@@ -111,7 +111,7 @@ class AppTypography {
     height: 0
   );
 
-  static final font14whiteShadow = _font.copyWith(
+  static final font14white = _font.copyWith(
       color: Colors.white,
       fontSize: 14,
       fontWeight: FontWeight.w700,

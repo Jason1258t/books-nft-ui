@@ -16,6 +16,8 @@ int selectIndex = 0;
 class _CustomToggleSwitchState extends State<CustomToggleSwitch> {
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return ToggleButtons(
       borderColor: AppColors.goldBorder,
       borderWidth: 2,
@@ -38,7 +40,7 @@ class _CustomToggleSwitchState extends State<CustomToggleSwitch> {
       },
       children: [
         Container(
-          width: 160,
+          width: (width - 40) / 2,
           height: 55,
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -58,7 +60,7 @@ class _CustomToggleSwitchState extends State<CustomToggleSwitch> {
                   : AppTypography.font24darkShadow),
         ),
         Container(
-          width: 160,
+          width: (width - 40) / 2,
           height: 55,
           alignment: Alignment.center,
           decoration: BoxDecoration(

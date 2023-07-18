@@ -142,7 +142,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       InkWell(
                         child: Text(
                           'i can’t get it',
-                          style: AppTypography.font14whiteShadow,
+                          style: AppTypography.font14white,
                         ),
                         onTap: () {
                           Navigator.pushNamed(
@@ -165,8 +165,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ElevatedButtonWithCheckBox(
                     text: 'I accept the user agreement',
                     style: isTap
-                        ? AppTypography.font14whiteShadow.copyWith(fontSize: 16)
-                        : AppTypography.font14whiteShadow.copyWith(
+                        ? AppTypography.font14white.copyWith(fontSize: 16)
+                        : AppTypography.font14white.copyWith(
                             fontSize: 16, color: AppColors.isNotSelectText),
                     onTap: () {
                       setState(() {

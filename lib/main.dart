@@ -12,6 +12,7 @@ import 'feature/auth/ui/auth_screen.dart';
 import 'feature/login/ui/login_screen.dart';
 import 'feature/register/ui/register_screen.dart';
 import 'feature/store/ui/category_books_screen.dart';
+import 'feature/wallet/ui/import_wallet.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         '/describe_problem_screen': (context) => const DescribeProblem(),
         '/book_info_screen': (context) => const BookInfoScreen(),
         '/category_books_screen': (context) => const CategoryBooksScreen(),
+        '/import_wallet_screen': (context) => const ImportWalletScreen(),
       },
     );
   }

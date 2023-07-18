@@ -29,7 +29,7 @@ class _WalletScreenState extends State<WalletScreen> {
           changeScreen(1);
         },
         importWallet: () {
-          changeScreen(5);
+          Navigator.pushNamed(context, '/import_wallet_screen');
         },
       ),
       PINScreen(
@@ -48,7 +48,6 @@ class _WalletScreenState extends State<WalletScreen> {
         },
       ),
       const Wallet(),
-      const ImportWallet(),
     ];
 
     return screens[currentScreen];
