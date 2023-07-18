@@ -12,6 +12,7 @@ class AppGradients {
     AppColors.buttonDarkColor,
   ], radius: 1.5, center: Alignment(0, -1));
 
+
   static const lightButton = LinearGradient(
       begin: Alignment(-1.00, 0.00),
       end: Alignment(1, 0),
