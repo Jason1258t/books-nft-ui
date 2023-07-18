@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:nft/utils/colors.dart';
+import 'package:nft/utils/fonts.dart';
 
 
 class DarkCustomTextField extends StatelessWidget {
@@ -37,22 +38,12 @@ class DarkCustomTextField extends StatelessWidget {
         keyboardType: keyBoardType,
         maxLines: 1,
         onChanged: onChange ?? (value) {},
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-          fontFamily: 'Gilroy',
-          fontWeight: FontWeight.w700,
-        ),
+        style: AppTypography.font20white,
         textAlignVertical: TextAlignVertical.center,
         controller: controller,
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: const TextStyle(
-            color: Color(0xFFA2A28C),
-            fontSize: 20,
-            fontFamily: 'Gilroy',
-            fontWeight: FontWeight.w700,
-          ),
+          hintStyle: AppTypography.font20hintText,
           border: const OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.empty)
           ),

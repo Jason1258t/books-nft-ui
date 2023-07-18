@@ -70,6 +70,7 @@ class RowElevatedButton extends StatelessWidget {
                         SvgPicture.asset(
                           asset1,
                           width: 24,
+                          color: AppColors.goldText,
                         ),
                         const SizedBox(
                           width: 8,

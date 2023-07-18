@@ -9,12 +9,7 @@ class AppTypography {
   static const _fontGilroy = TextStyle(fontFamily: 'Gilroy');
 
   static final buttonText20 = _font.copyWith(
-      foreground: Paint()
-        ..shader = const LinearGradient(
-                colors: [AppColors.milk, AppColors.goldBorder],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter)
-            .createShader(const Rect.fromLTWH(0, 0, 100, 20)),
+      color: AppColors.bottomNavigationBarText,
       fontSize: 20,
       fontWeight: FontWeight.w700,
       );
@@ -29,12 +24,6 @@ class AppTypography {
     fontSize: 16,
     fontWeight: FontWeight.w700,
   );
-
-  static final font20whiteShadow = _font.copyWith(
-      color: Colors.white,
-      fontSize: 20,
-      fontWeight: FontWeight.w700,
-      );
 
   static final font16white = _font.copyWith(
     color: Colors.white,
@@ -139,4 +128,9 @@ class AppTypography {
       fontSize: 24,
       fontWeight: FontWeight.w700,
       );
+
+  static final font20hintText = font20white.copyWith(
+    color: const Color(0xFFA2A28C)
+  );
 }
+

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/utils/colors.dart';
+import 'package:nft/utils/fonts.dart';
 
 class ColumnElevatedButton extends StatelessWidget {
   const ColumnElevatedButton(
@@ -47,16 +48,12 @@ class ColumnElevatedButton extends StatelessWidget {
               SvgPicture.asset(
                 asset,
                 width: 24,
+                color: AppColors.goldBorder,
               ),
               Text(
                 text,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Color(0xFFFFF1DE),
-                  fontSize: 10,
-                  fontFamily: 'Nunito Sans',
-                  fontWeight: FontWeight.w700,
-                ),
+                style: AppTypography.font10gold
               ),
             ],
           ),

@@ -67,14 +67,14 @@ class DescribeProblem extends StatelessWidget {
                         onTap: () {},
                         child: Text(
                           'Privacy policy',
-                          style: AppTypography.font20whiteShadow,
+                          style: AppTypography.font20white,
                         ),
                       ),
                       InkWell(
                         onTap: () {},
                         child: Text(
                           'Term of Use',
-                          style: AppTypography.font20whiteShadow,
+                          style: AppTypography.font20white,
                         ),
                       )
                     ],
