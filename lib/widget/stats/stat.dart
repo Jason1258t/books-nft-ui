@@ -17,7 +17,7 @@ class UserStat extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
 
     return Container(
-      width: (width - 40) * 0.3,
+      width: (width - 40) * 0.25,
       height: height * 0.03,
       padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
       decoration: ShapeDecoration(
@@ -29,7 +29,7 @@ class UserStat extends StatelessWidget {
             ? ClipPath(
                 clipper: MyCustomClipper(),
                 child: Container(
-                  width: (width - 40) * 0.3 * fill,
+                  width: (width - 40) * 0.25 * fill,
                   height: height * 0.03 - 3,
                   decoration: const BoxDecoration(
                     color: AppColors.filedStatColor,
@@ -40,7 +40,7 @@ class UserStat extends StatelessWidget {
                 ),
               )
             : Container(
-                width: (width - 40) * 0.3 * fill,
+                width: (width - 40) * 0.25 * fill,
                 height: height * 0.03 - 3,
                 decoration: BoxDecoration(
                   color: AppColors.filedStatColor,
