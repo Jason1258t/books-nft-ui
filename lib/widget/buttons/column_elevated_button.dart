@@ -25,11 +25,12 @@ class ColumnElevatedButton extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(color: AppColors.goldBorder, width: 2),
             borderRadius: BorderRadius.circular(8),
-            gradient: gradient),
+            ),
         alignment: Alignment.center,
         child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
+            elevation: 0,
             foregroundColor: Colors.transparent,
             backgroundColor: Colors.transparent,
             disabledBackgroundColor: Colors.transparent,
@@ -41,6 +42,7 @@ class ColumnElevatedButton extends StatelessWidget {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(
                 asset,

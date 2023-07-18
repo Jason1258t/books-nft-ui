@@ -105,7 +105,7 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
                               border: Border.all(
                                   color: AppColors.goldBorder, width: 2),
                               borderRadius: BorderRadius.circular(8),
-                              gradient: AppGradients.buttonGold),
+                              gradient: AppGradients.darkButton),
                           alignment: Alignment.center,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

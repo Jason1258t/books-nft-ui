@@ -31,6 +31,7 @@ class IconElevatedButton extends StatelessWidget {
         child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
+            elevation: 0,
             foregroundColor: Colors.transparent,
             backgroundColor: Colors.transparent,
             disabledBackgroundColor: Colors.transparent,

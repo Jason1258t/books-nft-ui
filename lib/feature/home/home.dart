@@ -162,6 +162,7 @@ class NavigatorBarItem extends StatelessWidget {
         child: Stack(children: [
           Container(
             alignment: Alignment.center,
+            color: isSelected ? AppColors.selectedBottomNavBarItem : AppColors.empty,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -178,12 +179,6 @@ class NavigatorBarItem extends StatelessWidget {
               ],
             ),
           ),
-          if (isSelected) ...[
-            Container(
-                width: 72,
-                height: 64,
-                decoration: BoxDecoration(color: Colors.orange.withAlpha(50)))
-          ]
         ]),
       ),
     );

@@ -10,7 +10,7 @@ class AppGradients {
   static const darkButton = RadialGradient(colors: [
     AppColors.buttonLightColor,
     AppColors.buttonDarkColor,
-  ], radius: 2, center: Alignment(0, -0.4));
+  ], radius: 1.5, center: Alignment(0, -1));
 
   static const lightButton = LinearGradient(
       begin: Alignment(-1.00, 0.00),
@@ -56,19 +56,9 @@ class AppGradients {
     ],
   );
 
-  static const appBar = LinearGradient(
-    begin: Alignment(0.00, -1.00),
-    end: Alignment(0, 1),
-    colors: [AppColors.appBarDark, AppColors.appBarLight],
-  );
 
   static const wardrobeButtons = RadialGradient(
       colors: [AppColors.wardrobeButtonLight, AppColors.buttonDarkColor],
       radius: 1.2,
       center: Alignment(0, -0.3));
-
-  static const buttonGold = RadialGradient(colors: [
-    AppColors.buttonLightColor,
-    AppColors.buttonDarkColor,
-  ], radius: 3);
 }

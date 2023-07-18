@@ -11,7 +11,7 @@ class CustomElevatedButton extends StatelessWidget {
       this.width,
         this.height = 56,
       this.borderColor,
-      this.gradient =  AppGradients.buttonGold});
+      this.gradient =  AppGradients.darkButton});
 
   final String text;
   final VoidCallback onTap;

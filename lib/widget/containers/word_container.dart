@@ -16,7 +16,7 @@ class WordContainer extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: ShapeDecoration(
-              gradient: AppGradients.wordContainer,
+              gradient: AppGradients.darkButton,
               shape: RoundedRectangleBorder(
                 side: const BorderSide(width: 1, color: Color(0xFF948B85)),
                 borderRadius: BorderRadius.circular(8),

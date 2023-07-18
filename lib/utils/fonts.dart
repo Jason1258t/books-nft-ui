@@ -17,9 +17,7 @@ class AppTypography {
             .createShader(const Rect.fromLTWH(0, 0, 100, 20)),
       fontSize: 20,
       fontWeight: FontWeight.w700,
-      shadows: [
-        const Shadow(color: Colors.black45, blurRadius: 4, offset: Offset(0, 3))
-      ]);
+      );
 
   static final buttonText16 = _font.copyWith(
     foreground: Paint()
@@ -36,13 +34,7 @@ class AppTypography {
       color: Colors.white,
       fontSize: 20,
       fontWeight: FontWeight.w700,
-      shadows: [
-        const Shadow(
-          offset: Offset(0, 5.0),
-          blurRadius: 40.0,
-          color: Color.fromARGB(255, 0, 0, 0),
-        ),
-      ]);
+      );
 
   static final font16white = _font.copyWith(
     color: Colors.white,
@@ -134,35 +126,17 @@ class AppTypography {
       color: Colors.white,
       fontSize: 14,
       fontWeight: FontWeight.w700,
-      shadows: [
-        const Shadow(
-          offset: Offset(0, 5.0),
-          blurRadius: 10.0,
-          color: Colors.black12,
-        ),
-      ]);
+);
 
   static final font24darkShadow = _font.copyWith(
       color: AppColors.goldBorder,
       fontSize: 24,
       fontWeight: FontWeight.w700,
-      shadows: [
-        const Shadow(
-          offset: Offset(0, 5.0),
-          blurRadius: 10.0,
-          color: Colors.black12,
-        ),
-      ]);
+      );
 
   static final font24goldShadow = _font.copyWith(
       color: AppColors.goldBorder,
       fontSize: 24,
       fontWeight: FontWeight.w700,
-      shadows: [
-        const Shadow(
-          offset: Offset(0, 5.0),
-          blurRadius: 10.0,
-          color: Colors.black12,
-        ),
-      ]);
+      );
 }

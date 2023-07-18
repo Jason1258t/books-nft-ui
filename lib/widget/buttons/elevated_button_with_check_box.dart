@@ -28,50 +28,46 @@ class _ElevatedButtonWithCheckBoxState
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.circular(8),
-      color: AppColors.textFieldBackground,
-      elevation: 5,
-      child: Container(
-          width: widget.width ?? double.infinity,
-          height: 56,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: AppColors.textFieldBackground),
-          alignment: Alignment.center,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.transparent,
-                backgroundColor: Colors.transparent,
-                disabledBackgroundColor: Colors.transparent,
-                disabledForegroundColor: Colors.transparent,
-                surfaceTintColor: Colors.transparent,
-                shadowColor: Colors.black12,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8))),
-            onPressed: widget.onTap,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CustomCheckBox(
-                      isSelect: widget.isTap,
-                    ),
-                    Text(
-                      widget.text,
-                      textAlign: TextAlign.center,
-                      style: widget.style,
-                    ),
-                    const SizedBox(
-                      width: 24,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          )),
-    );
+    return Container(
+        width: widget.width ?? double.infinity,
+        height: 56,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: AppColors.textFieldBackground),
+        alignment: Alignment.center,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.transparent,
+              backgroundColor: Colors.transparent,
+              disabledBackgroundColor: Colors.transparent,
+              disabledForegroundColor: Colors.transparent,
+              surfaceTintColor: Colors.transparent,
+              shadowColor: Colors.black12,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8))),
+          onPressed: widget.onTap,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  CustomCheckBox(
+                    isSelect: widget.isTap,
+                  ),
+                  Text(
+                    widget.text,
+                    textAlign: TextAlign.center,
+                    style: widget.style,
+                  ),
+                  const SizedBox(
+                    width: 24,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 }

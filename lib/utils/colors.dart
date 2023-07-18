@@ -29,10 +29,9 @@ class AppColors {
   static const isNoActiveSwitchToggle = Color(0xFF6B5E46);
   static const isActiveSwitchToggle = Color(0xFFB29E7E);
   static const bottomSheetDark = Color(0xFF7B6E54);
-  static const appBarLight = Color(0xFF92836F);
-  static const appBarDark = Color(0xFF796C5B);
   static const statistic = Color(0xff68CDFE);
   static const lvlBackground = Color(0xFF6E5C59);
   static const lvlBorder = Color(0xFF3A2635);
   static const lvlText = Color(0xFF7DE0F8);
+  static const selectedBottomNavBarItem = Color(0xff7F663E);
 }

@@ -33,37 +33,34 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.circular(10),
-      color: AppColors.textFieldBackground,
-      elevation: 10,
-      child: Container(
-        width: width,
-        height: height,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: TextFormField(
-          cursorColor: AppColors.cursorBackground,
-          maxLines: maxLines,
-          maxLength: maxLength,
-          onChanged: onChange ?? (value) {},
-          style: AppTypography.font20gold,
-          textAlignVertical: TextAlignVertical.center,
-          controller: controller,
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: AppTypography.font16dirtyGold,
-            border: const OutlineInputBorder(
+    return Container(
+      width: width,
+      height: height,
+
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: AppColors.textFieldBackground,
+      ),
+      child: TextFormField(
+        cursorColor: AppColors.cursorBackground,
+        maxLines: maxLines,
+        maxLength: maxLength,
+        onChanged: onChange ?? (value) {},
+        style: AppTypography.font20gold,
+        textAlignVertical: TextAlignVertical.center,
+        controller: controller,
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: AppTypography.font16dirtyGold,
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.empty)
+          ),
+          enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.empty)
-            ),
-            enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.empty)
-            ),
-            focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.empty)
-            ),
+          ),
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: AppColors.empty)
           ),
         ),
       ),

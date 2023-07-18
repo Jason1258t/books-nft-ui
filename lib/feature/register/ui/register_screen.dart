@@ -35,43 +35,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: AppColors.bottomNavigationBackground,
-          flexibleSpace: Container(
-            alignment: Alignment.center,
-            height: 115,
-            decoration: const BoxDecoration(
-              gradient: AppGradients.appBar,
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x8C000000),
-                  blurRadius: 20,
-                  offset: Offset(0, 4),
-                  spreadRadius: 0,
-                )
-              ],
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      width: 20,
+          flexibleSpace: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  InkWell(
+                    child: const Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
                     ),
-                    InkWell(
-                      child: const Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                      ),
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, '/');
-                      },
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20,)
-              ],
-            ),
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, '/');
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20,)
+            ],
           ),
         ),
         body: Container(
