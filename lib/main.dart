@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nft/servise/custom_bloc_observer.dart';
+import 'package:nft/feature/wallet/bloc/wallet_cubit.dart';
+import 'package:nft/feature/wallet/data/wallet_repository.dart';
+import 'package:nft/feature/wallet/ui/pincode.dart';
+import 'package:nft/serviсe/custom_bloc_observer.dart';
 
+import 'feature/auth/ui/auth_screen.dart';
 import 'feature/book_info/ui/book_info_screen.dart';
 import 'feature/describe_problem/ui/describe_problem_screen.dart';
 import 'feature/home/bloc/home_cubit.dart';
 import 'feature/home/data/homa_repository.dart';
 import 'feature/home/home.dart';
-import 'feature/auth/ui/auth_screen.dart';
 import 'feature/login/ui/login_screen.dart';
 import 'feature/register/ui/register_screen.dart';
 import 'feature/store/ui/category_books_screen.dart';
+import 'feature/wallet/ui/confirm_phrase.dart';
 import 'feature/wallet/ui/import_wallet.dart';
+import 'feature/wallet/ui/phrase.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,6 +51,9 @@ class MyApp extends StatelessWidget {
         '/book_info_screen': (context) => const BookInfoScreen(),
         '/category_books_screen': (context) => const CategoryBooksScreen(),
         '/import_wallet_screen': (context) => const ImportWalletScreen(),
+        '/PIN_screen': (context) => const PINScreen(),
+        '/phrase_screen': (context) => Phrase(),
+        '/confirm_phrase_screen': (context) => const PhraseConfirm(),
       },
     );
   }
@@ -58,6 +66,7 @@ class MyRepositoryProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider(create: (_) => HomeRepository()),
+      RepositoryProvider(create: (_) => WalletRepository()),
     ], child: const MyBlocProviders());
   }
 }
@@ -70,6 +79,11 @@ class MyBlocProviders extends StatelessWidget {
     return MultiBlocProvider(providers: [
       BlocProvider(
         create: (_) => HomeCubit(),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => WalletCubit(
+            walletRepository: RepositoryProvider.of<WalletRepository>(context)),
         lazy: false,
       ),
     ], child: const MyApp());

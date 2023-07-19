@@ -105,7 +105,9 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
                   padding: const EdgeInsets.only(bottom: 32),
                   child: CustomElevatedButton(
                     text: 'Import wallet',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
                     gradient: AppGradients.lightButton,
                   ),
                 ),

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
 import 'package:nft/widget/buttons/small_elevated_button.dart';
 import 'package:nft/widget/containers/word_container.dart';
+import 'package:nft/widget/scaffold.dart';
 
 import '../../../utils/fonts.dart';
 import '../../../widget/text_field/text_field_with_button.dart';
+import '../bloc/wallet_cubit.dart';
 
 class PhraseConfirm extends StatefulWidget {
-  const PhraseConfirm({super.key, required this.confirm});
-
-  final VoidCallback confirm;
+  const PhraseConfirm({super.key});
 
   @override
   State<PhraseConfirm> createState() => _PhraseConfirmState();
@@ -50,86 +51,94 @@ class _PhraseConfirmState extends State<PhraseConfirm> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 16,
-              ),
-              Text('Create Wallet', style: AppTypography.font24w700Gilroy),
-              const SizedBox(
-                height: 16,
-              ),
-              Text(
-                'Please choose Seed phrase in order and make sure your Seed phrase was written correctly. Once forgotten it cannot be recovered.',
-                textAlign: TextAlign.center,
-                style: AppTypography.font12dark,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Container(
-                  constraints: const BoxConstraints(minHeight: 160),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      gradient: const RadialGradient(
-                          colors: [Color(0xff7C837E), Color(0xff647166)],
-                          radius: 1),),
-                  padding: const EdgeInsets.all(20),
+    void confirm () {
+      BlocProvider.of<WalletCubit>(context).creteWallet();
+      Navigator.popUntil(context, ModalRoute.withName('/home_screen'));
+    }
+
+
+    return CustomScaffold(
+      child: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 16,
+                ),
+                Text('Create Wallet', style: AppTypography.font24w700Gilroy),
+                const SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  'Please choose Seed phrase in order and make sure your Seed phrase was written correctly. Once forgotten it cannot be recovered.',
+                  textAlign: TextAlign.center,
+                  style: AppTypography.font12dark,
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Container(
+                    constraints: const BoxConstraints(minHeight: 160),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        gradient: const RadialGradient(
+                            colors: [Color(0xff7C837E), Color(0xff647166)],
+                            radius: 1),),
+                    padding: const EdgeInsets.all(20),
+                    width: double.infinity,
+                    child: Wrap(
+                      children: List.generate(
+                          selectedWords.length,
+                          (index) => WordContainer(
+                              callback: () {
+                                removeWord(selectedWords[index]);
+                              },
+                              text: selectedWords[index])),
+                    )),
+                const SizedBox(
+                  height: 16,
+                ),
+                Container(
+                  constraints: const BoxConstraints(minHeight: 0),
                   width: double.infinity,
                   child: Wrap(
+                    alignment: WrapAlignment.start,
                     children: List.generate(
-                        selectedWords.length,
+                        words.length,
                         (index) => WordContainer(
                             callback: () {
-                              removeWord(selectedWords[index]);
+                              selectWord(words[index]);
                             },
-                            text: selectedWords[index])),
-                  )),
-              const SizedBox(
-                height: 16,
-              ),
-              Container(
-                constraints: const BoxConstraints(minHeight: 0),
-                width: double.infinity,
-                child: Wrap(
-                  alignment: WrapAlignment.start,
-                  children: List.generate(
-                      words.length,
-                      (index) => WordContainer(
-                          callback: () {
-                            selectWord(words[index]);
-                          },
-                          text: words[index])),
+                            text: words[index])),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              CustomTextFieldWithButton(
-                controller: codeController,
-                suffixIcon: SmallElevatedButton(
-                  text: 'SEND CODE',
-                  onTap: () {},
-                  width: 120,
+                const SizedBox(
                   height: 32,
                 ),
-                hintText: 'Verification code',
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 60, 0, 90),
-                child: CustomElevatedButton(
-                  text: 'Confirm',
-                  onTap: widget.confirm,
-                  gradient: AppGradients.darkButton,
+                CustomTextFieldWithButton(
+                  controller: codeController,
+                  suffixIcon: SmallElevatedButton(
+                    text: 'SEND CODE',
+                    onTap: () {},
+                    width: 120,
+                    height: 32,
+                  ),
+                  hintText: 'Verification code',
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 60, 0, 90),
+                  child: CustomElevatedButton(
+                    text: 'Confirm',
+                    onTap: confirm,
+                    gradient: AppGradients.darkButton,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
