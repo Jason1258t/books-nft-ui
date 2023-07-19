@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:nft/feature/home/data/homa_repository.dart';
 import 'package:nft/utils/gradients.dart';
 
-import '../utils/fonts.dart';
+import '../../utils/fonts.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({super.key, this.children, required this.title});

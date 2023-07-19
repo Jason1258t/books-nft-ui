@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/fonts.dart';
 import '../../../utils/gradients.dart';
+import '../../../widget/app_bar/app_bar.dart';
 import '../../../widget/buttons/custom_elevated_button.dart';
 import '../../../widget/buttons/small_elevated_button.dart';
 import '../../../widget/text_field/custom_text_field.dart';
@@ -22,22 +23,9 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.bottomNavigationBackground,
-        automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            InkWell(
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+      appBar: AppBars(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
       ),
       body: SafeArea(
         child: Container(

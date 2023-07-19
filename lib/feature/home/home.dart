@@ -5,6 +5,7 @@ import 'package:nft/feature/home/data/homa_repository.dart';
 import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/app_bar/app_bar.dart';
+import 'package:nft/widget/custom_scaffold/scaffold.dart';
 import 'package:nft/widget/stats/stat.dart';
 
 import '../my_books/ui/my_books.dart';
@@ -51,11 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
           FocusScope.of(context).requestFocus(FocusNode());
           if (homeRepository.showBottomSheet) Navigator.pop(context);
         },
-        child: Scaffold(
+        child: CustomScaffold(
           appBar: homeRepository.isSecondScreen
               ? AppBars(width: width, height: height,)
               : null,
-          body: homeRepository.isSecondScreen
+          child: homeRepository.isSecondScreen
               ? Container(
                   width: double.infinity,
                   height: double.infinity,
@@ -67,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   )),
                   child: widgetOptions[_selectedTab])
               : widgetOptions[_selectedTab],
-          bottomNavigationBar: Container(
+          bottomNavBar: Container(
             color: AppColors.bottomNavigationBackground,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nft/utils/gradients.dart';
+import 'package:nft/widget/app_bar/app_bar.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
 import 'package:nft/widget/buttons/small_elevated_button.dart';
 import 'package:nft/widget/containers/word_container.dart';
-import 'package:nft/widget/scaffold.dart';
+import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
 import '../../../utils/fonts.dart';
 import '../../../widget/text_field/text_field_with_button.dart';
@@ -51,13 +52,16 @@ class _PhraseConfirmState extends State<PhraseConfirm> {
 
   @override
   Widget build(BuildContext context) {
-    void confirm () {
+    void confirm() {
       BlocProvider.of<WalletCubit>(context).creteWallet();
       Navigator.popUntil(context, ModalRoute.withName('/home_screen'));
     }
 
-
     return CustomScaffold(
+      appBar: AppBars(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+      ),
       child: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -84,10 +88,11 @@ class _PhraseConfirmState extends State<PhraseConfirm> {
                 Container(
                     constraints: const BoxConstraints(minHeight: 160),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        gradient: const RadialGradient(
-                            colors: [Color(0xff7C837E), Color(0xff647166)],
-                            radius: 1),),
+                      borderRadius: BorderRadius.circular(8),
+                      gradient: const RadialGradient(
+                          colors: [Color(0xff7C837E), Color(0xff647166)],
+                          radius: 1),
+                    ),
                     padding: const EdgeInsets.all(20),
                     width: double.infinity,
                     child: Wrap(

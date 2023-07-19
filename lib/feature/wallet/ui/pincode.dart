@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../utils/fonts.dart';
+import '../../../widget/app_bar/app_bar.dart';
 import '../../../widget/buttons/keyboard/delete_button.dart';
 import '../../../widget/buttons/keyboard/number_button.dart';
-import '../../../widget/scaffold.dart';
+import '../../../widget/custom_scaffold/scaffold.dart';
 
 class PINScreen extends StatefulWidget {
   const PINScreen({super.key});
@@ -113,6 +114,10 @@ class _PINScreenState extends State<PINScreen> {
     }
     
     return CustomScaffold(
+      appBar: AppBars(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+      ),
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),

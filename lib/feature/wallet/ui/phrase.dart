@@ -3,8 +3,9 @@ import 'package:nft/utils/colors.dart';
 
 import '../../../utils/fonts.dart';
 import '../../../utils/gradients.dart';
+import '../../../widget/app_bar/app_bar.dart';
 import '../../../widget/buttons/custom_elevated_button.dart';
-import '../../../widget/scaffold.dart';
+import '../../../widget/custom_scaffold/scaffold.dart';
 
 // ignore: must_be_immutable
 class Phrase extends StatelessWidget {
@@ -27,10 +28,13 @@ class Phrase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void confirm() =>
-        Navigator.pushNamed(context, '/confirm_phrase_screen');
+    void confirm() => Navigator.pushNamed(context, '/confirm_phrase_screen');
 
     return CustomScaffold(
+      appBar: AppBars(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+      ),
       child: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -45,7 +49,8 @@ class Phrase extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    Text('Create Wallet', style: AppTypography.font24w700Gilroy),
+                    Text('Create Wallet',
+                        style: AppTypography.font24w700Gilroy),
                     const SizedBox(
                       height: 16,
                     ),
