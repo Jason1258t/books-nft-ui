@@ -27,14 +27,14 @@ class _CustomSwitchCategoriesState extends State<CustomSwitchCategories> {
               selectTab(0);
             }),
         CustomCategoryButton(
-            padding: const EdgeInsets.only(left: 90),
+            padding: const EdgeInsets.only(left: 75),
             text: 'New',
             active: active == 1,
             callback: () {
               selectTab(1);
             }),
         CustomCategoryButton(
-            padding: const EdgeInsets.only(left: 180),
+            padding: const EdgeInsets.only(left: 150),
             text: 'Popular',
             active: active == 2,
             callback: () {
@@ -65,21 +65,24 @@ class CustomCategoryButton extends StatelessWidget {
       child: InkWell(
           onTap: callback,
           child: Container(
-            width: 110,
-            height: 87,
-            alignment: Alignment.center,
+            width: 92,
+            height: 70,
+            padding: const EdgeInsets.only(left: 13, bottom: 3, right: 24),
             decoration: BoxDecoration(
                 image: DecorationImage(
               image: AssetImage(active
                   ? 'Assets/images/activeStoreCategory.png'
                   : 'Assets/images/noActiveStoreCategory.png'),
             )),
-            child: SizedBox(
-                width: 60,
-                child: Text(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
                   text,
                   style: AppTypography.font20gold.copyWith(fontSize: 14),
-                )),
+                ),
+              ],
+            ),
           )),
     );
   }
