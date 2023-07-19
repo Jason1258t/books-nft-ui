@@ -17,5 +17,10 @@ class WalletCubit extends Cubit<WalletState> {
     emit(HasWallet());
   }
 
+  deleteWallet() {
+    walletRepository.deleteWallet();
+    emit(NoWallet());
+  }
+
   importWallet() => creteWallet();
 }

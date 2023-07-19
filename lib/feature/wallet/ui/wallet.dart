@@ -11,6 +11,7 @@ import 'package:nft/widget/buttons/row_elevated_button.dart';
 import '../../../utils/fonts.dart';
 import '../../../widget/containers/token_container.dart';
 import '../../../widget/text_field/dark_custom_field.dart';
+import '../bloc/wallet_cubit.dart';
 
 class Wallet extends StatelessWidget {
   const Wallet({super.key});
@@ -169,7 +170,9 @@ class Wallet extends StatelessWidget {
             child: RowElevatedButton.big(
                 asset1: 'Assets/icons/refresh.svg',
                 text: 'Refresh',
-                onTap: () {}),
+                onTap: () {
+                  BlocProvider.of<WalletCubit>(context).deleteWallet();
+                }),
           )
         ],
       ),
