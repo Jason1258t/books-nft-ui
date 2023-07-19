@@ -5,6 +5,7 @@ import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 
 import '../../../utils/colors.dart';
+import '../../../widget/app_bar/app_bar.dart';
 import '../../../widget/stats/stat.dart';
 
 class CategoryBooksScreen extends StatefulWidget {
@@ -27,47 +28,9 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 5,
-        backgroundColor: AppColors.bottomNavigationBackground,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            InkWell(
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            UserStat(
-              text: 'x1.4',
-              fill: 0,
-              asset: 'Assets/icons/Vector-2.svg',
-              width: (width - 40) * 0.3,
-              height: height * 0.03,
-            ),
-            UserStat(
-              text: '3,3/5',
-              fill: 3.3 / 5,
-              asset: 'Assets/icons/energy.svg',
-              width: (width - 40) * 0.3,
-              height: height * 0.03,
-            ),
-            UserStat(
-              text: '85%',
-              fill: 0.85,
-              asset: 'Assets/icons/shield.svg',
-              width: (width - 40) * 0.3,
-              height: height * 0.03,
-            ),
-          ],
-        ),
-      ),
+      appBar: AppBars(width: width, height: height,),
       body: Container(
           width: double.infinity,
           height: double.infinity,

@@ -31,14 +31,6 @@ class _WardrobeState extends State<Wardrobe> {
             BookData(imageUrl: ''),
           ], lockedBooks: 1),
         ),
-        Shelf.middle(
-          width: MediaQuery.of(context).size.width,
-          shelfData: ShelfData(booksData: [
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-          ], lockedBooks: 1),
-        ),
         Shelf.bottom(
           width: MediaQuery.of(context).size.width,
           isLocked: true,

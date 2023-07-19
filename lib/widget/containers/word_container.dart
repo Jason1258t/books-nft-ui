@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nft/utils/colors.dart';
-import 'package:nft/utils/fonts.dart';
-import 'package:nft/utils/gradients.dart';
 
 class WordContainer extends StatelessWidget {
   const WordContainer({super.key, required this.callback, required this.text});

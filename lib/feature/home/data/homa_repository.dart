@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class HomeRepository{
   bool isSecondScreen = true;
   bool showBottomSheet = false;

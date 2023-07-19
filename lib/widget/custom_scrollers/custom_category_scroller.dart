@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:stroke_text/stroke_text.dart';
 
 import '../../utils/colors.dart';
 
@@ -18,10 +19,12 @@ class CustomCategoryScroller extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 20),
-          child: Text(
-            title,
-            style: AppTypography.font20gold.copyWith(fontSize: 16),
-          ),
+          child: StrokeText(
+            strokeColor: AppColors.isNoActiveStrokeText,
+            strokeWidth: 2.5,
+            textStyle: AppTypography.font20gold.copyWith(fontSize: 14),
+            text: title,
+          )
         ),
         Container(
           width: width,

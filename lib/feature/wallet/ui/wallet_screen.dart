@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nft/feature/wallet/ui/create_wallet.dart';
-import 'package:nft/feature/wallet/ui/import_wallet.dart';
 import 'package:nft/feature/wallet/ui/phrase.dart';
 import 'package:nft/feature/wallet/ui/pincode.dart';
 import 'package:nft/feature/wallet/ui/wallet.dart';

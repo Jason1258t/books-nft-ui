@@ -61,10 +61,10 @@ packages:
     dependency: transitive
     description:
       name: collection
-      sha256: f092b211a4319e98e5ff58223576de6c2803db36221657b46c82574721240687
+      sha256: "4a07be6cb69c84d677a6c3096fcf960cc3285a8330b4603e0d463d15d9bd934c"
       url: "https://pub.dev"
     source: hosted
-    version: "1.17.2"
+    version: "1.17.1"
   crypto:
     dependency: transitive
     description:
@@ -93,10 +93,10 @@ packages:
     dependency: "direct main"
     description:
       name: dropdown_button2
-      sha256: b71c0d7c63588d51686f1b4ef8ad23fc341caf86ef009dfa1df9dc4e6860f0ef
+      sha256: "83c54a5022f898d63e3abe21240b64b937e676103207287e6705d3f9bb04d654"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.5"
+    version: "2.3.6"
   fake_async:
     dependency: transitive
     description:
@@ -113,14 +113,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
-  file:
-    dependency: transitive
-    description:
-      name: file
-      sha256: "5fc22d7c25582e38ad9a8515372cd9a93834027aacf1801cf01164dac0ffa08c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.0.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -195,6 +187,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  matcher:
+    dependency: transitive
+    description:
+      name: matcher
+      sha256: "6501fbd55da300384b768785b83e5ce66991266cec21af89ab9ae7f5ce1c4cbb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.12.15"
   material_color_utilities:
     dependency: transitive
     description:
@@ -340,10 +340,10 @@ packages:
     dependency: transitive
     description:
       name: source_span
-      sha256: "53e943d4206a5e30df338fd4c6e7a077e02254531b138a15aec3bd143c1a8b3c"
+      sha256: dd904f795d4b4f3b870833847c461801f6750a9fa8e61ea5ac53f9422b31f250
       url: "https://pub.dev"
     source: hosted
-    version: "1.10.0"
+    version: "1.9.1"
   stack_trace:
     dependency: transitive
     description:
@@ -356,10 +356,10 @@ packages:
     dependency: transitive
     description:
       name: stream_channel
-      sha256: ba2aa5d8cc609d96bbb2899c28934f9e1af5cddbd60a827822ea467161eb54e7
+      sha256: "83615bee9045c1d322bbbd1ba209b7a749c2cbcdcb3fdd1df8eb488b3279c1c8"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.2"
+    version: "2.1.1"
   string_scanner:
     dependency: transitive
     description:
@@ -368,6 +368,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  stroke_text:
+    dependency: "direct main"
+    description:
+      name: stroke_text
+      sha256: "0ec0e526c0eae7d21ce628d78eb9ae9be634259f26b0f1735f9ed540890d8cf6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   term_glyph:
     dependency: transitive
     description:
@@ -380,10 +388,10 @@ packages:
     dependency: transitive
     description:
       name: test_api
-      sha256: "75760ffd7786fffdfb9597c35c5b27eaeec82be8edfb6d71d32651128ed7aab8"
+      sha256: eb6ac1540b26de412b3403a163d919ba86f6a973fe6cc50ae3541b80092fdcfb
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.0"
+    version: "0.5.1"
   typed_data:
     dependency: transitive
     description:

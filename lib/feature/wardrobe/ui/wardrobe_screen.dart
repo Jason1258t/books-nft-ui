@@ -19,12 +19,21 @@ class WardrobeScreen extends StatefulWidget {
 class _WardrobeScreenState extends State<WardrobeScreen> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    final height = MediaQuery
+        .of(context)
+        .size
+        .height;
 
     return Scaffold(
         floatingActionButton: RowElevatedButton.big(
-          width: MediaQuery.of(context).size.width - 40,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width - 40,
           text: 'Read',
           onTap: () {},
           asset1: 'Assets/icons/read.svg',
@@ -48,22 +57,26 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              padding:
+                              const EdgeInsets.symmetric(vertical: 10),
                               child: SizedBox(
                                 height: height * 0.2,
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
                                   children: [
                                     Expanded(
                                       child: Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           UserStat(
                                             text: 'x1.4',
                                             fill: 0,
-                                            asset: 'Assets/icons/Vector-2.svg',
+                                            asset:
+                                            'Assets/icons/Vector-2.svg',
                                             width: (width - 40) * 0.3,
                                             height: height * 0.03,
                                           ),
@@ -92,12 +105,13 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                     Expanded(
                                       child: Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           UserStat(
                                             text: '3,3/5',
                                             fill: 3.3 / 5,
-                                            asset: 'Assets/icons/energy.svg',
+                                            asset:
+                                            'Assets/icons/energy.svg',
                                             width: (width - 40) * 0.3,
                                             height: height * 0.03,
                                           ),
@@ -126,19 +140,20 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                     Expanded(
                                       child: Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           UserStat(
                                             text: '85%',
                                             fill: 0.85,
-                                            asset: 'Assets/icons/shield.svg',
+                                            asset:
+                                            'Assets/icons/shield.svg',
                                             width: (width - 40) * 0.3,
                                             height: height * 0.03,
                                           ),
                                           Container(
                                               padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      10, 0, 20, 0),
+                                              const EdgeInsets.fromLTRB(
+                                                  10, 0, 20, 0),
                                               child: const LvlContainer()),
                                           ConstIconsWithTextElevatedButton(
                                             onTap: () {},
@@ -153,6 +168,9 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                 ),
                               ),
                             ),
+                            SizedBox(
+                              height: 20,
+                            )
                           ],
                         ),
                       ),
