@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:stroke_text/stroke_text.dart';
+
+import '../../utils/colors.dart';
 
 class CustomSwitchCategories extends StatefulWidget {
   const CustomSwitchCategories({super.key});
@@ -77,10 +80,14 @@ class CustomCategoryButton extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  text,
-                  style: AppTypography.font20gold.copyWith(fontSize: 14),
-                ),
+                StrokeText(
+                  strokeColor: active ? AppColors.isActiveStrokeText : AppColors.isNoActiveStrokeText,
+                  strokeWidth: 2.5,
+                  textStyle: active
+                      ? AppTypography.font14white
+                      : AppTypography.font20gold.copyWith(fontSize: 14),
+                  text: text,
+                )
               ],
             ),
           )),
