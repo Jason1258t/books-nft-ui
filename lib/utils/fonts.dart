@@ -133,4 +133,3 @@ class AppTypography {
     color: const Color(0xFFA2A28C)
   );
 }
-
