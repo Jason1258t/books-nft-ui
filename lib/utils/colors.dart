@@ -34,4 +34,6 @@ class AppColors {
   static const statistic = Color(0xff68CDFE);
   static const lvlText = Color(0xFF7DE0F8);
   static const selectedBottomNavBarItem = Color(0xff7F663E);
+  static const isNoActiveStrokeText = Color(0xff72644E);
+  static const isActiveStrokeText = Color(0xff878787);
 }

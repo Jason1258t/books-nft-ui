@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/feature/home/data/homa_repository.dart';
 import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:nft/widget/app_bar/app_bar.dart';
+import 'package:nft/widget/custom_scaffold/scaffold.dart';
 import 'package:nft/widget/stats/stat.dart';
 
 import '../my_books/ui/my_books.dart';
@@ -50,79 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
           FocusScope.of(context).requestFocus(FocusNode());
           if (homeRepository.showBottomSheet) Navigator.pop(context);
         },
-        child: Scaffold(
+        child: CustomScaffold(
           appBar: homeRepository.isSecondScreen
-              ? AppBar(
-                  automaticallyImplyLeading: false,
-                  elevation: 5,
-                  backgroundColor: AppColors.bottomNavigationBackground,
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      UserStat(
-                        text: 'x1.4',
-                        fill: 0,
-                        asset: 'Assets/icons/Vector-2.svg',
-                        width: (width - 40) * 0.3,
-                        height: height * 0.03,
-                      ),
-                      UserStat(
-                        text: '3,3/5',
-                        fill: 3.3 / 5,
-                        asset: 'Assets/icons/energy.svg',
-                        width: (width - 40) * 0.3,
-                        height: height * 0.03,
-                      ),
-                      UserStat(
-                        text: '85%',
-                        fill: 0.85,
-                        asset: 'Assets/icons/shield.svg',
-                        width: (width - 40) * 0.3,
-                        height: height * 0.03,
-                      ),
-                      // Container(
-                      //   height: height * 0.03,
-                      //   width: width * 0.08,
-                      //   alignment: Alignment.center,
-                      //   decoration: BoxDecoration(
-                      //     color: AppColors.statColor,
-                      //     borderRadius: BorderRadius.circular(8),
-                      //   ),
-                      //   child: Text(
-                      //     '1213',
-                      //     style:
-                      //         AppTypography.font14white.copyWith(fontSize: 10),
-                      //   ),
-                      // ),
-                      // Container(
-                      //   height: height * 0.03,
-                      //   width: width * 0.08,
-                      //   alignment: Alignment.center,
-                      //   decoration: BoxDecoration(
-                      //     color: AppColors.statColor,
-                      //     borderRadius: BorderRadius.circular(8),
-                      //   ),
-                      //   child: Text(
-                      //     '1213',
-                      //     style:
-                      //         AppTypography.font14white.copyWith(fontSize: 10),
-                      //   ),
-                      // ),
-                      // Container(
-                      //   height: height * 0.03,
-                      //   width: width * 0.08,
-                      //   alignment: Alignment.center,
-                      //   decoration: BoxDecoration(
-                      //     color: AppColors.statColor,
-                      //     borderRadius: BorderRadius.circular(8),
-                      //   ),
-                      //   child: SvgPicture.asset('Assets/icons/profile.svg'),
-                      // )
-                    ],
-                  ),
-                )
+              ? AppBars(width: width, height: height,)
               : null,
-          body: homeRepository.isSecondScreen
+          child: homeRepository.isSecondScreen
               ? Container(
                   width: double.infinity,
                   height: double.infinity,
@@ -134,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   )),
                   child: widgetOptions[_selectedTab])
               : widgetOptions[_selectedTab],
-          bottomNavigationBar: Container(
+          bottomNavBar: Container(
             color: AppColors.bottomNavigationBackground,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

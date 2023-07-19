@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nft/utils/fonts.dart';
-import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
 import 'package:nft/widget/buttons/small_elevated_button.dart';
 import 'package:nft/widget/text_field/custom_text_field.dart';

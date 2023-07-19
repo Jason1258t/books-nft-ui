@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
 import '../../../utils/colors.dart';
 import '../../../utils/gradients.dart';
+import '../../../widget/app_bar/app_bar.dart';
 import '../../../widget/buttons/custom_elevated_button.dart';
 
 class BookInfoScreen extends StatefulWidget {
@@ -16,43 +18,15 @@ class BookInfoScreen extends StatefulWidget {
 class _BookInfoScreenState extends State<BookInfoScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 5,
-        backgroundColor: AppColors.bottomNavigationBackground,
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: const Icon(
-                Icons.arrow_back_ios,
-                size: 22,
-                color: Colors.white,
-              ),
-            )
-          ],
-        ),
-      ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        alignment: Alignment.topCenter,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage('Assets/images/Background.png'),
-          fit: BoxFit.cover,
-        )),
-        child: SingleChildScrollView(
+    return CustomScaffold(
+      isButtonBack: true,
+      appBar: AppBars(width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height,),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 20,),
               Text(
                 'Das Kapital. Kritik der politischen...',
                 style: AppTypography.font20white.copyWith(fontSize: 24),

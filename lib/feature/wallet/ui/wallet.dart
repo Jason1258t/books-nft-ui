@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/feature/home/data/homa_repository.dart';
 import 'package:nft/utils/gradients.dart';
-import 'package:nft/widget/bottom_sheet.dart';
+import 'package:nft/widget/custom_bottom_sheet/bottom_sheet.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
 import 'package:nft/widget/buttons/row_elevated_button.dart';
 
