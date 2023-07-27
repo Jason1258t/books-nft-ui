@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nft/bloc/app_cubit.dart';
 import 'package:nft/feature/wallet/bloc/wallet_cubit.dart';
 import 'package:nft/feature/wallet/data/wallet_repository.dart';
 import 'package:nft/feature/wallet/ui/pincode.dart';
+import 'package:nft/servi%D1%81e/api_service.dart';
 import 'package:nft/serviсe/custom_bloc_observer.dart';
 
+import 'data/app_repository.dart';
 import 'feature/auth/ui/auth_screen.dart';
 import 'feature/book_info/ui/book_info_screen.dart';
 import 'feature/describe_problem/ui/describe_problem_screen.dart';
@@ -23,7 +26,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   Bloc.observer = CustomBlocObserver();
-  runApp(const MyRepositoryProviders());
+  runApp(MyRepositoryProviders());
 }
 
 class MyApp extends StatelessWidget {
@@ -60,13 +63,15 @@ class MyApp extends StatelessWidget {
 }
 
 class MyRepositoryProviders extends StatelessWidget {
-  const MyRepositoryProviders({Key? key}) : super(key: key);
+  MyRepositoryProviders({Key? key}) : super(key: key);
+  final apiService = ApiService();
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider(create: (_) => HomeRepository()),
       RepositoryProvider(create: (_) => WalletRepository()),
+      RepositoryProvider(create: (_) => AppRepository(apiService: apiService)),
     ], child: const MyBlocProviders());
   }
 }
@@ -84,6 +89,11 @@ class MyBlocProviders extends StatelessWidget {
       BlocProvider(
         create: (_) => WalletCubit(
             walletRepository: RepositoryProvider.of<WalletRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => AppCubit(
+            appRepository: RepositoryProvider.of<AppRepository>(context)),
         lazy: false,
       ),
     ], child: const MyApp());
