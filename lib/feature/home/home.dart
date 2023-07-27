@@ -6,7 +6,6 @@ import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/app_bar/app_bar.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
-import 'package:nft/widget/stats/stat.dart';
 
 import '../my_books/ui/my_books.dart';
 import '../store/ui/store_screen.dart';
@@ -34,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       const StoreScreen(),
       const MyBooksScreen(),
       const WardrobeScreen(),
-      const Text('Events'),
+       const Image(image: AssetImage('Assets/images/r.png')),
       const WalletScreen()
     ];
 
@@ -56,18 +55,6 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: homeRepository.isSecondScreen
               ? AppBars(width: width, height: height,)
               : null,
-          child: homeRepository.isSecondScreen
-              ? Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                    image: AssetImage('Assets/images/Background.png'),
-                    fit: BoxFit.cover,
-                  )),
-                  child: widgetOptions[_selectedTab])
-              : widgetOptions[_selectedTab],
           bottomNavBar: Container(
             color: AppColors.bottomNavigationBackground,
             child: Row(
@@ -120,6 +107,18 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+          child: homeRepository.isSecondScreen
+              ? Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                    image: AssetImage('Assets/images/Background.png'),
+                    fit: BoxFit.cover,
+                  )),
+                  child: widgetOptions[_selectedTab])
+              : widgetOptions[_selectedTab],
         ),
       ),
       onWillPop: () async => false,

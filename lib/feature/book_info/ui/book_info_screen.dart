@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
-import '../../../utils/colors.dart';
 import '../../../utils/gradients.dart';
 import '../../../widget/app_bar/app_bar.dart';
 import '../../../widget/buttons/custom_elevated_button.dart';
