@@ -92,6 +92,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                           description: '13/16',
                         ),
                       ],
+
                     ),
                   ),
                 ],
