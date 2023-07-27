@@ -87,3 +87,98 @@ class _CustomToggleSwitchState extends State<CustomToggleSwitch> {
   }
 }
 
+// import 'package:flutter/material.dart';
+//
+// import '../../utils/colors.dart';
+// import '../containers/books_container.dart';
+//
+// List<int> list = [1, 2, 34, 4, 5, 6, 7, 8, 8, 9];
+//
+// class TabBarExample extends StatefulWidget {
+//   const TabBarExample({super.key});
+//
+//   @override
+//   State<TabBarExample> createState() => _TabBarExampleState();
+// }
+//
+// class _TabBarExampleState extends State<TabBarExample>
+//     with TickerProviderStateMixin {
+//   late final TabController _tabController;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _tabController = TabController(length: 2, vsync: this);
+//   }
+//
+//   @override
+//   void dispose() {
+//     _tabController.dispose();
+//     super.dispose();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         Container(
+//           height: 55,
+//           width: MediaQuery.of(context).size.width - 40,
+//           padding: EdgeInsets.zero,
+//           decoration: BoxDecoration(
+//               borderRadius: BorderRadius.circular(12.0),
+//               color: AppColors.isNoActiveSwitchToggle),
+//           child: TabBar(
+//             indicatorSize: TabBarIndicatorSize.tab,
+//             controller: _tabController,
+//             indicator: BoxDecoration(
+//               borderRadius: BorderRadius.circular(10),
+//               gradient: const RadialGradient(colors: [
+//                 const Color(0xffE1CFAB),
+//                 AppColors.isActiveSwitchToggle,
+//               ], radius: 1, center: Alignment.topCenter),
+//               color: AppColors.isActiveSwitchToggle,
+//             ),
+//             labelColor: Colors.white,
+//             unselectedLabelColor: Colors.white70,
+//             tabs: <Widget>[
+//               SizedBox(
+//                 height: 55,
+//                 child: const Text(
+//                   "Coins",
+//                   textAlign: TextAlign.center,
+//                   style: TextStyle(fontWeight: FontWeight.w500),
+//                 ),
+//               ),
+//               SizedBox(
+//                 width: (MediaQuery.of(context).size.width - 40) / 2,
+//                 height: 55,
+//                 child: const Text(
+//                   "Finance",
+//                   textAlign: TextAlign.center,
+//                   style: TextStyle(fontWeight: FontWeight.w500),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//         Container(
+//           width: double.infinity,
+//           height: list.length * (MediaQuery.of(context).size.width * 0.55 + 55),
+//           child: TabBarView(
+//             controller: _tabController,
+//             children: <Widget>[
+//               Column(
+//                 children: list.map((e) => const BooksContainer()).toList(),
+//               ),
+//               Container(
+//                 width: 200,
+//                 height: 300,
+//               ),
+//             ],
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }

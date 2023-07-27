@@ -7,7 +7,6 @@ import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
 import '../../../utils/colors.dart';
 import '../../../widget/app_bar/app_bar.dart';
-import '../../../widget/stats/stat.dart';
 
 class CategoryBooksScreen extends StatefulWidget {
   const CategoryBooksScreen({super.key});
