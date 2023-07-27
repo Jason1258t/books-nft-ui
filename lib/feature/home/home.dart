@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       const StoreScreen(),
       const MyBooksScreen(),
       const WardrobeScreen(),
-       const Image(image: AssetImage('Assets/images/r.png')),
+      Container(),
       const WalletScreen()
     ];
 

@@ -29,19 +29,21 @@ class CustomScaffold extends StatelessWidget {
                 fit: BoxFit.cover,
               )),
               child: child),
-          isButtonBack ? Container(
-            padding: const EdgeInsets.all(20),
-            alignment: Alignment.topLeft,
-            child: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white,
-              ),
-            ),
-          ) : Container(),
+          isButtonBack
+              ? Container(
+                  padding: const EdgeInsets.all(20),
+                  alignment: Alignment.topLeft,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              : Container(),
         ]));
   }
 }
