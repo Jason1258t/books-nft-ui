@@ -129,6 +129,12 @@ class AppTypography {
       fontWeight: FontWeight.w700,
       );
 
+  static final font16red = _font.copyWith(
+    color: AppColors.redText,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
   static final font20hintText = font20white.copyWith(
     color: const Color(0xFFA2A28C)
   );

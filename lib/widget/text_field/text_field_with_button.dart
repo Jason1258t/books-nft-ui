@@ -17,11 +17,13 @@ class CustomTextFieldWithButton extends StatelessWidget {
   final String icon;
   final Widget suffixIcon;
   final String hintText;
+  final bool isError;
 
   const CustomTextFieldWithButton({
     Key? key,
     required this.controller,
     required this.suffixIcon,
+    required this.hintText,
     this.width = double.infinity,
     this.height = 56,
     this.obscureText = false,
@@ -30,48 +32,65 @@ class CustomTextFieldWithButton extends StatelessWidget {
     this.keyBoardType = TextInputType.text,
     this.onChange,
     this.icon = "",
-    required this.hintText,
+    this.isError = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      alignment: Alignment.topLeft,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: AppColors.textFieldBackground,
-      ),
-      child: TextFormField(
-        obscuringCharacter: '*',
-        obscureText: true,
-        cursorColor: AppColors.cursorBackground,
-        maxLines: maxLines,
-        maxLength: maxLength,
-        onChanged: onChange ?? (value) {},
-        style: AppTypography.font20gold,
-        textAlignVertical: TextAlignVertical.top,
-        controller: controller,
-        decoration: InputDecoration(
-          counterText: '',
-          hintText: hintText,
-          hintStyle: AppTypography.font16dirtyGold,
-          suffixIcon: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              suffixIcon,
-            ],
+    return Column(
+      children: [
+        Container(
+          width: width,
+          height: height,
+          alignment: Alignment.topLeft,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: AppColors.textFieldBackground,
           ),
-          border: const OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.empty)),
-          enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.empty)),
-          focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.empty)),
+          child: TextFormField(
+            obscuringCharacter: '*',
+            obscureText: true,
+            cursorColor: AppColors.cursorBackground,
+            maxLines: maxLines,
+            maxLength: maxLength,
+            onChanged: onChange ?? (value) {},
+            style: AppTypography.font20gold,
+            textAlignVertical: TextAlignVertical.top,
+            controller: controller,
+            decoration: InputDecoration(
+              counterText: '',
+              hintText: hintText,
+              hintStyle: AppTypography.font16dirtyGold,
+              suffixIcon: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  suffixIcon,
+                ],
+              ),
+              border: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.empty)),
+              enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.empty)),
+              focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.empty)),
+            ),
+          ),
         ),
-      ),
+        SizedBox(
+          height: 4,
+        ),
+        Container(
+            height: 22,
+            alignment: Alignment.topLeft,
+            child: isError
+                ? Text(
+                    'invalid field',
+                    style: AppTypography.font16red,
+                    textAlign: TextAlign.left,
+                  )
+                : null)
+      ],
     );
   }
 }

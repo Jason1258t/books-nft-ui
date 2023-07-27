@@ -41,9 +41,12 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Economy',
-                    style: AppTypography.font20gold.copyWith(fontSize: 24),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Text(
+                      'Economy',
+                      style: AppTypography.font20gold.copyWith(fontSize: 24),
+                    ),
                   ),
                   DropdownButtonHideUnderline(
                     child: DropdownButton2(

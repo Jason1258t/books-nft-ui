@@ -40,7 +40,7 @@ class SmallElevatedButton extends StatelessWidget {
                   padding: EdgeInsets.zero,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
-              onPressed: () {  },
+              onPressed: onTap,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

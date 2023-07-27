@@ -21,6 +21,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   String codeState = "SEND CODE";
 
+  bool isValidEmail = false;
+  bool isVerificationCode = false;
+
   bool isTap = false;
 
   @override
@@ -54,7 +57,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20,)
+              const SizedBox(
+                height: 20,
+              )
             ],
           ),
         ),
@@ -111,6 +116,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     controller: emailController,
                     height: 56,
                     hintText: 'Email',
+                    isError: isValidEmail,
                   ),
                   const SizedBox(
                     height: 16,
@@ -120,23 +126,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 56,
                     obscureText: true,
                     maxLength: 18,
+                    isError: isVerificationCode,
                     hintText: 'Verification code',
                     suffixIcon: SmallElevatedButton(
                       text: codeState,
                       onTap: () {
-                        setState(() {
-                          codeState = "VERIFY";
-                        });
+                        if (!RegExp(
+                                r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                            .hasMatch(emailController.text)) {
+                          isValidEmail = true;
+                          setState(() {});
+                          return;
+                        }
+                        isValidEmail = false;
+                        codeState = "VERIFY";
+                        setState(() {});
                       },
                       height: 32,
                       width: 120,
                     ),
                   ),
                   const SizedBox(
-                    height: 16,
+                    height: 60,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
                         child: Text(
@@ -151,7 +165,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ],
                   ),
                   const SizedBox(
-                    height: 48,
+                    height: 8,
                   ),
                   CustomElevatedButton(
                       text: 'REGISTER',
