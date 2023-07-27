@@ -9,14 +9,16 @@ import 'package:nft/servi%D1%81e/api_service.dart';
 import 'package:nft/serviсe/custom_bloc_observer.dart';
 
 import 'data/app_repository.dart';
+import 'feature/auth/bloc/code/code_cubit.dart';
+import 'feature/auth/bloc/login/login_cubit.dart';
 import 'feature/auth/ui/auth_screen.dart';
 import 'feature/book_info/ui/book_info_screen.dart';
 import 'feature/describe_problem/ui/describe_problem_screen.dart';
 import 'feature/home/bloc/home_cubit.dart';
 import 'feature/home/data/homa_repository.dart';
 import 'feature/home/home.dart';
-import 'feature/login/ui/login_screen.dart';
-import 'feature/register/ui/register_screen.dart';
+import 'feature/auth/ui/login_screen.dart';
+import 'feature/auth/ui/register_screen.dart';
 import 'feature/store/ui/category_books_screen.dart';
 import 'feature/wallet/ui/confirm_phrase.dart';
 import 'feature/wallet/ui/import_wallet.dart';
@@ -93,6 +95,16 @@ class MyBlocProviders extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) => AppCubit(
+            appRepository: RepositoryProvider.of<AppRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => LoginCubit(
+            appRepository: RepositoryProvider.of<AppRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => CodeCubit(
             appRepository: RepositoryProvider.of<AppRepository>(context)),
         lazy: false,
       ),

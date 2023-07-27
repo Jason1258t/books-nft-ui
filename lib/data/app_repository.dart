@@ -43,6 +43,7 @@ class AppRepository {
       appState.add(AppStateEnum.auth);
     } catch (e) {
       appState.add(AppStateEnum.unAuth);
+      rethrow;
     }
   }
 
