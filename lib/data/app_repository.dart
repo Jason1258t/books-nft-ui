@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:nft/servi%D1%81e/api_service.dart';
+import 'package:nft/services/api_service.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -49,6 +49,7 @@ class AppRepository {
     try {
       final result = await method;
       log(result.toString());
+      await _apiService.setToken('Bearer $result');
       await _saveToken(result.toString());
       appState.add(AppStateEnum.auth);
     } catch (e) {
@@ -59,13 +60,13 @@ class AppRepository {
 
   /// вызывает метод создания email на сервере и отправляет код
   Future getCodeOnSignUp(String email) async {
-    await _apiService.signUp(email);
+    await _apiService.auth.signUp(email);
     await getCode(email);
   }
 
-  Future getCode(String email) async => await _apiService.getCode(email);
+  Future getCode(String email) async => await _apiService.auth.getCode(email);
 
   Future login(String email, int code) async {
-    _auth(_apiService.login(email, code));
+    _auth(_apiService.auth.login(email, code));
   }
 }

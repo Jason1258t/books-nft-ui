@@ -54,7 +54,7 @@ class _PhraseConfirmState extends State<PhraseConfirm> {
   Widget build(BuildContext context) {
     void confirm() {
       BlocProvider.of<WalletCubit>(context).creteWallet();
-      Navigator.popUntil(context, ModalRoute.withName('/home_screen'));
+      Navigator.popUntil(context, ModalRoute.withName('/'));
     }
 
     return CustomScaffold(
