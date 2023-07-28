@@ -8,6 +8,7 @@ import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/containers/books_vertical_container.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
+import '../../../models/book.dart';
 import '../../../utils/colors.dart';
 import '../../../widget/app_bar/app_bar.dart';
 
@@ -26,6 +27,9 @@ List<String> list = [
 
 List<int> list1 = [1, 2, 34, 4, 5, 6, 7, 8, 89];
 
+Book book = Book(
+    name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false);
+
 class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
   String activeValue = '';
 
@@ -39,7 +43,8 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
       Row row = Row(children: [
         BooksVerticalContainer(
           onTap: () {
-            Navigator.pushNamed(context, '/book_info_screen');
+            Navigator.pushNamed(context, '/book_info_screen',
+                arguments: {'book': book});
           },
         ),
         const SizedBox(
@@ -48,7 +53,8 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
         if (listBook.length != i) ...[
           BooksVerticalContainer(
             onTap: () {
-              Navigator.pushNamed(context, '/book_info_screen');
+              Navigator.pushNamed(context, '/book_info_screen',
+                  arguments: {'book': book});
             },
           ),
         ]
@@ -207,7 +213,7 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
                   ),
                   Container(
                     height: height - 206,
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: ListView(
                       children: listBook.reversed.toList(),
                     ),

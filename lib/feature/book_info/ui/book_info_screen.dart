@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
+import '../../../models/book.dart';
+import '../../../utils/colors.dart';
 import '../../../utils/gradients.dart';
 import '../../../widget/app_bar/app_bar.dart';
 import '../../../widget/buttons/custom_elevated_button.dart';
@@ -17,6 +19,11 @@ class BookInfoScreen extends StatefulWidget {
 class _BookInfoScreenState extends State<BookInfoScreen> {
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+
+    final book = arguments['book'] as Book;
+
     return CustomScaffold(
       isButtonBack: true,
       appBar: AppBars(
@@ -36,10 +43,10 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                   const SizedBox(
                     width: 20,
                   ),
-                  Container(
+                  SizedBox(
                     width: 240,
                     child: Text(
-                      'Das Kapital. Kritik der politischen...',
+                      book.name,
                       style: AppTypography.font20white.copyWith(fontSize: 24),
                       textAlign: TextAlign.center,
                       maxLines: 2,
@@ -50,7 +57,8 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                   InkWell(
                     child: SvgPicture.asset('Assets/icons/info.svg'),
                     onTap: () {
-                      Navigator.pushNamed(context, '/second_book_info_screen');
+                      Navigator.pushNamed(context, '/second_book_info_screen',
+                          arguments: {'book': book});
                     },
                   ),
                 ],
@@ -58,7 +66,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Image.asset('Assets/images/conan_doyle_book.png'),
+              Image.asset(book.image),
               const SizedBox(
                 height: 10,
               ),
@@ -125,12 +133,38 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 16,),
-              CustomElevatedButton(
-                text: 'Read',
-                onTap: () {},
-                gradient: AppGradients.lightButton,
+              const SizedBox(
+                height: 16,
               ),
+              book.owned
+                  ? Column(
+                      children: [
+                        CustomElevatedButton(
+                          text: 'Put on a shelf',
+                          borderColor: AppColors.darkBorder,
+                          onTap: () {},
+                          gradient: AppGradients.lightButton,
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        CustomElevatedButton(
+                          text: 'Read',
+                          borderColor: AppColors.buttonDarkColor,
+                          onTap: () {},
+                          gradient: const LinearGradient(colors: [
+                            AppColors.buttonDarkColor,
+                            AppColors.buttonDarkColor
+                          ]),
+                        ),
+                      ],
+                    )
+                  : CustomElevatedButton(
+                      text: 'Buy',
+                      borderColor: AppColors.darkBorder,
+                      onTap: () {},
+                      gradient: AppGradients.redButton,
+                    ),
             ],
           ),
         ),
@@ -164,7 +198,7 @@ class _TextIconAndDescription extends StatelessWidget {
           ),
           Column(
             children: [
-              Container(
+              SizedBox(
                 width: 200,
                 child: Text(
                   name,
@@ -172,7 +206,7 @@ class _TextIconAndDescription extends StatelessWidget {
                 ),
               ),
               if (description != '') ...[
-                Container(
+                SizedBox(
                   width: 200,
                   child: Text(
                     description,
@@ -213,3 +247,5 @@ class _IconAndText extends StatelessWidget {
     );
   }
 }
+
+

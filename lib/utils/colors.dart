@@ -31,6 +31,8 @@ class AppColors {
   static const dirtyGold = Color(0xFFA2A28C);
   static const borderBackground = Color(0xff536262);
   static const redText = Color(0xFFFF0000);
+  static const darkRed = Color(0xFFAF4141);
+  static const pink = Color(0xFFD66D6D);
   static const statistic = Color(0xff68CDFE);
   static const lvlText = Color(0xFF7DE0F8);
   static const selectedBottomNavBarItem = Color(0xff7F663E);

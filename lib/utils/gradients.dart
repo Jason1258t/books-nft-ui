@@ -29,6 +29,14 @@ class AppGradients {
         AppColors.bottomSheetDark
       ]);
 
+  static const redButton = LinearGradient(
+      begin: Alignment(0, 0.5),
+      end: Alignment(1, 0.5),
+      colors: [
+        AppColors.darkRed,
+        AppColors.pink
+      ]);
+
   static const smallButtonBorder = LinearGradient(
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,

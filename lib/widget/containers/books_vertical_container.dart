@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nft/utils/fonts.dart';
 
+
 class BooksVerticalContainer extends StatefulWidget {
   const BooksVerticalContainer({super.key, required this.onTap});
 
