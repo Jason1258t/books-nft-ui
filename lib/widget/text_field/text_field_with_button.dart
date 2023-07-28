@@ -77,7 +77,7 @@ class CustomTextFieldWithButton extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 4,
         ),
         Container(

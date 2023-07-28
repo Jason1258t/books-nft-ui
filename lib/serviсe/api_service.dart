@@ -1,38 +1,39 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiService {
   static const _signup = '/auth/signup';
   static const _code = '/auth/code';
-  static const _login = 'auth/login';
+  static const _login = '/auth/login';
 
   String? _token;
 
   final Dio _dio =
-      Dio(BaseOptions(baseUrl: 'https://90.156.205.207:4000', headers: {
+      Dio(BaseOptions(baseUrl: dotenv.get('BASE_SERVER_URL'), headers: {
     'Content-Type': 'application/json',
   }));
 
   /// чисто создает запись потос один хер [getCode], [login]
-  Future<String> signUp(String email) async {
+  Future signUp(String email) async {
     final res = await _dio.post(_signup, data: {'email': email});
     return res.data;
   }
 
   /// вызывает метод получения кодв
-  Future<String> getCode(String email) async {
+  Future getCode(String email) async {
     final res = await _dio.post(_code, data: {'email': email});
     return res.data;
   }
 
   /// производит авторизацию и возврвщает токен
-  Future<String> login(String email, int code) async {
+  Future login(String email, int code) async {
     final res = await _dio.post(_login, data: {'email': email, 'code': code});
-    setToken('Bearer ${res.data}');
-    return res.data;
+    log('------------------------- ${res.data}');
+    await setToken('Bearer ${res.data['token']}');
+    return res.data['token'];
   }
-
 
   /// получает статы пользователя после авторизации
   Future<Map> getUserProperties() async {
@@ -40,7 +41,6 @@ class ApiService {
     log(res.data.toString());
     return res.data;
   }
-
 
   /// ставит token в dio
   Future setToken(String token) async {
@@ -51,4 +51,7 @@ class ApiService {
     };
     await getUserProperties();
   }
+
+  /// сносит токен при выходе с аккаунта
+  void logout() => _dio.options.headers = {'Content-Type': 'application/json'};
 }

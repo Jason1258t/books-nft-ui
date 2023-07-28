@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
@@ -37,13 +39,13 @@ class AuthScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomElevatedButton(text: 'LOGIN', onTap: () {
-                      Navigator.pushReplacementNamed(context, '/login_screen');
+                      Navigator.pushNamed(context, '/login_screen');
                     }),
                     const SizedBox(
                       height: 16,
                     ),
                     CustomTextButton(text: 'REGISTER', onTap: () {
-                      Navigator.pushReplacementNamed(context, '/register_screen');
+                      Navigator.pushNamed(context, '/register_screen');
                     }),
                     const SizedBox(
                       height: 30,
