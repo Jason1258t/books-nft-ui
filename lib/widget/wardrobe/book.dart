@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nft/feature/my_books/ui/my_books_screen.dart';
 import 'package:nft/widget/custom_bottom_sheet/bottom_sheet.dart';
+import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
 import '../../models/book.dart';
 import '../../utils/colors.dart';
@@ -117,7 +118,7 @@ class BookWidget extends StatelessWidget {
     if (_bookType == BookType.add) {
       onTap = () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (_) => MyBooksScreen(onTap: addBook)));
+            MaterialPageRoute(builder: (_) => CustomScaffold(child: MyBooksScreen(onTap: addBook))));
       };
     } else if (_bookType == BookType.lock) {
       onTap = _buyPlace();
