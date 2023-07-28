@@ -7,7 +7,7 @@ import '../../../widget/switch/custom_switch.dart';
 class MyBooksScreen extends StatefulWidget {
   const MyBooksScreen({super.key, required this.onTap});
 
-  final Function(Book) onTap;
+  final Function(Book, BuildContext) onTap;
 
   @override
   State<MyBooksScreen> createState() => _MyBooksScreenState();
@@ -26,8 +26,7 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
       Row row = Row(children: [
         BooksVerticalContainer(
           onTap: () {
-            Navigator.pushNamed(context, '/book_info_screen',
-                arguments: {'book': book});
+            widget.onTap(book, context);
           },
         ),
         const SizedBox(
@@ -36,7 +35,7 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
         if (listBook.length != i) ...[
           BooksVerticalContainer(
             onTap: () {
-              widget.onTap(book);
+              widget.onTap(book, context);
             },
           ),
         ]

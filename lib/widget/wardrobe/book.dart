@@ -77,48 +77,57 @@ class BookWidget extends StatelessWidget {
     Navigator.pushNamed(context, '/book_info_screen',
         arguments: {'book': book});
   }
-
+  _addBook(Book book, BuildContext context) {
+    log('aboba');
+    showBottomSheet(
+        context: context,
+        builder: (BuildContext context) =>
+            Padding(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery
+                        .of(context)
+                        .viewInsets
+                        .bottom),
+                child: CustomBottomSheet(
+                  title: 'Put on a shelf',
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            constraints: const BoxConstraints(minHeight: 60),
+                            padding: const EdgeInsets.symmetric(horizontal: 40),
+                            margin: const EdgeInsets.only(top: 16),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: AppColors.backGroundTextShowButtonSheet),
+                            alignment: Alignment.center,
+                            child: Text(
+                              book.name,
+                              textAlign: TextAlign.center,
+                              style: AppTypography.font16white,
+                            ),
+                          ),
+                          CustomElevatedButton(text: 'Confirm', onTap: () {
+                            //TODO сделать добавление с блоком/репозиторием
+                          }),
+                        ],
+                      ),
+                    ),
+                  ],
+                )));
+  }
   @override
   Widget build(BuildContext context) {
-    void addBook(Book book) {
-      log('aboba');
-      showBottomSheet(
-          context: context,
-          builder: (BuildContext context) =>
-              Padding(
-                  padding: EdgeInsets.only(
-                      bottom: MediaQuery
-                          .of(context)
-                          .viewInsets
-                          .bottom),
-                  child: CustomBottomSheet(
-                    title: 'Put on a shelf',
-                    children: [
-                      Container(
-                        constraints: const BoxConstraints(minHeight: 60),
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: AppColors.backGroundTextShowButtonSheet),
-                        alignment: Alignment.center,
-                        child: Text(
-                          book.name,
-                          textAlign: TextAlign.center,
-                          style: AppTypography.font16white,
-                        ),
-                      ),
-                      CustomElevatedButton(text: 'Confirm', onTap: () {
-                        //TODO сделать добавление с блоком/репозиторием
-                      }),
-                    ],
-                  )));
-    }
+
 
     if (_bookType == BookType.add) {
       onTap = () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (_) => CustomScaffold(child: MyBooksScreen(onTap: addBook))));
+            MaterialPageRoute(builder: (_) => CustomScaffold(child: MyBooksScreen(onTap: _addBook))));
       };
     } else if (_bookType == BookType.lock) {
       onTap = _buyPlace();

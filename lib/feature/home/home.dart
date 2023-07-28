@@ -32,8 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final List<Widget> widgetOptions = <Widget>[
       const StoreScreen(),
       MyBooksScreen(
-        onTap: (book) {
-          Navigator.pushNamed(context, '/book_info_screen',
+        onTap: (book, ctx) {
+          Navigator.pushNamed(ctx, '/book_info_screen',
               arguments: {'book': book});
         },
       ),
