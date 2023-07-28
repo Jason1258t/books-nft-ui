@@ -34,6 +34,28 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
+    List<Widget> listBook = [];
+    for (int i = 0; i < list1.length; i += 2) {
+      Row row = Row(children: [
+        BooksVerticalContainer(
+          onTap: () {
+            Navigator.pushNamed(context, '/book_info_screen');
+          },
+        ),
+        const SizedBox(
+          width: 30,
+        ),
+        if (listBook.length != i) ...[
+          BooksVerticalContainer(
+            onTap: () {
+              Navigator.pushNamed(context, '/book_info_screen');
+            },
+          ),
+        ]
+      ]);
+      listBook.add(row);
+    }
+
     return CustomScaffold(
       isButtonBack: true,
       appBar: AppBars(
@@ -185,10 +207,9 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
                   ),
                   Container(
                     height: height - 206,
-                    padding: EdgeInsets.fromLTRB(20, 0,20,0),
+                    padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: ListView(
-                      children:
-                          list1.map((e) => const BooksVerticalContainer()).toList(),
+                      children: listBook.reversed.toList(),
                     ),
                   ),
                 ],

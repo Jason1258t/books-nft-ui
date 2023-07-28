@@ -1,8 +1,8 @@
 import 'book.dart';
 
-class BooksCategory {
+class BooksGenre {
   final String name;
   final List<Book> books;
 
-  BooksCategory({required this.name, required this.books});
+  BooksGenre({required this.name, required this.books});
 }

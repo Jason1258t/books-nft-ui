@@ -12,20 +12,20 @@ class StoreScreen extends StatefulWidget {
   State<StoreScreen> createState() => _StoreScreenState();
 }
 
-List<BooksCategory> booksCategories = [
-  BooksCategory(name: 'Economy', books: [
+List<BooksGenre> booksCategories = [
+  BooksGenre(name: 'Economy', books: [
     Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
     Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
     Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
     Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
   ]),
-  BooksCategory(name: 'Fantasy', books: [
+  BooksGenre(name: 'Fantasy', books: [
     Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
     Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
     Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
     Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
   ]),
-  BooksCategory(name: 'Romantic', books: [
+  BooksGenre(name: 'Romantic', books: [
     Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
     Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
     Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),

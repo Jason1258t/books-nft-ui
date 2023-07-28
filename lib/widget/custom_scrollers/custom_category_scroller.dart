@@ -4,17 +4,21 @@ import 'package:nft/models/books_category.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:stroke_text/stroke_text.dart';
 
+import '../../models/book.dart';
 import '../../utils/colors.dart';
 import '../containers/books_horizontal_container.dart';
 
 class CustomCategoryScroller extends StatelessWidget {
   const CustomCategoryScroller({super.key, required this.category});
 
-  final BooksCategory category;
+  final BooksGenre category;
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+
+    List<Book> listBook = category.books.length <= 3 ? category.books : category.books.sublist(
+        0, 3);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,35 +66,20 @@ class CustomCategoryScroller extends StatelessWidget {
                   SizedBox(
                       height: 170,
                       child: Row(
-                        children: category.books.length <= 3
-                            ? category.books
-                                .map((e) => Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: BooksHorizontalContainer(
+                        children: listBook.map((e) => Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: BooksHorizontalContainer(
                                         book: e,
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, '/book_info_screen',
+                                              arguments: {
+                                                'book': category.books
+                                              });
+                                        },
                                       ),
-                                ))
+                                    ))
                                 .toList()
-                            : [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: BooksHorizontalContainer(
-                                    book: category.books[0],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: BooksHorizontalContainer(
-                                    book: category.books[1],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: BooksHorizontalContainer(
-                                    book: category.books[2],
-                                  ),
-                                ),
-                              ],
                       )),
                   Container(
                     width: width,

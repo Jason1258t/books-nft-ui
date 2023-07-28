@@ -3,7 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:nft/utils/fonts.dart';
 
 class BooksVerticalContainer extends StatefulWidget {
-  const BooksVerticalContainer({super.key});
+  const BooksVerticalContainer({super.key, required this.onTap});
+
+  final Function() onTap;
 
   @override
   State<BooksVerticalContainer> createState() => _BooksVerticalContainerState();
@@ -19,9 +21,7 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/book_info_screen');
-            },
+            onTap: widget.onTap,
             child: Container(
               width: width * 0.41,
               height: width * 0.55,
@@ -39,13 +39,11 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
                     Text(
                       'Capital: A Critique of Political Economy',
                       textAlign: TextAlign.center,
-                      style: AppTypography.font16white
-                          .copyWith(fontSize: 12),
+                      style: AppTypography.font16white.copyWith(fontSize: 12),
                     ),
                     Text(
                       'Karl Marx',
-                      style: AppTypography.font16white
-                          .copyWith(fontSize: 14),
+                      style: AppTypography.font16white.copyWith(fontSize: 14),
                     ),
                   ],
                 ),
@@ -75,8 +73,7 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
                     padding: const EdgeInsets.fromLTRB(9, 7, 0, 0),
                     child: Text(
                       '78%',
-                      style: AppTypography.font20white
-                          .copyWith(fontSize: 10),
+                      style: AppTypography.font20white.copyWith(fontSize: 10),
                     ),
                   ),
                 ],

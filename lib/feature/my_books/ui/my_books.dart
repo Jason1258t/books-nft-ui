@@ -16,12 +16,24 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> listBook = [];
-    for(int i = 0; i < list.length; i+=2 ){
-      Row row = Row(
-          children: [
-            const BooksVerticalContainer(),
-            const SizedBox(width: 30,),
-            if (listBook.length != i) ...[const BooksVerticalContainer(),]]);
+    for (int i = 0; i < list.length; i += 2) {
+      Row row = Row(children: [
+        BooksVerticalContainer(
+          onTap: () {
+            Navigator.pushNamed(context, '/book_info_screen');
+          },
+        ),
+        const SizedBox(
+          width: 30,
+        ),
+        if (listBook.length != i) ...[
+          BooksVerticalContainer(
+            onTap: () {
+              Navigator.pushNamed(context, '/book_info_screen');
+            },
+          ),
+        ]
+      ]);
       listBook.add(row);
     }
 
