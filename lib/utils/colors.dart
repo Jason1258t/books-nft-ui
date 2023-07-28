@@ -38,4 +38,5 @@ class AppColors {
   static const selectedBottomNavBarItem = Color(0xff7F663E);
   static const isNoActiveStrokeText = Color(0xff72644E);
   static const isActiveStrokeText = Color(0xff878787);
+  static const backGroundTextShowButtonSheet = Color(0xFF4F483D);
 }

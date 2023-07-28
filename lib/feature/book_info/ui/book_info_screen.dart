@@ -8,6 +8,7 @@ import '../../../utils/colors.dart';
 import '../../../utils/gradients.dart';
 import '../../../widget/app_bar/app_bar.dart';
 import '../../../widget/buttons/custom_elevated_button.dart';
+import '../../../widget/custom_bottom_sheet/bottom_sheet.dart';
 
 class BookInfoScreen extends StatefulWidget {
   const BookInfoScreen({super.key});
@@ -23,6 +24,75 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
         <String, dynamic>{}) as Map;
 
     final book = arguments['book'] as Book;
+
+    void showBuyBook() {
+      showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (BuildContext context) => Padding(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: CustomBottomSheet(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  title: 'Purchase',
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              const SizedBox(height: 15,),
+                              Container(
+                                constraints: const BoxConstraints(minHeight: 60),
+                                padding: const EdgeInsets.symmetric(horizontal: 40),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: AppColors.backGroundTextShowButtonSheet),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  book.name,
+                                  textAlign: TextAlign.center,
+                                  style: AppTypography.font16white,
+                                ),
+                              ),
+                              const SizedBox(height: 16,),
+                              Container(
+                                  constraints: const BoxConstraints(minHeight: 60),
+                                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: AppColors.backGroundTextShowButtonSheet),
+                                  alignment: Alignment.center,
+                                  child: const Row(// TODO BlocBuilder
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      //1
+                                      // SvgPicture.asset('Assets/icons/black_stars.svg'),
+                                      // Text('Free', style: AppTypography.font16white),
+                                      //2
+                                      // CircleAvatar(
+                                      //   radius: 25,
+                                      //   backgroundColor: AppColors.cursorBackground,
+                                      //   child: CircularProgressIndicator(color: Colors.white,),
+                                      // )
+                                      //3
+                                      // SvgPicture.asset('Assets/icons/check_mark.svg'),
+                                      // Text('Successfully', style: AppTypography.font16white),
+                                    ],
+                                  )),
+                            ],
+                          ),
+                          CustomElevatedButton(text: 'Confirm purchase', onTap: () {}),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ));
+    }
 
     return CustomScaffold(
       isButtonBack: true,
@@ -162,7 +232,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                   : CustomElevatedButton(
                       text: 'Buy',
                       borderColor: AppColors.darkBorder,
-                      onTap: () {},
+                      onTap: showBuyBook,
                       gradient: AppGradients.redButton,
                     ),
             ],
@@ -247,5 +317,3 @@ class _IconAndText extends StatelessWidget {
     );
   }
 }
-
-

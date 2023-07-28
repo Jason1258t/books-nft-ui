@@ -6,19 +6,23 @@ import 'package:nft/utils/gradients.dart';
 
 import '../../utils/fonts.dart';
 
-
-
 /// создает кастомизированный bottomSheet
 class CustomBottomSheet extends StatelessWidget {
-  const CustomBottomSheet({super.key, this.children, required this.title});
+  const CustomBottomSheet(
+      {super.key,
+      this.children,
+      required this.title,
+      this.mainAxisAlignment = MainAxisAlignment.spaceBetween});
 
-
-  /// то что лежит в основной колонке виджета, у колонки spaceBetween
+  /// то что лежит в основной колонке виджета, у колонки с [mainAxisAlignment]
   final List<Widget>? children;
 
   /// в дизайне везде требуется стрелочка которую пихать поверх всего так что
   /// передается текст тайтла а дальше само внутри ставится стаком
   final String title;
+
+  /// MainAxisAlignment у главной колонки по дефолту стоит spaceBetween
+  final MainAxisAlignment mainAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,8 @@ class CustomBottomSheet extends StatelessWidget {
                 child: SvgPicture.asset('Assets/icons/chevron-left.svg'),
                 onTap: () {
                   Navigator.of(context).pop();
-                  RepositoryProvider.of<HomeRepository>(context).showBottomSheet = false;
+                  RepositoryProvider.of<HomeRepository>(context)
+                      .showBottomSheet = false;
                 },
               ),
             )
@@ -53,7 +58,9 @@ class CustomBottomSheet extends StatelessWidget {
     }
 
     return InkWell(
-      onTap: () {FocusScope.of(context).requestFocus(FocusNode());},
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
       child: Container(
         padding: const EdgeInsets.all(20),
         height: 398,
@@ -76,7 +83,7 @@ class CustomBottomSheet extends StatelessWidget {
           ],
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: mainAxisAlignment,
           children: generateChildren(),
         ),
       ),
