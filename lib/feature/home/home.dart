@@ -10,7 +10,7 @@ import 'package:nft/widget/custom_scaffold/scaffold.dart';
 import '../my_books/ui/my_books.dart';
 import '../store/ui/store_screen.dart';
 import '../wallet/ui/wallet_screen.dart';
-import '../wardrobe/ui/wardrobe_screen.dart';
+import '../my_books/ui/wardrobe_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

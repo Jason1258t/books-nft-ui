@@ -35,9 +35,6 @@ class _WardrobeState extends State<Wardrobe> {
           width: MediaQuery.of(context).size.width,
           isLocked: true,
           shelfData: ShelfData(booksData: [
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
           ], lockedBooks: 1),
         ),
       ],

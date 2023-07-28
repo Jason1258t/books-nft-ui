@@ -17,6 +17,4 @@ class MyBooksRepository {
       myBooks.add(Book.fromJson(json, true));
     }
   }
-
-
 }
