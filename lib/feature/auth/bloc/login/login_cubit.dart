@@ -14,10 +14,12 @@ class LoginCubit extends Cubit<LoginState> {
   void login({required String email, required String code}) async {
     emit(LoginLoadingState());
     try {
-      _appRepository.login(email, int.parse(code));
+      await _appRepository.login(email, int.parse(code));
       emit(LoginSuccessState());
     } catch (e) {
       emit(LoginFailState(message: e.toString()));
     }
   }
+
+  void logout() => _appRepository.logout();
 }

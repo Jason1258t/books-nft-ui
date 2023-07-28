@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -14,38 +15,45 @@ class CodeCubit extends Cubit<CodeState> {
       : _appRepository = appRepository,
         super(CodeInitial());
 
-  // void wait() async {
-  //   emit(WaitState(remainingTime: 60));
-  //   //Duration timerDuration = const Duration(seconds: 60);
-  //   int time = 60;
-  //   Duration period = const Duration(seconds: 1);
-  //   Timer _timer = Timer.periodic(period, (timer) {
-  //     if (time <= 0) {
-  //       timer.cancel();
-  //     } else {
-  //       time--;
-  //       emit(WaitState(remainingTime: time));
-  //     }
-  //   });
-  //
-  //   emit(ReadyToSend());
-  // }
+  /// Для того чтоб потом сделть таймер до повторной отправки
+  void _wait() async {
+    emit(WaitState(remainingTime: 60));
+    //Duration timerDuration = const Duration(seconds: 60);
+    int time = 60;
+    Duration period = const Duration(seconds: 1);
+    Timer.periodic(period, (timer) {
+      if (time <= 0) {
+        timer.cancel();
+      } else {
+        time--;
+        emit(WaitState(remainingTime: time));
+      }
+    });
+
+    emit(ReadyToSend());
+  }
 
   void signupCode(String email) async {
+    emit(SendingState());
     try {
-      _appRepository.getCodeOnSignUp(email);
+      log('--------- trying to send step 3');
+      await _appRepository.getCodeOnSignUp(email);
       emit(SentState());
     } catch (e) {
       emit(FailState());
+      rethrow;
     }
   }
 
   void loginCode(String email) async {
+    emit(SendingState());
     try {
-      _appRepository.getCode(email);
+      log('--------- trying to send step 3');
+      await _appRepository.getCode(email);
       emit(SentState());
     } catch (e) {
       emit(FailState());
+      rethrow;
     }
   }
 }

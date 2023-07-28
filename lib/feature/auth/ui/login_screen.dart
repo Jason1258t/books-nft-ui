@@ -1,12 +1,19 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nft/feature/auth/bloc/login/login_cubit.dart';
+import 'package:nft/utils/dialogs.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
 import 'package:nft/widget/buttons/small_elevated_button.dart';
 import 'package:nft/widget/text_field/custom_text_field.dart';
 
 import '../../../utils/colors.dart';
+import '../../../utils/constants.dart';
 import '../../../widget/buttons/elevated_button_with_check_box.dart';
 import '../../../widget/text_field/text_field_with_button.dart';
+import '../bloc/code/code_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -23,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool isTap = false;
 
-  bool isValidEmail = false;
+  bool isValidEmail = true;
   bool isVerificationCode = false;
 
   @override
@@ -32,165 +39,227 @@ class _LoginScreenState extends State<LoginScreen> {
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
       },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          backgroundColor: AppColors.bottomNavigationBackground,
-          automaticallyImplyLeading: false,
-          flexibleSpace: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+      child: BlocListener<LoginCubit, LoginState>(
+        listener: (context, state) {
+          if (state is LoginSuccessState) Navigator.pop(context);
+          if (state is LoginFailState) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('login fail')));
+          }
+          if (state is LoginLoadingState) {
+            Dialogs.showModal(
+                context,
+                const Center(
+                  child: CircularProgressIndicator(),
+                ));
+          } else {
+            Dialogs.hide(context);
+          }
+        },
+        child: BlocListener<CodeCubit, CodeState>(
+          listener: (context, state) {
+            if (state is SendingState) {
+              Dialogs.showModal(
+                  context,
+                  const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.amber,
+                    ),
+                  ));
+            } else {
+              Dialogs.hide(context);
+            }
+
+            if (state is SentState) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(const SnackBar(content: Text('code sent')));
+            }
+            if (state is FailState) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(const SnackBar(content: Text('fail')));
+            }
+          },
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            appBar: AppBar(
+              backgroundColor: AppColors.bottomNavigationBackground,
+              automaticallyImplyLeading: false,
+              flexibleSpace: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                    child: const Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                    ),
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, '/');
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              )
-            ],
-          ),
-        ),
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage('Assets/images/Background.png'),
-            fit: BoxFit.cover,
-          )),
-          child: Stack(
-            children: [
-              Container(
-                alignment: Alignment.bottomCenter,
-                padding: const EdgeInsets.only(bottom: 32),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Text(
-                        'Privacy policy',
-                        style: AppTypography.font16white,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Text(
-                        'Term of Use',
-                        style: AppTypography.font16white,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Text(
-                    'Enter your email address and a verification code',
-                    style: AppTypography.font16white.copyWith(fontSize: 20),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  CustomTextField(
-                    controller: emailController,
-                    height: 56,
-                    hintText: 'Email',
-                    isError: isValidEmail,
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  CustomTextFieldWithButton(
-                    controller: passwordController,
-                    height: 56,
-                    obscureText: true,
-                    maxLength: 18,
-                    isError: isVerificationCode,
-                    hintText: 'Verification code',
-                    suffixIcon: SmallElevatedButton(
-                      text: codeState,
-                      onTap: () {
-                        if (!RegExp(
-                                r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-                            .hasMatch(emailController.text)) {
-                          isValidEmail = true;
-                          setState(() {});
-                          return;
-                        }
-                        isValidEmail = false;
-                        codeState = "VERIFY";
-                        setState(() {});
-                      },
-                      height: 32,
-                      width: 120,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 60,
-                  ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      const SizedBox(
+                        width: 20,
+                      ),
                       InkWell(
-                        child: Text(
-                          'i can’t get it',
-                          style: AppTypography.font14white,
+                        child: const Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
                         ),
                         onTap: () {
-                          Navigator.pushNamed(
-                              context, '/describe_problem_screen');
+                          Navigator.pushReplacementNamed(context, '/');
                         },
-                      )
+                      ),
                     ],
                   ),
                   const SizedBox(
-                    height: 8,
+                    height: 20,
+                  )
+                ],
+              ),
+            ),
+            body: Container(
+              width: double.infinity,
+              height: double.infinity,
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage('Assets/images/Background.png'),
+                fit: BoxFit.cover,
+              )),
+              child: Stack(
+                children: [
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    padding: const EdgeInsets.only(bottom: 32),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: Text(
+                            'Privacy policy',
+                            style: AppTypography.font16white,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Text(
+                            'Term of Use',
+                            style: AppTypography.font16white,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                  CustomElevatedButton(
-                      text: 'LOGIN',
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, '/home_screen');
-                      }),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  ElevatedButtonWithCheckBox(
-                    text: 'I accept the user agreement',
-                    style: isTap
-                        ? AppTypography.font14white.copyWith(fontSize: 16)
-                        : AppTypography.font14white.copyWith(
-                            fontSize: 16, color: AppColors.isNotSelectText),
-                    onTap: () {
-                      setState(() {
-                        isTap = !isTap;
-                      });
-                    },
-                    isTap: isTap,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      Text(
+                        'Enter your email address and a verification code',
+                        style: AppTypography.font16white.copyWith(fontSize: 20),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      CustomTextField(
+                        controller: emailController,
+                        height: 56,
+                        hintText: 'Email',
+                        isError: !isValidEmail,
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      CustomTextFieldWithButton(
+                        controller: passwordController,
+                        height: 56,
+                        obscureText: true,
+                        maxLength: 18,
+                        isError: isVerificationCode,
+                        hintText: 'Verification code',
+                        onChange: (value) {
+                          if (value.isNotEmpty) {
+                            setState(() {
+                              codeState = "VERIFY";
+                            });
+                          } else {
+                            setState(() {
+                              codeState = "SEND CODE";
+                            });
+                          }
+                        },
+                        suffixIcon: SmallElevatedButton(
+                          text: codeState,
+                          onTap: () {
+                            if (codeState == 'SEND CODE') {
+                              log('--------- trying to send step 1');
+                              if (RegExp(emailRegExp)
+                                  .hasMatch(emailController.text)) {
+                                isValidEmail = true;
+
+                                log('--------- trying to send step 2');
+                                BlocProvider.of<CodeCubit>(context)
+                                    .loginCode(emailController.text.trim());
+                              } else {
+                                isValidEmail = false;
+                              }
+
+                              setState(() {});
+                            }
+                          },
+                          height: 32,
+                          width: 120,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            child: Text(
+                              'i can’t get it',
+                              style: AppTypography.font14white,
+                            ),
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, '/describe_problem_screen');
+                            },
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      CustomElevatedButton(
+                          text: 'LOGIN',
+                          onTap: () {
+                            if (isValidEmail) {
+                              BlocProvider.of<LoginCubit>(context).login(
+                                  email: emailController.text.trim(),
+                                  code: passwordController.text.trim());
+                            }
+                          }),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      ElevatedButtonWithCheckBox(
+                        text: 'I accept the user agreement',
+                        style: isTap
+                            ? AppTypography.font14white.copyWith(fontSize: 16)
+                            : AppTypography.font14white.copyWith(
+                                fontSize: 16, color: AppColors.isNotSelectText),
+                        onTap: () {
+                          setState(() {
+                            isTap = !isTap;
+                          });
+                        },
+                        isTap: isTap,
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
         ),
       ),

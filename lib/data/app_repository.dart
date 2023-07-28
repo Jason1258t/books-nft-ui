@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:nft/servi%D1%81e/api_service.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,10 +38,18 @@ class AppRepository {
     prefs.setString(tokenKey, 'Bearer $token');
   }
 
-  _auth(Future<String> method) async {
+  Future logout() async {
+    final prefs = await _prefs;
+    await prefs.clear();
+    _apiService.logout();
+    appState.add(AppStateEnum.unAuth);
+  }
+
+  _auth(Future method) async {
     try {
-      String token = await method;
-      await _saveToken(token);
+      final result = await method;
+      log(result.toString());
+      await _saveToken(result.toString());
       appState.add(AppStateEnum.auth);
     } catch (e) {
       appState.add(AppStateEnum.unAuth);
