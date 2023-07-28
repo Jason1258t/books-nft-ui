@@ -14,7 +14,7 @@ class ApiService {
     'Content-Type': 'application/json',
   }));
 
-  /// чисто создает запись потос один хер [getCode] [login]
+  /// чисто создает запись потос один хер [getCode], [login]
   Future<String> signUp(String email) async {
     final res = await _dio.post(_signup, data: {'email': email});
     return res.data;

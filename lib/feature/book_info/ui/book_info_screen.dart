@@ -19,124 +19,117 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       isButtonBack: true,
-      appBar: AppBars(width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height,),
+      appBar: AppBars(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+      ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Das Kapital. Kritik der politischen...',
-                style: AppTypography.font20white.copyWith(fontSize: 24),
-                textAlign: TextAlign.center,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                    width: 240,
+                    child: Text(
+                      'Das Kapital. Kritik der politischen...',
+                      style: AppTypography.font20white.copyWith(fontSize: 24),
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: true,
+                    ),
+                  ),
+                  InkWell(
+                    child: SvgPicture.asset('Assets/icons/info.svg'),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/second_book_info_screen');
+                    },
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.asset(
-                    'Assets/images/grandpa.png',
-                    width: 168,
-                    height: 225,
-                    fit: BoxFit.cover,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 21),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('GOLDEN BOOK', style: AppTypography.font10black),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        SizedBox(
-                            width: MediaQuery.of(context).size.width - 256,
-                            child: Text(
-                                'Das Kapital. Kritik der politischen Ökonomie',
-                                style: AppTypography.font10black)),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        const _TextAndDescription(
-                          name: 'Author',
-                          description: 'Karl Marx',
-                        ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        const _TextAndDescription(
-                          name: 'Creato',
-                          description: 'Sereja',
-                        ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        const _TextAndDescription(
-                          name: 'Колличество активностей',
-                          description: '8-16',
-                        ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        const _TextAndDescription(
-                            name: 'Возможный доход', description: '10-52,'),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        const _TextAndDescription(
-                          name: 'Колличество изображений:',
-                          description: '13/16',
-                        ),
-                      ],
-
-                    ),
-                  ),
-                ],
-              ),
+              Image.asset('Assets/images/conan_doyle_book.png'),
               const SizedBox(
                 height: 10,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset('Assets/icons/brain.svg'),
-                  SvgPicture.asset('Assets/icons/shield_with_background.svg'),
-                  SvgPicture.asset('Assets/icons/lightning.svg'),
-                  SvgPicture.asset('Assets/icons/clever.svg'),
+                  _IconAndText(
+                    icon: 'Assets/icons/black_brain.svg',
+                    text: '25',
+                  ),
+                  _IconAndText(
+                    icon: 'Assets/icons/black_shied.svg',
+                    text: '25',
+                  ),
+                  _IconAndText(
+                    icon: 'Assets/icons/black_lightning.svg',
+                    text: '15',
+                  ),
+                  _IconAndText(
+                    icon: 'Assets/icons/black_clever.svg',
+                    text: '53',
+                  ),
                 ],
               ),
               const SizedBox(
-                height: 16,
+                height: 25,
               ),
+              const Column(
+                children: [
+                  _TextIconAndDescription(
+                    name: 'GOLDEN BOOK',
+                    description: '',
+                    icon: 'Assets/icons/red_star.svg',
+                  ),
+                  _TextIconAndDescription(
+                    name: 'The Adventures of Sherlock Holmes',
+                    description: '',
+                    icon: 'Assets/icons/black_info.svg',
+                  ),
+                  _TextIconAndDescription(
+                    name: 'Karl Marx',
+                    description: 'Author',
+                    icon: 'Assets/icons/black_pensil.svg',
+                  ),
+                  _TextIconAndDescription(
+                    name: 'Sereja',
+                    description: 'Creato',
+                    icon: 'Assets/icons/black_lightning.svg',
+                  ),
+                  _TextIconAndDescription(
+                    name: '8-16',
+                    description: 'Колличество активностей',
+                    icon: 'Assets/icons/black_compas.svg',
+                  ),
+                  _TextIconAndDescription(
+                    name: '10-52',
+                    description: 'Возможный доход',
+                    icon: 'Assets/icons/black_dollar.svg',
+                  ),
+                  _TextIconAndDescription(
+                    name: '13/16',
+                    description: 'Колличество изображений:',
+                    icon: 'Assets/icons/black_image.svg',
+                  ),
+                ],
+              ),
+              SizedBox(height: 16,),
               CustomElevatedButton(
                 text: 'Read',
                 onTap: () {},
                 gradient: AppGradients.lightButton,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Text('DESCRIPTION',
-                  style: AppTypography.font10black.copyWith(fontSize: 24)),
-              Text(
-                  'Главный труд немецкого философа и экономиста Карла Маркса по политической экономии, содержащий критический анализ капитализма. Работа написана с применением диалектико материалистического подхода, в том числе к историческим процессам.',
-                  style: AppTypography.font10blackW400.copyWith(fontSize: 12),
-              ),
-              const SizedBox(height: 15,),
-              Text('DETAILS',
-                  style: AppTypography.font10black.copyWith(fontSize: 24)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'ISBN: 15wd1a645dw5a12s1d85a4w52d1f5aw \nДата публикации: 1867 \nЯзык: Немецкий \nЖанр: политическая экономика \nКоличество страниц: 500',
-                    style: AppTypography.font10blackW400.copyWith(fontSize: 12, height: 2),
-                  ),
-                ],
               ),
             ],
           ),
@@ -146,30 +139,77 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
   }
 }
 
-class _TextAndDescription extends StatelessWidget {
-  const _TextAndDescription(
-      {required this.name, required this.description});
+class _TextIconAndDescription extends StatelessWidget {
+  const _TextIconAndDescription(
+      {required this.name, required this.description, required this.icon});
 
   final String name;
   final String description;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width - 256,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            name,
-            style: AppTypography.font10blackW400,
+          SvgPicture.asset(
+            icon,
+            width: 35,
+            height: 35,
           ),
-          Text(
-            description,
-            style: AppTypography.font10black.copyWith(fontSize: 13),
+          const SizedBox(
+            width: 16,
+          ),
+          Column(
+            children: [
+              Container(
+                width: 200,
+                child: Text(
+                  name,
+                  style: AppTypography.font10black.copyWith(fontSize: 16),
+                ),
+              ),
+              if (description != '') ...[
+                Container(
+                  width: 200,
+                  child: Text(
+                    description,
+                    style: AppTypography.font12dark.copyWith(fontSize: 14),
+                  ),
+                ),
+              ]
+            ],
           ),
         ],
       ),
+    );
+  }
+}
+
+class _IconAndText extends StatelessWidget {
+  const _IconAndText({required this.icon, required this.text});
+
+  final String icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SvgPicture.asset(icon),
+        const SizedBox(
+          width: 4,
+        ),
+        Text(
+          text,
+          style: AppTypography.font10black.copyWith(fontSize: 20),
+        ),
+      ],
     );
   }
 }

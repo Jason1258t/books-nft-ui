@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nft/models/books_category.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 import '../../utils/colors.dart';
+import '../containers/books_horizontal_container.dart';
 
 class CustomCategoryScroller extends StatelessWidget {
-  const CustomCategoryScroller({super.key, required this.title});
+  const CustomCategoryScroller({super.key, required this.category});
 
-  final String title;
+  final BooksCategory category;
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +20,13 @@ class CustomCategoryScroller extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: StrokeText(
-            strokeColor: AppColors.isNoActiveStrokeText,
-            strokeWidth: 2.5,
-            textStyle: AppTypography.font20gold.copyWith(fontSize: 14),
-            text: title,
-          )
-        ),
+            padding: const EdgeInsets.only(left: 20),
+            child: StrokeText(
+              strokeColor: AppColors.isNoActiveStrokeText,
+              strokeWidth: 2.5,
+              textStyle: AppTypography.font20gold.copyWith(fontSize: 14),
+              text: category.name,
+            )),
         Container(
           width: width,
           height: 3,
@@ -59,12 +60,38 @@ class CustomCategoryScroller extends StatelessWidget {
                     color: AppColors.lvlText,
                   ),
                   SizedBox(
-                    height: 170,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: const [],
-                    ),
-                  ),
+                      height: 170,
+                      child: Row(
+                        children: category.books.length <= 3
+                            ? category.books
+                                .map((e) => Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: BooksHorizontalContainer(
+                                        book: e,
+                                      ),
+                                ))
+                                .toList()
+                            : [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: BooksHorizontalContainer(
+                                    book: category.books[0],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: BooksHorizontalContainer(
+                                    book: category.books[1],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: BooksHorizontalContainer(
+                                    book: category.books[2],
+                                  ),
+                                ),
+                              ],
+                      )),
                   Container(
                     width: width,
                     height: 2,
@@ -78,7 +105,9 @@ class CustomCategoryScroller extends StatelessWidget {
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.only(right: 20),
             child: InkWell(
-              onTap: () {Navigator.pushNamed(context, '/category_books_screen');},
+              onTap: () {
+                Navigator.pushNamed(context, '/category_books_screen');
+              },
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

@@ -12,8 +12,8 @@ const Color _lockedBookBorderColor = Colors.white;
 
 final BoxDecoration _bookDecoration = BoxDecoration(color: Colors.black.withOpacity(0.4));
 
-class Book extends StatelessWidget {
-  Book({super.key, required double shelfWidth, required BookType bookType})
+class BookWidget extends StatelessWidget {
+  BookWidget({super.key, required double shelfWidth, required BookType bookType})
       : _width = shelfWidth * (27.4 / 360),
         _height = shelfWidth * (100 / 360) {
     if (bookType == BookType.add || bookType == BookType.lock) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomScaffold extends StatelessWidget {
   const CustomScaffold(
@@ -31,16 +32,13 @@ class CustomScaffold extends StatelessWidget {
               child: child),
           isButtonBack
               ? Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.fromLTRB(20,23,20,20),
                   alignment: Alignment.topLeft,
                   child: InkWell(
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: const Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                    ),
+                    child: SvgPicture.asset('Assets/icons/arrow_back.svg'),
                   ),
                 )
               : Container(),

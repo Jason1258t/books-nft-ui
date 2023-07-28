@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nft/models/books_category.dart';
 
+import '../../../models/book.dart';
 import '../../../widget/custom_scrollers/custom_category_scroller.dart';
 import '../../../widget/switch/custom_switch_categories.dart';
 
@@ -10,7 +12,26 @@ class StoreScreen extends StatefulWidget {
   State<StoreScreen> createState() => _StoreScreenState();
 }
 
-List<String> list = ['Economy','Fantasy','Romantic',];
+List<BooksCategory> booksCategories = [
+  BooksCategory(name: 'Economy', books: [
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+  ]),
+  BooksCategory(name: 'Fantasy', books: [
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+  ]),
+  BooksCategory(name: 'Romantic', books: [
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+  ]),
+];
 
 class _StoreScreenState extends State<StoreScreen> {
   @override
@@ -30,9 +51,15 @@ class _StoreScreenState extends State<StoreScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const CustomSwitchCategories(),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Column(
-                children: list.map((e) => CustomCategoryScroller(title: e,)).toList(),
+                children: booksCategories
+                    .map((e) => CustomCategoryScroller(
+                          category: e,
+                        ))
+                    .toList(),
               )
             ],
           ),

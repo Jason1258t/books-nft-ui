@@ -11,6 +11,7 @@ import 'package:nft/serviсe/custom_bloc_observer.dart';
 import 'data/app_repository.dart';
 import 'feature/auth/ui/auth_screen.dart';
 import 'feature/book_info/ui/book_info_screen.dart';
+import 'feature/book_info/ui/second_book_info_screen.dart';
 import 'feature/describe_problem/ui/describe_problem_screen.dart';
 import 'feature/home/bloc/home_cubit.dart';
 import 'feature/home/data/homa_repository.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const AuthScreen(),
         '/describe_problem_screen': (context) => const DescribeProblem(),
         '/book_info_screen': (context) => const BookInfoScreen(),
+        '/second_book_info_screen': (context) => const SecondBookInfoScreen(),
         '/category_books_screen': (context) => const CategoryBooksScreen(),
         '/import_wallet_screen': (context) => const ImportWalletScreen(),
         '/PIN_screen': (context) => const PINScreen(),
