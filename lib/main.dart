@@ -6,8 +6,8 @@ import 'package:nft/bloc/app_cubit.dart';
 import 'package:nft/feature/wallet/bloc/wallet_cubit.dart';
 import 'package:nft/feature/wallet/data/wallet_repository.dart';
 import 'package:nft/feature/wallet/ui/pincode.dart';
-import 'package:nft/servi%D1%81e/api_service.dart';
-import 'package:nft/serviсe/custom_bloc_observer.dart';
+import 'package:nft/services/api_service.dart';
+import 'package:nft/services/custom_bloc_observer.dart';
 
 import 'data/app_repository.dart';
 import 'feature/auth/bloc/code/code_cubit.dart';
