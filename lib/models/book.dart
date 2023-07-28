@@ -7,10 +7,20 @@ class Book {
   final String language;
   final String genre;
   final int pagesCount;
+  final bool owned;
+  final int intelegenceInc;
+  final int energyInc;
+  final int strengthInc;
+  final int luckInc;
 
   Book({
+    this.owned = false,
+    this.intelegenceInc = 5,
+    this.energyInc = 4,
+    this.strengthInc = 4,
+    this.luckInc = 6,
     this.description = '',
-    this.createAt ='',
+    this.createAt = '',
     this.genre = '',
     this.ISBN = '',
     this.language = '',
@@ -18,4 +28,19 @@ class Book {
     required this.name,
     required this.image,
   });
+
+  Book.fromJson(Map<String, dynamic> json, bool isOwned)
+      : owned = isOwned,
+        name = json['bookInfo']['title'],
+        image = '',
+        description = json['bookInfo']['description'],
+        ISBN = json['details']['ISBN'],
+        createAt = json['details']['publicationDate'],
+        language = json['details']['language'],
+        genre = json['details']['genre'],
+        pagesCount = json['details']['pagesCount'],
+        intelegenceInc = json['intelegenceInc'],
+        energyInc = json['energyInc'],
+        strengthInc = json['strengthInc'],
+        luckInc = json['luckInc'];
 }

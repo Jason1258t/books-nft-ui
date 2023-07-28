@@ -6,10 +6,18 @@ import 'package:nft/utils/gradients.dart';
 
 import '../../utils/fonts.dart';
 
+
+
+/// создает кастомизированный bottomSheet
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({super.key, this.children, required this.title});
 
+
+  /// то что лежит в основной колонке виджета, у колонки spaceBetween
   final List<Widget>? children;
+
+  /// в дизайне везде требуется стрелочка которую пихать поверх всего так что
+  /// передается текст тайтла а дальше само внутри ставится стаком
   final String title;
 
   @override
