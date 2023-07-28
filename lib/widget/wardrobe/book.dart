@@ -1,8 +1,17 @@
+import 'dart:developer';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nft/feature/my_books/ui/my_books_screen.dart';
+import 'package:nft/widget/custom_bottom_sheet/bottom_sheet.dart';
 
-enum BookType { empty, add, lock }
+import '../../models/book.dart';
+import '../../utils/colors.dart';
+import '../../utils/fonts.dart';
+import '../buttons/custom_elevated_button.dart';
+
+enum BookType { withData, add, lock }
 
 const String _addBookIcon = 'Assets/icons/plus.svg';
 const String _lockedBookIcon = 'Assets/icons/plus.svg';
@@ -10,12 +19,19 @@ const String _lockedBookIcon = 'Assets/icons/plus.svg';
 const Color _addBookBorderColor = Color(0xff86BDFF);
 const Color _lockedBookBorderColor = Colors.white;
 
-final BoxDecoration _bookDecoration = BoxDecoration(color: Colors.black.withOpacity(0.4));
+final BoxDecoration _bookDecoration =
+BoxDecoration(color: Colors.black.withOpacity(0.4));
 
 class BookWidget extends StatelessWidget {
-  BookWidget({super.key, required double shelfWidth, required BookType bookType})
+  BookWidget({super.key,
+    required double shelfWidth,
+    required BookType bookType,
+    this.data})
       : _width = shelfWidth * (27.4 / 360),
         _height = shelfWidth * (100 / 360) {
+    assert(bookType == BookType.withData && data != null ||
+        bookType != BookType.withData,
+    'if book has info data cant be null');
     if (bookType == BookType.add || bookType == BookType.lock) {
       decoration = _bookDecoration;
       child = DottedBorder(
@@ -38,18 +54,80 @@ class BookWidget extends StatelessWidget {
       );
       child = null;
     }
+
+    _bookType = bookType;
   }
+
+  final Book? data;
 
   final double _width;
   final double _height;
 
+  late BookType _bookType;
+
   late final BoxDecoration? decoration;
   late final Widget? child;
 
+  late final onTap;
+
+  _buyPlace() {}
+
+  _openBook(Book book, BuildContext context) {
+    Navigator.pushNamed(context, '/book_info_screen',
+        arguments: {'book': book});
+  }
+
   @override
   Widget build(BuildContext context) {
+    void addBook(Book book) {
+      log('aboba');
+      showBottomSheet(
+          context: context,
+          builder: (BuildContext context) =>
+              Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery
+                          .of(context)
+                          .viewInsets
+                          .bottom),
+                  child: CustomBottomSheet(
+                    title: 'Put on a shelf',
+                    children: [
+                      Container(
+                        constraints: const BoxConstraints(minHeight: 60),
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColors.backGroundTextShowButtonSheet),
+                        alignment: Alignment.center,
+                        child: Text(
+                          book.name,
+                          textAlign: TextAlign.center,
+                          style: AppTypography.font16white,
+                        ),
+                      ),
+                      CustomElevatedButton(text: 'Confirm', onTap: () {
+                        //TODO сделать добавление с блоком/репозиторием
+                      }),
+                    ],
+                  )));
+    }
+
+    if (_bookType == BookType.add) {
+      onTap = () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (_) => MyBooksScreen(onTap: addBook)));
+      };
+    } else if (_bookType == BookType.lock) {
+      onTap = _buyPlace();
+    } else {
+      onTap = () {
+        _openBook(data!, context);
+      };
+    }
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
           width: _width, height: _height, decoration: decoration, child: child),
     );

@@ -4,6 +4,7 @@ import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/buttons/row_elevated_button.dart';
 
 import '../../../widget/wardrobe/book.dart';
+import '../../models/book.dart';
 
 const String _topShelfBackground = 'Assets/images/shelf_top.png';
 const String _middleShelfBackground = 'Assets/images/shelf_middle.png';
@@ -79,13 +80,17 @@ class _ShelfState extends State<Shelf> {
         widget.shelfData.booksData.length,
         (index) => BookWidget(
               shelfWidth: widget.width,
-              bookType: BookType.empty,
+              bookType: BookType.withData,
+              data: widget.shelfData.booksData[index],
             )));
     books.addAll(List.generate(
         7 - widget.shelfData.booksData.length - widget.shelfData.lockedBooks,
-        (index) => BookWidget(shelfWidth: widget.width, bookType: BookType.add)));
-    books.addAll(List.generate(widget.shelfData.lockedBooks,
-        (index) => BookWidget(shelfWidth: widget.width, bookType: BookType.lock)));
+        (index) =>
+            BookWidget(shelfWidth: widget.width, bookType: BookType.add)));
+    books.addAll(List.generate(
+        widget.shelfData.lockedBooks,
+        (index) =>
+            BookWidget(shelfWidth: widget.width, bookType: BookType.lock)));
 
     return books;
   }
@@ -139,7 +144,7 @@ class _ShelfState extends State<Shelf> {
 
 class ShelfData {
   bool isLocked;
-  List<BookData> booksData;
+  List<Book> booksData;
   int lockedBooks;
 
   ShelfData(
@@ -150,12 +155,6 @@ class ShelfData {
     assert(booksData.length + lockedBooks <= 7,
         'the number of books is more than 7');
   }
-}
-
-class BookData {
-  BookData({required this.imageUrl});
-
-  final String imageUrl;
 }
 
 class LockedShelf extends StatelessWidget {
@@ -170,8 +169,7 @@ class LockedShelf extends StatelessWidget {
             boxShadow: const [
               BoxShadow(
                   offset: Offset.zero, blurRadius: 20, color: Colors.black54)
-            ]
-        ),
+            ]),
       ),
       Container(
         alignment: Alignment.topRight,

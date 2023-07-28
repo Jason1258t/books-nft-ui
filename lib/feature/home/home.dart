@@ -7,10 +7,10 @@ import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/app_bar/app_bar.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
-import '../my_books/ui/my_books.dart';
+import '../my_books/ui/my_books_screen.dart';
+import '../my_books/ui/wardrobe_screen.dart';
 import '../store/ui/store_screen.dart';
 import '../wallet/ui/wallet_screen.dart';
-import '../my_books/ui/wardrobe_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,7 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     final List<Widget> widgetOptions = <Widget>[
       const StoreScreen(),
-      const MyBooksScreen(),
+      MyBooksScreen(
+        onTap: (book) {
+          Navigator.pushNamed(context, '/book_info_screen',
+              arguments: {'book': book});
+        },
+      ),
       const WardrobeScreen(),
       Container(),
       const WalletScreen()
@@ -53,7 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: CustomScaffold(
           appBar: homeRepository.isSecondScreen
-              ? AppBars(width: width, height: height,)
+              ? AppBars(
+                  width: width,
+                  height: height,
+                )
               : null,
           bottomNavBar: Container(
             color: AppColors.bottomNavigationBackground,

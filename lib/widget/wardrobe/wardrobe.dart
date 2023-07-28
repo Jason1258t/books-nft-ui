@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:nft/widget/wardrobe/shelf.dart';
 
+import '../../models/book.dart';
+
 class Wardrobe extends StatefulWidget {
   const Wardrobe({super.key});
 
@@ -17,18 +19,18 @@ class _WardrobeState extends State<Wardrobe> {
         Shelf.top(
           width: MediaQuery.of(context).size.width,
           shelfData: ShelfData(booksData: [
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
           ], lockedBooks: 1),
         ),
         Shelf.middle(
           width: MediaQuery.of(context).size.width,
           shelfData: ShelfData(booksData: [
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
-            BookData(imageUrl: ''),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
           ], lockedBooks: 1),
         ),
         Shelf.bottom(
