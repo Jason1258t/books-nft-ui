@@ -1,6 +1,5 @@
 part of 'code_cubit.dart';
 
-@immutable
 abstract class CodeState {}
 
 class CodeInitial extends CodeState {}

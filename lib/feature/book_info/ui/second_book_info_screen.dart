@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
+import '../../../models/book.dart';
 import '../../../utils/fonts.dart';
 import '../../../widget/app_bar/app_bar.dart';
 
@@ -13,6 +13,11 @@ class SecondBookInfoScreen extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+
+    final book = arguments['book'] as Book;
+
     return CustomScaffold(
       appBar: AppBars(
         width: width,
@@ -23,7 +28,7 @@ class SecondBookInfoScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(children: [
           Text(
-            'Das Kapital. Kritik der politischen...',
+            book.name,
             style: AppTypography.font20white.copyWith(fontSize: 24),
             textAlign: TextAlign.center,
             maxLines: 2,
@@ -39,7 +44,7 @@ class SecondBookInfoScreen extends StatelessWidget {
             height: 15,
           ),
           Text(
-            'Главный труд немецкого философа и экономиста Карла Маркса по политической экономии, содержащий критический анализ капитализма. Работа написана с применением диалектико материалистического подхода, в том числе к историческим процессам.',
+            book.description,
             style: AppTypography.font10blackW400.copyWith(fontSize: 12),
           ),
           const SizedBox(
@@ -54,7 +59,7 @@ class SecondBookInfoScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'ISBN: 15wd1a645dw5a12s1d85a4w52d1f5aw \nДата публикации: 1867 \nЯзык: Немецкий \nЖанр: политическая экономика \nКоличество страниц: 500',
+                'ISBN: ${book.ISBN} \nДата публикации: ${book.createAt} \nЯзык: ${book.language} \nЖанр: ${book.genre} \nКоличество страниц: ${book.pagesCount}',
                 style: AppTypography.font10blackW400
                     .copyWith(fontSize: 12, height: 2),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/book.dart';
 import '../../../widget/containers/books_vertical_container.dart';
 import '../../../widget/switch/custom_switch.dart';
 
@@ -12,6 +13,9 @@ class MyBooksScreen extends StatefulWidget {
 
 List<int> list = [1, 2, 34, 4, 5, 6, 7, 8, 89];
 
+Book book = Book(
+    name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: true);
+
 class _MyBooksScreenState extends State<MyBooksScreen> {
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,8 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
       Row row = Row(children: [
         BooksVerticalContainer(
           onTap: () {
-            Navigator.pushNamed(context, '/book_info_screen');
+            Navigator.pushNamed(context, '/book_info_screen',
+                arguments: {'book': book});
           },
         ),
         const SizedBox(
@@ -29,7 +34,8 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
         if (listBook.length != i) ...[
           BooksVerticalContainer(
             onTap: () {
-              Navigator.pushNamed(context, '/book_info_screen');
+              Navigator.pushNamed(context, '/book_info_screen',
+                  arguments: {'book': book});
             },
           ),
         ]

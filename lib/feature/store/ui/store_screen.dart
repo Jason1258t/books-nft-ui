@@ -14,22 +14,22 @@ class StoreScreen extends StatefulWidget {
 
 List<BooksGenre> booksCategories = [
   BooksGenre(name: 'Economy', books: [
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
   ]),
   BooksGenre(name: 'Fantasy', books: [
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
   ]),
   BooksGenre(name: 'Romantic', books: [
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png'),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
+    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
   ]),
 ];
 
