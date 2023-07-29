@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nft/widget/wardrobe/shelf.dart';
 
+import '../../feature/my_books/bloc/wardrobe/wardrobe_cubit.dart';
 import '../../models/shelf.dart';
 
 class Wardrobe extends StatefulWidget {
@@ -14,6 +16,8 @@ class Wardrobe extends StatefulWidget {
 class _WardrobeState extends State<Wardrobe> {
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<WardrobeCubit, WardrobeState>(
+  builder: (context, state) {
     return Column(
       children: [
         Shelf.top(
@@ -46,5 +50,7 @@ class _WardrobeState extends State<Wardrobe> {
         ),
       ],
     );
+  },
+);
   }
 }

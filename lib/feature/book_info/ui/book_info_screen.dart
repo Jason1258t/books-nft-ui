@@ -158,24 +158,24 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _IconAndText(
                     icon: 'Assets/icons/black_brain.svg',
-                    text: '25',
+                    text: book.intelegenceInc.toString(),
                   ),
                   _IconAndText(
                     icon: 'Assets/icons/black_shied.svg',
-                    text: '25',
+                    text: book.strengthInc.toString(),
                   ),
                   _IconAndText(
                     icon: 'Assets/icons/black_lightning.svg',
-                    text: '15',
+                    text: book.energyInc.toString(),
                   ),
                   _IconAndText(
                     icon: 'Assets/icons/black_clever.svg',
-                    text: '53',
+                    text: book.luckInc.toString(),
                   ),
                 ],
               ),

@@ -7,7 +7,7 @@ class Book implements ShelfPlaceData{
   final String name;
   final String image;
   final String description;
-  final String ISBN;
+  final int ISBN;
   final String createAt;
   final String language;
   final String genre;
@@ -29,7 +29,7 @@ class Book implements ShelfPlaceData{
     this.description = '',
     this.createAt = '',
     this.genre = '',
-    this.ISBN = '',
+    this.ISBN = 0,
     this.language = '',
     this.pagesCount = 500,
     this.available = true,
@@ -42,7 +42,7 @@ class Book implements ShelfPlaceData{
       : owned = isOwned,
         bookId = json['id'],
         name = json['bookInfo']['title'],
-        image = '',
+        image = 'Assets/images/conan_doyle_book.png',
         description = json['bookInfo']['description'],
         ISBN = json['details']['ISBN'],
         createAt = json['details']['publicationDate'],

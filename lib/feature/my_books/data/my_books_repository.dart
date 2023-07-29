@@ -66,7 +66,7 @@ class MyBooksRepository {
   Future _getAvailableBooks() async {
     final data = await _apiService.books.getAvailableBooks();
     wardrobe.availableBooks.clear();
-    for (var json in data) {
+    for (var json in data['books']) {
       wardrobe.availableBooks.add(Book.fromJson(json, true));
     }
   }

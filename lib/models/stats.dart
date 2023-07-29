@@ -9,7 +9,7 @@ class Stats {
   final int intelligence;
   final int luck;
   final int strength;
-  final double energy;
+  final int energy;
 
   Stats(
       {required this.energy,
@@ -25,9 +25,9 @@ class Stats {
 }
 
 class Indicators {
-  final double mixed;
+  final int mixed;
   final int strength;
-  final double energy;
+  final int energy;
 
   Indicators(this.mixed, this.strength, this.energy);
 

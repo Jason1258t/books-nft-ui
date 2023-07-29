@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../data/my_books_repository.dart';
+import '../../data/my_books_repository.dart';
 
 part 'my_books_state.dart';
 

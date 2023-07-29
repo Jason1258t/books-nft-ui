@@ -18,9 +18,9 @@ class ShelfData {
         shelfId = json['id'],
         booksData = [] {
     int index = 0;
-    for (var i in json['books']) {
-      if (i != null) {
-        booksData.add(Book.fromJson(i, true, available: false));
+    for (var item in json['books']) {
+      if (item != null) {
+        booksData.add(Book.fromJson(item, true, available: false));
       } else {
         booksData.add(BookPosition(shelf: shelfId, index: index));
       }

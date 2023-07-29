@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nft/feature/my_books/bloc/my_books_cubit.dart';
+import 'package:nft/feature/my_books/bloc/books/my_books_cubit.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
 
 import '../../../models/shelf.dart';
@@ -17,9 +17,6 @@ class MyBooksScreen extends StatefulWidget {
   State<MyBooksScreen> createState() => _MyBooksScreenState();
 }
 
-Book book = Book(
-    name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: true);
-
 class _MyBooksScreenState extends State<MyBooksScreen> {
   @override
   Widget build(BuildContext context) {
@@ -30,22 +27,27 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
       Row row = Row(children: [
         BooksVerticalContainer(
           onTap: () {
-            widget.onTap(book, context);
+            widget.onTap(myBooksRepository.myBooks[i], context);
           },
           book: myBooksRepository.myBooks[i],
         ),
         const SizedBox(
           width: 30,
         ),
-        if (listBook.length != i) ...[
+      ]);
+
+      try {
+        row.children.add(
           BooksVerticalContainer(
             onTap: () {
-              widget.onTap(book, context);
+              widget.onTap(myBooksRepository.myBooks[i + 1], context);
             },
             book: myBooksRepository.myBooks[i + 1],
           ),
-        ]
-      ]);
+        );
+      }catch(e) {}
+
+
       listBook.add(row);
     }
 
@@ -80,11 +82,13 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
                   );
                 } else if (state is MyBooksSuccessState) {
                   return Column(
-                    children: listBook.reversed.toList(),
+                    children: listBook.toList(),
                   );
                 }
 
-                return const SizedBox(height: 1000,);
+                return const SizedBox(
+                  height: 1000,
+                );
               },
             ),
           ),

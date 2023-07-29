@@ -41,7 +41,7 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      'Capital: A Critique of Political Economy',
+                      widget.book.name,
                       textAlign: TextAlign.center,
                       style: AppTypography.font16white.copyWith(fontSize: 12),
                     ),
