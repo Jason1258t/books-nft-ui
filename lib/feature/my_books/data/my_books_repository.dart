@@ -36,6 +36,13 @@ class MyBooksRepository {
 
   List<Book> myBooks = [];
 
+  Book? searchBook(String id) {
+    for (Book book in myBooks) {
+      if (book.bookId == id) return book;
+    }
+    return null;
+  }
+
   Future getMyBooks() async {
     myBooksState.add(LoadingStateEnum.loading);
     try {
@@ -43,7 +50,7 @@ class MyBooksRepository {
       myBooks.clear();
       for (var json in data) {
         myBooks.add(Book.fromJson(json, true,
-            available: !wardrobe.contains(json['id'])));
+            available: wardrobe.contains(json['id'])));
       }
       myBooksState.add(LoadingStateEnum.success);
     } catch (e) {
@@ -55,7 +62,7 @@ class MyBooksRepository {
   void _refreshMyBooks() async {
     try {
       for (Book book in myBooks) {
-        book.available = !wardrobe.contains(book.bookId);
+        book.available = wardrobe.contains(book.bookId);
       }
       myBooksState.add(LoadingStateEnum.success);
     } catch (e) {
@@ -89,12 +96,14 @@ class MyBooksRepository {
       throw Exception('no places');
     }
     await _apiService.books.placeBook(position, id);
-    getWardrobe().then((value) => _refreshMyBooks());
+    await getWardrobe();
+    _refreshMyBooks();
   }
 
   Future removeBook(String id) async {
     await _apiService.books.removeBook(wardrobe.findBook(id)!);
-    getWardrobe().then((value) => _refreshMyBooks());
+    await getWardrobe();
+    _refreshMyBooks();
   }
 
   Future _getUserStats() async {
@@ -151,7 +160,7 @@ class Wardrobe {
     for (ShelfData shelfData in shelves) {
       int index = 0;
       for (var place in shelfData.booksData) {
-        if (place == null) {
+        if (place is BookPosition) {
           return BookPosition(shelf: shelfData.shelfId, index: index);
         }
         index++;

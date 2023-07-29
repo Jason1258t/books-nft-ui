@@ -15,7 +15,7 @@ class MoveBookCubit extends Cubit<MoveBookState> {
   void removeBook(String id) async{
     emit(MoveBookLoadingState());
     try{
-      myBooksRepository.removeBook(id);
+      await myBooksRepository.removeBook(id);
     }catch(e){
       emit(MoveBookFailState());
       rethrow;
@@ -26,7 +26,7 @@ class MoveBookCubit extends Cubit<MoveBookState> {
   void putBook({BookPosition? position, required String id}) async{
     emit(MoveBookLoadingState());
     try{
-      myBooksRepository.placeBook(position: position, id: id);
+      await myBooksRepository.placeBook(position: position, id: id);
       emit(MoveBookSuccessState());
     }catch(e){
       emit(MoveBookFailState());

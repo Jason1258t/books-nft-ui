@@ -95,7 +95,7 @@ class MyHomePage extends StatelessWidget {
 
 class MyRepositoryProviders extends StatelessWidget {
   MyRepositoryProviders({Key? key}) : super(key: key);
-  final apiService = ApiService()..books.getAllBooks();
+  final apiService = ApiService();
 
   @override
   Widget build(BuildContext context) {

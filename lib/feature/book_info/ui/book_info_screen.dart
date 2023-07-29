@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
+import 'package:nft/feature/my_books/data/my_books_repository.dart';
+import 'package:nft/utils/dialogs.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
@@ -23,7 +27,8 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
 
-    final book = arguments['book'] as Book;
+    final id = arguments['book'];
+    final Book book = RepositoryProvider.of<MyBooksRepository>(context).searchBook(id)!;
 
     void showBuyBook() {
       showModalBottomSheet(
@@ -112,151 +117,184 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
               ));
     }
 
-    return CustomScaffold(
-      isButtonBack: true,
-      appBar: AppBars(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-      ),
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  SizedBox(
-                    width: 240,
-                    child: Text(
-                      book.name,
-                      style: AppTypography.font20white.copyWith(fontSize: 24),
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      softWrap: true,
-                    ),
-                  ),
-                  InkWell(
-                    child: SvgPicture.asset('Assets/icons/info.svg'),
-                    onTap: () {
-                      Navigator.pushNamed(context, '/second_book_info_screen',
-                          arguments: {'book': book});
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Image.network(book.image),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _IconAndText(
-                    icon: 'Assets/icons/black_brain.svg',
-                    text: book.intelegenceInc.toString(),
-                  ),
-                  _IconAndText(
-                    icon: 'Assets/icons/black_shied.svg',
-                    text: book.strengthInc.toString(),
-                  ),
-                  _IconAndText(
-                    icon: 'Assets/icons/black_lightning.svg',
-                    text: book.energyInc.toString(),
-                  ),
-                  _IconAndText(
-                    icon: 'Assets/icons/black_clever.svg',
-                    text: book.luckInc.toString(),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              const Column(
-                children: [
-                  _TextIconAndDescription(
-                    name: 'GOLDEN BOOK',
-                    description: '',
-                    icon: 'Assets/icons/red_star.svg',
-                  ),
-                  _TextIconAndDescription(
-                    name: 'The Adventures of Sherlock Holmes',
-                    description: '',
-                    icon: 'Assets/icons/black_info.svg',
-                  ),
-                  _TextIconAndDescription(
-                    name: 'Karl Marx',
-                    description: 'Author',
-                    icon: 'Assets/icons/black_pensil.svg',
-                  ),
-                  _TextIconAndDescription(
-                    name: 'Sereja',
-                    description: 'Creato',
-                    icon: 'Assets/icons/black_lightning.svg',
-                  ),
-                  _TextIconAndDescription(
-                    name: '8-16',
-                    description: 'Колличество активностей',
-                    icon: 'Assets/icons/black_compas.svg',
-                  ),
-                  _TextIconAndDescription(
-                    name: '10-52',
-                    description: 'Возможный доход',
-                    icon: 'Assets/icons/black_dollar.svg',
-                  ),
-                  _TextIconAndDescription(
-                    name: '13/16',
-                    description: 'Колличество изображений:',
-                    icon: 'Assets/icons/black_image.svg',
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              book.owned
-                  ? Column(
-                      children: [
-                        CustomElevatedButton(
-                          text: 'Put on a shelf',
-                          borderColor: AppColors.darkBorder,
-                          onTap: () {},
-                          gradient: AppGradients.lightButton,
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        CustomElevatedButton(
-                          text: 'Read',
-                          borderColor: AppColors.buttonDarkColor,
-                          onTap: () {},
-                          gradient: const LinearGradient(colors: [
-                            AppColors.buttonDarkColor,
-                            AppColors.buttonDarkColor
-                          ]),
-                        ),
-                      ],
-                    )
-                  : CustomElevatedButton(
-                      text: 'Buy',
-                      borderColor: AppColors.darkBorder,
-                      onTap: showBuyBook,
-                      gradient: AppGradients.redButton,
-                    ),
-            ],
+    void removeFromShelf() async {
+      BlocProvider.of<MoveBookCubit>(context).removeBook(id);
+    }
+
+    void putOnShelf() {
+      BlocProvider.of<MoveBookCubit>(context)
+          .putBook(id: id);
+    }
+
+    return BlocConsumer<MoveBookCubit, MoveBookState>(
+      listener: (context, state) {
+        // ignore: prefer_const_constructors
+        if (state is MoveBookLoadingState) {
+          Dialogs.showModal(
+              context,
+              const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.amber,
+                ),
+              ));
+        } else {
+          Dialogs.hide(context);
+        }
+      },
+      builder: (context, state) {
+        final Book book = RepositoryProvider.of<MyBooksRepository>(context).searchBook(id)!;
+        return CustomScaffold(
+          isButtonBack: true,
+          appBar: AppBars(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
           ),
-        ),
-      ),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      SizedBox(
+                        width: 240,
+                        child: Text(
+                          book.name,
+                          style:
+                              AppTypography.font20white.copyWith(fontSize: 24),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
+                        ),
+                      ),
+                      InkWell(
+                        child: SvgPicture.asset('Assets/icons/info.svg'),
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, '/second_book_info_screen',
+                              arguments: {'book': book});
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Image.network(book.image),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _IconAndText(
+                        icon: 'Assets/icons/black_brain.svg',
+                        text: book.intelegenceInc.toString(),
+                      ),
+                      _IconAndText(
+                        icon: 'Assets/icons/black_shied.svg',
+                        text: book.strengthInc.toString(),
+                      ),
+                      _IconAndText(
+                        icon: 'Assets/icons/black_lightning.svg',
+                        text: book.energyInc.toString(),
+                      ),
+                      _IconAndText(
+                        icon: 'Assets/icons/black_clever.svg',
+                        text: book.luckInc.toString(),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  const Column(
+                    children: [
+                      _TextIconAndDescription(
+                        name: 'GOLDEN BOOK',
+                        description: '',
+                        icon: 'Assets/icons/red_star.svg',
+                      ),
+                      _TextIconAndDescription(
+                        name: 'The Adventures of Sherlock Holmes',
+                        description: '',
+                        icon: 'Assets/icons/black_info.svg',
+                      ),
+                      _TextIconAndDescription(
+                        name: 'Karl Marx',
+                        description: 'Author',
+                        icon: 'Assets/icons/black_pensil.svg',
+                      ),
+                      _TextIconAndDescription(
+                        name: 'Sereja',
+                        description: 'Creato',
+                        icon: 'Assets/icons/black_lightning.svg',
+                      ),
+                      _TextIconAndDescription(
+                        name: '8-16',
+                        description: 'Колличество активностей',
+                        icon: 'Assets/icons/black_compas.svg',
+                      ),
+                      _TextIconAndDescription(
+                        name: '10-52',
+                        description: 'Возможный доход',
+                        icon: 'Assets/icons/black_dollar.svg',
+                      ),
+                      _TextIconAndDescription(
+                        name: '13/16',
+                        description: 'Колличество изображений:',
+                        icon: 'Assets/icons/black_image.svg',
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  book.owned
+                      ? Column(
+                          children: [
+                            CustomElevatedButton(
+                              text: book.available
+                                  ? 'Put on a shelf'
+                                  : 'Remove from shelf',
+                              borderColor: AppColors.darkBorder,
+                              onTap:
+                                  book.available ? putOnShelf : removeFromShelf,
+                              gradient: AppGradients.lightButton,
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            CustomElevatedButton(
+                              text: 'Read',
+                              borderColor: AppColors.buttonDarkColor,
+                              onTap: () {},
+                              gradient: const LinearGradient(colors: [
+                                AppColors.buttonDarkColor,
+                                AppColors.buttonDarkColor
+                              ]),
+                            ),
+                          ],
+                        )
+                      : CustomElevatedButton(
+                          text: 'Buy',
+                          borderColor: AppColors.darkBorder,
+                          onTap: showBuyBook,
+                          gradient: AppGradients.redButton,
+                        ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
