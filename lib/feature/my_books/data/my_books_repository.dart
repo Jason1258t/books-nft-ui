@@ -16,7 +16,7 @@ class MyBooksRepository {
   BookPosition? _savedPlace;
 
   /// требуетс для добавления книги в конкретную ячейку
-  set savePlace (BookPosition newPlace) => _savedPlace = newPlace;
+  void savePlace(BookPosition newPlace) => _savedPlace = newPlace;
 
   /// полчучает сохраненную ячейку
   get savedPlace => _savedPlace;
@@ -51,7 +51,7 @@ class MyBooksRepository {
     }
   }
 
-  Future getAvailableBooks() async {
+  Future _getAvailableBooks() async {
     final data = await _apiService.books.getAvailableBooks();
     wardrobe.availableBooks.clear();
     for (var json in data) {
@@ -59,7 +59,7 @@ class MyBooksRepository {
     }
   }
 
-  Future getShelves() async {
+  Future _getShelves() async {
     final data = await _apiService.books.getWardrobe();
     wardrobe.shelves = [];
     for (var jsonShelf in data['shelves']) {
@@ -88,8 +88,8 @@ class MyBooksRepository {
   Future getWardrobe() async {
     wardrobeState.add(LoadingStateEnum.loading);
     try {
-      Future booksLoading = getAvailableBooks();
-      Future shelvesLoading = getShelves();
+      Future booksLoading = _getAvailableBooks();
+      Future shelvesLoading = _getShelves();
       await Future.wait([booksLoading, shelvesLoading]);
     } catch (e) {
       wardrobeState.add(LoadingStateEnum.fail);
