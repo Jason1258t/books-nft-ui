@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
       MyBooksScreen(
         onTap: (book, ctx) {
           Navigator.pushNamed(ctx, '/book_info_screen',
-              arguments: {'book': book.bookId});
+              arguments: {'book': book.id});
         },
         books: RepositoryProvider.of<MyBooksRepository>(context).myBooks,
       ),
@@ -60,9 +60,10 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: CustomScaffold(
           appBar: homeRepository.isSecondScreen
-              ? AppBars(
+              ? CustomAppBar(
                   width: width,
                   height: height,
+                  context: context,
                 )
               : null,
           bottomNavBar: Container(

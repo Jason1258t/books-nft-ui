@@ -3,7 +3,7 @@ part of 'shelf.dart';
 abstract class ShelfPlaceData {}
 
 class Book implements ShelfPlaceData {
-  final String bookId;
+  final String id;
   final String name;
   final String image;
   final String spine;
@@ -22,7 +22,7 @@ class Book implements ShelfPlaceData {
 
   Book({
     this.owned = false,
-    this.bookId = '',
+    this.id = '',
     this.intelegenceInc = 5,
     this.energyInc = 4,
     this.strengthInc = 4,
@@ -42,7 +42,7 @@ class Book implements ShelfPlaceData {
   Book.fromJson(Map<String, dynamic> json, bool isOwned,
       {this.available = true})
       : owned = isOwned,
-        bookId = json['id'],
+        id = json['id'],
         name = json['bookInfo']['title'],
         image = json['covers'][1]['url'],
         spine = json['covers'][1]['spine'],

@@ -39,4 +39,6 @@ class AppColors {
   static const isNoActiveStrokeText = Color(0xff72644E);
   static const isActiveStrokeText = Color(0xff878787);
   static const backGroundTextShowButtonSheet = Color(0xFF4F483D);
+  static const backGroundLightAlertDialog = Color(0xFFC0A270);
+  static const backGroundDarkAlertDialog = Color(0xFF7F7156);
 }

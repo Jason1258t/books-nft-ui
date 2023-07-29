@@ -145,9 +145,10 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
         final Book book = RepositoryProvider.of<MyBooksRepository>(context).searchBook(id)!;
         return CustomScaffold(
           isButtonBack: true,
-          appBar: AppBars(
+          appBar: CustomAppBar(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
+            context: context,
           ),
           child: SingleChildScrollView(
             child: Padding(

@@ -19,9 +19,10 @@ class SecondBookInfoScreen extends StatelessWidget {
     final book = arguments['book'] as Book;
 
     return CustomScaffold(
-      appBar: AppBars(
+      appBar: CustomAppBar(
         width: width,
         height: height,
+        context: context,
       ),
       isButtonBack: true,
       child: Padding(

@@ -9,7 +9,8 @@ class AppCubit extends Cubit<AppState> {
   final AppRepository _appRepository;
   final MyBooksRepository myBooksRepository;
 
-  AppCubit({required AppRepository appRepository, required this.myBooksRepository})
+  AppCubit(
+      {required AppRepository appRepository, required this.myBooksRepository})
       : _appRepository = appRepository,
         super(AppInitial()) {
     _appRepository.checkLogin();

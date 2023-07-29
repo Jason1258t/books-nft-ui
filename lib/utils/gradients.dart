@@ -12,7 +12,6 @@ class AppGradients {
     AppColors.buttonDarkColor,
   ], radius: 1.5, center: Alignment(0, -1));
 
-
   static const lightButton = LinearGradient(
       begin: Alignment(-1.00, 0.00),
       end: Alignment(1, 0),
@@ -32,10 +31,7 @@ class AppGradients {
   static const redButton = LinearGradient(
       begin: Alignment(0, 0.5),
       end: Alignment(1, 0.5),
-      colors: [
-        AppColors.darkRed,
-        AppColors.pink
-      ]);
+      colors: [AppColors.darkRed, AppColors.pink]);
 
   static const smallButtonBorder = LinearGradient(
     begin: Alignment.centerLeft,
@@ -56,9 +52,13 @@ class AppGradients {
     ],
   );
 
-
   static const wardrobeButtons = RadialGradient(
       colors: [AppColors.wardrobeButtonLight, AppColors.buttonDarkColor],
       radius: 1.2,
       center: Alignment(0, -0.3));
+
+  static const alertDialogBackground = LinearGradient(
+      begin: Alignment(0, -1),
+      end: Alignment(0, 1),
+      colors: [AppColors.backGroundLightAlertDialog, AppColors.backGroundDarkAlertDialog]);
 }

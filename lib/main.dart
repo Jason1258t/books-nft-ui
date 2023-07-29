@@ -25,6 +25,7 @@ import 'feature/describe_problem/ui/describe_problem_screen.dart';
 import 'feature/home/bloc/home_cubit.dart';
 import 'feature/home/data/homa_repository.dart';
 import 'feature/home/ui/home.dart';
+import 'feature/profile/ui/profile_screen.dart';
 import 'feature/store/ui/category_books_screen.dart';
 import 'feature/wallet/ui/confirm_phrase.dart';
 import 'feature/wallet/ui/import_wallet.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
         '/PIN_screen': (context) => const PINScreen(),
         '/phrase_screen': (context) => Phrase(),
         '/confirm_phrase_screen': (context) => const PhraseConfirm(),
+        '/profile_screen': (context) => const ProfileScreen(),
       },
     );
   }

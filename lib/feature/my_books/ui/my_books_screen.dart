@@ -20,6 +20,7 @@ class MyBooksScreen extends StatefulWidget {
 class _MyBooksScreenState extends State<MyBooksScreen> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
 
     List<Widget> listBook = [];
     for (int i = 0; i < widget.books.length; i += 2) {
@@ -69,17 +70,17 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
                           color: Colors.amber,
                         ),
                       ));
-                  return const SizedBox(height: 1000);
+                  return SizedBox(height: height);
                 } else if (state is MyBooksFailState) {
                   listBook == [];
-                  return const Row(
+                  return Row(
                     children: [
-                      Text('проблем'),
-                      SizedBox(height: 1000),
+                      const Text('проблем'),
+                      SizedBox(height: height - 200),
                     ],
                   );
                 } else if (state is MyBooksSuccessState) {
-                  return listBook.length >= 3
+                  return listBook.length > 2
                       ? Column(
                           children: listBook.toList(),
                         )
@@ -88,15 +89,15 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
                             Column(
                               children: listBook.toList(),
                             ),
-                            const SizedBox(
-                              height: 500,
+                            SizedBox(
+                              height: listBook.isNotEmpty ? 300 : height - 240,
                             )
                           ],
                         );
                 }
 
-                return const SizedBox(
-                  height: 1000,
+                return SizedBox(
+                  height: height - 200,
                 );
               },
             ),

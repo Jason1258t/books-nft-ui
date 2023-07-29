@@ -22,9 +22,10 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBars(
+      appBar: CustomAppBar(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
+        context: context,
       ),
       body: SafeArea(
         child: Container(

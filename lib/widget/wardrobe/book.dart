@@ -91,7 +91,7 @@ class BookWidget extends StatelessWidget {
 
   _openBook(Book book, BuildContext context) {
     Navigator.pushNamed(context, '/book_info_screen',
-        arguments: {'book': book.bookId});
+        arguments: {'book': book.id});
   }
 
   _addBook(Book book, BuildContext context) {
@@ -148,7 +148,7 @@ class BookWidget extends StatelessWidget {
                                 onTap: () {
                                   BlocProvider.of<MoveBookCubit>(context)
                                       .putBook(
-                                          id: book.bookId, position: position);
+                                          id: book.id, position: position);
                                 }),
                           ],
                         ),

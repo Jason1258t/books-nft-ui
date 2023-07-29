@@ -159,7 +159,9 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                                     10, 0, 20, 0),
                                             child: const LvlContainer()),
                                         ConstIconsWithTextElevatedButton(
-                                          onTap: () {},
+                                          onTap: () {
+                                            Navigator.pushNamed(context, '/profile_screen');
+                                          },
                                           text: 'Profile',
                                           height: height * 0.03,
                                           width: (width - 40) * 0.3,

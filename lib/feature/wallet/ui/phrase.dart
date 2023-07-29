@@ -31,9 +31,10 @@ class Phrase extends StatelessWidget {
     void confirm() => Navigator.pushNamed(context, '/confirm_phrase_screen');
 
     return CustomScaffold(
-      appBar: AppBars(
+      appBar: CustomAppBar(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
+        context: context,
       ),
       child: SafeArea(
         child: SingleChildScrollView(

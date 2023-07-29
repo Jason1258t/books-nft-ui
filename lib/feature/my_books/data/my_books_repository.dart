@@ -38,7 +38,7 @@ class MyBooksRepository {
 
   Book? searchBook(String id) {
     for (Book book in myBooks) {
-      if (book.bookId == id) return book;
+      if (book.id == id) return book;
     }
     return null;
   }
@@ -62,7 +62,7 @@ class MyBooksRepository {
   void _refreshMyBooks() async {
     try {
       for (Book book in myBooks) {
-        book.available = wardrobe.contains(book.bookId);
+        book.available = wardrobe.contains(book.id);
       }
       myBooksState.add(LoadingStateEnum.success);
     } catch (e) {
@@ -136,7 +136,7 @@ class Wardrobe {
 
   bool contains(String id) {
     for (Book book in availableBooks) {
-      if (book.bookId == id) return true;
+      if (book.id == id) return true;
     }
     return false;
   }
@@ -146,7 +146,7 @@ class Wardrobe {
       if (!shelf.isLocked) {
         int index = 0;
         for (var book in shelf.booksData) {
-          if (book is Book && book.bookId == id) {
+          if (book is Book && book.id == id) {
             return BookPosition(shelf: shelf.shelfId, index: index);
           }
           index++;

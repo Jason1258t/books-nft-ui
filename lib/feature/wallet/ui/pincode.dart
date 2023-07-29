@@ -114,9 +114,10 @@ class _PINScreenState extends State<PINScreen> {
     }
     
     return CustomScaffold(
-      appBar: AppBars(
+      appBar: CustomAppBar(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
+        context: context,
       ),
       child: SafeArea(
         child: Padding(

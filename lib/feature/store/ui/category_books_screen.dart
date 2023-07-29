@@ -64,9 +64,10 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
 
     return CustomScaffold(
       isButtonBack: true,
-      appBar: AppBars(
+      appBar: CustomAppBar(
         width: width,
         height: height,
+        context: context,
       ),
       child: Column(
         children: [
