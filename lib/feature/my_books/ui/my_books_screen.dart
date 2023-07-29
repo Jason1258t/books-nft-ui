@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nft/feature/my_books/bloc/books/my_books_cubit.dart';
-import 'package:nft/feature/my_books/data/my_books_repository.dart';
 
 import '../../../models/shelf.dart';
 import '../../../utils/dialogs.dart';
@@ -9,9 +8,10 @@ import '../../../widget/containers/books_vertical_container.dart';
 import '../../../widget/switch/custom_switch.dart';
 
 class MyBooksScreen extends StatefulWidget {
-  const MyBooksScreen({super.key, required this.onTap});
+  const MyBooksScreen({super.key, required this.onTap, required this.books});
 
   final Function(Book, BuildContext) onTap;
+  final List<Book> books;
 
   @override
   State<MyBooksScreen> createState() => _MyBooksScreenState();
@@ -20,16 +20,15 @@ class MyBooksScreen extends StatefulWidget {
 class _MyBooksScreenState extends State<MyBooksScreen> {
   @override
   Widget build(BuildContext context) {
-    final myBooksRepository = RepositoryProvider.of<MyBooksRepository>(context);
 
     List<Widget> listBook = [];
-    for (int i = 0; i < myBooksRepository.myBooks.length; i += 2) {
+    for (int i = 0; i < widget.books.length; i += 2) {
       Row row = Row(children: [
         BooksVerticalContainer(
           onTap: () {
-            widget.onTap(myBooksRepository.myBooks[i], context);
+            widget.onTap(widget.books[i], context);
           },
-          book: myBooksRepository.myBooks[i],
+          book: widget.books[i],
         ),
         const SizedBox(
           width: 30,
@@ -40,9 +39,9 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
         row.children.add(
           BooksVerticalContainer(
             onTap: () {
-              widget.onTap(myBooksRepository.myBooks[i + 1], context);
+              widget.onTap(widget.books[i + 1], context);
             },
-            book: myBooksRepository.myBooks[i + 1],
+            book: widget.books[i + 1],
           ),
         );
       } catch (e) {}

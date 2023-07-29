@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nft/bloc/app_cubit.dart';
 import 'package:nft/feature/my_books/bloc/books/my_books_cubit.dart';
+import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
 import 'package:nft/feature/my_books/bloc/wardrobe/wardrobe_cubit.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/feature/wallet/bloc/wallet_cubit.dart';
@@ -148,6 +149,12 @@ class MyBlocProviders extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) => WardrobeCubit(
+            myBooksRepository:
+                RepositoryProvider.of<MyBooksRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => MoveBookCubit(
             myBooksRepository:
                 RepositoryProvider.of<MyBooksRepository>(context)),
         lazy: false,

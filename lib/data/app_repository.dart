@@ -45,12 +45,15 @@ class AppRepository {
     appState.add(AppStateEnum.unAuth);
   }
 
-  _auth(Future method) async {
+  Future _auth(Future method) async {
     try {
       final result = await method;
       log(result.toString());
       await _apiService.setToken('Bearer $result');
       await _saveToken(result.toString());
+      try {
+        _apiService.books.createWardrobe();
+      } catch (e) {}
       appState.add(AppStateEnum.auth);
     } catch (e) {
       appState.add(AppStateEnum.unAuth);
@@ -67,6 +70,6 @@ class AppRepository {
   Future getCode(String email) async => await _apiService.auth.getCode(email);
 
   Future login(String email, int code) async {
-    _auth(_apiService.auth.login(email, code));
+    await _auth(_apiService.auth.login(email, code));
   }
 }

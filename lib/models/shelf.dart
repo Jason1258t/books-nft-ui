@@ -17,14 +17,14 @@ class ShelfData {
       : isLocked = false,
         shelfId = json['id'],
         booksData = [] {
-    int index = 0;
-    for (var item in json['books']) {
+    int maxCount = json['maxCount'];
+    for (int i = 0; i < maxCount; i++) {
+      var item = json['books'][i];
       if (item != null) {
         booksData.add(Book.fromJson(item, true, available: false));
       } else {
-        booksData.add(BookPosition(shelf: shelfId, index: index));
+        booksData.add(BookPosition(shelf: shelfId, index: i));
       }
-      index++;
     }
   }
 }

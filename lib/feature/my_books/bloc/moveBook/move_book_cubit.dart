@@ -23,10 +23,11 @@ class MoveBookCubit extends Cubit<MoveBookState> {
     emit(MoveBookSuccessState());
   }
 
-  void putOnShelfBook({BookPosition? position, required String id}) async{
+  void putBook({BookPosition? position, required String id}) async{
     emit(MoveBookLoadingState());
     try{
       myBooksRepository.placeBook(position: position, id: id);
+      emit(MoveBookSuccessState());
     }catch(e){
       emit(MoveBookFailState());
       rethrow;

@@ -19,45 +19,46 @@ mixin class MyApiMethods {
   }
 
   Future post(String url, {dynamic data}) async {
-    final res = await dio.post(url, data: data);
-    return res.data;
+    try {
+      final res = await dio.post(url, data: data);
+      return res.data;
+    } catch (e) {
+      log(url);
+      rethrow;
+    }
   }
 
   void refreshDio(Dio newDio) => dio = newDio;
 }
 
-class Auth {
-  Dio dio;
-
+class Auth with MyApiMethods {
   static const _signup = '/auth/signup';
   static const _code = '/auth/code';
   static const _login = '/auth/login';
 
-  Auth({required this.dio});
-
-  Future signUp(String email) async {
-    final res = await dio.post(_signup, data: {'email': email});
-    return res.data;
+  Auth({required Dio dio_}) {
+    dio = dio_;
   }
+
+  Future signUp(String email) async =>
+      await post(_signup, data: {'email': email});
 
   /// вызывает метод получения кодв
-  Future getCode(String email) async {
-    final res = await dio.post(_code, data: {'email': email});
-    return res.data;
-  }
+  Future getCode(String email) async =>
+      await post(_code, data: {'email': email});
 
   /// производит авторизацию и возврвщает токен
   Future login(String email, int code) async {
-    final res = await dio.post(_login, data: {'email': email, 'code': code});
-    log('------------------------- ${res.data}');
-    return res.data['token'];
+    final data = await post(_login, data: {'email': email, 'code': code});
+    log('------------------------- $data');
+    return data['token'];
   }
 
   /// получает статы пользователя после авторизации
   Future<Map> getUserProperties() async {
-    final res = await dio.get('/users/user_properties');
-    log(res.data.toString());
-    return res.data;
+    final data = await get('/users/user_properties');
+    log(data.toString());
+    return data;
   }
 }
 
@@ -146,7 +147,7 @@ class ApiService {
   }));
 
   ApiService() : super() {
-    auth = Auth(dio: _dio);
+    auth = Auth(dio_: _dio);
     books = BooksService(dio_: _dio);
     user = UserService(dio_: _dio);
   }
@@ -159,9 +160,14 @@ class ApiService {
 
   /// получает статы пользователя после авторизации
   Future<Map> getUserProperties() async {
-    final res = await _dio.get('/users/user_properties');
-    log(res.data.toString());
-    return res.data;
+    try {
+      final res = await _dio.get('/users/user_properties');
+      log(res.data.toString());
+      return res.data;
+    } catch (e) {
+      log('user_properties');
+      rethrow;
+    }
   }
 
   /// ставит token в dio

@@ -1,9 +1,12 @@
-import 'dart:developer';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
+import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/feature/my_books/ui/my_books_screen.dart';
+import 'package:nft/models/book_position.dart';
+import 'package:nft/utils/dialogs.dart';
 import 'package:nft/widget/custom_bottom_sheet/bottom_sheet.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
@@ -29,6 +32,7 @@ class BookWidget extends StatelessWidget {
       {super.key,
       required double shelfWidth,
       required BookType bookType,
+      this.position,
       this.data})
       : _width = shelfWidth * (27.4 / 360),
         _height = shelfWidth * (100 / 360) {
@@ -36,6 +40,11 @@ class BookWidget extends StatelessWidget {
         bookType == BookType.withData && data != null ||
             bookType != BookType.withData,
         'if book has info data cant be null');
+    assert(
+        bookType == BookType.add && position != null ||
+            bookType != BookType.add,
+        'position must not be null is bookType is add');
+
     if (bookType == BookType.add || bookType == BookType.lock) {
       decoration = _bookDecoration;
       child = DottedBorder(
@@ -63,6 +72,7 @@ class BookWidget extends StatelessWidget {
   }
 
   final Book? data;
+  final BookPosition? position;
 
   final double _width;
   final double _height;
@@ -84,50 +94,73 @@ class BookWidget extends StatelessWidget {
   _addBook(Book book, BuildContext context) {
     showBottomSheet(
         context: context,
-        builder: (BuildContext context) => Padding(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: CustomBottomSheet(
-              title: 'Put on a shelf',
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        builder: (BuildContext context) =>
+            BlocListener<MoveBookCubit, MoveBookState>(
+              listener: (context, state) {
+                if (state is MoveBookLoadingState) {
+                  Dialogs.showModal(
+                      context,
+                      const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.amber,
+                        ),
+                      ));
+                } else {
+                  Dialogs.hide(context);
+                }
+                if (state is MoveBookSuccessState) {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                }
+              },
+              child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: CustomBottomSheet(
+                    title: 'Put on a shelf',
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
-                        constraints: const BoxConstraints(minHeight: 60),
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        margin: const EdgeInsets.only(top: 16),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: AppColors.backGroundTextShowButtonSheet),
-                        alignment: Alignment.center,
-                        child: Text(
-                          book.name,
-                          textAlign: TextAlign.center,
-                          style: AppTypography.font16white,
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              constraints: const BoxConstraints(minHeight: 60),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 40),
+                              margin: const EdgeInsets.only(top: 16),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color:
+                                      AppColors.backGroundTextShowButtonSheet),
+                              alignment: Alignment.center,
+                              child: Text(
+                                book.name,
+                                textAlign: TextAlign.center,
+                                style: AppTypography.font16white,
+                              ),
+                            ),
+                            CustomElevatedButton(
+                                text: 'Confirm',
+                                onTap: () {
+                                  BlocProvider.of<MoveBookCubit>(context)
+                                      .putBook(
+                                          id: book.bookId, position: position);
+                                }),
+                          ],
                         ),
                       ),
-                      CustomElevatedButton(
-                          text: 'Confirm',
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pop(context);
-                            //TODO сделать добавление с блоком/репозиторием
-                          }),
                     ],
-                  ),
-                ),
-              ],
-            )));
+                  )),
+            ));
   }
 
   @override
   Widget build(BuildContext context) {
     if (_bookType == BookType.add) {
       onTap = () {
+        RepositoryProvider.of<MyBooksRepository>(context).savePlace(position!);
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -135,7 +168,12 @@ class BookWidget extends StatelessWidget {
                     appBar: EmptyAppBar(
                       context: context,
                     ),
-                    child: MyBooksScreen(onTap: _addBook))));
+                    child: MyBooksScreen(
+                      onTap: _addBook,
+                      books: RepositoryProvider.of<MyBooksRepository>(context)
+                          .wardrobe
+                          .availableBooks,
+                    ))));
       };
     } else if (_bookType == BookType.lock) {
       onTap = _buyPlace();

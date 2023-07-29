@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nft/models/book_position.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/buttons/row_elevated_button.dart';
@@ -76,7 +77,6 @@ class _ShelfState extends State<Shelf> {
   List<Widget> createList() {
     List<Widget> books = [];
 
-
     books.addAll(List.generate(
         widget.shelfData.booksData.length,
         (index) => widget.shelfData.booksData[index] is Book
@@ -85,14 +85,18 @@ class _ShelfState extends State<Shelf> {
                 bookType: BookType.withData,
                 data: widget.shelfData.booksData[index] as Book,
               )
-            : BookWidget(shelfWidth: widget.width, bookType: BookType.add)));
-    if(7 - widget.shelfData.booksData.length > 0){
+            : BookWidget(
+                shelfWidth: widget.width,
+                bookType: BookType.add,
+                position:
+                    BookPosition(shelf: widget.shelfData.shelfId, index: index),
+              )));
+    if (7 - widget.shelfData.booksData.length > 0) {
       books.addAll(List.generate(
           7 - widget.shelfData.booksData.length,
-              (index) =>
+          (index) =>
               BookWidget(shelfWidth: widget.width, bookType: BookType.lock)));
     }
-
 
     return books;
   }

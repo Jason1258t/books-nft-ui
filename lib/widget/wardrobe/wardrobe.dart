@@ -48,7 +48,7 @@ class _WardrobeState extends State<Wardrobe> {
       shelves.add(Shelf.bottom(
           width: width,
           shelfData: ShelfData(isLocked: true, shelfId: '', booksData: []),
-          isLocked: repository.wardrobe.shelves.last.isLocked));
+          isLocked: true));
 
       return shelves;
     }

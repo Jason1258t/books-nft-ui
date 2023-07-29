@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/feature/home/data/homa_repository.dart';
+import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/app_bar/app_bar.dart';
@@ -36,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.pushNamed(ctx, '/book_info_screen',
               arguments: {'book': book});
         },
+        books: RepositoryProvider.of<MyBooksRepository>(context).myBooks,
       ),
       const WardrobeScreen(),
       Container(),
