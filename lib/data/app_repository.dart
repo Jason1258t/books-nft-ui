@@ -72,4 +72,9 @@ class AppRepository {
   Future login(String email, int code) async {
     await _auth(_apiService.auth.login(email, code));
   }
+  
+  Future deleteAccount() async {
+    await _apiService.auth.deleteAccount();
+    await logout();
+  }
 }

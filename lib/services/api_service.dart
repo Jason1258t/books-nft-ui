@@ -28,6 +28,16 @@ mixin class MyApiMethods {
     }
   }
 
+  Future delete(String url) async {
+    try {
+      final res = await dio.delete(url);
+      return res.data;
+    } catch (e) {
+      log(url);
+      rethrow;
+    }
+  }
+
   void refreshDio(Dio newDio) => dio = newDio;
 }
 
@@ -35,6 +45,7 @@ class Auth with MyApiMethods {
   static const _signup = '/auth/signup';
   static const _code = '/auth/code';
   static const _login = '/auth/login';
+  static const _delete = '/auth/delete';
 
   Auth({required Dio dio_}) {
     dio = dio_;
@@ -53,6 +64,8 @@ class Auth with MyApiMethods {
     log('------------------------- $data');
     return data['token'];
   }
+
+  Future deleteAccount() async => delete(_delete);
 
   /// получает статы пользователя после авторизации
   Future<Map> getUserProperties() async {
