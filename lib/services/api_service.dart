@@ -13,10 +13,9 @@ mixin class MyApiMethods {
       final res = await dio.get(url);
       return res.data;
     } catch (e) {
-      print(url);
+      log(url);
       rethrow;
     }
-
   }
 
   Future post(String url, {dynamic data}) async {
@@ -93,7 +92,6 @@ class BooksService with MyApiMethods {
   /// только после регистрации
   Future createWardrobe() async => await post(_createShelf);
 
-
   Future getAllBooks() async => await get(_allBooks);
 
   Future getMyBooks() async {
@@ -104,23 +102,17 @@ class BooksService with MyApiMethods {
 
   Future getAvailableBooks() async => await get(_availableBooks);
 
-
   Future buyShelf() async => await post(_buyShelf);
 
   Future buyPlace(String shelfId) async =>
       await post(_buyPlace, data: {'shelf': shelfId});
 
-  Future placeBook(BookPosition position, String bookId) async =>
-      await post(_placeBook,
-          data: {
-            "shelf": position.shelf,
-            "index": position.index,
-            "book": bookId
-          });
+  Future placeBook(BookPosition position, String bookId) async => await post(
+      _placeBook,
+      data: {"shelf": position.shelf, "index": position.index, "book": bookId});
 
   Future removeBook(BookPosition position) async =>
       await post(_removeBook, data: position.toJson);
-
 
   Future getAllCollections() async => await get(_allCollections);
 
@@ -149,7 +141,7 @@ class ApiService {
   late UserService user;
 
   final Dio _dio =
-  Dio(BaseOptions(baseUrl: dotenv.get('BASE_SERVER_URL'), headers: {
+      Dio(BaseOptions(baseUrl: dotenv.get('BASE_SERVER_URL'), headers: {
     'Content-Type': 'application/json',
   }));
 
