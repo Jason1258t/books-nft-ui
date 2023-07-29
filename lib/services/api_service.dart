@@ -104,7 +104,11 @@ class BooksService with MyApiMethods {
 
   Future placeBook(BookPosition position, String bookId) async =>
       await post(_placeBook,
-          data: {"shelf": position.shelf, "index": position.index, "book": bookId});
+          data: {
+            "shelf": position.shelf,
+            "index": position.index,
+            "book": bookId
+          });
 
   Future removeBook(BookPosition position) async =>
       await post(_removeBook, data: position.toJson);
@@ -116,24 +120,41 @@ class BooksService with MyApiMethods {
       await get('$_collectionById/%id');
 }
 
+class UserService with MyApiMethods {
+  static const String _properties = '/users/user_properties';
+  static const String _indicators = '/users/user_indicators';
+  static const String _lvlUp = 'users/lvl_up';
+
+  UserService({required Dio dio_}) {
+    dio = dio_;
+  }
+
+  Future getProperties() async => get(_properties);
+
+  Future getIndicators() async => get(_indicators);
+}
+
 class ApiService {
   String? _token;
   late Auth auth;
   late BooksService books;
+  late UserService user;
 
   final Dio _dio =
-      Dio(BaseOptions(baseUrl: dotenv.get('BASE_SERVER_URL'), headers: {
+  Dio(BaseOptions(baseUrl: dotenv.get('BASE_SERVER_URL'), headers: {
     'Content-Type': 'application/json',
   }));
 
   ApiService() : super() {
     auth = Auth(dio: _dio);
     books = BooksService(dio_: _dio);
+    user = UserService(dio_: _dio);
   }
 
   _updateAllServices() {
     auth.dio = _dio;
     books.refreshDio(_dio);
+    user.refreshDio(_dio);
   }
 
   /// получает статы пользователя после авторизации

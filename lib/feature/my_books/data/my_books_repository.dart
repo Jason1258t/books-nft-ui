@@ -11,7 +11,7 @@ class MyBooksRepository {
   final ApiService _apiService;
 
   late Wardrobe wardrobe;
-  late Stats stats;
+  late UserStats userStats;
 
   BookPosition? _savedPlace;
 
@@ -24,7 +24,6 @@ class MyBooksRepository {
   MyBooksRepository({required ApiService apiService})
       : _apiService = apiService {
     wardrobe = Wardrobe();
-    stats = Stats(energy: 0, intelligence: 0, luck: 0, strength: 0);
     getWardrobe().then((value) => getMyBooks());
   }
 
@@ -85,12 +84,21 @@ class MyBooksRepository {
     getWardrobe();
   }
 
+  Future _getUserStats() async {
+    final stats = _apiService.user.getProperties();
+    final indicators = _apiService.user.getIndicators();
+    await Future.wait([stats, indicators]).then((value) => userStats =
+        UserStats(
+            stats: Stats.fromJson(value[0]),
+            indicators: Indicators.fromJson(value[1])));
+  }
+
   Future getWardrobe() async {
-    wardrobeState.add(LoadingStateEnum.loading);
     try {
       Future booksLoading = _getAvailableBooks();
       Future shelvesLoading = _getShelves();
-      await Future.wait([booksLoading, shelvesLoading]);
+      Future userStatsLoading = _getUserStats();
+      await Future.wait([booksLoading, shelvesLoading, userStatsLoading]);
     } catch (e) {
       wardrobeState.add(LoadingStateEnum.fail);
       rethrow;
