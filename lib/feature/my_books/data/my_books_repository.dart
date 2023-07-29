@@ -50,6 +50,17 @@ class MyBooksRepository {
     }
   }
 
+  void _refreshMyBooks() async {
+    try {
+      for (Book book in myBooks) {
+        book.available = !wardrobe.contains(book.bookId);
+      }
+      myBooksState.add(LoadingStateEnum.success);
+    } catch (e) {
+      myBooksState.add(LoadingStateEnum.fail);
+    }
+  }
+
   Future _getAvailableBooks() async {
     final data = await _apiService.books.getAvailableBooks();
     wardrobe.availableBooks.clear();
@@ -76,12 +87,12 @@ class MyBooksRepository {
       throw Exception('no places');
     }
     await _apiService.books.placeBook(position, id);
-    getWardrobe();
+    getWardrobe().then((value) => _refreshMyBooks());
   }
 
   Future removeBook(String id) async {
     await _apiService.books.removeBook(wardrobe.findBook(id)!);
-    getWardrobe();
+    getWardrobe().then((value) => _refreshMyBooks());
   }
 
   Future _getUserStats() async {
