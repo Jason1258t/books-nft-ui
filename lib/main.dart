@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nft/bloc/app_cubit.dart';
 import 'package:nft/feature/my_books/bloc/books/my_books_cubit.dart';
+import 'package:nft/feature/my_books/bloc/wardrobe/wardrobe_cubit.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/feature/wallet/bloc/wallet_cubit.dart';
 import 'package:nft/feature/wallet/data/wallet_repository.dart';
@@ -102,7 +103,7 @@ class MyRepositoryProviders extends StatelessWidget {
       RepositoryProvider(create: (_) => WalletRepository()),
       RepositoryProvider(create: (_) => AppRepository(apiService: apiService)),
       RepositoryProvider(
-          create: (_) => MyBooksRepository(apiService: apiService))
+          create: (_) => MyBooksRepository(apiService: apiService)),
     ], child: const MyBlocProviders());
   }
 }
@@ -141,6 +142,12 @@ class MyBlocProviders extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) => MyBooksCubit(
+            myBooksRepository:
+                RepositoryProvider.of<MyBooksRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => WardrobeCubit(
             myBooksRepository:
                 RepositoryProvider.of<MyBooksRepository>(context)),
         lazy: false,

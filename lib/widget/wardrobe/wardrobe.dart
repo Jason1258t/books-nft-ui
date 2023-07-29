@@ -23,7 +23,7 @@ class _WardrobeState extends State<Wardrobe> {
       List<Widget> shelves = [];
       shelves.add(
           Shelf.top(width: width, shelfData: repository.wardrobe.shelves[0]));
-      for (int i = 1; i < repository.wardrobe.shelves.length - 2; i++) {
+      for (int i = 1; i < repository.wardrobe.shelves.length - 1; i++) {
         shelves.add(Shelf.middle(
             width: width, shelfData: repository.wardrobe.shelves[i]));
       }
@@ -40,11 +40,11 @@ class _WardrobeState extends State<Wardrobe> {
       shelves.add(Shelf.top(
           width: width,
           shelfData: ShelfData(isLocked: true, shelfId: '', booksData: [])));
-      for (int i = 1; i < repository.wardrobe.shelves.length - 2; i++) {
-        shelves.add(Shelf.middle(
-            width: width,
-            shelfData: ShelfData(isLocked: true, shelfId: '', booksData: [])));
-      }
+
+      shelves.add(Shelf.middle(
+          width: width,
+          shelfData: ShelfData(isLocked: true, shelfId: '', booksData: [])));
+
       shelves.add(Shelf.bottom(
           width: width,
           shelfData: ShelfData(isLocked: true, shelfId: '', booksData: []),

@@ -112,6 +112,7 @@ class MyBooksRepository {
       Future shelvesLoading = _getShelves();
       Future userStatsLoading = _getUserStats();
       await Future.wait([booksLoading, shelvesLoading, userStatsLoading]);
+      wardrobeState.add(LoadingStateEnum.success);
     } catch (e) {
       wardrobeState.add(LoadingStateEnum.fail);
       rethrow;

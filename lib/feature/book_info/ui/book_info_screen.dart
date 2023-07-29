@@ -81,21 +81,21 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      //1
+                                      //1 wait
                                       SvgPicture.asset(
                                           'Assets/icons/black_stars.svg'),
                                       Text('Free',
                                           style: AppTypography.font16white),
-                                      //2
+                                      //2 load
                                       // CircleAvatar(
                                       //   radius: 25,
                                       //   backgroundColor: AppColors.cursorBackground,
                                       //   child: CircularProgressIndicator(color: Colors.white,),
                                       // )
-                                      //3
+                                      //3 success
                                       // SvgPicture.asset('Assets/icons/check_mark.svg'),
                                       // Text('Successfully', style: AppTypography.font16white),
-                                      //4
+                                      //4 fail
                                       // SvgPicture.asset('Assets/icons/red_delete.svg'),
                                       //  Text('Error', style: AppTypography.font16white),
                                     ],

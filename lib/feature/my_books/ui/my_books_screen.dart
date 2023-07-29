@@ -45,8 +45,7 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
             book: myBooksRepository.myBooks[i + 1],
           ),
         );
-      } catch( e) {}
-
+      } catch (e) {}
 
       listBook.add(row);
     }
@@ -81,9 +80,20 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
                     ],
                   );
                 } else if (state is MyBooksSuccessState) {
-                  return Column(
-                    children: listBook.toList(),
-                  );
+                  return listBook.length >= 3
+                      ? Column(
+                          children: listBook.toList(),
+                        )
+                      : Column(
+                          children: [
+                            Column(
+                              children: listBook.toList(),
+                            ),
+                            const SizedBox(
+                              height: 300,
+                            )
+                          ],
+                        );
                 }
 
                 return const SizedBox(
