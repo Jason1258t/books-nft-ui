@@ -13,7 +13,7 @@ class Book implements ShelfPlaceData{
   final String genre;
   final int pagesCount;
   final bool owned;
-  final bool available;
+  bool available;
   final int intelegenceInc;
   final int energyInc;
   final int strengthInc;
