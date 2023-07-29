@@ -69,10 +69,10 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
                           color: Colors.amber,
                         ),
                       ));
-                  return SizedBox(height: 1000);
+                  return const SizedBox(height: 1000);
                 } else if (state is MyBooksFailState) {
                   listBook == [];
-                  return Row(
+                  return const Row(
                     children: [
                       Text('проблем'),
                       SizedBox(height: 1000),
@@ -84,7 +84,7 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
                   );
                 }
 
-                return SizedBox(height: 1000,);
+                return const SizedBox(height: 1000,);
               },
             ),
           ),

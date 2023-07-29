@@ -22,7 +22,9 @@ class MyBooksRepository {
   get savedPlace => _savedPlace;
 
   MyBooksRepository({required ApiService apiService})
-      : _apiService = apiService {
+      : _apiService = apiService;
+
+  void initial() {
     wardrobe = Wardrobe();
     getWardrobe().then((value) => getMyBooks());
   }

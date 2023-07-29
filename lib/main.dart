@@ -124,7 +124,9 @@ class MyBlocProviders extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) => AppCubit(
-            appRepository: RepositoryProvider.of<AppRepository>(context)),
+            appRepository: RepositoryProvider.of<AppRepository>(context),
+            myBooksRepository:
+                RepositoryProvider.of<MyBooksRepository>(context)),
         lazy: false,
       ),
       BlocProvider(
@@ -138,7 +140,9 @@ class MyBlocProviders extends StatelessWidget {
         lazy: false,
       ),
       BlocProvider(
-        create: (_) => MyBooksCubit(myBooksRepository: RepositoryProvider.of<MyBooksRepository>(context)),
+        create: (_) => MyBooksCubit(
+            myBooksRepository:
+                RepositoryProvider.of<MyBooksRepository>(context)),
         lazy: false,
       ),
     ], child: const MyApp());

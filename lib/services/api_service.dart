@@ -9,8 +9,14 @@ mixin class MyApiMethods {
   Dio dio = Dio();
 
   Future get(String url) async {
-    final res = await dio.get(url);
-    return res.data;
+    try {
+      final res = await dio.get(url);
+      return res.data;
+    } catch (e) {
+      print(url);
+      rethrow;
+    }
+
   }
 
   Future post(String url, {dynamic data}) async {
