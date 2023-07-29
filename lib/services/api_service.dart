@@ -166,7 +166,7 @@ class ApiService {
   }
 
   _updateAllServices() {
-    auth.dio = _dio;
+    auth.refreshDio(_dio);
     books.refreshDio(_dio);
     user.refreshDio(_dio);
   }
