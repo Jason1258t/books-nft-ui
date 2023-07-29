@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/widget/wardrobe/shelf.dart';
 
 import '../../feature/my_books/bloc/wardrobe/wardrobe_cubit.dart';
@@ -16,41 +16,55 @@ class Wardrobe extends StatefulWidget {
 class _WardrobeState extends State<Wardrobe> {
   @override
   Widget build(BuildContext context) {
+    final repository = RepositoryProvider.of<MyBooksRepository>(context);
+    final double width = MediaQuery.of(context).size.width;
+
+    List<Widget> generateShelves() {
+      List<Widget> shelves = [];
+      shelves.add(
+          Shelf.top(width: width, shelfData: repository.wardrobe.shelves[0]));
+      for (int i = 1; i < repository.wardrobe.shelves.length - 2; i++) {
+        shelves.add(Shelf.middle(
+            width: width, shelfData: repository.wardrobe.shelves[i]));
+      }
+      shelves.add(Shelf.bottom(
+          width: width,
+          shelfData: repository.wardrobe.shelves.last,
+          isLocked: repository.wardrobe.shelves.last.isLocked));
+
+      return shelves;
+    }
+
+    List<Widget> generateEmptyShelves() {
+      List<Widget> shelves = [];
+      shelves.add(Shelf.top(
+          width: width,
+          shelfData: ShelfData(isLocked: true, shelfId: '', booksData: [])));
+      for (int i = 1; i < repository.wardrobe.shelves.length - 2; i++) {
+        shelves.add(Shelf.middle(
+            width: width,
+            shelfData: ShelfData(isLocked: true, shelfId: '', booksData: [])));
+      }
+      shelves.add(Shelf.bottom(
+          width: width,
+          shelfData: ShelfData(isLocked: true, shelfId: '', booksData: []),
+          isLocked: repository.wardrobe.shelves.last.isLocked));
+
+      return shelves;
+    }
+
     return BlocBuilder<WardrobeCubit, WardrobeState>(
-  builder: (context, state) {
-    return Column(
-      children: [
-        Shelf.top(
-          width: MediaQuery.of(context).size.width,
-          shelfData: ShelfData(booksData: [
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png', owned: true),
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png', owned: true),
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png', owned: true),
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png', owned: true),
-            null,
-            null,
-          ], shelfId: ''),
-        ),
-        Shelf.middle(
-          width: MediaQuery.of(context).size.width,
-          shelfData: ShelfData(booksData: [
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png', owned: true),
-            null,
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png', owned: true),
-            null,
-            null,
-            null,
-          ], shelfId: ''),
-        ),
-        Shelf.bottom(
-          width: MediaQuery.of(context).size.width,
-          isLocked: true,
-          shelfData: ShelfData(booksData: [
-          ], shelfId: ''),
-        ),
-      ],
+      builder: (context, state) {
+        if (state is WardrobeSuccessState) {
+          return Column(
+            children: generateShelves(),
+          );
+        } else {
+          return Column(
+            children: generateEmptyShelves(),
+          );
+        }
+      },
     );
-  },
-);
   }
 }

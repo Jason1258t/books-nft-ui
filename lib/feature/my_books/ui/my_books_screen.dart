@@ -45,7 +45,7 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
             book: myBooksRepository.myBooks[i + 1],
           ),
         );
-      }catch(e) {}
+      } catch( e) {}
 
 
       listBook.add(row);
