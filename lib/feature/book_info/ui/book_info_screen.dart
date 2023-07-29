@@ -154,7 +154,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Image.asset(book.image),
+              Image.network(book.image),
               const SizedBox(
                 height: 10,
               ),

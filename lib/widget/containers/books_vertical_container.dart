@@ -29,29 +29,12 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
             child: Container(
               width: width * 0.41,
               height: width * 0.55,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(
-                        'Assets/images/redBook.png',
+                      image: NetworkImage(
+                        widget.book.image,
                       ),
                       fit: BoxFit.cover)),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      widget.book.name,
-                      textAlign: TextAlign.center,
-                      style: AppTypography.font16white.copyWith(fontSize: 12),
-                    ),
-                    Text(
-                      'Karl Marx',
-                      style: AppTypography.font16white.copyWith(fontSize: 14),
-                    ),
-                  ],
-                ),
-              ),
             ),
           ),
           Row(

@@ -129,7 +129,7 @@ class _ShelfState extends State<Shelf> {
                         padding: const EdgeInsets.only(top: 4),
                         alignment: Alignment.center,
                         child: Text(
-                          '${widget.shelfData.booksData.where((element) => element != null).length}/7',
+                          '${widget.shelfData.booksData.whereType<Book>().length}/7',
                           style: AppTypography.font12white
                               .copyWith(fontWeight: FontWeight.w700),
                         ),

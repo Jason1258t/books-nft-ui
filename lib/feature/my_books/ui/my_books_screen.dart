@@ -89,7 +89,7 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
                               children: listBook.toList(),
                             ),
                             const SizedBox(
-                              height: 300,
+                              height: 500,
                             )
                           ],
                         );

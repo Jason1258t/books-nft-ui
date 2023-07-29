@@ -2,10 +2,11 @@ part of 'shelf.dart';
 
 abstract class ShelfPlaceData {}
 
-class Book implements ShelfPlaceData{
+class Book implements ShelfPlaceData {
   final String bookId;
   final String name;
   final String image;
+  final String spine;
   final String description;
   final int ISBN;
   final String createAt;
@@ -33,6 +34,7 @@ class Book implements ShelfPlaceData{
     this.language = '',
     this.pagesCount = 500,
     this.available = true,
+    this.spine = '',
     required this.name,
     required this.image,
   });
@@ -42,7 +44,8 @@ class Book implements ShelfPlaceData{
       : owned = isOwned,
         bookId = json['id'],
         name = json['bookInfo']['title'],
-        image = 'Assets/images/conan_doyle_book.png',
+        image = json['covers'][1]['url'],
+        spine = json['covers'][1]['spine'],
         description = json['bookInfo']['description'],
         ISBN = json['details']['ISBN'],
         createAt = json['details']['publicationDate'],

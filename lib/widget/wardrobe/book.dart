@@ -63,7 +63,10 @@ class BookWidget extends StatelessWidget {
     } else {
       decoration = BoxDecoration(
         borderRadius: BorderRadius.circular(3),
-        color: Colors.red,
+        image: DecorationImage(
+          image: NetworkImage(data!.spine),
+          fit: BoxFit.cover
+        )
       );
       child = null;
     }
@@ -109,7 +112,6 @@ class BookWidget extends StatelessWidget {
                   Dialogs.hide(context);
                 }
                 if (state is MoveBookSuccessState) {
-                  Navigator.pop(context);
                   Navigator.pop(context);
                 }
               },
