@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/book.dart';
+import '../../../models/shelf.dart';
 import '../../../widget/containers/books_vertical_container.dart';
 import '../../../widget/switch/custom_switch.dart';
 

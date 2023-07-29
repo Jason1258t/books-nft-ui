@@ -4,7 +4,7 @@ import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/buttons/row_elevated_button.dart';
 
 import '../../../widget/wardrobe/book.dart';
-import '../../models/book.dart';
+import '../../models/shelf.dart';
 
 const String _topShelfBackground = 'Assets/images/shelf_top.png';
 const String _middleShelfBackground = 'Assets/images/shelf_middle.png';
@@ -78,17 +78,15 @@ class _ShelfState extends State<Shelf> {
 
     books.addAll(List.generate(
         widget.shelfData.booksData.length,
-        (index) => BookWidget(
-              shelfWidth: widget.width,
-              bookType: BookType.withData,
-              data: widget.shelfData.booksData[index],
-            )));
+        (index) => widget.shelfData.booksData[index] != null
+            ? BookWidget(
+                shelfWidth: widget.width,
+                bookType: BookType.withData,
+                data: widget.shelfData.booksData[index],
+              )
+            : BookWidget(shelfWidth: widget.width, bookType: BookType.add)));
     books.addAll(List.generate(
-        7 - widget.shelfData.booksData.length - widget.shelfData.lockedBooks,
-        (index) =>
-            BookWidget(shelfWidth: widget.width, bookType: BookType.add)));
-    books.addAll(List.generate(
-        widget.shelfData.lockedBooks,
+        7 - widget.shelfData.booksData.length,
         (index) =>
             BookWidget(shelfWidth: widget.width, bookType: BookType.lock)));
 
@@ -139,21 +137,6 @@ class _ShelfState extends State<Shelf> {
             )
           : const LockedShelf(),
     );
-  }
-}
-
-class ShelfData {
-  bool isLocked;
-  List<Book> booksData;
-  int lockedBooks;
-
-  ShelfData(
-      {required this.booksData,
-      required this.lockedBooks,
-      this.isLocked = false})
-      : super() {
-    assert(booksData.length + lockedBooks <= 7,
-        'the number of books is more than 7');
   }
 }
 

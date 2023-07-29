@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/utils/colors.dart';
 import 'package:stroke_text/stroke_text.dart';
 
-import '../../models/book.dart';
+import '../../models/shelf.dart';
 
 class BooksHorizontalContainer extends StatefulWidget {
   const BooksHorizontalContainer({super.key, required this.book, required this.onTap,});

@@ -1,3 +1,5 @@
+part of 'shelf.dart';
+
 class Book {
   final String name;
   final String image;

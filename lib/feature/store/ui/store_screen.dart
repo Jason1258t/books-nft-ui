@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nft/models/books_category.dart';
 
-import '../../../models/book.dart';
+import '../../../models/shelf.dart';
 import '../../../widget/custom_scrollers/custom_category_scroller.dart';
 import '../../../widget/switch/custom_switch_categories.dart';
 

@@ -4,7 +4,7 @@ import 'package:nft/models/books_category.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:stroke_text/stroke_text.dart';
 
-import '../../models/book.dart';
+import '../../models/shelf.dart';
 import '../../utils/colors.dart';
 import '../containers/books_horizontal_container.dart';
 

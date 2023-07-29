@@ -1,4 +1,4 @@
-import 'book.dart';
+import 'shelf.dart';
 
 class BooksGenre {
   final String name;
