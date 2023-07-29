@@ -78,11 +78,11 @@ class _ShelfState extends State<Shelf> {
 
     books.addAll(List.generate(
         widget.shelfData.booksData.length,
-        (index) => widget.shelfData.booksData[index] != null
+        (index) => widget.shelfData.booksData[index] is Book
             ? BookWidget(
                 shelfWidth: widget.width,
                 bookType: BookType.withData,
-                data: widget.shelfData.booksData[index],
+                data: widget.shelfData.booksData[index] as Book,
               )
             : BookWidget(shelfWidth: widget.width, bookType: BookType.add)));
     books.addAll(List.generate(

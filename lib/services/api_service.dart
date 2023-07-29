@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import '../models/book_position.dart';
+
 mixin class MyApiMethods {
   Dio dio = Dio();
 
@@ -100,12 +102,12 @@ class BooksService with MyApiMethods {
   Future buyPlace(String shelfId) async =>
       await post(_buyPlace, data: {'shelf': shelfId});
 
-  Future placeBook(String shelfId, int index, String bookId) async =>
+  Future placeBook(BookPosition position, String bookId) async =>
       await post(_placeBook,
-          data: {"shelf": shelfId, "index": index, "book": bookId});
+          data: {"shelf": position.shelf, "index": position.index, "book": bookId});
 
-  Future removeBook(String shelfId, int index) async =>
-      await post(_removeBook, data: {"shelf": shelfId, "index": index});
+  Future removeBook(BookPosition position) async =>
+      await post(_removeBook, data: position.toJson);
 
 
   Future getAllCollections() async => await get(_allCollections);
