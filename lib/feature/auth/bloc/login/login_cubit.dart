@@ -23,4 +23,6 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   void logout() => _appRepository.logout();
+
+  void deleteAccount() => _appRepository.deleteAccount();
 }

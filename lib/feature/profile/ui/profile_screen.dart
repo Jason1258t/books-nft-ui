@@ -20,7 +20,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  void logoutShowDialog(String title) {
+  void _showDialog(VoidCallback confirmCallback, String text) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
@@ -29,15 +29,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         AlertDialog(
           content: Container(
             height: 170,
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8),
                 gradient: AppGradients.alertDialogBackground),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  title,
+                  text,
                   style: AppTypography.font16white.copyWith(fontSize: 24),
                 ),
                 Row(
@@ -50,13 +50,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       width: (width - 150) / 2,
                       height: 50,
                     ),
-                    const SizedBox(width: 16,),
+                    const SizedBox(
+                      width: 16,
+                    ),
                     CustomElevatedButton(
                       text: 'Yes',
-                      onTap: () {
-                        Navigator.pop(context);
-                        BlocProvider.of<LoginCubit>(context).logout();
-                      },
+                      onTap: confirmCallback,
                       borderColor: AppColors.buttonDarkColor,
                       gradient: const LinearGradient(colors: [
                         AppColors.buttonDarkColor,
@@ -73,6 +72,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           contentPadding: const EdgeInsets.all(0),
         ));
   }
+
+  void logoutShowDialog() => _showDialog(() {
+        Navigator.pop(context);
+        BlocProvider.of<LoginCubit>(context).logout();
+      }, 'Log out?');
+
+  void deleteShowDialog() => _showDialog(() {
+        Navigator.pop(context);
+        BlocProvider.of<LoginCubit>(context).deleteAccount();
+      }, 'Delete account?');
 
   @override
   Widget build(BuildContext context) {
@@ -108,9 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   CustomElevatedButton(
                     text: 'Log out',
-                    onTap: () {
-                      logoutShowDialog('Log out?');
-                    },
+                    onTap: logoutShowDialog,
                   ),
                   const SizedBox(
                     height: 15,
@@ -118,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   CustomElevatedButton(
                     text: 'Delete account',
                     borderColor: AppColors.darkBorder,
-                    onTap: () {},
+                    onTap: deleteShowDialog,
                     gradient: AppGradients.redButton,
                   ),
                 ],
