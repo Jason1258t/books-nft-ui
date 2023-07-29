@@ -42,14 +42,19 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                         children: [
                           Column(
                             children: [
-                              const SizedBox(height: 15,),
+                              const SizedBox(
+                                height: 15,
+                              ),
                               Container(
-                                constraints: const BoxConstraints(minHeight: 60),
-                                padding: const EdgeInsets.symmetric(horizontal: 40),
+                                constraints:
+                                    const BoxConstraints(minHeight: 60),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 40),
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
-                                    color: AppColors.backGroundTextShowButtonSheet),
+                                    color: AppColors
+                                        .backGroundTextShowButtonSheet),
                                 alignment: Alignment.center,
                                 child: Text(
                                   book.name,
@@ -57,17 +62,24 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                                   style: AppTypography.font16white,
                                 ),
                               ),
-                              const SizedBox(height: 16,),
+                              const SizedBox(
+                                height: 16,
+                              ),
                               Container(
-                                  constraints: const BoxConstraints(minHeight: 60),
-                                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                                  constraints:
+                                      const BoxConstraints(minHeight: 60),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
-                                      color: AppColors.backGroundTextShowButtonSheet),
+                                      color: AppColors
+                                          .backGroundTextShowButtonSheet),
                                   alignment: Alignment.center,
-                                  child: const Row(// TODO BlocBuilder
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  child: const Row(
+                                    // TODO BlocBuilder
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       //1
                                       // SvgPicture.asset('Assets/icons/black_stars.svg'),
@@ -81,11 +93,15 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                                       //3
                                       // SvgPicture.asset('Assets/icons/check_mark.svg'),
                                       // Text('Successfully', style: AppTypography.font16white),
+                                      //4
+                                      // SvgPicture.asset('Assets/icons/red_delete.svg'),
+                                      //  Text('Error', style: AppTypography.font16white),
                                     ],
                                   )),
                             ],
                           ),
-                          CustomElevatedButton(text: 'Confirm purchase', onTap: () {}),
+                          CustomElevatedButton(
+                              text: 'Confirm purchase', onTap: () {}),
                         ],
                       ),
                     )

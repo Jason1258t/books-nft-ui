@@ -1,5 +1,5 @@
 class HomeRepository{
-  bool isSecondScreen = true;
+  bool isSecondScreen = false;
   bool showBottomSheet = false;
 
   void setIsSecondScreen(bool f) => isSecondScreen = f;

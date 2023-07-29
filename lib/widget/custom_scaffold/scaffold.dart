@@ -38,7 +38,7 @@ class CustomScaffold extends StatelessWidget {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: SvgPicture.asset('Assets/icons/arrow_back.svg'),
+                    child: SizedBox(child: SvgPicture.asset('Assets/icons/arrow_back.svg'),),
                   ),
                 )
               : Container(),

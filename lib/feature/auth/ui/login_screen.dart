@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nft/feature/auth/bloc/login/login_cubit.dart';
 import 'package:nft/utils/dialogs.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:nft/widget/app_bar/empty_app_bar.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
 import 'package:nft/widget/buttons/small_elevated_button.dart';
 import 'package:nft/widget/text_field/custom_text_field.dart';
@@ -81,35 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
           },
           child: Scaffold(
             resizeToAvoidBottomInset: false,
-            appBar: AppBar(
-              backgroundColor: AppColors.bottomNavigationBackground,
-              automaticallyImplyLeading: false,
-              flexibleSpace: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      InkWell(
-                        child: const Icon(
-                          Icons.arrow_back_ios,
-                          color: Colors.white,
-                        ),
-                        onTap: () {
-                          Navigator.pushReplacementNamed(context, '/');
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  )
-                ],
-              ),
-            ),
+            appBar: EmptyAppBar(context: context,),
             body: Container(
               width: double.infinity,
               height: double.infinity,

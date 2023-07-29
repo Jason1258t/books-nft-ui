@@ -19,18 +19,17 @@ class _WardrobeState extends State<Wardrobe> {
         Shelf.top(
           width: MediaQuery.of(context).size.width,
           shelfData: ShelfData(booksData: [
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png', owned: true),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png', owned: true),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png', owned: true),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png', owned: true),
           ], lockedBooks: 1),
         ),
         Shelf.middle(
           width: MediaQuery.of(context).size.width,
           shelfData: ShelfData(booksData: [
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
-            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png'),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png', owned: true),
+            Book(name: 'Example book', image: 'Assets/images/conan_doyle_book.png', owned: true),
           ], lockedBooks: 1),
         ),
         Shelf.bottom(

@@ -20,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedTab = 0;
+  int _selectedTab = 2;
 
   @override
   Widget build(BuildContext context) {

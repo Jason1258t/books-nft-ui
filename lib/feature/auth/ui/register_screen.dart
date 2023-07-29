@@ -12,6 +12,7 @@ import 'package:nft/widget/text_field/custom_text_field.dart';
 
 import '../../../utils/colors.dart';
 import '../../../utils/dialogs.dart';
+import '../../../widget/app_bar/empty_app_bar.dart';
 import '../../../widget/buttons/elevated_button_with_check_box.dart';
 import '../../../widget/text_field/text_field_with_button.dart';
 
@@ -81,35 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           },
           child: Scaffold(
             resizeToAvoidBottomInset: false,
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              backgroundColor: AppColors.bottomNavigationBackground,
-              flexibleSpace: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      InkWell(
-                        child: const Icon(
-                          Icons.arrow_back_ios,
-                          color: Colors.white,
-                        ),
-                        onTap: () {
-                          Navigator.pushReplacementNamed(context, '/');
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  )
-                ],
-              ),
-            ),
+            appBar: EmptyAppBar(context: context,),
             body: Container(
               width: double.infinity,
               height: double.infinity,
