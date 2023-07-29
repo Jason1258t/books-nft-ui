@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nft/utils/fonts.dart';
 
+import '../../models/shelf.dart';
+
 
 class BooksVerticalContainer extends StatefulWidget {
-  const BooksVerticalContainer({super.key, required this.onTap});
+  const BooksVerticalContainer({super.key, required this.onTap, required this.book});
 
   final Function() onTap;
+  final Book book;
 
   @override
   State<BooksVerticalContainer> createState() => _BooksVerticalContainerState();

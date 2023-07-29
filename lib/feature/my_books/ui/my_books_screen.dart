@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nft/feature/my_books/bloc/my_books_cubit.dart';
+import 'package:nft/feature/my_books/data/my_books_repository.dart';
 
 import '../../../models/shelf.dart';
+import '../../../utils/dialogs.dart';
 import '../../../widget/containers/books_vertical_container.dart';
 import '../../../widget/switch/custom_switch.dart';
 
@@ -13,21 +17,22 @@ class MyBooksScreen extends StatefulWidget {
   State<MyBooksScreen> createState() => _MyBooksScreenState();
 }
 
-List<int> list = [1, 2, 34, 4, 5, 6, 7, 8, 89];
-
 Book book = Book(
     name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: true);
 
 class _MyBooksScreenState extends State<MyBooksScreen> {
   @override
   Widget build(BuildContext context) {
+    final myBooksRepository = RepositoryProvider.of<MyBooksRepository>(context);
+
     List<Widget> listBook = [];
-    for (int i = 0; i < list.length; i += 2) {
+    for (int i = 0; i < myBooksRepository.myBooks.length; i += 2) {
       Row row = Row(children: [
         BooksVerticalContainer(
           onTap: () {
             widget.onTap(book, context);
           },
+          book: myBooksRepository.myBooks[i],
         ),
         const SizedBox(
           width: 30,
@@ -37,6 +42,7 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
             onTap: () {
               widget.onTap(book, context);
             },
+            book: myBooksRepository.myBooks[i + 1],
           ),
         ]
       ]);
@@ -45,6 +51,7 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
 
     return SingleChildScrollView(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(
             height: 32,
@@ -52,8 +59,33 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
           const CustomToggleSwitch(),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: listBook.reversed.toList(),
+            child: BlocBuilder<MyBooksCubit, MyBooksState>(
+              builder: (context, state) {
+                if (state is MyBooksLoadingState) {
+                  Dialogs.showModal(
+                      context,
+                      const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.amber,
+                        ),
+                      ));
+                  return SizedBox(height: 1000);
+                } else if (state is MyBooksFailState) {
+                  listBook == [];
+                  return Row(
+                    children: [
+                      Text('проблем'),
+                      SizedBox(height: 1000),
+                    ],
+                  );
+                } else if (state is MyBooksSuccessState) {
+                  return Column(
+                    children: listBook.reversed.toList(),
+                  );
+                }
+
+                return SizedBox(height: 1000,);
+              },
             ),
           ),
         ],

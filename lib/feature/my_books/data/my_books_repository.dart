@@ -123,10 +123,8 @@ class Wardrobe {
       if (!shelf.isLocked) {
         int index = 0;
         for (var book in shelf.booksData) {
-          if (book is Book) {
-            if (book.bookId == id) {
-              return BookPosition(shelf: shelf.shelfId, index: index);
-            }
+          if (book is Book && book.bookId == id) {
+            return BookPosition(shelf: shelf.shelfId, index: index);
           }
           index++;
         }

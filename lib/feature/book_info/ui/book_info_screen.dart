@@ -76,14 +76,16 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                                       color: AppColors
                                           .backGroundTextShowButtonSheet),
                                   alignment: Alignment.center,
-                                  child: const Row(
+                                  child: Row(
                                     // TODO BlocBuilder
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       //1
-                                      // SvgPicture.asset('Assets/icons/black_stars.svg'),
-                                      // Text('Free', style: AppTypography.font16white),
+                                      SvgPicture.asset(
+                                          'Assets/icons/black_stars.svg'),
+                                      Text('Free',
+                                          style: AppTypography.font16white),
                                       //2
                                       // CircleAvatar(
                                       //   radius: 25,

@@ -24,7 +24,7 @@ class Dialogs {
     }
   }
 
-  static Future showUnmodal<T extends Object>(
+  static Future showUnModal<T extends Object>(
       BuildContext context, Widget dialog) async {
     return show<T>(context, dialog);
   }
