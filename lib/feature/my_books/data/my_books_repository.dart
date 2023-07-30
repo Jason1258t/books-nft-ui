@@ -142,6 +142,12 @@ class MyBooksRepository {
     await _apiService.books.buyShelf();
     await getWardrobe();
   }
+
+  Future buyBook(String bookId) async {
+    await _apiService.books.buyBook(bookId);
+    await _getAvailableBooks();
+    await getMyBooks();
+  }
 }
 
 class Wardrobe {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nft/feature/store/data/storeRepository.dart';
+import 'package:nft/feature/store/data/store_repository.dart';
 import 'package:nft/models/books_category.dart';
 
 import '../../../utils/dialogs.dart';

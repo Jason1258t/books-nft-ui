@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
 
-import '../data/storeRepository.dart';
+import '../data/store_repository.dart';
 
 part 'store_state.dart';
 

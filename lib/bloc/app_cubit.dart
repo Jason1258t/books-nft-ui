@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import '../data/app_repository.dart';
 import '../feature/home/data/homa_repository.dart';
 import '../feature/my_books/data/my_books_repository.dart';
-import '../feature/store/data/storeRepository.dart';
+import '../feature/store/data/store_repository.dart';
 
 part 'app_state.dart';
 

@@ -5,6 +5,7 @@ class BooksService with MyApiMethods {
   static const String _books = '/books/get';
   static const String _allBooks = '/books/get_all';
   static const String _booksAvailableToBuy = '/books/get_available';
+  static const String _buyBook = '/books/buy/';
 
   static const String _allCollections = '/collections/get_all';
   static const String _collectionById = '/collections/get';
@@ -48,6 +49,8 @@ class BooksService with MyApiMethods {
 
   Future buyPlace(String shelfId) async =>
       await post(_buyPlace, data: {'shelf': shelfId});
+
+  Future buyBook(String bookId) async => await post('$_buyBook$bookId');
 
   Future placeBook(BookPosition position, String bookId) async => await post(
       _placeBook,

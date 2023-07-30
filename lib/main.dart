@@ -9,7 +9,7 @@ import 'package:nft/feature/my_books/bloc/purchase/purchase_cubit.dart';
 import 'package:nft/feature/my_books/bloc/wardrobe/wardrobe_cubit.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/feature/store/bloc/store_cubit.dart';
-import 'package:nft/feature/store/data/storeRepository.dart';
+import 'package:nft/feature/store/data/store_repository.dart';
 import 'package:nft/feature/wallet/bloc/wallet_cubit.dart';
 import 'package:nft/feature/wallet/data/wallet_repository.dart';
 import 'package:nft/feature/wallet/ui/pincode.dart';

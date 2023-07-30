@@ -14,7 +14,7 @@ class PurchaseCubit extends Cubit<PurchaseState> {
     emit(PurchaseLoading());
     try {
       await myBooksRepository.buyPlace(shelfId);
-      emit(PurchaseSuccess());
+      emit(PurchaseSuccess(buyType: BuyType.place));
     } catch (e) {
       emit(PurchaseFail());
       rethrow;
@@ -25,7 +25,19 @@ class PurchaseCubit extends Cubit<PurchaseState> {
     emit(PurchaseLoading());
     try {
       await myBooksRepository.buyShelf();
-      emit(PurchaseSuccess());
+      emit(PurchaseSuccess(buyType: BuyType.shelf));
+    } catch (e) {
+      emit(PurchaseFail());
+      rethrow;
+    }
+  }
+
+
+  void buyBook(String bookId) async {
+    emit(PurchaseLoading());
+    try {
+      await myBooksRepository.buyBook(bookId);
+      emit(PurchaseSuccess(buyType: BuyType.book, buyId: bookId));
     } catch (e) {
       emit(PurchaseFail());
       rethrow;

@@ -4,7 +4,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nft/feature/store/data/storeRepository.dart';
+import 'package:nft/feature/store/data/store_repository.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
