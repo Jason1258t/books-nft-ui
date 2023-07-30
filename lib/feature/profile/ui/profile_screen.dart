@@ -23,11 +23,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _showDialog(VoidCallback confirmCallback, String text) {
     double width = MediaQuery.of(context).size.width;
 
-    Dialogs.show(
-        context,
-        AlertDialog(
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          insetPadding: EdgeInsets.zero,
+          contentPadding: EdgeInsets.zero,
           content: Container(
             height: 170,
+            width: width - 40,
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -40,14 +43,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: AppTypography.font16white.copyWith(fontSize: 24),
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomElevatedButton(
                       text: 'No',
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      width: (width - 150) / 2,
-                      height: 50,
+                      height: 56,
+                      width: (width - 96) / 2,
                     ),
                     const SizedBox(
                       width: 16,
@@ -60,15 +64,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         AppColors.buttonDarkColor,
                         AppColors.buttonDarkColor
                       ]),
-                      height: 50,
-                      width: (width - 150) / 2,
+                      height: 56,
+                      width: (width - 96) / 2,
                     ),
                   ],
                 )
               ],
             ),
           ),
-          contentPadding: const EdgeInsets.all(0),
         ));
   }
 
