@@ -60,10 +60,8 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                 },
               )));
       if (purchaseBloc.state is PurchaseSuccess) {
-        print('хуй');
         PurchaseSuccess state = purchaseBloc.state as PurchaseSuccess;
         if (state.buyType == BuyType.book && state.buyId == book.id) {
-          print('хуй 2');
           setState(() {
             owned = true;
           });
