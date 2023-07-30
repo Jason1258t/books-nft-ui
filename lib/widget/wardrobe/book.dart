@@ -97,7 +97,7 @@ class BookWidget extends StatelessWidget {
             padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom),
             child: PurchaseBottomSheet(
-              title: 'Buy place',
+              title: 'New place',
               purchaseCallback: () {
                 BlocProvider.of<PurchaseCubit>(context)
                     .buyPlace(position!.shelf);

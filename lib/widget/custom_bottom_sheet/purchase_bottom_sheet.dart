@@ -10,10 +10,11 @@ import 'bottom_sheet.dart';
 
 class PurchaseBottomSheet extends StatefulWidget {
   const PurchaseBottomSheet(
-      {super.key, required this.title, required this.purchaseCallback});
+      {super.key, required this.title, required this.purchaseCallback, this.needTitleField = false});
 
   final String title;
   final VoidCallback purchaseCallback;
+  final bool needTitleField;
 
   @override
   State<PurchaseBottomSheet> createState() => _PurchaseBottomSheetState();
@@ -23,6 +24,7 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
   bool wait = true;
   bool inProcess = false;
   List<Widget> children = [];
+  MainAxisAlignment mainAxisAlignment = MainAxisAlignment.spaceBetween;
 
   String buttonTitle = 'Confirm purchase';
 
@@ -40,27 +42,39 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
         inProcess = state is PurchaseLoading;
 
         if (state is PurchaseLoading) {
+          mainAxisAlignment = MainAxisAlignment.center;
           buttonTitle = 'Wait...';
           buttonCallback = () {};
           children = [
             const CircleAvatar(
-              radius: 25,
+              radius: 16,
               backgroundColor: AppColors.cursorBackground,
-              child: CircularProgressIndicator(
-                color: Colors.white,
+              child: SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 3,
+                ),
               ),
             )
           ];
         } else if (state is PurchaseSuccess) {
+          mainAxisAlignment = MainAxisAlignment.spaceBetween;
           buttonTitle = 'Done';
-          buttonCallback = () {Navigator.pop(context);};
+          buttonCallback = () {
+            Navigator.pop(context);
+          };
           children = [
             SvgPicture.asset('Assets/icons/check_mark.svg'),
             Text('Successfully', style: AppTypography.font16white),
           ];
         } else if (state is PurchaseFail) {
+          mainAxisAlignment = MainAxisAlignment.spaceBetween;
           buttonTitle = 'Go back';
-          buttonCallback = () {Navigator.pop(context);};
+          buttonCallback = () {
+            Navigator.pop(context);
+          };
           children = [
             SvgPicture.asset('Assets/icons/red_delete.svg'),
             Text('Error', style: AppTypography.font16white),
@@ -83,23 +97,25 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
                         const SizedBox(
                           height: 15,
                         ),
-                        Container(
-                          constraints: const BoxConstraints(minHeight: 60),
-                          padding: const EdgeInsets.symmetric(horizontal: 40),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: AppColors.backGroundTextShowButtonSheet),
-                          alignment: Alignment.center,
-                          child: Text(
-                            widget.title,
-                            textAlign: TextAlign.center,
-                            style: AppTypography.font16white,
+                        if (widget.needTitleField)...[
+                          Container(
+                            constraints: const BoxConstraints(minHeight: 60),
+                            padding: const EdgeInsets.symmetric(horizontal: 40),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: AppColors.backGroundTextShowButtonSheet),
+                            alignment: Alignment.center,
+                            child: Text(
+                              widget.title,
+                              textAlign: TextAlign.center,
+                              style: AppTypography.font16white,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                        ],
                         Container(
                             constraints: const BoxConstraints(minHeight: 60),
                             padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -113,22 +129,35 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      SvgPicture.asset(
-                                          'Assets/icons/black_stars.svg'),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          SvgPicture.asset(
+                                              'Assets/icons/black_stars.svg'),
+                                          if (!widget.needTitleField)...[
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              widget.title,
+                                              textAlign: TextAlign.center,
+                                              style: AppTypography.font16white,
+                                            ),
+                                          ]
+                                        ],
+                                      ),
                                       Text('Free',
                                           style: AppTypography.font16white),
                                     ],
                                   )
                                 : Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: mainAxisAlignment,
                                     children: children,
                                   )),
                       ],
                     ),
                     CustomElevatedButton(
-                        text: buttonTitle,
-                        onTap: buttonCallback),
+                        text: buttonTitle, onTap: buttonCallback),
                   ],
                 ),
               )

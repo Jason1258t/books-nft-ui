@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nft/models/book_position.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/buttons/row_elevated_button.dart';
 
-import '../../../widget/wardrobe/book.dart';
-import '../../models/shelf.dart';
+import '../../../../widget/wardrobe/book.dart';
+import '../../../feature/my_books/bloc/purchase/purchase_cubit.dart';
+import '../../../models/shelf.dart';
+import '../../custom_bottom_sheet/purchase_bottom_sheet.dart';
+
+part 'locked_shelf.dart';
 
 const String _topShelfBackground = 'Assets/images/shelf_top.png';
 const String _middleShelfBackground = 'Assets/images/shelf_middle.png';
@@ -152,36 +157,4 @@ class _ShelfState extends State<Shelf> {
   }
 }
 
-class LockedShelf extends StatelessWidget {
-  const LockedShelf({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Stack(children: [
-      Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: const [
-              BoxShadow(
-                  offset: Offset.zero, blurRadius: 20, color: Colors.black54)
-            ]),
-      ),
-      Container(
-        alignment: Alignment.topRight,
-        child: Image.asset(
-          'Assets/images/locked_shelf_counter.png',
-          width: 58,
-        ),
-      ),
-      Center(
-          child: RowElevatedButton(
-        text: 'Buy',
-        onTap: () {},
-        asset1: 'Assets/icons/shopping-bag.svg',
-        gradient: AppGradients.wardrobeButtons,
-        width: 150,
-        height: 56,
-      )),
-    ]);
-  }
-}

@@ -45,7 +45,7 @@ class Book implements ShelfPlaceData {
         id = json['id'],
         name = json['bookInfo']['title'],
         image = json['covers'][0]['url'],
-        spine = json['covers'][0]['spine'],
+        spine = json['covers'][0]['spine'] ?? json['covers'][0]['url'],
         description = json['bookInfo']['description'],
         ISBN = json['details']['ISBN'],
         createAt = json['details']['publicationDate'],
