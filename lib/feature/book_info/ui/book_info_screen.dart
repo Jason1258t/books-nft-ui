@@ -5,6 +5,7 @@ import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/utils/dialogs.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:nft/widget/custom_bottom_sheet/purchase_bottom_sheet.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
 import '../../../models/shelf.dart';
@@ -12,7 +13,6 @@ import '../../../utils/colors.dart';
 import '../../../utils/gradients.dart';
 import '../../../widget/app_bar/app_bar.dart';
 import '../../../widget/buttons/custom_elevated_button.dart';
-import '../../../widget/custom_bottom_sheet/bottom_sheet.dart';
 
 class BookInfoScreen extends StatefulWidget {
   const BookInfoScreen({super.key});
@@ -28,7 +28,14 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
         <String, dynamic>{}) as Map;
 
     final id = arguments['book'];
-    final Book book = RepositoryProvider.of<MyBooksRepository>(context).searchBook(id)!;
+    final bool owned = arguments['owned'];
+    Book book;
+    if (owned) {
+      book = RepositoryProvider.of<MyBooksRepository>(context).searchBook(id)!;
+    } else {
+      book = Book(name: 'aboba', image: 'i'); // TODO сделать поиск по книгам в сторе
+    }
+
 
     void showBuyBook() {
       showModalBottomSheet(
@@ -37,83 +44,10 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
           builder: (BuildContext context) => Padding(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: CustomBottomSheet(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  title: 'Purchase',
-                  children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              Container(
-                                constraints:
-                                    const BoxConstraints(minHeight: 60),
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 40),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: AppColors
-                                        .backGroundTextShowButtonSheet),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  book.name,
-                                  textAlign: TextAlign.center,
-                                  style: AppTypography.font16white,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              Container(
-                                  constraints:
-                                      const BoxConstraints(minHeight: 60),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: AppColors
-                                          .backGroundTextShowButtonSheet),
-                                  alignment: Alignment.center,
-                                  child: Row(
-                                    // TODO BlocBuilder
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      //1 wait
-                                      SvgPicture.asset(
-                                          'Assets/icons/black_stars.svg'),
-                                      Text('Free',
-                                          style: AppTypography.font16white),
-                                      //2 load
-                                      // CircleAvatar(
-                                      //   radius: 25,
-                                      //   backgroundColor: AppColors.cursorBackground,
-                                      //   child: CircularProgressIndicator(color: Colors.white,),
-                                      // )
-                                      //3 success
-                                      // SvgPicture.asset('Assets/icons/check_mark.svg'),
-                                      // Text('Successfully', style: AppTypography.font16white),
-                                      //4 fail
-                                      // SvgPicture.asset('Assets/icons/red_delete.svg'),
-                                      //  Text('Error', style: AppTypography.font16white),
-                                    ],
-                                  )),
-                            ],
-                          ),
-                          CustomElevatedButton(
-                              text: 'Confirm purchase', onTap: () {}),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                child: PurchaseBottomSheet(
+                  title: book.name,
+                  purchaseCallback: () {},
+                )
               ));
     }
 

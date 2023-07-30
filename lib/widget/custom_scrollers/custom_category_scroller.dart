@@ -74,7 +74,8 @@ class CustomCategoryScroller extends StatelessWidget {
                                           Navigator.pushNamed(
                                               context, '/book_info_screen',
                                               arguments: {
-                                                'book': e.id
+                                                'book': e.id,
+                                                'owned': false
                                               });
                                         },
                                       ),

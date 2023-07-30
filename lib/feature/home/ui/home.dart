@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
       MyBooksScreen(
         onTap: (book, ctx) {
           Navigator.pushNamed(ctx, '/book_info_screen',
-              arguments: {'book': book.id});
+              arguments: {'book': book.id, 'owned': true});
         },
         books: RepositoryProvider.of<MyBooksRepository>(context).myBooks,
       ),
