@@ -37,7 +37,7 @@ class CreateWallet extends StatelessWidget {
                       height: 32,
                     ),
                     CustomElevatedButton(
-                      text: 'Import wallet by secret phrase',
+                      text: 'Import wallet',
                       onTap: importWallet,
                     ),
                   ],

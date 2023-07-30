@@ -43,7 +43,6 @@ class _CustomToggleSwitchState extends State<CustomToggleSwitch> {
           width: (width - 40) / 2,
           height: 55,
           alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             gradient: RadialGradient(colors: [
               selectIndex == 0
@@ -76,7 +75,6 @@ class _CustomToggleSwitchState extends State<CustomToggleSwitch> {
                 ? AppColors.isActiveSwitchToggle
                 : AppColors.isNoActiveSwitchToggle,
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Text('Collections',
               style: selectIndex == 1
                   ? AppTypography.font24goldShadow

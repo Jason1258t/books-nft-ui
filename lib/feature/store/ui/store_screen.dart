@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nft/feature/store/data/storeRepository.dart';
 import 'package:nft/models/books_category.dart';
 
-import '../../../models/shelf.dart';
+import '../../../utils/dialogs.dart';
 import '../../../widget/custom_scrollers/custom_category_scroller.dart';
 import '../../../widget/switch/custom_switch_categories.dart';
+import '../bloc/store_cubit.dart';
 
 class StoreScreen extends StatefulWidget {
   const StoreScreen({super.key});
@@ -12,30 +15,27 @@ class StoreScreen extends StatefulWidget {
   State<StoreScreen> createState() => _StoreScreenState();
 }
 
-List<BooksGenre> booksCategories = [
-  BooksGenre(name: 'Economy', books: [
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
-  ]),
-  BooksGenre(name: 'Fantasy', books: [
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
-  ]),
-  BooksGenre(name: 'Romantic', books: [
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
-    Book(name: 'asdf', image: 'Assets/images/conan_doyle_book.png', owned: false),
-  ]),
-];
-
 class _StoreScreenState extends State<StoreScreen> {
   @override
   Widget build(BuildContext context) {
+    final storeRepository = RepositoryProvider.of<StoreRepository>(context);
+
+    List<BooksGenre> getBooksGenres() {
+      List<BooksGenre> booksGenres = [
+        BooksGenre(
+            name: 'Economy',
+            books: storeRepository.saleBooks.sublist(0, 3).toList()),
+        BooksGenre(
+            name: 'Fantasy',
+            books: storeRepository.saleBooks.sublist(3, 6).toList()),
+        BooksGenre(
+            name: 'Romantic',
+            books: storeRepository.saleBooks.sublist(6, 9).toList()),
+      ];
+
+      return booksGenres;
+    }
+
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
@@ -54,12 +54,22 @@ class _StoreScreenState extends State<StoreScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Column(
-                children: booksCategories
-                    .map((e) => CustomCategoryScroller(
-                          category: e,
-                        ))
-                    .toList(),
+              BlocBuilder<StoreCubit, StoreState>(
+                builder: (context, state) {
+                  if (state is StoreSuccessState) {
+                    return Column(
+                      children: getBooksGenres()
+                          .map((e) => CustomCategoryScroller(
+                                category: e,
+                              ))
+                          .toList(),
+                    );
+                  } else if (state is StoreLoadingState) {
+                    Dialogs.showModal(
+                        context, const CircularProgressIndicator());
+                  }
+                  return Text('Проблемс с инетом');
+                },
               )
             ],
           ),

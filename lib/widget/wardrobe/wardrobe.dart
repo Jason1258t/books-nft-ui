@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/widget/wardrobe/shelf.dart';
 
+import '../../feature/auth/bloc/login/login_cubit.dart';
 import '../../feature/my_books/bloc/wardrobe/wardrobe_cubit.dart';
 import '../../models/shelf.dart';
 
@@ -59,11 +60,10 @@ class _WardrobeState extends State<Wardrobe> {
           return Column(
             children: generateShelves(),
           );
-        } else {
-          return Column(
-            children: generateEmptyShelves(),
-          );
         }
+        return Column(
+          children: generateEmptyShelves(),
+        );
       },
     );
   }

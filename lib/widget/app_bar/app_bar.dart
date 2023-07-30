@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/utils/fonts.dart';
 
@@ -23,25 +24,25 @@ class CustomAppBar extends AppBar {
                 text: 'x1.4',
                 fill: 0,
                 asset: 'Assets/icons/Vector-2.svg',
-                width: (width - 40) * 0.18,
+                width: (width - 39) * 0.19,
                 height: height * 0.03,
               ),
               UserStat(
                 text: '3,3/5',
                 fill: 3.3 / 5,
                 asset: 'Assets/icons/energy.svg',
-                width: (width - 40) * 0.18,
+                width: (width - 39) * 0.19,
                 height: height * 0.03,
               ),
               UserStat(
                 text: '85%',
                 fill: 0.85,
                 asset: 'Assets/icons/shield.svg',
-                width: (width - 40) * 0.18,
+                width: (width - 39) * 0.19,
                 height: height * 0.03,
               ),
               Container(
-                width: (width - 40) * 0.18,
+                width: (width - 39) * 0.19,
                 height: height * 0.03,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
@@ -67,7 +68,7 @@ class CustomAppBar extends AppBar {
               InkWell(
                 onTap: () {},
                 child: Container(
-                  width: (width - 40) * 0.18,
+                  width: (width - 39) * 0.19,
                   height: height * 0.03,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(

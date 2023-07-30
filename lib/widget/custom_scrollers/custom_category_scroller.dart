@@ -67,7 +67,7 @@ class CustomCategoryScroller extends StatelessWidget {
                       height: 170,
                       child: Row(
                         children: listBook.map((e) => Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8),
+                                      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
                                       child: BooksHorizontalContainer(
                                         book: e,
                                         onTap: () {

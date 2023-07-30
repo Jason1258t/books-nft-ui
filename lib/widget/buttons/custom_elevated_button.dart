@@ -51,7 +51,7 @@ class CustomElevatedButton extends StatelessWidget {
                 children: [
                   Text(text,
                       textAlign: TextAlign.center,
-                      style: AppTypography.buttonText20),
+                      style: AppTypography.buttonText20,)
                 ],
               ),
             ],
