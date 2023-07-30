@@ -39,6 +39,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                     fit: BoxFit.cover)),
             child: SafeArea(
               child: SingleChildScrollView(
+                physics: const ClampingScrollPhysics(),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
