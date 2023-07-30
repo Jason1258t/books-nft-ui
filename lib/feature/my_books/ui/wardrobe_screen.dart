@@ -50,7 +50,9 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const SizedBox(width: 10,),
+                                const SizedBox(
+                                  width: 10,
+                                ),
                                 Image.asset(
                                   'Assets/images/Energy_bar_background5.png',
                                   width: 270,
@@ -61,14 +63,13 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
                             child: SizedBox(
                               height: height * 0.18,
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.start,
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Expanded(
                                     child: Column(
@@ -78,8 +79,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                         UserStat(
                                           text: 'x1.4',
                                           fill: 0,
-                                          asset:
-                                              'Assets/icons/Vector-2.svg',
+                                          asset: 'Assets/icons/Vector-2.svg',
                                           width: (width - 40) * 0.3,
                                           height: height * 0.03,
                                         ),
@@ -113,8 +113,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                         UserStat(
                                           text: '3,3/5',
                                           fill: 3.3 / 5,
-                                          asset:
-                                              'Assets/icons/energy.svg',
+                                          asset: 'Assets/icons/energy.svg',
                                           width: (width - 40) * 0.3,
                                           height: height * 0.03,
                                         ),
@@ -148,19 +147,18 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                         UserStat(
                                           text: '85%',
                                           fill: 0.85,
-                                          asset:
-                                              'Assets/icons/shield.svg',
+                                          asset: 'Assets/icons/shield.svg',
                                           width: (width - 40) * 0.3,
                                           height: height * 0.03,
                                         ),
                                         Container(
-                                            padding:
-                                                const EdgeInsets.fromLTRB(
-                                                    10, 0, 20, 0),
+                                            padding: const EdgeInsets.fromLTRB(
+                                                10, 0, 20, 0),
                                             child: const LvlContainer()),
                                         ConstIconsWithTextElevatedButton(
                                           onTap: () {
-                                            Navigator.pushNamed(context, '/profile_screen');
+                                            Navigator.pushNamed(
+                                                context, '/profile_screen');
                                           },
                                           text: 'Profile',
                                           height: height * 0.03,

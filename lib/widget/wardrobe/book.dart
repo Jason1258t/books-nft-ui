@@ -63,6 +63,7 @@ class BookWidget extends StatelessWidget {
     } else {
       decoration = BoxDecoration(
         borderRadius: BorderRadius.circular(3),
+        color: Colors.black45,
         image: DecorationImage(
           image: NetworkImage(data!.spine),
           fit: BoxFit.cover

@@ -29,6 +29,11 @@ class MyBooksRepository {
     getWardrobe().then((value) => getMyBooks());
   }
 
+  void clearWardrobe() {
+    wardrobe = Wardrobe();
+    wardrobeState.add(LoadingStateEnum.loading);
+  }
+
   BehaviorSubject<LoadingStateEnum> wardrobeState =
       BehaviorSubject<LoadingStateEnum>.seeded(LoadingStateEnum.loading);
   BehaviorSubject<LoadingStateEnum> myBooksState =
