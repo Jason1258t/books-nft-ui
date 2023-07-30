@@ -20,6 +20,9 @@ class _CustomSwitchCategoriesState extends State<CustomSwitchCategories> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
     return Stack(
       children: [
         CustomCategoryButton(
@@ -30,14 +33,14 @@ class _CustomSwitchCategoriesState extends State<CustomSwitchCategories> {
               selectTab(0);
             }),
         CustomCategoryButton(
-            padding: const EdgeInsets.only(left: 75),
+            padding: EdgeInsets.only(left: width * 0.22),
             text: 'New',
             active: active == 1,
             callback: () {
               selectTab(1);
             }),
         CustomCategoryButton(
-            padding: const EdgeInsets.only(left: 150),
+            padding: EdgeInsets.only(left: width * 0.44),
             text: 'Popular',
             active: active == 2,
             callback: () {
@@ -63,13 +66,16 @@ class CustomCategoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
     return Padding(
       padding: padding,
       child: InkWell(
           onTap: callback,
           child: Container(
-            width: 92,
-            height: 70,
+            width: width * 0.32,
+            height: height * 0.1,
             padding: const EdgeInsets.only(left: 13, bottom: 3, right: 24),
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -81,7 +87,9 @@ class CustomCategoryButton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 StrokeText(
-                  strokeColor: active ? AppColors.isActiveStrokeText : AppColors.isNoActiveStrokeText,
+                  strokeColor: active
+                      ? AppColors.isActiveStrokeText
+                      : AppColors.isNoActiveStrokeText,
                   strokeWidth: 2.5,
                   textStyle: active
                       ? AppTypography.font14white

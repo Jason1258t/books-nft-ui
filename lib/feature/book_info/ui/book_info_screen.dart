@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
+import 'package:nft/feature/store/data/storeRepository.dart';
 import 'package:nft/utils/dialogs.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/custom_bottom_sheet/purchase_bottom_sheet.dart';
@@ -24,7 +25,21 @@ class BookInfoScreen extends StatefulWidget {
 class _BookInfoScreenState extends State<BookInfoScreen> {
   @override
   Widget build(BuildContext context) {
-    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+    final width = MediaQuery
+        .of(context)
+        .size
+        .width;
+
+    final height = MediaQuery
+        .of(context)
+        .size
+        .height;
+
+
+    final arguments = (ModalRoute
+        .of(context)
+        ?.settings
+        .arguments ??
         <String, dynamic>{}) as Map;
 
     final id = arguments['book'];
@@ -33,22 +48,24 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
     if (owned) {
       book = RepositoryProvider.of<MyBooksRepository>(context).searchBook(id)!;
     } else {
-      book = Book(name: 'aboba', image: 'i'); // TODO сделать поиск по книгам в сторе
+      book = RepositoryProvider.of<StoreRepository>(context).searchBook(id)!;
     }
-
 
     void showBuyBook() {
       showModalBottomSheet(
           context: context,
           isScrollControlled: true,
-          builder: (BuildContext context) => Padding(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: PurchaseBottomSheet(
-                  title: book.name,
-                  purchaseCallback: () {},
-                )
-              ));
+          builder: (BuildContext context) =>
+              Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery
+                          .of(context)
+                          .viewInsets
+                          .bottom),
+                  child: PurchaseBottomSheet(
+                    title: book.name,
+                    purchaseCallback: () {},
+                  )));
     }
 
     void removeFromShelf() async {
@@ -56,8 +73,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
     }
 
     void putOnShelf() {
-      BlocProvider.of<MoveBookCubit>(context)
-          .putBook(id: id);
+      BlocProvider.of<MoveBookCubit>(context).putBook(id: id);
     }
 
     return BlocConsumer<MoveBookCubit, MoveBookState>(
@@ -76,12 +92,18 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
         }
       },
       builder: (context, state) {
-        final Book book = RepositoryProvider.of<MyBooksRepository>(context).searchBook(id)!;
+        if (owned) {
+          book =
+          RepositoryProvider.of<MyBooksRepository>(context).searchBook(id)!;
+        } else {
+          book =
+          RepositoryProvider.of<StoreRepository>(context).searchBook(id)!;
+        }
         return CustomScaffold(
           isButtonBack: true,
           appBar: CustomAppBar(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            width: width,
+            height: height,
             context: context,
           ),
           child: SingleChildScrollView(
@@ -102,7 +124,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                         child: Text(
                           book.name,
                           style:
-                              AppTypography.font20white.copyWith(fontSize: 24),
+                          AppTypography.font20white.copyWith(fontSize: 24),
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -122,7 +144,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Image.network(book.image),
+                  Image.network(book.image, width: width * 0.7,height:  height * 0.4, fit: BoxFit.cover,),
                   const SizedBox(
                     height: 10,
                   ),
@@ -194,36 +216,36 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                   ),
                   book.owned
                       ? Column(
-                          children: [
-                            CustomElevatedButton(
-                              text: book.available
-                                  ? 'Put on a shelf'
-                                  : 'Remove from shelf',
-                              borderColor: AppColors.darkBorder,
-                              onTap:
-                                  book.available ? putOnShelf : removeFromShelf,
-                              gradient: AppGradients.lightButton,
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            CustomElevatedButton(
-                              text: 'Read',
-                              borderColor: AppColors.buttonDarkColor,
-                              onTap: () {},
-                              gradient: const LinearGradient(colors: [
-                                AppColors.buttonDarkColor,
-                                AppColors.buttonDarkColor
-                              ]),
-                            ),
-                          ],
-                        )
+                    children: [
+                      CustomElevatedButton(
+                        text: book.available
+                            ? 'Put on a shelf'
+                            : 'Remove from shelf',
+                        borderColor: AppColors.darkBorder,
+                        onTap:
+                        book.available ? putOnShelf : removeFromShelf,
+                        gradient: AppGradients.lightButton,
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      CustomElevatedButton(
+                        text: 'Read',
+                        borderColor: AppColors.buttonDarkColor,
+                        onTap: () {},
+                        gradient: const LinearGradient(colors: [
+                          AppColors.buttonDarkColor,
+                          AppColors.buttonDarkColor
+                        ]),
+                      ),
+                    ],
+                  )
                       : CustomElevatedButton(
-                          text: 'Buy',
-                          borderColor: AppColors.darkBorder,
-                          onTap: showBuyBook,
-                          gradient: AppGradients.redButton,
-                        ),
+                    text: 'Buy',
+                    borderColor: AppColors.darkBorder,
+                    onTap: showBuyBook,
+                    gradient: AppGradients.redButton,
+                  ),
                 ],
               ),
             ),

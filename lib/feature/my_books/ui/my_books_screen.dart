@@ -32,7 +32,7 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
           book: widget.books[i],
         ),
         const SizedBox(
-          width: 30,
+          width: 20,
         ),
       ]);
 

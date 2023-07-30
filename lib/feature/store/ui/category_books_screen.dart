@@ -2,13 +2,16 @@
 
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nft/feature/store/data/storeRepository.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
 import '../../../utils/colors.dart';
 import '../../../widget/app_bar/app_bar.dart';
+import '../../../widget/containers/books_vertical_container.dart';
 
 class CategoryBooksScreen extends StatefulWidget {
   const CategoryBooksScreen({super.key});
@@ -28,37 +31,42 @@ List<int> list1 = [1, 2, 34, 4, 5, 6, 7, 8, 89];
 
 
 class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
-  String activeValue = '';
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-    // List<Widget> listBook = [];
-    // for (int i = 0; i < list1.length; i += 2) {
-    //   Row row = Row(children: [
-    //     BooksVerticalContainer(
-    //       onTap: () {
-    //         Navigator.pushNamed(context, '/book_info_screen',
-    //             arguments: {'book': book});
-    //       },
-    //
-    //     ),
-    //     const SizedBox(
-    //       width: 30,
-    //     ),
-    //     if (listBook.length != i) ...[
-    //       BooksVerticalContainer(
-    //         onTap: () {
-    //           Navigator.pushNamed(context, '/book_info_screen',
-    //               arguments: {'book': book});
-    //         },
-    //       ),
-    //     ]
-    //   ]);
-    //   listBook.add(row);
-    // }
+    final storeRepository = RepositoryProvider.of<StoreRepository>(context);
+
+    List<Widget> listBook = [];
+    for (int i = 0; i < storeRepository.saleBooks.length; i += 2) {
+      Row row = Row(children: [
+        BooksVerticalContainer(
+          onTap: () {
+            Navigator.pushNamed(context, '/book_info_screen', arguments: {'book' : storeRepository.saleBooks[i].id, 'owned' : false});
+          },
+          book: storeRepository.saleBooks[i],
+        ),
+        const SizedBox(
+          width: 20,
+        ),
+      ]);
+
+      try {
+        row.children.add(
+          BooksVerticalContainer(
+            onTap: () {
+              Navigator.pushNamed(context, '/book_info_screen', arguments: {'book' : storeRepository.saleBooks[i + 1].id, 'owned' : false});
+            },
+            book: storeRepository.saleBooks[i + 1],
+          ),
+        );
+      } catch (e) {}
+
+      listBook.add(row);
+    }
+    String activeValue = '';
 
     return CustomScaffold(
       isButtonBack: true,
@@ -214,7 +222,7 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
                     height: height - 206,
                     padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: ListView(
-                      children: [],
+                      children: listBook,
                     ),
                   ),
                 ],

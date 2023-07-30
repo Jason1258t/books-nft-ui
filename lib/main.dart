@@ -8,6 +8,8 @@ import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
 import 'package:nft/feature/my_books/bloc/purchase/purchase_cubit.dart';
 import 'package:nft/feature/my_books/bloc/wardrobe/wardrobe_cubit.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
+import 'package:nft/feature/store/bloc/store_cubit.dart';
+import 'package:nft/feature/store/data/storeRepository.dart';
 import 'package:nft/feature/wallet/bloc/wallet_cubit.dart';
 import 'package:nft/feature/wallet/data/wallet_repository.dart';
 import 'package:nft/feature/wallet/ui/pincode.dart';
@@ -107,6 +109,8 @@ class MyRepositoryProviders extends StatelessWidget {
       RepositoryProvider(create: (_) => WalletRepository()),
       RepositoryProvider(create: (_) => AppRepository(apiService: apiService)),
       RepositoryProvider(
+          create: (_) => StoreRepository(apiService: apiService)),
+      RepositoryProvider(
           create: (_) => MyBooksRepository(apiService: apiService)),
     ], child: const MyBlocProviders());
   }
@@ -132,12 +136,18 @@ class MyBlocProviders extends StatelessWidget {
             appRepository: RepositoryProvider.of<AppRepository>(context),
             homeRepository: RepositoryProvider.of<HomeRepository>(context),
             myBooksRepository:
-                RepositoryProvider.of<MyBooksRepository>(context)),
+                RepositoryProvider.of<MyBooksRepository>(context),
+            storeRepository: RepositoryProvider.of<StoreRepository>(context)),
         lazy: false,
       ),
       BlocProvider(
         create: (_) => LoginCubit(
             appRepository: RepositoryProvider.of<AppRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => StoreCubit(
+            appRepository: RepositoryProvider.of<StoreRepository>(context)),
         lazy: false,
       ),
       BlocProvider(

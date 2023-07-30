@@ -209,7 +209,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             BlocProvider.of<LoginCubit>(context).login(
                                 email: emailController.text.trim(),
                                 code: passwordController.text.trim());
-                            // Navigator.pushReplacementNamed(context, '/home_screen');
                           }),
                       const SizedBox(
                         height: 16,
