@@ -67,7 +67,7 @@ class _StoreScreenState extends State<StoreScreen> {
                   } else if (state is StoreLoadingState) {
                     return const Center(child: CircularProgressIndicator());
                   }
-                  return Text('Проблемс с инетом');
+                  return const Text('Проблемс с инетом');
                 },
               )
             ],
