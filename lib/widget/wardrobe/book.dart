@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
+import 'package:nft/feature/my_books/bloc/purchase/purchase_cubit.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/feature/my_books/ui/my_books_screen.dart';
 import 'package:nft/models/book_position.dart';
@@ -15,6 +16,7 @@ import '../../utils/colors.dart';
 import '../../utils/fonts.dart';
 import '../app_bar/empty_app_bar.dart';
 import '../buttons/custom_elevated_button.dart';
+import '../custom_bottom_sheet/purchase_bottom_sheet.dart';
 
 enum BookType { withData, add, lock }
 
@@ -41,9 +43,10 @@ class BookWidget extends StatelessWidget {
             bookType != BookType.withData,
         'if book has info data cant be null');
     assert(
-        bookType == BookType.add && position != null ||
-            bookType != BookType.add,
-        'position must not be null is bookType is add');
+        (bookType == BookType.add || bookType == BookType.lock) &&
+                position != null ||
+            bookType == BookType.withData,
+        'position must not be null is bookType is add or lock');
 
     if (bookType == BookType.add || bookType == BookType.lock) {
       decoration = _bookDecoration;
@@ -62,13 +65,10 @@ class BookWidget extends StatelessWidget {
           ));
     } else {
       decoration = BoxDecoration(
-        borderRadius: BorderRadius.circular(3),
-        color: Colors.black45,
-        image: DecorationImage(
-          image: NetworkImage(data!.spine),
-          fit: BoxFit.cover
-        )
-      );
+          borderRadius: BorderRadius.circular(3),
+          color: Colors.black45,
+          image: DecorationImage(
+              image: NetworkImage(data!.spine), fit: BoxFit.cover));
       child = null;
     }
 
@@ -88,7 +88,22 @@ class BookWidget extends StatelessWidget {
 
   late final onTap;
 
-  _buyPlace() {}
+  _buyPlace(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        enableDrag: false,
+        builder: (BuildContext context) => Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: PurchaseBottomSheet(
+              title: 'Buy place',
+              purchaseCallback: () {
+                BlocProvider.of<PurchaseCubit>(context)
+                    .buyPlace(position!.shelf);
+              },
+            )));
+  }
 
   _openBook(Book book, BuildContext context) {
     Navigator.pushNamed(context, '/book_info_screen',
@@ -148,8 +163,7 @@ class BookWidget extends StatelessWidget {
                                 text: 'Confirm',
                                 onTap: () {
                                   BlocProvider.of<MoveBookCubit>(context)
-                                      .putBook(
-                                          id: book.id, position: position);
+                                      .putBook(id: book.id, position: position);
                                 }),
                           ],
                         ),
@@ -179,7 +193,9 @@ class BookWidget extends StatelessWidget {
                     ))));
       };
     } else if (_bookType == BookType.lock) {
-      onTap = _buyPlace();
+      onTap = () {
+        _buyPlace(context);
+      };
     } else {
       onTap = () {
         _openBook(data!, context);

@@ -94,8 +94,12 @@ class _ShelfState extends State<Shelf> {
     if (7 - widget.shelfData.booksData.length > 0) {
       books.addAll(List.generate(
           7 - widget.shelfData.booksData.length,
-          (index) =>
-              BookWidget(shelfWidth: widget.width, bookType: BookType.lock)));
+          (index) => BookWidget(
+                shelfWidth: widget.width,
+                bookType: BookType.lock,
+                position:
+                    BookPosition(shelf: widget.shelfData.shelfId, index: 0),
+              )));
     }
 
     return books;
