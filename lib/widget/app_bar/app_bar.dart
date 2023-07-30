@@ -66,7 +66,11 @@ class CustomAppBar extends AppBar {
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  if (isProfileButton) {
+                    Navigator.pushNamed(context, '/profile_screen');
+                  }
+                },
                 child: Container(
                   width: (width - 39) * 0.19,
                   height: height * 0.03,
@@ -75,13 +79,7 @@ class CustomAppBar extends AppBar {
                     color: AppColors.statColor,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: InkWell(
-                      onTap: () {
-                        if (isProfileButton) {
-                          Navigator.pushNamed(context, '/profile_screen');
-                        }
-                      },
-                      child: SvgPicture.asset('Assets/icons/profile.svg')),
+                  child: SvgPicture.asset('Assets/icons/profile.svg'),
                 ),
               ),
             ],
