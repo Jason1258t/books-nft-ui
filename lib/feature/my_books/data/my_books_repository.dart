@@ -1,5 +1,5 @@
 import 'package:nft/models/book_position.dart';
-import 'package:nft/services/api_service.dart';
+import 'package:nft/services/api_service/api_service.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../models/shelf.dart';
@@ -131,6 +131,16 @@ class MyBooksRepository {
       wardrobeState.add(LoadingStateEnum.fail);
       rethrow;
     }
+  }
+
+  Future buyPlace(String shelfId) async {
+    await _apiService.books.buyPlace(shelfId);
+    await getWardrobe();
+  }
+
+  Future buyShelf() async {
+    await _apiService.books.buyShelf();
+    await getWardrobe();
   }
 }
 

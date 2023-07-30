@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:nft/services/api_service.dart';
+import 'package:nft/services/api_service/api_service.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
