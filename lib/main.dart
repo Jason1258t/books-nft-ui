@@ -175,6 +175,7 @@ class MyBlocProviders extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) => PurchaseCubit(
+            storeRepository: RepositoryProvider.of<StoreRepository>(context),
             myBooksRepository:
                 RepositoryProvider.of<MyBooksRepository>(context)),
         lazy: false,

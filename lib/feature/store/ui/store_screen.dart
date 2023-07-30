@@ -65,8 +65,7 @@ class _StoreScreenState extends State<StoreScreen> {
                           .toList(),
                     );
                   } else if (state is StoreLoadingState) {
-                    Dialogs.showModal(
-                        context, const CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
                   return Text('Проблемс с инетом');
                 },

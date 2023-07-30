@@ -34,19 +34,21 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
 
-    final purchaseBloc = BlocProvider.of<PurchaseCubit>(context);
+    final myBooksRepository = RepositoryProvider.of<MyBooksRepository>(context);
+    final storeBooksRepository =
+        RepositoryProvider.of<StoreRepository>(context);
 
     final id = arguments['book'];
-    bool owned = arguments['owned'];
+    bool owned = myBooksRepository.searchBook(id) != null;
     Book book;
     if (owned) {
-      book = RepositoryProvider.of<MyBooksRepository>(context).searchBook(id)!;
+      book = myBooksRepository.searchBook(id)!;
     } else {
-      book = RepositoryProvider.of<StoreRepository>(context).searchBook(id)!;
+      book = storeBooksRepository.searchBook(id)!;
     }
 
-    void showBuyBook() async {
-      await showModalBottomSheet(
+    void showBuyBook() {
+      showModalBottomSheet(
           context: context,
           isScrollControlled: true,
           builder: (BuildContext context) => Padding(
@@ -59,14 +61,6 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                   BlocProvider.of<PurchaseCubit>(context).buyBook(book.id);
                 },
               )));
-      if (purchaseBloc.state is PurchaseSuccess) {
-        PurchaseSuccess state = purchaseBloc.state as PurchaseSuccess;
-        if (state.buyType == BuyType.book && state.buyId == book.id) {
-          setState(() {
-            owned = true;
-          });
-        }
-      }
     }
 
     void removeFromShelf() async {
@@ -93,12 +87,11 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
       },
       child: BlocBuilder<MyBooksCubit, MyBooksState>(
         builder: (context, state) {
+          owned = myBooksRepository.searchBook(id) != null;
           if (owned) {
-            book = RepositoryProvider.of<MyBooksRepository>(context)
-                .searchBook(id)!;
+            book = myBooksRepository.searchBook(id)!;
           } else {
-            book =
-                RepositoryProvider.of<StoreRepository>(context).searchBook(id)!;
+            book = storeBooksRepository.searchBook(id)!;
           }
           return CustomScaffold(
             isButtonBack: true,
