@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/utils/colors.dart';
+import 'package:nft/utils/fonts.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 import '../../models/shelf.dart';
@@ -46,10 +47,14 @@ class _BooksHorizontalContainerState extends State<BooksHorizontalContainer> {
                   'Assets/icons/more.svg',
                   color: Colors.grey,
                 )),
-                StrokeText(
-                  text: widget.book.name,
-                  strokeWidth: 1,
-                  strokeColor: AppColors.darkText,
+                Container(
+                  alignment: Alignment.topRight,
+                  width: (width - 85) / 3 - 20,
+                  child: Text(
+                    widget.book.name,
+                    style: AppTypography.font14white.copyWith(fontSize: 12),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),

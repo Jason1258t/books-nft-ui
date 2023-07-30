@@ -21,7 +21,6 @@ class _CustomSwitchCategoriesState extends State<CustomSwitchCategories> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
 
     return Stack(
       children: [
@@ -76,6 +75,7 @@ class CustomCategoryButton extends StatelessWidget {
           child: Container(
             width: width * 0.32,
             height: height * 0.1,
+            alignment: Alignment.center,
             padding: const EdgeInsets.only(left: 13, bottom: 3, right: 24),
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -83,20 +83,19 @@ class CustomCategoryButton extends StatelessWidget {
                   ? 'Assets/images/activeStoreCategory.png'
                   : 'Assets/images/noActiveStoreCategory.png'),
             )),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                StrokeText(
-                  strokeColor: active
-                      ? AppColors.isActiveStrokeText
-                      : AppColors.isNoActiveStrokeText,
-                  strokeWidth: 2.5,
-                  textStyle: active
-                      ? AppTypography.font14white
-                      : AppTypography.font20gold.copyWith(fontSize: 14),
-                  text: text,
-                )
-              ],
+            child: Container(
+              width: 60,
+              alignment: Alignment.center,
+              child: StrokeText(
+                strokeColor: active
+                    ? AppColors.isActiveStrokeText
+                    : AppColors.isNoActiveStrokeText,
+                strokeWidth: 2.5,
+                textStyle: active
+                    ? AppTypography.font14white
+                    : AppTypography.font20gold.copyWith(fontSize: 14),
+                text: text,
+              ),
             ),
           )),
     );
