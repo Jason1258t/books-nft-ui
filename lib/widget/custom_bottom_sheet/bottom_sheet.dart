@@ -11,6 +11,7 @@ class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet(
       {super.key,
       this.children,
+      this.canBack = true,
       required this.title,
       this.mainAxisAlignment = MainAxisAlignment.spaceBetween});
 
@@ -23,6 +24,10 @@ class CustomBottomSheet extends StatelessWidget {
 
   /// MainAxisAlignment у главной колонки по дефолту стоит spaceBetween
   final MainAxisAlignment mainAxisAlignment;
+
+  /// нужна в основном для purchase bottom sheet, отвечает за то можно ли
+  /// вернуться по стрелке
+  final bool canBack;
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +49,11 @@ class CustomBottomSheet extends StatelessWidget {
               child: InkWell(
                 child: SvgPicture.asset('Assets/icons/chevron-left.svg'),
                 onTap: () {
-                  Navigator.of(context).pop();
-                  RepositoryProvider.of<HomeRepository>(context)
-                      .showBottomSheet = false;
+                  if (canBack) {
+                    Navigator.of(context).pop();
+                    RepositoryProvider.of<HomeRepository>(context)
+                        .showBottomSheet = false;
+                  }
                 },
               ),
             )
