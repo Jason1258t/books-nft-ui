@@ -29,6 +29,7 @@ import 'feature/home/bloc/home_cubit.dart';
 import 'feature/home/data/homa_repository.dart';
 import 'feature/home/ui/home.dart';
 import 'feature/profile/ui/profile_screen.dart';
+import 'feature/splash/splash.dart';
 import 'feature/store/ui/category_books_screen.dart';
 import 'feature/wallet/ui/confirm_phrase.dart';
 import 'feature/wallet/ui/import_wallet.dart';
@@ -89,9 +90,7 @@ class MyHomePage extends StatelessWidget {
         } else if (state is AppUnAuthState) {
           return const AuthScreen();
         } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const FakeSplashScreen();
         }
       },
     );
