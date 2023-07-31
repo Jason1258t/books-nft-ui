@@ -69,6 +69,8 @@ class Assets {
   static const String imagesEnergyBarBackground4 = 'Assets/images/Energy_bar_background4.png';
   static const String imagesEnergyBarBackground5 = 'Assets/images/Energy_bar_background5.png';
   static const String imagesGrandpa = 'Assets/images/grandpa.png';
+  static const String imagesIconBig = 'Assets/images/icon_big.png';
+  static const String imagesIconSmall = 'Assets/images/icon_small.png';
   static const String imagesLockedShelfCounter = 'Assets/images/locked_shelf_counter.png';
   static const String imagesLogo = 'Assets/images/logo.png';
   static const String imagesNoActiveStoreCategory = 'Assets/images/noActiveStoreCategory.png';
