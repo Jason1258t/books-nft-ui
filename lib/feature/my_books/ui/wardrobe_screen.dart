@@ -88,12 +88,16 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                           children: [
                                             StatisticsContainer(
                                               fill: 0.6,
+                                              text: '13 Intelligence',
+                                              icon: 'Assets/icons/blue_brain.svg',
                                             ),
                                             SizedBox(
                                               height: 5,
                                             ),
                                             StatisticsContainer(
                                               fill: 0.4,
+                                              text: '12 Derability',
+                                              icon: 'Assets/icons/blue_shied.svg',
                                             ),
                                           ],
                                         ),
@@ -122,12 +126,16 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                           children: [
                                             StatisticsContainer(
                                               fill: 0.2,
+                                              text: '28 Energy',
+                                              icon: 'Assets/icons/blue_lightning.svg',
                                             ),
                                             SizedBox(
                                               height: 5,
                                             ),
                                             StatisticsContainer(
                                               fill: 1,
+                                              text: '56 Luck',
+                                              icon: 'Assets/icons/blue_clever.svg',
                                             ),
                                           ],
                                         ),
