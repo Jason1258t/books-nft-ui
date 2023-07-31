@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nft/feature/my_books/bloc/books/my_books_cubit.dart';
+import 'package:nft/utils/fonts.dart';
 
 import '../../../models/shelf.dart';
+import '../../../utils/colors.dart';
 import '../../../utils/dialogs.dart';
 import '../../../widget/containers/books_vertical_container.dart';
 import '../../../widget/switch/custom_switch.dart';
@@ -80,18 +82,35 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
                     ],
                   );
                 } else if (state is MyBooksSuccessState) {
-                  return listBook.length > 2
-                      ? Column(
-                          children: listBook.toList(),
-                        )
+                  return listBook.isNotEmpty
+                      ? listBook.length > 2
+                          ? Column(
+                              children: listBook.toList(),
+                            )
+                          : Column(
+                              children: [
+                                Column(
+                                  children: listBook.toList(),
+                                ),
+                                SizedBox(
+                                  height:
+                                      listBook.isNotEmpty ? 300 : height - 240,
+                                )
+                              ],
+                            )
                       : Column(
                           children: [
-                            Column(
-                              children: listBook.toList(),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.backGroundTextShowButtonSheet,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              alignment: Alignment.center,
+                              width: double.infinity,
+                              height: 38,
+                              child: Text('You don`t have books', style: AppTypography.font16white,),
                             ),
-                            SizedBox(
-                              height: listBook.isNotEmpty ? 300 : height - 240,
-                            )
+                            SizedBox(height: height - 200),
                           ],
                         );
                 }

@@ -17,7 +17,7 @@ class LvlContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.lvlBackground,
         borderRadius: BorderRadius.circular(50),
-        border: Border.all(color: AppColors.lvlBorder, width: 3)
+        border: Border.all(color: AppColors.darkText, width: 3)
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

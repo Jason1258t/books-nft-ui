@@ -30,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String codeState = "SEND CODE";
 
   bool isTap = false;
+  bool isErrorAccept = false;
 
   bool isValidEmail = true;
   bool isVerificationCode = false;
@@ -46,6 +47,8 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state is LoginFailState) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text('login fail')));
+            isVerificationCode = true;
+            setState(() {});
           }
           if (state is LoginLoadingState) {
             Dialogs.showModal(
@@ -78,11 +81,15 @@ class _LoginScreenState extends State<LoginScreen> {
             if (state is FailState) {
               ScaffoldMessenger.of(context)
                   .showSnackBar(const SnackBar(content: Text('fail')));
+              isVerificationCode = true;
+              setState(() {});
             }
           },
           child: Scaffold(
             resizeToAvoidBottomInset: false,
-            appBar: EmptyAppBar(context: context,),
+            appBar: EmptyAppBar(
+              context: context,
+            ),
             body: Container(
               width: double.infinity,
               height: double.infinity,
@@ -206,17 +213,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomElevatedButton(
                           text: 'LOGIN',
                           onTap: () {
-                            if (isValidEmail) {
+                            if (isValidEmail && isTap && codeState == 'VERIFY') {
                               BlocProvider.of<LoginCubit>(context).login(
                                   email: emailController.text.trim(),
                                   code: passwordController.text.trim());
                             }
+                              isErrorAccept = !isTap;
+
+                            setState(() {});
                           }),
                       const SizedBox(
                         height: 16,
                       ),
                       ElevatedButtonWithCheckBox(
                         text: 'I accept the user agreement',
+                        isError: isErrorAccept,
                         style: isTap
                             ? AppTypography.font14white.copyWith(fontSize: 16)
                             : AppTypography.font14white.copyWith(
