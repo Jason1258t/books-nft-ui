@@ -87,6 +87,7 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
           child: CustomBottomSheet(
             mainAxisAlignment: MainAxisAlignment.start,
             title: 'Purchase',
+            canBack: !inProcess,
             children: [
               Expanded(
                 child: Column(
