@@ -17,7 +17,7 @@ class StatisticsContainer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text('13 Intelligence', style: AppTypography.font16white.copyWith(fontSize: 9),),
+        Text('13 Intelligence', style: AppTypography.font9brown),
         Container(
           width: (width - 40) * 0.31,
           height: height * 0.031,

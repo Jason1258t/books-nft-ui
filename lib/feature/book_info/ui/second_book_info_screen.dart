@@ -46,7 +46,7 @@ class SecondBookInfoScreen extends StatelessWidget {
           ),
           Text(
             book.description,
-            style: AppTypography.font10blackW400.copyWith(fontSize: 12),
+            style: AppTypography.font10blackW400.copyWith(fontSize: 12,fontWeight: FontWeight.w600),
           ),
           const SizedBox(
             height: 15,
@@ -62,7 +62,7 @@ class SecondBookInfoScreen extends StatelessWidget {
               Text(
                 'ISBN: ${book.ISBN} \nДата публикации: ${book.createAt} \nЯзык: ${book.language} \nЖанр: ${book.genre} \nКоличество страниц: ${book.pagesCount}',
                 style: AppTypography.font10blackW400
-                    .copyWith(fontSize: 12, height: 2),
+                    .copyWith(fontSize: 12, height: 2,fontWeight: FontWeight.w600),
               ),
             ],
           ),

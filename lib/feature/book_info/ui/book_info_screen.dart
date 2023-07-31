@@ -140,8 +140,8 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                     ),
                     Image.network(
                       book.image,
-                      width: width * 0.7,
-                      height: height * 0.4,
+                      width: 240,
+                      height: 320,
                       fit: BoxFit.cover,
                     ),
                     const SizedBox(
@@ -294,7 +294,7 @@ class _TextIconAndDescription extends StatelessWidget {
                   width: 200,
                   child: Text(
                     description,
-                    style: AppTypography.font12dark.copyWith(fontSize: 14),
+                    style: AppTypography.font12dark.copyWith(fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                 ),
               ]

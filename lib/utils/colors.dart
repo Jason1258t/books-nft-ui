@@ -4,7 +4,6 @@ class AppColors {
   static const empty = Colors.transparent;
   static const cursorBackground = Colors.black26;
   static const darkText = Color(0xFF3A2635);
-  static const lvlBorder = Color(0xFF3A2635);
   static const darkBorder = Color(0xFF48373A);
   static const smallEvButtonBorderDark = Color(0xff544043);
   static const lvlBackground = Color(0xFF6E5C59);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
 import '../../../utils/fonts.dart';
 import '../../../utils/gradients.dart';
@@ -21,13 +22,14 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return CustomScaffold(
+      isButtonBack: true,
       appBar: CustomAppBar(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         context: context,
       ),
-      body: SafeArea(
+      child: SafeArea(
         child: Container(
           width: double.infinity,
           height: double.infinity,
