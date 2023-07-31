@@ -55,6 +55,7 @@ class Assets {
   static const String iconsWalletActive = 'Assets/icons/wallet_active.svg';
   static const String iconsWithdraw = 'Assets/icons/withdraw.svg';
   static const String imagesActiveStoreCategory = 'Assets/images/activeStoreCategory.png';
+  static const String imagesAppIcon = 'Assets/images/app_icon.png';
   static const String imagesBackground = 'Assets/images/Background.png';
   static const String imagesBackgroundBooks = 'Assets/images/backgroundBooks.png';
   static const String imagesBackgroundHome = 'Assets/images/backgroundHome.png';
@@ -78,6 +79,7 @@ class Assets {
   static const String imagesShelfMiddle = 'Assets/images/shelf_middle.png';
   static const String imagesShelfTop = 'Assets/images/shelf_top.png';
   static const String imagesSplash = 'Assets/images/splash.png';
+  static const String imagesSplash12android = 'Assets/images/splash12android.png';
   static const String nft = '.env';
 
 }

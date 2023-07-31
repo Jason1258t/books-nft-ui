@@ -37,7 +37,6 @@ import 'feature/wallet/ui/phrase.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await dotenv.load(fileName: ".env");
 
   Bloc.observer = CustomBlocObserver();
@@ -54,7 +53,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'World of Words: Books & NFT',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black26),
         primarySwatch: Colors.grey,
