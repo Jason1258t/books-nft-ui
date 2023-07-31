@@ -95,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return BlocListener<AppCubit, AppState>(
       listener: (context, state) {
         if (state is AppUnAuthState) {
-          Navigator.pop(context);
+          Navigator.popUntil(context, ModalRoute.withName('/'));
         }
       },
       child: CustomScaffold(
