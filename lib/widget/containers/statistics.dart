@@ -5,7 +5,7 @@ import 'package:nft/utils/fonts.dart';
 import '../../utils/colors.dart';
 
 class StatisticsContainer extends StatelessWidget {
-  const StatisticsContainer({super.key, required this.fill});
+  const StatisticsContainer({super.key, required this.fill, });
 
   final double fill;
 
