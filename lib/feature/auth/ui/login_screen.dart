@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Dialogs.hide(context);
           }
         },
-        child: BlocListener<CodeCubit, CodeState>(
+        child: BlocConsumer<CodeCubit, CodeState>(
           listener: (context, state) {
             if (state is SendingState) {
               Dialogs.showModal(
@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
               setState(() {});
             }
           },
-          child: Scaffold(
+          builder: (context, state) => Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: EmptyAppBar(
               context: context,
@@ -158,18 +158,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         onChange: (value) {
                           if (value.isNotEmpty) {
                             setState(() {
-                              codeState = "VERIFY";
+                              isVerificationCode = false;
                             });
                           } else {
                             setState(() {
                               codeState = "SEND CODE";
+                              isVerificationCode = true;
                             });
                           }
                         },
                         suffixIcon: SmallElevatedButton(
-                          text: codeState,
+                          text: state is WaitState
+                              ? state.remainingTime.toString()
+                              : codeState,
                           onTap: () {
-                            if (codeState == 'SEND CODE') {
+                            if  (codeState == 'SEND CODE' && state is! WaitState) {
                               log('--------- trying to send step 1');
                               if (RegExp(emailRegExp)
                                   .hasMatch(emailController.text)) {
@@ -213,7 +216,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomElevatedButton(
                           text: 'LOGIN',
                           onTap: () {
-                            if (isValidEmail && isTap && codeState == 'VERIFY') {
+                            if (isValidEmail && isTap && passwordController.text.isNotEmpty) {
                               BlocProvider.of<LoginCubit>(context).login(
                                   email: emailController.text.trim(),
                                   code: passwordController.text.trim());

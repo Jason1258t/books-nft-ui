@@ -18,18 +18,17 @@ class CodeCubit extends Cubit<CodeState> {
   void _wait() async {
     emit(WaitState(remainingTime: 60));
     //Duration timerDuration = const Duration(seconds: 60);
-    int time = 60;
+    int time = 61;
     Duration period = const Duration(seconds: 1);
     Timer.periodic(period, (timer) {
       if (time <= 0) {
+        emit(ReadyToSend());
         timer.cancel();
       } else {
         time--;
         emit(WaitState(remainingTime: time));
       }
     });
-
-    emit(ReadyToSend());
   }
 
   void signupCode(String email) async {
@@ -38,6 +37,7 @@ class CodeCubit extends Cubit<CodeState> {
       log('--------- trying to send step 3');
       await _appRepository.getCodeOnSignUp(email);
       emit(SentState());
+      _wait();
     } catch (e) {
       emit(FailState());
       rethrow;
@@ -50,6 +50,7 @@ class CodeCubit extends Cubit<CodeState> {
       log('--------- trying to send step 3');
       await _appRepository.getCode(email);
       emit(SentState());
+      _wait();
     } catch (e) {
       emit(FailState());
       rethrow;

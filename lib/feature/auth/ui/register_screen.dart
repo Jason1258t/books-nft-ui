@@ -60,32 +60,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Dialogs.hide(context);
           }
         },
-        child: BlocListener<CodeCubit, CodeState>(
-          listener: (context, state) {
-            if (state is SendingState) {
-              Dialogs.showModal(
-                  context,
-                  const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.amber,
-                    ),
-                  ));
-            } else {
-              Dialogs.hide(context);
-            }
+        child: BlocConsumer<CodeCubit, CodeState>(listener: (context, state) {
+          if (state is SendingState) {
+            Dialogs.showModal(
+                context,
+                const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.amber,
+                  ),
+                ));
+          } else {
+            Dialogs.hide(context);
+          }
 
-            if (state is SentState) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(const SnackBar(content: Text('code sent')));
-            }
-            if (state is FailState) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(const SnackBar(content: Text('fail')));
-              isVerificationCode = true;
-              setState(() {});
-            }
-          },
-          child: Scaffold(
+          if (state is SentState) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('code sent')));
+          }
+          if (state is FailState) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('fail')));
+            isVerificationCode = true;
+            setState(() {});
+          }
+        }, builder: (context, state) {
+          return Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: EmptyAppBar(
               context: context,
@@ -153,23 +152,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: 56,
                         obscureText: true,
                         maxLength: 18,
-                        isError: isVerificationCode,
+                        isError: !isVerificationCode,
                         hintText: 'Verification code',
                         onChange: (value) {
                           if (value.isNotEmpty) {
                             setState(() {
-                              codeState = "VERIFY";
+                              isVerificationCode = true;
                             });
                           } else {
                             setState(() {
                               codeState = "SEND CODE";
+                              isVerificationCode = false;
                             });
                           }
                         },
                         suffixIcon: SmallElevatedButton(
-                          text: codeState,
+                          text: state is WaitState
+                                  ? state.remainingTime.toString()
+                                  : codeState,
                           onTap: () {
-                            if (codeState == 'SEND CODE') {
+                            if (codeState == 'SEND CODE' && state is! WaitState) {
                               log('--------- trying to send step 1');
                               if (RegExp(emailRegExp)
                                   .hasMatch(emailController.text)) {
@@ -215,7 +217,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onTap: () {
                             if (isValidEmail &&
                                 isTap &&
-                                codeState == 'VERIFY') {
+                                passwordController.text.isNotEmpty) {
                               BlocProvider.of<LoginCubit>(context).login(
                                   email: emailController.text.trim(),
                                   code: passwordController.text.trim());
@@ -246,8 +248,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ],
               ),
             ),
-          ),
-        ),
+          );
+        }),
       ),
     );
   }
