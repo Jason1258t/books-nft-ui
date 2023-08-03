@@ -150,6 +150,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                   ),
                                   Expanded(
                                     child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -160,10 +161,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                           width: (width - 40) * 0.3,
                                           height: height * 0.03,
                                         ),
-                                        Container(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                10, 0, 20, 0),
-                                            child: const LvlContainer()),
+                                        const LvlContainer(),
                                         ConstIconsWithTextElevatedButton(
                                           onTap: () {
                                             Navigator.pushNamed(
