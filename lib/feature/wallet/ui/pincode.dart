@@ -5,7 +5,7 @@ import '../../../utils/fonts.dart';
 import '../../../widget/app_bar/app_bar.dart';
 import '../../../widget/buttons/keyboard/delete_button.dart';
 import '../../../widget/buttons/keyboard/number_button.dart';
-import '../../../widget/custom_scaffold/scaffold.dart';
+import '../../../widget/custom_scaffold/custom_scaffold.dart';
 
 class PINScreen extends StatefulWidget {
   const PINScreen({super.key});

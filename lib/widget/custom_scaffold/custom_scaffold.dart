@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CustomScaffold extends StatelessWidget {
+class CustomScaffold extends StatefulWidget {
   const CustomScaffold(
       {super.key,
       this.appBar,
@@ -15,10 +15,15 @@ class CustomScaffold extends StatelessWidget {
   final bool isButtonBack;
 
   @override
+  State<CustomScaffold> createState() => _CustomScaffoldState();
+}
+
+class _CustomScaffoldState extends State<CustomScaffold> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBar,
-        bottomNavigationBar: bottomNavBar,
+        appBar: widget.appBar,
+        bottomNavigationBar: widget.bottomNavBar,
         body: Stack(children: [
           Container(
               width: double.infinity,
@@ -29,8 +34,8 @@ class CustomScaffold extends StatelessWidget {
                 image: AssetImage('Assets/images/Background.png'),
                 fit: BoxFit.cover,
               )),
-              child: child),
-          isButtonBack
+              child: widget.child),
+          widget.isButtonBack
               ? Container(
                   padding: const EdgeInsets.fromLTRB(20,23,20,20),
                   alignment: Alignment.topLeft,

@@ -4,7 +4,7 @@ import 'package:nft/data/app_repository.dart';
 import 'package:nft/feature/auth/bloc/login/login_cubit.dart';
 import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
-import 'package:nft/widget/custom_scaffold/scaffold.dart';
+import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
 
 import '../../../bloc/app_cubit.dart';
 import '../../../utils/dialogs.dart';

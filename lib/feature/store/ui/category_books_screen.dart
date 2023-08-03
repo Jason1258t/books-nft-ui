@@ -8,7 +8,7 @@ import 'package:nft/feature/store/data/store_repository.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/containers/collection_vertical_container.dart';
-import 'package:nft/widget/custom_scaffold/scaffold.dart';
+import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
 
 import '../../../utils/colors.dart';
 import '../../../widget/app_bar/app_bar.dart';
@@ -45,7 +45,7 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
       Row row = Row(children: [
         CollectionVerticalContainer(
           onTap: () {
-            Navigator.pushNamed(context, '/collection_info_screen', arguments: {'collection' : storeRepository.sailCollection[i]});
+            Navigator.pushNamed(context, '/collection_info_screen', arguments: {'id' : storeRepository.sailCollection[i].id});
           },
           collection: storeRepository.sailCollection[i],
         ),
@@ -58,7 +58,7 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
         row.children.add(
           CollectionVerticalContainer(
             onTap: () {
-              Navigator.pushNamed(context, '/collection_info_screen', arguments: {'collection' : storeRepository.sailCollection[i + 1]});
+              Navigator.pushNamed(context, '/collection_info_screen', arguments: {'id' : storeRepository.sailCollection[i + 1].id});
             },
             collection: storeRepository.sailCollection[i + 1],
           ),

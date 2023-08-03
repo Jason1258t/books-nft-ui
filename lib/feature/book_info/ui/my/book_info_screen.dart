@@ -6,7 +6,7 @@ import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/utils/dialogs.dart';
 import 'package:nft/utils/fonts.dart';
-import 'package:nft/widget/custom_scaffold/scaffold.dart';
+import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
 
 import '../../../../models/shelf.dart';
 import '../../../../utils/colors.dart';
@@ -59,7 +59,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
       },
       child: BlocBuilder<MyBooksCubit, MyBooksState>(
         builder: (context, state) {
-          book = myBooksRepository.searchBook(book.id)!;
+          book = myBooksRepository.searchBookById(book.id)!;
           return CustomScaffold(
             isButtonBack: true,
             appBar: CustomAppBar(

@@ -9,7 +9,7 @@ import 'package:nft/feature/my_books/ui/my_books_screen.dart';
 import 'package:nft/models/book_position.dart';
 import 'package:nft/utils/dialogs.dart';
 import 'package:nft/widget/custom_bottom_sheet/bottom_sheet.dart';
-import 'package:nft/widget/custom_scaffold/scaffold.dart';
+import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
 
 import '../../models/shelf.dart';
 import '../../utils/colors.dart';

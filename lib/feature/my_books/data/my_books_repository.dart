@@ -41,7 +41,7 @@ class MyBooksRepository {
 
   List<Book> myBooks = [];
 
-  Book? searchBook(String id) {
+  Book? searchBookById(String id) {
     for (Book book in myBooks) {
       if (book.id == id) return book;
     }

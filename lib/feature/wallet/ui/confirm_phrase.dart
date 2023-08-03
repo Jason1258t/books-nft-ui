@@ -5,7 +5,7 @@ import 'package:nft/widget/app_bar/app_bar.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
 import 'package:nft/widget/buttons/small_elevated_button.dart';
 import 'package:nft/widget/containers/word_container.dart';
-import 'package:nft/widget/custom_scaffold/scaffold.dart';
+import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
 
 import '../../../utils/fonts.dart';
 import '../../../widget/text_field/text_field_with_button.dart';

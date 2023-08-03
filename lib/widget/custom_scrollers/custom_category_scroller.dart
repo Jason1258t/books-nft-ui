@@ -63,23 +63,22 @@ class CustomCategoryScroller extends StatelessWidget {
                     height: 2,
                     color: AppColors.lvlText,
                   ),
-                  SizedBox(
-                      child: Row(
-                        children: listCollection.map((e) => Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
-                                      child: CollectionHorizontalContainer(
-                                        collection: e,
-                                        onTap: () {
-                                          Navigator.pushNamed(
-                                              context, '/collection_info_screen',
-                                              arguments: {
-                                                'collection': e,
-                                              });
-                                        },
-                                      ),
-                                    ))
-                                .toList()
-                      )),
+                  Row(
+                    children: listCollection.map((e) => Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+                                  child: CollectionHorizontalContainer(
+                                    collection: e,
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, '/collection_info_screen',
+                                          arguments: {
+                                            'id': e.id,
+                                          });
+                                    },
+                                  ),
+                                ))
+                            .toList()
+                  ),
                   Container(
                     width: width,
                     height: 2,

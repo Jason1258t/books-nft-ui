@@ -5,7 +5,7 @@ import '../../../utils/fonts.dart';
 import '../../../utils/gradients.dart';
 import '../../../widget/app_bar/app_bar.dart';
 import '../../../widget/buttons/custom_elevated_button.dart';
-import '../../../widget/custom_scaffold/scaffold.dart';
+import '../../../widget/custom_scaffold/custom_scaffold.dart';
 
 // ignore: must_be_immutable
 class Phrase extends StatelessWidget {

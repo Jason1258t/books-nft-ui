@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/feature/store/data/store_repository.dart';
 import 'package:nft/models/books_category.dart';
+import 'package:nft/models/collection.dart';
 
 import '../../../widget/custom_scrollers/custom_category_scroller.dart';
 import '../../../widget/switch/custom_switch_categories.dart';
@@ -19,17 +21,17 @@ class _StoreScreenState extends State<StoreScreen> {
   Widget build(BuildContext context) {
     final storeRepository = RepositoryProvider.of<StoreRepository>(context);
 
-    List<BooksGenre> getBooksGenres() {
+    List<BooksGenre> getBooksGenres(List<Collection> list) {
       List<BooksGenre> booksGenres = [
         BooksGenre(
             name: 'Economy',
-             collection: storeRepository.sailCollection.sublist(0, 3).toList()),
+             collection: list.sublist(0, 3).toList()),
         BooksGenre(
             name: 'Fantasy',
-            collection: storeRepository.sailCollection.sublist(3, 6).toList()),
+            collection: list.sublist(3, 6).toList()),
         BooksGenre(
             name: 'Romantic',
-            collection: storeRepository.sailCollection.sublist(6, 9).toList()),
+            collection: list.sublist(6, 9).toList()),
       ];
 
       return booksGenres;
@@ -57,7 +59,7 @@ class _StoreScreenState extends State<StoreScreen> {
                 builder: (context, state) {
                   if (state is StoreSuccessState) {
                     return Column(
-                      children: getBooksGenres()
+                      children: getBooksGenres(storeRepository.sailCollection)
                           .map((e) => CustomCategoryScroller(
                                 category: e,
                               ))

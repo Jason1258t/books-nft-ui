@@ -13,18 +13,24 @@ class StoreRepository {
   BehaviorSubject<LoadingStateEnum> saleCollectionState =
       BehaviorSubject<LoadingStateEnum>.seeded(LoadingStateEnum.loading);
 
+  BehaviorSubject<bool> saleCollectionUpdateStream =
+      BehaviorSubject<bool>.seeded(false);
+
   List<Collection> sailCollection = [];
 
   Future getStoreCollections() async {
     saleCollectionState.add(LoadingStateEnum.loading);
     try {
+      sailCollection = [];
+
       final data = await _apiService.books.getAllCollections();
       for (var json in data) {
-        print(json);
         sailCollection.add(Collection.fromJson(
           json,
         ));
       }
+
+      saleCollectionUpdateStream.add(true);
       saleCollectionState.add(LoadingStateEnum.success);
     } catch (e) {
       saleCollectionState.add(LoadingStateEnum.fail);
@@ -36,5 +42,10 @@ class StoreRepository {
     await _apiService.books.buyBook(collectionId);
   }
 
-
+  Collection? searchBookById(String id) {
+    for (Collection book in sailCollection) {
+      if (book.id == id) return book;
+    }
+    return null;
+  }
 }

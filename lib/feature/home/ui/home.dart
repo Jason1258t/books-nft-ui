@@ -6,7 +6,7 @@ import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/app_bar/app_bar.dart';
-import 'package:nft/widget/custom_scaffold/scaffold.dart';
+import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
 
 import '../../my_books/ui/my_books_screen.dart';
 import '../../my_books/ui/wardrobe_screen.dart';
