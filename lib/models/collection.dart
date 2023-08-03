@@ -19,6 +19,6 @@ class Collection {
         silverPercent = json['silverPercentage'],
         goldPercent = json['goldPercentage'],
         description = json['bookInfo']['description'],
-        details = Details.fromJson(json);
+        details = Details.fromJson(json),
         id = json['id'];
 }

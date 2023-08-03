@@ -15,7 +15,7 @@ class StoreRepository {
 
   List<Collection> sailCollection = [];
 
-  Future getSaleBooks() async {
+  Future getStoreCollections() async {
     saleCollectionState.add(LoadingStateEnum.loading);
     try {
       final data = await _apiService.books.getAllCollections();
@@ -31,4 +31,10 @@ class StoreRepository {
       rethrow;
     }
   }
+
+  Future buyCollection(String collectionId) async {
+    await _apiService.books.buyBook(collectionId);
+  }
+
+
 }

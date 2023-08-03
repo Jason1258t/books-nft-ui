@@ -3,12 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/feature/my_books/bloc/books/my_books_cubit.dart';
 import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
-import 'package:nft/feature/my_books/bloc/purchase/purchase_cubit.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
-import 'package:nft/feature/store/data/store_repository.dart';
 import 'package:nft/utils/dialogs.dart';
 import 'package:nft/utils/fonts.dart';
-import 'package:nft/widget/custom_bottom_sheet/purchase_bottom_sheet.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
 import '../../../../models/shelf.dart';
@@ -38,22 +35,6 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
 
     Book book = arguments['book'];
 
-    void showBuyBook() {
-      showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          builder: (BuildContext context) => Padding(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: PurchaseBottomSheet(
-                needTitleField: true,
-                title: book.name,
-                purchaseCallback: () {
-                  BlocProvider.of<PurchaseCubit>(context).buyBook(book.id);
-                },
-              )));
-    }
-
     void removeFromShelf() async {
       BlocProvider.of<MoveBookCubit>(context).removeBook(id: book.id);
     }
@@ -78,6 +59,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
       },
       child: BlocBuilder<MyBooksCubit, MyBooksState>(
         builder: (context, state) {
+          book = myBooksRepository.searchBook(book.id)!;
           return CustomScaffold(
             isButtonBack: true,
             appBar: CustomAppBar(
@@ -113,7 +95,8 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                         InkWell(
                           child: SvgPicture.asset('Assets/icons/info.svg'),
                           onTap: () {
-                            Navigator.pushNamed(context, '/second_book_info_screen',
+                            Navigator.pushNamed(
+                                context, '/second_book_info_screen',
                                 arguments: {
                                   'details': book.details,
                                   'description': book.description,
@@ -197,7 +180,9 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(width: 20,),
+                            SizedBox(
+                              width: 20,
+                            ),
                             Column(
                               children: [
                                 _TextIconAndDescription(
@@ -227,39 +212,30 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                     const SizedBox(
                       height: 16,
                     ),
-                    book.owned
-                        ? Column(
-                            children: [
-                              CustomElevatedButton(
-                                text: book.available
-                                    ? 'Put on a shelf'
-                                    : 'Remove from shelf',
-                                borderColor: AppColors.darkBorder,
-                                onTap: book.available
-                                    ? putOnShelf
-                                    : removeFromShelf,
-                                gradient: AppGradients.lightButton,
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              CustomElevatedButton(
-                                text: 'Read',
-                                borderColor: AppColors.buttonDarkColor,
-                                onTap: () {},
-                                gradient: const LinearGradient(colors: [
-                                  AppColors.buttonDarkColor,
-                                  AppColors.buttonDarkColor
-                                ]),
-                              ),
-                            ],
-                          )
-                        : CustomElevatedButton(
-                            text: 'Buy',
-                            borderColor: AppColors.darkBorder,
-                            onTap: showBuyBook,
-                            gradient: AppGradients.redButton,
-                          ),
+                    Column(
+                      children: [
+                        CustomElevatedButton(
+                          text: book.available
+                              ? 'Put on a shelf'
+                              : 'Remove from shelf',
+                          borderColor: AppColors.darkBorder,
+                          onTap: book.available ? putOnShelf : removeFromShelf,
+                          gradient: AppGradients.lightButton,
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        CustomElevatedButton(
+                          text: 'Read',
+                          borderColor: AppColors.buttonDarkColor,
+                          onTap: () {},
+                          gradient: const LinearGradient(colors: [
+                            AppColors.buttonDarkColor,
+                            AppColors.buttonDarkColor
+                          ]),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -273,7 +249,10 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
 
 class _TextIconAndDescription extends StatelessWidget {
   const _TextIconAndDescription(
-      {required this.name, required this.description, required this.icon, required this.width});
+      {required this.name,
+      required this.description,
+      required this.icon,
+      required this.width});
 
   final String name;
   final String description;
@@ -310,7 +289,8 @@ class _TextIconAndDescription extends StatelessWidget {
                   width: width,
                   child: Text(
                     description,
-                    style: AppTypography.font12dark.copyWith(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: AppTypography.font12dark
+                        .copyWith(fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                 ),
               ]

@@ -40,21 +40,21 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
 
     Collection collection = arguments['collection'];
 
-    // void showBuyBook() {
-    //   showModalBottomSheet(
-    //       context: context,
-    //       isScrollControlled: true,
-    //       builder: (BuildContext context) => Padding(
-    //           padding: EdgeInsets.only(
-    //               bottom: MediaQuery.of(context).viewInsets.bottom),
-    //           child: PurchaseBottomSheet(
-    //             needTitleField: true,
-    //             title: collection.title,
-    //             purchaseCallback: () {
-    //               BlocProvider.of<PurchaseCubit>(context).buyBook(book.id);
-    //             },
-    //           )));
-    // }
+    void showBuyBook() {
+      showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (BuildContext context) => Padding(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: PurchaseBottomSheet(
+                needTitleField: true,
+                title: collection.title,
+                purchaseCallback: () {
+                  BlocProvider.of<PurchaseCubit>(context).buyBook(collection.id);
+                },
+              )));
+    }
 
     return CustomScaffold(
       isButtonBack: true,
@@ -208,7 +208,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
               CustomElevatedButton(
                 text: 'Buy',
                 borderColor: AppColors.darkBorder,
-                onTap: () {},
+                onTap: showBuyBook,
                 gradient: AppGradients.redButton,
               ),
             ],

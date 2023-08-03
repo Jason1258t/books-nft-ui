@@ -39,7 +39,7 @@ class PurchaseCubit extends Cubit<PurchaseState> {
     emit(PurchaseLoading());
     try {
       await myBooksRepository.buyBook(bookId);
-      await storeRepository.getSaleBooks();
+      await storeRepository.getStoreCollections();
       emit(PurchaseSuccess(buyType: BuyType.book, buyId: bookId));
     } catch (e) {
       emit(PurchaseFail());
