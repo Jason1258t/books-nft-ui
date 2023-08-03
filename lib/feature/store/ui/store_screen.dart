@@ -24,8 +24,8 @@ class _StoreScreenState extends State<StoreScreen> {
     List<BooksGenre> getBooksGenres(List<Collection> list) {
       List<BooksGenre> booksGenres = [
         BooksGenre(
-            name: 'Economy',
-             collection: list.sublist(0, 3).toList()),
+            name: 'Fantasy',
+             collection: list.where((element) => element.details.genre == 'fantasy').toList()),
         BooksGenre(
             name: 'Fantasy',
             collection: list.sublist(3, 6).toList()),

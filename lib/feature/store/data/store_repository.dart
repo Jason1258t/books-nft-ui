@@ -25,6 +25,7 @@ class StoreRepository {
 
       final data = await _apiService.books.getAllCollections();
       for (var json in data) {
+        print(json['details']['genre']);
         sailCollection.add(Collection.fromJson(
           json,
         ));

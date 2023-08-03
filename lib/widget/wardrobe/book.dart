@@ -107,7 +107,7 @@ class BookWidget extends StatelessWidget {
 
   _openBook(Book book, BuildContext context) {
     Navigator.pushNamed(context, '/book_info_screen',
-        arguments: {'book': book.id, 'owned': true});
+        arguments: {'book': book, 'owned': true});
   }
 
   _addBook(Book book, BuildContext context) {

@@ -46,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           if (state is LoginSuccessState) Navigator.pop(context);
           if (state is LoginFailState) {
             ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('login fail')));
+                .showSnackBar(const SnackBar(content: Text('register fail')));
             isVerificationCode = true;
             setState(() {});
           }
@@ -152,7 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: 56,
                         obscureText: true,
                         maxLength: 18,
-                        isError: !isVerificationCode,
+                        isError: isVerificationCode,
                         hintText: 'Verification code',
                         onChange: (value) {
                           if (value.isNotEmpty) {
