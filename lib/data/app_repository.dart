@@ -20,7 +20,7 @@ class AppRepository {
   void checkLogin() async {
     final prefs = await _prefs;
     final String token = prefs.getString(tokenKey) ?? '';
-
+    log(token);
     if (token.isEmpty) {
       appState.add(AppStateEnum.unAuth);
     } else {

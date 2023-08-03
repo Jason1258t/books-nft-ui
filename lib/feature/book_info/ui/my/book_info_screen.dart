@@ -109,11 +109,17 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Image.network(
-                      book.image,
+                    Container(
                       width: 240,
                       height: 320,
-                      fit: BoxFit.cover,
+                      padding: const EdgeInsets.fromLTRB(25, 25, 30, 30),
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image:
+                                  AssetImage("Assets/images/book_cover.png"))),
+                      child: Image.network(
+                        book.image,
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -142,15 +148,15 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                     const SizedBox(
                       height: 25,
                     ),
-                    const Column(
+                    Column(
                       children: [
                         _TextIconAndDescription(
-                          name: 'GOLDEN BOOK',
+                          name: '${book.type.toUpperCase()} BOOK',
                           description: '',
                           icon: 'Assets/icons/red_star.svg',
                           width: 200,
                         ),
-                        _TextIconAndDescription(
+                        const _TextIconAndDescription(
                           name: 'The Adventures of Sherlock Holmes',
                           description: '',
                           icon: 'Assets/icons/black_info.svg',
@@ -161,18 +167,18 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                             Column(
                               children: [
                                 _TextIconAndDescription(
-                                  name: 'Karl Marx',
+                                  name: book.author,
                                   description: 'Author',
                                   icon: 'Assets/icons/black_pensil.svg',
                                   width: 100,
                                 ),
-                                _TextIconAndDescription(
-                                  name: 'Sereja',
+                                const _TextIconAndDescription(
+                                  name: 'Serena',
                                   description: 'Creator',
                                   icon: 'Assets/icons/black_lightning.svg',
                                   width: 100,
                                 ),
-                                _TextIconAndDescription(
+                                const _TextIconAndDescription(
                                   name: '8-16',
                                   description: 'Activities',
                                   icon: 'Assets/icons/black_compas.svg',
@@ -180,10 +186,10 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
-                            Column(
+                            const Column(
                               children: [
                                 _TextIconAndDescription(
                                   name: '10-52',

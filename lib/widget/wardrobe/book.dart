@@ -10,6 +10,7 @@ import 'package:nft/models/book_position.dart';
 import 'package:nft/utils/dialogs.dart';
 import 'package:nft/widget/custom_bottom_sheet/bottom_sheet.dart';
 import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
+import 'package:stroke_text/stroke_text.dart';
 
 import '../../models/shelf.dart';
 import '../../utils/colors.dart';
@@ -69,7 +70,9 @@ class BookWidget extends StatelessWidget {
           image: DecorationImage(
               image: AssetImage('Assets/images/spine_bcg_${data?.type}.png'),
               fit: BoxFit.cover));
-      child = Image.network(data!.spine, fit: BoxFit.cover);
+      // child = Image.network(data!.spine, fit: BoxFit.cover);
+      child =
+          BookContent(url: data!.image, name: data!.name, author: data!.author);
     }
 
     _bookType = bookType;
@@ -205,6 +208,61 @@ class BookWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
           width: _width, height: _height, decoration: decoration, child: child),
+    );
+  }
+}
+
+class BookContent extends StatelessWidget {
+  const BookContent(
+      {super.key, required this.url, required this.name, required this.author});
+
+  final String url;
+  final String name;
+  final String author;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.network(
+            url,
+            width: 20,
+            height: 30,
+          ),
+          const SizedBox(height: 4,),
+          RotatedBox(
+            quarterTurns: 3,
+            child: SizedBox(
+              width: 42,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 3,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 1),
+                    child: StrokeText(
+                      text: name,
+                      strokeWidth: 0.2,
+                      strokeColor: Colors.black,
+                      textStyle: AppTypography.font5white,
+                    ),
+                  ),
+                  StrokeText(
+                    text: author,
+                    strokeWidth: 0.2,
+                    strokeColor: Colors.black,
+                    textStyle: AppTypography.font5white.copyWith(fontSize: 6),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

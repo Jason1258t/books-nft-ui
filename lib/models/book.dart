@@ -5,6 +5,7 @@ abstract class ShelfPlaceData {}
 class Book implements ShelfPlaceData {
   final String id;
   final String name;
+  final String author;
   final String image;
   final String spine;
   final String description;
@@ -20,7 +21,8 @@ class Book implements ShelfPlaceData {
   bool available;
 
   Book(
-    this.type, {
+    this.type,
+    this.author, {
     this.owned = false,
     this.id = '',
     this.intelegenceInc = 5,
@@ -41,6 +43,7 @@ class Book implements ShelfPlaceData {
         id = json['id'],
         type = json['type'],
         name = json['bookInfo']['title'],
+        author = json['bookInfo']['author'],
         image = json['covers'][0]['url'],
         spine = json['covers'][0]['spine'] ?? json['covers'][0]['url'],
         description = json['bookInfo']['description'],

@@ -29,12 +29,14 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
             child: Container(
               width: width * 0.41,
               height: width * 0.55,
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.fromLTRB(15, 15, 20, 20),
+              decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(
-                        widget.book.image,
+                      image: AssetImage(
+                        'Assets/images/book_cover.png',
                       ),
-                      fit: BoxFit.cover)),
+                      fit: BoxFit.fill)),
+              child: Image.network(widget.book.image, ),
             ),
           ),
           Row(

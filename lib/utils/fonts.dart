@@ -9,10 +9,10 @@ class AppTypography {
   static const _fontGilroy = TextStyle(fontFamily: 'Gilroy');
 
   static final buttonText20 = _font.copyWith(
-      color: AppColors.bottomNavigationBarText,
-      fontSize: 20,
-      fontWeight: FontWeight.w700,
-      );
+    color: AppColors.bottomNavigationBarText,
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+  );
 
   static final buttonText16 = _font.copyWith(
     foreground: Paint()
@@ -63,10 +63,7 @@ class AppTypography {
   );
 
   static final font10white = _font.copyWith(
-    color: Colors.white,
-    fontSize: 10,
-    fontWeight: FontWeight.w800
-  );
+      color: Colors.white, fontSize: 10, fontWeight: FontWeight.w800);
 
   static final font10black = _font.copyWith(
     color: Colors.black,
@@ -111,29 +108,28 @@ class AppTypography {
   );
 
   static final font24blue = _font.copyWith(
-    color: AppColors.lvlText,
-    fontSize: 24,
-    fontWeight: FontWeight.w700,
-    height: 0
-  );
+      color: AppColors.lvlText,
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
+      height: 0);
 
   static final font14white = _font.copyWith(
-      color: Colors.white,
-      fontSize: 14,
-      fontWeight: FontWeight.w700,
-);
+    color: Colors.white,
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+  );
 
   static final font24darkShadow = _font.copyWith(
-      color: AppColors.goldBorder,
-      fontSize: 24,
-      fontWeight: FontWeight.w700,
-      );
+    color: AppColors.goldBorder,
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+  );
 
   static final font24goldShadow = _font.copyWith(
-      color: AppColors.goldBorder,
-      fontSize: 24,
-      fontWeight: FontWeight.w700,
-      );
+    color: AppColors.goldBorder,
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+  );
 
   static final font16red = _font.copyWith(
     color: AppColors.redText,
@@ -141,13 +137,14 @@ class AppTypography {
     fontWeight: FontWeight.w400,
   );
 
-  static final font20hintText = font20white.copyWith(
-    color: const Color(0xFFA2A28C)
-  );
+  static final font20hintText =
+      font20white.copyWith(color: const Color(0xFFA2A28C));
 
   static final font9brown = font20white.copyWith(
     color: Color(0xFF3A2635),
     fontSize: 12,
     fontWeight: FontWeight.w700,
   );
+
+  static final font5white = font10white.copyWith(fontSize: 5);
 }

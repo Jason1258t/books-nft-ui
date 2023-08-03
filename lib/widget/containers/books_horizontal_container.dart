@@ -32,9 +32,11 @@ class _BooksHorizontalContainerState extends State<BooksHorizontalContainer> {
           Container(
             width: (width - 85) / 3,
             height: (width - 85) / 2.25,
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.fromLTRB(9.5, 9.5, 13, 13),
+            decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage(widget.book.image), fit: BoxFit.cover)),
+                    image: AssetImage('Assets/images/book_cover.png'), fit: BoxFit.cover)),
+            child: Image.network(widget.book.image),
           ),
           SizedBox(
             width: (width - 85) / 3,
