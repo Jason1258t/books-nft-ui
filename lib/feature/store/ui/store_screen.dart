@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nft/feature/store/data/store_repository.dart';
 import 'package:nft/models/books_category.dart';
 
-import '../../../utils/dialogs.dart';
 import '../../../widget/custom_scrollers/custom_category_scroller.dart';
 import '../../../widget/switch/custom_switch_categories.dart';
 import '../bloc/store_cubit.dart';
@@ -24,13 +23,13 @@ class _StoreScreenState extends State<StoreScreen> {
       List<BooksGenre> booksGenres = [
         BooksGenre(
             name: 'Economy',
-            books: storeRepository.saleBooks.sublist(0, 3).toList()),
+             collection: storeRepository.sailCollection.sublist(0, 3).toList()),
         BooksGenre(
             name: 'Fantasy',
-            books: storeRepository.saleBooks.sublist(3, 6).toList()),
+            collection: storeRepository.sailCollection.sublist(3, 6).toList()),
         BooksGenre(
             name: 'Romantic',
-            books: storeRepository.saleBooks.sublist(6, 9).toList()),
+            collection: storeRepository.sailCollection.sublist(6, 9).toList()),
       ];
 
       return booksGenres;

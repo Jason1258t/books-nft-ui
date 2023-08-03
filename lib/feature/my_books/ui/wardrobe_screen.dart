@@ -35,7 +35,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                     Stack(
                       children: [
                         Container(
-                          height: height * 0.21,
+                          height: height * 0.20,
                           alignment: Alignment.bottomCenter,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +56,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
                           child: SizedBox(
-                            height: height * 0.18,
+                            height: height * 0.17,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +82,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                                 'Assets/icons/blue_brain.svg',
                                           ),
                                           SizedBox(
-                                            height: 5,
+                                            height: 2,
                                           ),
                                           StatisticsContainer(
                                             fill: 0.4,
@@ -122,7 +122,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                                 'Assets/icons/blue_lightning.svg',
                                           ),
                                           SizedBox(
-                                            height: 5,
+                                            height: 2,
                                           ),
                                           StatisticsContainer(
                                             fill: 1,

@@ -11,7 +11,7 @@ class MoveBookCubit extends Cubit<MoveBookState> {
 
   MoveBookCubit({required this.myBooksRepository}) : super(MoveBookInitial());
 
-  void removeBook(String id) async{
+  void removeBook({required String id}) async{
     emit(MoveBookLoadingState());
     try{
       await myBooksRepository.removeBook(id);
