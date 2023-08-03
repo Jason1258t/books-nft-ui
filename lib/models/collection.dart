@@ -10,6 +10,8 @@ class Collection {
   final Details details;
   final String id;
   final String url;
+  final int availableBooks;
+  final int maxBooks;
 
   Collection.fromJson(Map<String, dynamic> json)
       : title = json['bookInfo']['title'],
@@ -20,5 +22,7 @@ class Collection {
         goldPercent = json['goldPercentage'],
         description = json['bookInfo']['description'],
         details = Details.fromJson(json),
+        availableBooks = json['availableBooks'],
+        maxBooks = json['booksCount'],
         id = json['id'];
 }

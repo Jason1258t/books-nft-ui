@@ -176,22 +176,22 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                       const SizedBox(
                         width: 20,
                       ),
-                      const Column(
+                      Column(
                         children: [
-                          _TextIconAndDescription(
+                          const _TextIconAndDescription(
                             name: '10-52',
                             description: 'Income',
                             icon: 'Assets/icons/black_dollar.svg',
                             width: 100,
                           ),
-                          _TextIconAndDescription(
+                          const _TextIconAndDescription(
                             name: '13/16',
                             description: 'Images',
                             icon: 'Assets/icons/black_image.svg',
                             width: 100,
                           ),
                           _TextIconAndDescription(
-                            name: '13/100',
+                            name: '${collection.maxBooks - collection.availableBooks}/${collection.maxBooks}',
                             description: 'Left',
                             icon: 'Assets/icons/black_book.svg',
                             width: 100,
