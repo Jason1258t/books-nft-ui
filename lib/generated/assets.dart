@@ -82,6 +82,7 @@ class Assets {
   static const String imagesR = 'Assets/images/r.png';
   static const String imagesRedBook = 'Assets/images/redBook.png';
   static const String imagesShelfBottom = 'Assets/images/shelf_bottom.png';
+  static const String imagesShelfBottom21 = 'Assets/images/shelf_bottom_21.png';
   static const String imagesShelfMiddle = 'Assets/images/shelf_middle.png';
   static const String imagesShelfTop = 'Assets/images/shelf_top.png';
   static const String imagesSplash = 'Assets/images/splash.png';

@@ -23,13 +23,6 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        floatingActionButton: RowElevatedButton.big(
-          width: MediaQuery.of(context).size.width - 40,
-          text: 'Read',
-          onTap: () {},
-          asset1: 'Assets/icons/read.svg',
-          gradient: AppGradients.wardrobeButtons,
-        ),
         body: Container(
             width: double.infinity,
             height: double.infinity,
