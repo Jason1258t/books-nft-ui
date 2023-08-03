@@ -5,6 +5,7 @@ class Assets {
   static const String assetsImagesIconBig = 'Assets/images/icon_big.png';
   static const String iconsArrow = 'Assets/icons/arrow.svg';
   static const String iconsArrowBack = 'Assets/icons/arrow_back.svg';
+  static const String iconsBlackBook = 'Assets/icons/black_book.svg';
   static const String iconsBlackBrain = 'Assets/icons/black_brain.svg';
   static const String iconsBlackClever = 'Assets/icons/black_clever.svg';
   static const String iconsBlackCompas = 'Assets/icons/black_compas.svg';
@@ -24,9 +25,12 @@ class Assets {
   static const String iconsCheckMark = 'Assets/icons/check_mark.svg';
   static const String iconsChevronLeft = 'Assets/icons/chevron-left.svg';
   static const String iconsClc = 'Assets/icons/clc.svg';
+  static const String iconsCommonFire = 'Assets/icons/common_fire.svg';
   static const String iconsDelete = 'Assets/icons/delete.svg';
   static const String iconsEnergy = 'Assets/icons/energy.svg';
   static const String iconsEvents = 'Assets/icons/events.svg';
+  static const String iconsEventsActive = 'Assets/icons/events_active.svg';
+  static const String iconsGoldFire = 'Assets/icons/gold_fire.svg';
   static const String iconsHome = 'Assets/icons/home.svg';
   static const String iconsHomeActive = 'Assets/icons/home_active.svg';
   static const String iconsInfo = 'Assets/icons/info.svg';
@@ -47,6 +51,7 @@ class Assets {
   static const String iconsRefresh = 'Assets/icons/refresh.svg';
   static const String iconsShield = 'Assets/icons/shield.svg';
   static const String iconsShoppingBag = 'Assets/icons/shopping-bag.svg';
+  static const String iconsSilverFire = 'Assets/icons/silver_fire.svg';
   static const String iconsStars = 'Assets/icons/stars.svg';
   static const String iconsStore = 'Assets/icons/store.svg';
   static const String iconsStoreActive = 'Assets/icons/store_active.svg';
@@ -85,6 +90,9 @@ class Assets {
   static const String imagesShelfBottom21 = 'Assets/images/shelf_bottom_21.png';
   static const String imagesShelfMiddle = 'Assets/images/shelf_middle.png';
   static const String imagesShelfTop = 'Assets/images/shelf_top.png';
+  static const String imagesSpineBcgCommon = 'Assets/images/spine_bcg_common.png';
+  static const String imagesSpineBcgGold = 'Assets/images/spine_bcg_gold.png';
+  static const String imagesSpineBcgSilver = 'Assets/images/spine_bcg_silver.png';
   static const String imagesSplash = 'Assets/images/splash.png';
   static const String imagesSplash12android = 'Assets/images/splash12android.png';
   static const String nft = '.env';

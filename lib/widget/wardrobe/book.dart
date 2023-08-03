@@ -66,10 +66,10 @@ class BookWidget extends StatelessWidget {
     } else {
       decoration = BoxDecoration(
           borderRadius: BorderRadius.circular(3),
-          color: Colors.black45,
           image: DecorationImage(
-              image: NetworkImage(data!.spine), fit: BoxFit.cover));
-      child = null;
+              image: AssetImage('Assets/images/spine_bcg_${data?.type}.png'),
+              fit: BoxFit.cover));
+      child = Image.network(data!.spine, fit: BoxFit.cover);
     }
 
     _bookType = bookType;

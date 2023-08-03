@@ -172,7 +172,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               ? state.remainingTime.toString()
                               : codeState,
                           onTap: () {
-                            if  (codeState == 'SEND CODE' && state is! WaitState) {
+                            if (codeState == 'SEND CODE' &&
+                                state is! WaitState) {
                               log('--------- trying to send step 1');
                               if (RegExp(emailRegExp)
                                   .hasMatch(emailController.text)) {
@@ -216,12 +217,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomElevatedButton(
                           text: 'LOGIN',
                           onTap: () {
-                            if (isValidEmail && isTap && passwordController.text.isNotEmpty) {
+                            FocusScope.of(context).requestFocus(FocusNode());
+                            if (isValidEmail &&
+                                isTap &&
+                                passwordController.text.isNotEmpty) {
                               BlocProvider.of<LoginCubit>(context).login(
                                   email: emailController.text.trim(),
                                   code: passwordController.text.trim());
                             }
-                              isErrorAccept = !isTap;
+                            isErrorAccept = !isTap;
 
                             setState(() {});
                           }),

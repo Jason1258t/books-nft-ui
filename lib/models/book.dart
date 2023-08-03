@@ -14,10 +14,13 @@ class Book implements ShelfPlaceData {
   final int strengthInc;
   final int luckInc;
   final Details details;
+  final String type;
 
   final bool owned;
   bool available;
-  Book({
+
+  Book(
+    this.type, {
     this.owned = false,
     this.id = '',
     this.intelegenceInc = 5,
@@ -36,6 +39,7 @@ class Book implements ShelfPlaceData {
       {this.available = true})
       : owned = isOwned,
         id = json['id'],
+        type = json['type'],
         name = json['bookInfo']['title'],
         image = json['covers'][0]['url'],
         spine = json['covers'][0]['spine'] ?? json['covers'][0]['url'],
@@ -44,5 +48,8 @@ class Book implements ShelfPlaceData {
         energyInc = json['energyInc'],
         strengthInc = json['strengthInc'],
         details = Details.fromJson(json),
-        luckInc = json['luckInc'];
+        luckInc = json['luckInc'] {
+    assert(['common', 'silver', 'gold'].contains(type),
+        'type parse error: type $type');
+  }
 }

@@ -29,8 +29,8 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                     image: AssetImage("Assets/images/backgroundHome.png"),
                     fit: BoxFit.cover)),
             child: SafeArea(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Wrap(
+                  spacing: double.infinity,
                   children: [
                     Stack(
                       children: [
