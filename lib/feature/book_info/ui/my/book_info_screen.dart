@@ -11,11 +11,11 @@ import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/custom_bottom_sheet/purchase_bottom_sheet.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
-import '../../../models/shelf.dart';
-import '../../../utils/colors.dart';
-import '../../../utils/gradients.dart';
-import '../../../widget/app_bar/app_bar.dart';
-import '../../../widget/buttons/custom_elevated_button.dart';
+import '../../../../models/shelf.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/gradients.dart';
+import '../../../../widget/app_bar/app_bar.dart';
+import '../../../../widget/buttons/custom_elevated_button.dart';
 
 class BookInfoScreen extends StatefulWidget {
   const BookInfoScreen({super.key});
@@ -35,17 +35,8 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
         <String, dynamic>{}) as Map;
 
     final myBooksRepository = RepositoryProvider.of<MyBooksRepository>(context);
-    final storeBooksRepository =
-        RepositoryProvider.of<StoreRepository>(context);
 
-    final id = arguments['book'];
-    bool owned = myBooksRepository.searchBook(id) != null;
-    Book book;
-    if (owned) {
-      book = myBooksRepository.searchBook(id)!;
-    } else {
-      book = storeBooksRepository.searchBook(id)!;
-    }
+    Book book = arguments['book'];
 
     void showBuyBook() {
       showModalBottomSheet(
@@ -64,11 +55,11 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
     }
 
     void removeFromShelf() async {
-      BlocProvider.of<MoveBookCubit>(context).removeBook(id);
+      BlocProvider.of<MoveBookCubit>(context).removeBook(id: book.id);
     }
 
     void putOnShelf() {
-      BlocProvider.of<MoveBookCubit>(context).putBook(id: id);
+      BlocProvider.of<MoveBookCubit>(context).putBook(id: book.id);
     }
 
     return BlocListener<MoveBookCubit, MoveBookState>(
@@ -87,12 +78,6 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
       },
       child: BlocBuilder<MyBooksCubit, MyBooksState>(
         builder: (context, state) {
-          owned = myBooksRepository.searchBook(id) != null;
-          if (owned) {
-            book = myBooksRepository.searchBook(id)!;
-          } else {
-            book = storeBooksRepository.searchBook(id)!;
-          }
           return CustomScaffold(
             isButtonBack: true,
             appBar: CustomAppBar(
@@ -128,9 +113,12 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                         InkWell(
                           child: SvgPicture.asset('Assets/icons/info.svg'),
                           onTap: () {
-                            Navigator.pushNamed(
-                                context, '/second_book_info_screen',
-                                arguments: {'book': book});
+                            Navigator.pushNamed(context, '/second_book_info_screen',
+                                arguments: {
+                                  'details': book.details,
+                                  'description': book.description,
+                                  'name': book.name,
+                                });
                           },
                         ),
                       ],
@@ -177,36 +165,62 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                           name: 'GOLDEN BOOK',
                           description: '',
                           icon: 'Assets/icons/red_star.svg',
+                          width: 200,
                         ),
                         _TextIconAndDescription(
                           name: 'The Adventures of Sherlock Holmes',
                           description: '',
                           icon: 'Assets/icons/black_info.svg',
+                          width: 200,
                         ),
-                        _TextIconAndDescription(
-                          name: 'Karl Marx',
-                          description: 'Author',
-                          icon: 'Assets/icons/black_pensil.svg',
-                        ),
-                        _TextIconAndDescription(
-                          name: 'Sereja',
-                          description: 'Creator',
-                          icon: 'Assets/icons/black_lightning.svg',
-                        ),
-                        _TextIconAndDescription(
-                          name: '8-16',
-                          description: 'Колличество активностей',
-                          icon: 'Assets/icons/black_compas.svg',
-                        ),
-                        _TextIconAndDescription(
-                          name: '10-52',
-                          description: 'Возможный доход',
-                          icon: 'Assets/icons/black_dollar.svg',
-                        ),
-                        _TextIconAndDescription(
-                          name: '13/16',
-                          description: 'Колличество изображений:',
-                          icon: 'Assets/icons/black_image.svg',
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                _TextIconAndDescription(
+                                  name: 'Karl Marx',
+                                  description: 'Author',
+                                  icon: 'Assets/icons/black_pensil.svg',
+                                  width: 100,
+                                ),
+                                _TextIconAndDescription(
+                                  name: 'Sereja',
+                                  description: 'Creator',
+                                  icon: 'Assets/icons/black_lightning.svg',
+                                  width: 100,
+                                ),
+                                _TextIconAndDescription(
+                                  name: '8-16',
+                                  description: 'Activities',
+                                  icon: 'Assets/icons/black_compas.svg',
+                                  width: 100,
+                                ),
+                              ],
+                            ),
+                            SizedBox(width: 20,),
+                            Column(
+                              children: [
+                                _TextIconAndDescription(
+                                  name: '10-52',
+                                  description: 'Income',
+                                  icon: 'Assets/icons/black_dollar.svg',
+                                  width: 100,
+                                ),
+                                _TextIconAndDescription(
+                                  name: '13/16',
+                                  description: 'Images',
+                                  icon: 'Assets/icons/black_image.svg',
+                                  width: 100,
+                                ),
+                                _TextIconAndDescription(
+                                  name: '13/100',
+                                  description: 'Left',
+                                  icon: 'Assets/icons/black_book.svg',
+                                  width: 100,
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -259,11 +273,12 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
 
 class _TextIconAndDescription extends StatelessWidget {
   const _TextIconAndDescription(
-      {required this.name, required this.description, required this.icon});
+      {required this.name, required this.description, required this.icon, required this.width});
 
   final String name;
   final String description;
   final String icon;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -281,9 +296,10 @@ class _TextIconAndDescription extends StatelessWidget {
             width: 16,
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                width: 200,
+                width: width,
                 child: Text(
                   name,
                   style: AppTypography.font10black.copyWith(fontSize: 16),
@@ -291,7 +307,7 @@ class _TextIconAndDescription extends StatelessWidget {
               ),
               if (description != '') ...[
                 SizedBox(
-                  width: 200,
+                  width: width,
                   child: Text(
                     description,
                     style: AppTypography.font12dark.copyWith(fontSize: 14, fontWeight: FontWeight.w600),

@@ -1,3 +1,4 @@
+import 'package:nft/models/collection.dart';
 import 'package:nft/services/api_service/api_service.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -9,32 +10,24 @@ class StoreRepository {
 
   StoreRepository({required ApiService apiService}) : _apiService = apiService;
 
-  BehaviorSubject<LoadingStateEnum> saleBooksState =
+  BehaviorSubject<LoadingStateEnum> saleCollectionState =
       BehaviorSubject<LoadingStateEnum>.seeded(LoadingStateEnum.loading);
 
-  List<Book> saleBooks = [];
-
-  Book? searchBook(String id) {
-    for (Book book in saleBooks) {
-      if (book.id == id) return book;
-    }
-    return null;
-  }
+  List<Collection> sailCollection = [];
 
   Future getSaleBooks() async {
-    saleBooksState.add(LoadingStateEnum.loading);
+    saleCollectionState.add(LoadingStateEnum.loading);
     try {
-      final data = await _apiService.books.getAvailableToBuyBooks();
+      final data = await _apiService.books.getAllCollections();
       for (var json in data) {
-        saleBooks.add(Book.fromJson(
+        print(json);
+        sailCollection.add(Collection.fromJson(
           json,
-          false,
-          available: false,
         ));
       }
-      saleBooksState.add(LoadingStateEnum.success);
+      saleCollectionState.add(LoadingStateEnum.success);
     } catch (e) {
-      saleBooksState.add(LoadingStateEnum.fail);
+      saleCollectionState.add(LoadingStateEnum.fail);
       rethrow;
     }
   }

@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/feature/store/data/store_repository.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
+import 'package:nft/widget/containers/collection_vertical_container.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
 import '../../../utils/colors.dart';
@@ -40,13 +41,13 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
     final storeRepository = RepositoryProvider.of<StoreRepository>(context);
 
     List<Widget> listBook = [];
-    for (int i = 0; i < storeRepository.saleBooks.length; i += 2) {
+    for (int i = 0; i < storeRepository.sailCollection.length; i += 2) {
       Row row = Row(children: [
-        BooksVerticalContainer(
+        CollectionVerticalContainer(
           onTap: () {
-            Navigator.pushNamed(context, '/book_info_screen', arguments: {'book' : storeRepository.saleBooks[i].id, 'owned' : false});
+            Navigator.pushNamed(context, '/collection_info_screen', arguments: {'collection' : storeRepository.sailCollection[i]});
           },
-          book: storeRepository.saleBooks[i],
+          collection: storeRepository.sailCollection[i],
         ),
         const SizedBox(
           width: 20,
@@ -55,11 +56,11 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
 
       try {
         row.children.add(
-          BooksVerticalContainer(
+          CollectionVerticalContainer(
             onTap: () {
-              Navigator.pushNamed(context, '/book_info_screen', arguments: {'book' : storeRepository.saleBooks[i + 1].id, 'owned' : false});
+              Navigator.pushNamed(context, '/collection_info_screen', arguments: {'collection' : storeRepository.sailCollection[i + 1]});
             },
-            book: storeRepository.saleBooks[i + 1],
+            collection: storeRepository.sailCollection[i + 1],
           ),
         );
       } catch (e) {}

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/models/books_category.dart';
+import 'package:nft/models/collection.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:nft/widget/containers/collection_horizontal_container.dart';
 import 'package:stroke_text/stroke_text.dart';
 
-import '../../models/shelf.dart';
 import '../../utils/colors.dart';
-import '../containers/books_horizontal_container.dart';
 
 class CustomCategoryScroller extends StatelessWidget {
   const CustomCategoryScroller({super.key, required this.category});
@@ -17,7 +17,7 @@ class CustomCategoryScroller extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
-    List<Book> listBook = category.books.length <= 3 ? category.books : category.books.sublist(
+    List<Collection> listCollection = category.collection.length <= 3 ? category.collection : category.collection.sublist(
         0, 3);
 
     return Column(
@@ -45,7 +45,7 @@ class CustomCategoryScroller extends StatelessWidget {
         Stack(children: [
           Container(
               width: width,
-              height: 178,
+              height: width * 0.45,
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.symmetric(vertical: 2),
               decoration: const BoxDecoration(
@@ -64,18 +64,16 @@ class CustomCategoryScroller extends StatelessWidget {
                     color: AppColors.lvlText,
                   ),
                   SizedBox(
-                      height: 170,
                       child: Row(
-                        children: listBook.map((e) => Padding(
+                        children: listCollection.map((e) => Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
-                                      child: BooksHorizontalContainer(
-                                        book: e,
+                                      child: CollectionHorizontalContainer(
+                                        collection: e,
                                         onTap: () {
                                           Navigator.pushNamed(
-                                              context, '/book_info_screen',
+                                              context, '/collection_info_screen',
                                               arguments: {
-                                                'book': e.id,
-                                                'owned': false
+                                                'collection': e,
                                               });
                                         },
                                       ),
@@ -91,7 +89,7 @@ class CustomCategoryScroller extends StatelessWidget {
               )),
           Container(
             width: width,
-            height: 178,
+            height: width * 0.4,
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.only(right: 20),
             child: InkWell(

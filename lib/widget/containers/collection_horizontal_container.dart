@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
-import 'package:stroke_text/stroke_text.dart';
 
-import '../../models/shelf.dart';
+import '../../models/collection.dart';
 
-class BooksHorizontalContainer extends StatefulWidget {
-  const BooksHorizontalContainer({
+class CollectionHorizontalContainer extends StatefulWidget {
+  const CollectionHorizontalContainer({
     super.key,
-    required this.book,
+    required this.collection,
     required this.onTap,
   });
 
-  final Book book;
+  final Collection collection;
   final Function() onTap;
 
   @override
-  State<BooksHorizontalContainer> createState() =>
-      _BooksHorizontalContainerState();
+  State<CollectionHorizontalContainer> createState() =>
+      _CollectionHorizontalContainerState();
 }
 
-class _BooksHorizontalContainerState extends State<BooksHorizontalContainer> {
+class _CollectionHorizontalContainerState
+    extends State<CollectionHorizontalContainer> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -34,7 +33,8 @@ class _BooksHorizontalContainerState extends State<BooksHorizontalContainer> {
             height: (width - 85) / 2.25,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage(widget.book.image), fit: BoxFit.cover)),
+                    image: NetworkImage(widget.collection.url),
+                    fit: BoxFit.cover)),
           ),
           SizedBox(
             width: (width - 85) / 3,
@@ -51,7 +51,7 @@ class _BooksHorizontalContainerState extends State<BooksHorizontalContainer> {
                   alignment: Alignment.topRight,
                   width: (width - 85) / 3 - 20,
                   child: Text(
-                    widget.book.name,
+                    widget.collection.title,
                     style: AppTypography.font14white.copyWith(fontSize: 12),
                     overflow: TextOverflow.ellipsis,
                   ),

@@ -22,8 +22,9 @@ import 'feature/auth/bloc/login/login_cubit.dart';
 import 'feature/auth/ui/auth_screen.dart';
 import 'feature/auth/ui/login_screen.dart';
 import 'feature/auth/ui/register_screen.dart';
-import 'feature/book_info/ui/book_info_screen.dart';
-import 'feature/book_info/ui/second_book_info_screen.dart';
+import 'feature/book_info/ui/buy/collection_info_screen.dart';
+import 'feature/book_info/ui/my/book_info_screen.dart';
+import 'feature/book_info/ui/second_info_screen.dart';
 import 'feature/describe_problem/ui/describe_problem_screen.dart';
 import 'feature/home/bloc/home_cubit.dart';
 import 'feature/home/data/homa_repository.dart';
@@ -72,6 +73,7 @@ class MyApp extends StatelessWidget {
         '/phrase_screen': (context) => Phrase(),
         '/confirm_phrase_screen': (context) => const PhraseConfirm(),
         '/profile_screen': (context) => const ProfileScreen(),
+        '/collection_info_screen': (context) => const CollectionInfoScreen(),
       },
     );
   }

@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
       MyBooksScreen(
         onTap: (book, ctx) {
           Navigator.pushNamed(ctx, '/book_info_screen',
-              arguments: {'book': book.id, 'owned': true});
+              arguments: {'book': book, 'owned': true});
         },
         books: RepositoryProvider.of<MyBooksRepository>(context).myBooks,
       ),
@@ -100,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 NavigatorBarItem(
                   asset: 'Assets/icons/events.svg',
+                  activeAsset: 'Assets/icons/events_active.svg',
                   isSelected: _selectedTab == 3,
                   text: 'Events',
                   onTap: () {

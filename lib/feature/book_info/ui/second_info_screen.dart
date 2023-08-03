@@ -17,7 +17,7 @@ class SecondBookInfoScreen extends StatelessWidget {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
 
-    final Details details = arguments['book'];
+    final Details details = arguments['details'];
     final String description = arguments['description'];
     final String name = arguments['name'];
 

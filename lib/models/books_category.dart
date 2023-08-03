@@ -1,8 +1,8 @@
-import 'shelf.dart';
+import 'package:nft/models/collection.dart';
 
 class BooksGenre {
   final String name;
-  final List<Book> books;
+  final List<Collection> collection;
 
-  BooksGenre({required this.name, required this.books});
+  BooksGenre({required this.name, required this.collection});
 }

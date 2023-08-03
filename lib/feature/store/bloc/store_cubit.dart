@@ -10,7 +10,7 @@ class StoreCubit extends Cubit<StoreState> {
   StoreRepository appRepository;
 
   StoreCubit({required this.appRepository}) : super(StoreInitial()){
-    appRepository.saleBooksState.listen((event) {
+    appRepository.saleCollectionState.listen((event) {
       if(event == LoadingStateEnum.loading) emit(StoreLoadingState());
       if(event == LoadingStateEnum.fail) emit(StoreFailState());
       if(event == LoadingStateEnum.success) emit(StoreSuccessState());
