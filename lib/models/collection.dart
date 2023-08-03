@@ -8,6 +8,7 @@ class Collection {
   final int goldPercent;
   final String description;
   final Details details;
+  final String id;
 
   Collection.fromJson(Map<String, dynamic> json)
       : title = json['bookInfo']['title'],
@@ -16,5 +17,6 @@ class Collection {
         silverPercent = json['silverPercentage'],
         goldPercent = json['goldPercentage'],
         description = json['bookInfo']['description'],
-        details = Details.fromJson(json['details']);
+        details = Details.fromJson(json['details']),
+        id = json['id'];
 }

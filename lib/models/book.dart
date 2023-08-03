@@ -8,14 +8,15 @@ class Book implements ShelfPlaceData {
   final String image;
   final String spine;
   final String description;
-  final bool owned;
-  bool available;
+
   final int intelegenceInc;
   final int energyInc;
   final int strengthInc;
   final int luckInc;
   final Details details;
 
+  final bool owned;
+  bool available;
   Book({
     this.owned = false,
     this.id = '',
