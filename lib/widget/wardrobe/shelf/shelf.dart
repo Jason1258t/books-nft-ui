@@ -14,18 +14,18 @@ part 'locked_shelf.dart';
 
 const String _topShelfBackground = 'Assets/images/shelf_top.png';
 const String _middleShelfBackground = 'Assets/images/shelf_middle.png';
-// const String _bottomShelfBackground = 'Assets/images/shelf_bottom.png';
-const String _bottomShelfBackground = 'Assets/images/shelf_bottom_21.png';
+const String _bottomShelfBackground = 'Assets/images/shelf_bottom.png';
+// const String _bottomShelfBackground = 'Assets/images/shelf_bottom_21.png';
 
 const double _topShelfHeightRatio = 191 / 359;
 const double _middleShelfHeightRatio = 156 / 359;
-// const double _bottomShelfHeightRatio = 250 / 359;
-const double _bottomShelfHeightRatio = 178 / 359;
+const double _bottomShelfHeightRatio = 250 / 359;
+// const double _bottomShelfHeightRatio = 178 / 359;
 
 const double _topShelfPaddingTopRatio = 30 / 360;
 const double _defaultBottomPaddingRatio = 0.061;
-// const double _bottomShelfBottomPaddingRatio = 1 / 3;
-const double _bottomShelfBottomPaddingRatio = 45 / 360;
+const double _bottomShelfBottomPaddingRatio = 1 / 3;
+// const double _bottomShelfBottomPaddingRatio = 45 / 360;
 
 class Shelf extends StatefulWidget {
   const Shelf(

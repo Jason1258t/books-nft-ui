@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nft/utils/gradients.dart';
-import 'package:nft/widget/buttons/row_elevated_button.dart';
 
 import '../../../widget/buttons/icon_elevated_button.dart';
 import '../../../widget/buttons/icons_with_text_elevated_button.dart';
@@ -31,151 +29,153 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                     image: AssetImage("Assets/images/backgroundHome.png"),
                     fit: BoxFit.cover)),
             child: SafeArea(
-              child: SingleChildScrollView(
-                physics: const ClampingScrollPhysics(),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Stack(
-                        children: [
-                          Container(
-                            height: height * 0.21,
-                            alignment: Alignment.bottomCenter,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          height: height * 0.21,
+                          alignment: Alignment.bottomCenter,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Image.asset(
+                                'Assets/images/Energy_bar_background5.png',
+                                width: 270,
+                                height: 100,
+                                fit: BoxFit.fill,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          child: SizedBox(
+                            height: height * 0.18,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const SizedBox(
-                                  width: 10,
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      UserStat(
+                                        text: 'x1.4',
+                                        fill: 0,
+                                        asset: 'Assets/icons/Vector-2.svg',
+                                        width: (width - 40) * 0.3,
+                                        height: height * 0.03,
+                                      ),
+                                      const Column(
+                                        children: [
+                                          StatisticsContainer(
+                                            fill: 0.6,
+                                            text: '13 Intelligence',
+                                            icon:
+                                                'Assets/icons/blue_brain.svg',
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          StatisticsContainer(
+                                            fill: 0.4,
+                                            text: '12 Derability',
+                                            icon:
+                                                'Assets/icons/blue_shied.svg',
+                                          ),
+                                        ],
+                                      ),
+                                      ConstIconsWithTextElevatedButton(
+                                        onTap: () {},
+                                        text: 'Level Up',
+                                        height: height * 0.03,
+                                        width: (width - 40) * 0.3,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                Image.asset(
-                                  'Assets/images/Energy_bar_background5.png',
-                                  width: 270,
-                                  height: 100,
-                                  fit: BoxFit.fill,
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      UserStat(
+                                        text: '3,3/5',
+                                        fill: 3.3 / 5,
+                                        asset: 'Assets/icons/energy.svg',
+                                        width: (width - 40) * 0.3,
+                                        height: height * 0.03,
+                                      ),
+                                      const Column(
+                                        children: [
+                                          StatisticsContainer(
+                                            fill: 0.2,
+                                            text: '28 Energy',
+                                            icon:
+                                                'Assets/icons/blue_lightning.svg',
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          StatisticsContainer(
+                                            fill: 1,
+                                            text: '56 Luck',
+                                            icon:
+                                                'Assets/icons/blue_clever.svg',
+                                          ),
+                                        ],
+                                      ),
+                                      IconElevatedButton(
+                                        onTap: () {},
+                                        asset1: 'Assets/icons/key.svg',
+                                        height: height * 0.03,
+                                        width: (width - 40) * 0.3,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      UserStat(
+                                        text: '85%',
+                                        fill: 0.85,
+                                        asset: 'Assets/icons/shield.svg',
+                                        width: (width - 40) * 0.3,
+                                        height: height * 0.03,
+                                      ),
+                                      const LvlContainer(),
+                                      ConstIconsWithTextElevatedButton(
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, '/profile_screen');
+                                        },
+                                        text: 'Profile',
+                                        height: height * 0.03,
+                                        width: (width - 40) * 0.3,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
-                            child: SizedBox(
-                              height: height * 0.18,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        UserStat(
-                                          text: 'x1.4',
-                                          fill: 0,
-                                          asset: 'Assets/icons/Vector-2.svg',
-                                          width: (width - 40) * 0.3,
-                                          height: height * 0.03,
-                                        ),
-                                        const Column(
-                                          children: [
-                                            StatisticsContainer(
-                                              fill: 0.6,
-                                              text: '13 Intelligence',
-                                              icon: 'Assets/icons/blue_brain.svg',
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            StatisticsContainer(
-                                              fill: 0.4,
-                                              text: '12 Derability',
-                                              icon: 'Assets/icons/blue_shied.svg',
-                                            ),
-                                          ],
-                                        ),
-                                        ConstIconsWithTextElevatedButton(
-                                          onTap: () {},
-                                          text: 'Level Up',
-                                          height: height * 0.03,
-                                          width: (width - 40) * 0.3,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        UserStat(
-                                          text: '3,3/5',
-                                          fill: 3.3 / 5,
-                                          asset: 'Assets/icons/energy.svg',
-                                          width: (width - 40) * 0.3,
-                                          height: height * 0.03,
-                                        ),
-                                        const Column(
-                                          children: [
-                                            StatisticsContainer(
-                                              fill: 0.2,
-                                              text: '28 Energy',
-                                              icon: 'Assets/icons/blue_lightning.svg',
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            StatisticsContainer(
-                                              fill: 1,
-                                              text: '56 Luck',
-                                              icon: 'Assets/icons/blue_clever.svg',
-                                            ),
-                                          ],
-                                        ),
-                                        IconElevatedButton(
-                                          onTap: () {},
-                                          asset1: 'Assets/icons/key.svg',
-                                          height: height * 0.03,
-                                          width: (width - 40) * 0.3,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        UserStat(
-                                          text: '85%',
-                                          fill: 0.85,
-                                          asset: 'Assets/icons/shield.svg',
-                                          width: (width - 40) * 0.3,
-                                          height: height * 0.03,
-                                        ),
-                                        const LvlContainer(),
-                                        ConstIconsWithTextElevatedButton(
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                                context, '/profile_screen');
-                                          },
-                                          text: 'Profile',
-                                          height: height * 0.03,
-                                          width: (width - 40) * 0.3,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Wardrobe()
-                    ]),
-              ),
+                        ),
+                      ],
+                    ),
+                    const Wardrobe()
+                  ]),
             )));
   }
 }

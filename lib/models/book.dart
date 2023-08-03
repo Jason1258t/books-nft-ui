@@ -8,17 +8,13 @@ class Book implements ShelfPlaceData {
   final String image;
   final String spine;
   final String description;
-  final int ISBN;
-  final String createAt;
-  final String language;
-  final String genre;
-  final int pagesCount;
   final bool owned;
   bool available;
   final int intelegenceInc;
   final int energyInc;
   final int strengthInc;
   final int luckInc;
+  final Details details;
 
   Book({
     this.owned = false,
@@ -28,13 +24,9 @@ class Book implements ShelfPlaceData {
     this.strengthInc = 4,
     this.luckInc = 6,
     this.description = '',
-    this.createAt = '',
-    this.genre = '',
-    this.ISBN = 0,
-    this.language = '',
-    this.pagesCount = 500,
     this.available = true,
     this.spine = '',
+    required this.details,
     required this.name,
     required this.image,
   });
@@ -47,13 +39,9 @@ class Book implements ShelfPlaceData {
         image = json['covers'][0]['url'],
         spine = json['covers'][0]['spine'] ?? json['covers'][0]['url'],
         description = json['bookInfo']['description'],
-        ISBN = json['details']['ISBN'],
-        createAt = json['details']['publicationDate'],
-        language = json['details']['language'],
-        genre = json['details']['genre'],
-        pagesCount = json['details']['pagesCount'],
         intelegenceInc = json['intelegenceInc'],
         energyInc = json['energyInc'],
         strengthInc = json['strengthInc'],
+        details = Details.fromJson(json),
         luckInc = json['luckInc'];
 }

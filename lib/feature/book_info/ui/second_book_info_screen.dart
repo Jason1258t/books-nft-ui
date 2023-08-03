@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nft/models/details.dart';
 import 'package:nft/widget/custom_scaffold/scaffold.dart';
 
 import '../../../models/shelf.dart';
@@ -16,7 +17,9 @@ class SecondBookInfoScreen extends StatelessWidget {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
 
-    final book = arguments['book'] as Book;
+    final Details details = arguments['book'];
+    final String description = arguments['description'];
+    final String name = arguments['name'];
 
     return CustomScaffold(
       appBar: CustomAppBar(
@@ -29,7 +32,7 @@ class SecondBookInfoScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(children: [
           Text(
-            book.name,
+            name,
             style: AppTypography.font20white.copyWith(fontSize: 24),
             textAlign: TextAlign.center,
             maxLines: 2,
@@ -45,7 +48,7 @@ class SecondBookInfoScreen extends StatelessWidget {
             height: 15,
           ),
           Text(
-            book.description,
+            description,
             style: AppTypography.font10blackW400.copyWith(fontSize: 12,fontWeight: FontWeight.w600),
           ),
           const SizedBox(
@@ -60,7 +63,7 @@ class SecondBookInfoScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'ISBN: ${book.ISBN} \nДата публикации: ${book.createAt} \nЯзык: ${book.language} \nЖанр: ${book.genre} \nКоличество страниц: ${book.pagesCount}',
+                'ISBN: ${details.ISBN} \nДата публикации: ${details.createAt} \nЯзык: ${details.language} \nЖанр: ${details.genre} \nКоличество страниц: ${details.pagesCount}',
                 style: AppTypography.font10blackW400
                     .copyWith(fontSize: 12, height: 2,fontWeight: FontWeight.w600),
               ),
