@@ -22,6 +22,12 @@ class Stats {
         luck = json['luckProperty'],
         strength = json['strengthProperty'],
         energy = json['energyProperty'];
+
+  Stats.zero()
+      : intelligence = 0,
+        luck = 0,
+        strength = 0,
+        energy = 0;
 }
 
 class Indicators {

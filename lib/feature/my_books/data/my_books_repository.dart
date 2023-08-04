@@ -4,6 +4,7 @@ import 'package:rxdart/rxdart.dart';
 
 import '../../../models/shelf.dart';
 import '../../../models/stats.dart';
+import '../../../models/wardrobe.dart';
 
 enum LoadingStateEnum { wait, loading, success, fail }
 
@@ -38,6 +39,10 @@ class MyBooksRepository {
       BehaviorSubject<LoadingStateEnum>.seeded(LoadingStateEnum.loading);
   BehaviorSubject<LoadingStateEnum> myBooksState =
       BehaviorSubject<LoadingStateEnum>.seeded(LoadingStateEnum.loading);
+  BehaviorSubject<UserStats> userProperties = BehaviorSubject<UserStats>.seeded(
+      UserStats(
+          stats: Stats(energy: 0, intelligence: 0, luck: 0, strength: 0),
+          indicators: Indicators(0, 0, 0)));
 
   List<Book> myBooks = [];
 
@@ -114,10 +119,12 @@ class MyBooksRepository {
   Future _getUserStats() async {
     final stats = _apiService.user.getProperties();
     final indicators = _apiService.user.getIndicators();
-    await Future.wait([stats, indicators]).then((value) => userStats =
-        UserStats(
-            stats: Stats.fromJson(value[0]),
-            indicators: Indicators.fromJson(value[1])));
+    await Future.wait([stats, indicators]).then((value) {
+      userStats = UserStats(
+          stats: Stats.fromJson(value[0]),
+          indicators: Indicators.fromJson(value[1]));
+      userProperties.add(userStats);
+    });
   }
 
   Future getWardrobe() async {
@@ -150,43 +157,3 @@ class MyBooksRepository {
   }
 }
 
-class Wardrobe {
-  late final String id;
-  List<Book> availableBooks = [];
-  List<ShelfData> shelves = [];
-
-  bool contains(String id) {
-    for (Book book in availableBooks) {
-      if (book.id == id) return true;
-    }
-    return false;
-  }
-
-  BookPosition? findBook(String id) {
-    for (ShelfData shelf in shelves) {
-      if (!shelf.isLocked) {
-        int index = 0;
-        for (var book in shelf.booksData) {
-          if (book is Book && book.id == id) {
-            return BookPosition(shelf: shelf.shelfId, index: index);
-          }
-          index++;
-        }
-      }
-    }
-    return null;
-  }
-
-  BookPosition? getEmptyPlace() {
-    for (ShelfData shelfData in shelves) {
-      int index = 0;
-      for (var place in shelfData.booksData) {
-        if (place is BookPosition) {
-          return BookPosition(shelf: shelfData.shelfId, index: index);
-        }
-        index++;
-      }
-    }
-    return null;
-  }
-}
