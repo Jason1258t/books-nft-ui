@@ -8,17 +8,17 @@ import 'package:stroke_text/stroke_text.dart';
 import '../../utils/colors.dart';
 
 class CustomCategoryScroller extends StatelessWidget {
-  const CustomCategoryScroller({super.key, required this.category});
+  const CustomCategoryScroller({super.key, required this.genre});
 
-  final BooksGenre category;
+  final BooksGenre genre;
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
-    List<Collection> listCollection = category.collections.length <= 3
-        ? category.collections
-        : category.collections.sublist(0, 3);
+    List<Collection> listCollection = genre.collections.length <= 3
+        ? genre.collections
+        : genre.collections.sublist(0, 3);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +30,7 @@ class CustomCategoryScroller extends StatelessWidget {
               strokeWidth: 2.5,
               textStyle: AppTypography.font20gold.copyWith(fontSize: 14),
               text:
-                  '${category.name[0].toUpperCase()}${category.name.substring(1)}',
+                  '${genre.name[0].toUpperCase()}${genre.name.substring(1)}',
             )),
         Container(
           width: width,
@@ -95,7 +95,7 @@ class CustomCategoryScroller extends StatelessWidget {
             padding: const EdgeInsets.only(right: 20),
             child: InkWell(
               onTap: () {
-                Navigator.pushNamed(context, '/category_books_screen', arguments: {'collections': category.collections});
+                Navigator.pushNamed(context, '/category_books_screen', arguments: {'genre': genre.name});
               },
               child: Column(
                 mainAxisSize: MainAxisSize.min,

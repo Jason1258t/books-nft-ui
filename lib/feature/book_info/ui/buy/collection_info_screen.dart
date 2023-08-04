@@ -35,7 +35,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
 
     String idCollection = arguments['id'];
 
-    Collection collection = storeBooksRepository.searchBookById(idCollection)!;
+    Collection collection = storeBooksRepository.searchCollectionById(idCollection)!;
 
     void showBuyBook() {
       showModalBottomSheet(
@@ -66,7 +66,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
             stream: storeBooksRepository.saleCollectionUpdateStream,
             builder: (context, snapshot) {
               Collection collection =
-                  storeBooksRepository.searchBookById(idCollection)!;
+                  storeBooksRepository.searchCollectionById(idCollection)!;
 
               return Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),

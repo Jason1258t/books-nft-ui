@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/feature/store/data/store_repository.dart';
+import 'package:nft/models/collection.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/containers/collection_vertical_container.dart';
@@ -28,7 +29,6 @@ List<String> list = [
 ];
 
 class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -36,14 +36,22 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
 
     final storeRepository = RepositoryProvider.of<StoreRepository>(context);
 
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+
+    final genreName = arguments['genre'];
+
+    BooksGenre genre = storeRepository.searchGenreByName(genreName)!;
+
     List<Widget> listBook = [];
-    for (int i = 0; i < storeRepository.sailCollection.length; i += 2) {
+    for (int i = 0; i < genre.collections.length; i += 2) {
       Row row = Row(children: [
         CollectionVerticalContainer(
           onTap: () {
-            Navigator.pushNamed(context, '/collection_info_screen', arguments: {'id' : storeRepository.sailCollection[i].id});
+            Navigator.pushNamed(context, '/collection_info_screen',
+                arguments: {'id': genre.collections[i].id});
           },
-          collection: storeRepository.sailCollection[i],
+          collection: genre.collections[i],
         ),
         const SizedBox(
           width: 20,
@@ -54,9 +62,10 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
         row.children.add(
           CollectionVerticalContainer(
             onTap: () {
-              Navigator.pushNamed(context, '/collection_info_screen', arguments: {'id' : storeRepository.sailCollection[i + 1].id});
+              Navigator.pushNamed(context, '/collection_info_screen',
+                  arguments: {'id': genre.collections[i + 1].id});
             },
-            collection: storeRepository.sailCollection[i + 1],
+            collection: genre.collections[i + 1],
           ),
         );
       } catch (e) {}
@@ -82,7 +91,7 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 40),
                   child: Text(
-                    'Economy',
+                    genre.name,
                     style: AppTypography.font20gold.copyWith(fontSize: 24),
                   ),
                 ),

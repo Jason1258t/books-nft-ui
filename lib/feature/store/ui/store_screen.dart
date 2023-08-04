@@ -19,12 +19,6 @@ class _StoreScreenState extends State<StoreScreen> {
   Widget build(BuildContext context) {
     final storeRepository = RepositoryProvider.of<StoreRepository>(context);
 
-    List<BooksGenre> getBooksGenres(List<Collection> list) {
-      List<BooksGenre> booksGenres = storeRepository.sortedCollections;
-
-      return booksGenres;
-    }
-
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
@@ -47,9 +41,9 @@ class _StoreScreenState extends State<StoreScreen> {
                 builder: (context, state) {
                   if (state is StoreSuccessState) {
                     return Column(
-                      children: getBooksGenres(storeRepository.sailCollection)
+                      children: storeRepository.sortedCollections
                           .map((e) => CustomCategoryScroller(
-                                category: e,
+                                genre: e,
                               ))
                           .toList(),
                     );

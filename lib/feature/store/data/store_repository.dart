@@ -21,7 +21,7 @@ class StoreRepository {
   Future getStoreCollections() async {
     saleCollectionState.add(LoadingStateEnum.loading);
     try {
-      sailCollection = [];
+      sortedCollections = [];
 
       final data = await _apiService.collections.getGenres();
       for (var json in data) {
@@ -40,10 +40,21 @@ class StoreRepository {
     await _apiService.books.buyBook(collectionId);
   }
 
-  Collection? searchBookById(String id) {
-    for (Collection book in sailCollection) {
-      if (book.id == id) return book;
+  Collection? searchCollectionById(String id) {
+    for (BooksGenre genre in sortedCollections) {
+      for (Collection book in genre.collections) {
+        if (book.id == id) return book;
+      }
     }
+
+    return null;
+  }
+
+  BooksGenre? searchGenreByName(String name) {
+    for (BooksGenre genre in sortedCollections) {
+      if (genre.name == name) return genre;
+    }
+
     return null;
   }
 }
