@@ -1,8 +1,14 @@
-import 'package:nft/models/collection.dart';
+part of 'collection.dart';
 
 class BooksGenre {
   final String name;
-  final List<Collection> collection;
+  final List<Collection> collections;
 
-  BooksGenre({required this.name, required this.collection});
+  BooksGenre({required this.name, required this.collections});
+
+  BooksGenre.fromJson(Map<String, dynamic> json)
+      : name = json['genre'],
+        collections = (json['collections'] as List)
+            .map((e) => Collection.fromJson(e))
+            .toList();
 }

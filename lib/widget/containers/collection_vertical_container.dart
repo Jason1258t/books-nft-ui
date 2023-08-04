@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:nft/utils/fonts.dart';
 
 import '../../models/collection.dart';
-import '../../models/shelf.dart';
 
 class CollectionVerticalContainer extends StatefulWidget {
   const CollectionVerticalContainer(
@@ -39,7 +38,9 @@ class _CollectionVerticalContainerState
                         'Assets/images/book_cover.png',
                       ),
                       fit: BoxFit.fill)),
-              child: Image.network(widget.collection.url, ),
+              child: Image.network(
+                widget.collection.url,
+              ),
             ),
           ),
           Row(

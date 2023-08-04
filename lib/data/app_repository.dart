@@ -52,7 +52,7 @@ class AppRepository {
       await _apiService.setToken('Bearer $result');
       await _saveToken(result.toString());
       try {
-        _apiService.books.createWardrobe();
+        _apiService.bookshelves.createWardrobe();
       } catch (e) {}
       appState.add(AppStateEnum.auth);
     } catch (e) {

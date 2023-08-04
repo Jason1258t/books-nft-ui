@@ -29,6 +29,7 @@ const Color _lockedBookBorderColor = Colors.white;
 final BoxDecoration _bookDecoration =
     BoxDecoration(color: Colors.black.withOpacity(0.4));
 
+// ignore: must_be_immutable
 class BookWidget extends StatelessWidget {
   BookWidget(
       {super.key,

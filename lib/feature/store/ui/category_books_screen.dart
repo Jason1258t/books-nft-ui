@@ -27,10 +27,6 @@ List<String> list = [
   'Popular',
 ];
 
-List<int> list1 = [1, 2, 34, 4, 5, 6, 7, 8, 89];
-
-
-
 class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
 
   @override

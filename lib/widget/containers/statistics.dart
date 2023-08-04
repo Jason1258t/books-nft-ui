@@ -15,7 +15,6 @@ class StatisticsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
 
     double textSize = width > 300
         ? 9
@@ -31,7 +30,9 @@ class StatisticsContainer extends StatelessWidget {
         children: [
           Align(
               alignment: Alignment.topRight,
-              child: Text(text, style: AppTypography.font9brown)),
+              child: Text(text,
+                  style:
+                      AppTypography.font9brown.copyWith(fontSize: textSize))),
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(

@@ -2,7 +2,6 @@ import 'package:nft/models/collection.dart';
 import 'package:nft/services/api_service/api_service.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../../models/shelf.dart';
 import '../../my_books/data/my_books_repository.dart';
 
 class StoreRepository {
@@ -17,18 +16,16 @@ class StoreRepository {
       BehaviorSubject<bool>.seeded(false);
 
   List<Collection> sailCollection = [];
+  List<BooksGenre> sortedCollections = [];
 
   Future getStoreCollections() async {
     saleCollectionState.add(LoadingStateEnum.loading);
     try {
       sailCollection = [];
 
-      final data = await _apiService.books.getAllCollections();
+      final data = await _apiService.collections.getGenres();
       for (var json in data) {
-        print(json['details']['genre']);
-        sailCollection.add(Collection.fromJson(
-          json,
-        ));
+        sortedCollections.add(BooksGenre.fromJson(json));
       }
 
       saleCollectionUpdateStream.add(true);

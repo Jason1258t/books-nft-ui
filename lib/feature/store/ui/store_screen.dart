@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/feature/store/data/store_repository.dart';
-import 'package:nft/models/books_category.dart';
 import 'package:nft/models/collection.dart';
 
 import '../../../widget/custom_scrollers/custom_category_scroller.dart';
@@ -22,17 +20,7 @@ class _StoreScreenState extends State<StoreScreen> {
     final storeRepository = RepositoryProvider.of<StoreRepository>(context);
 
     List<BooksGenre> getBooksGenres(List<Collection> list) {
-      List<BooksGenre> booksGenres = [
-        BooksGenre(
-            name: 'Fantasy',
-             collection: list.where((element) => element.details.genre == 'fantasy').toList()),
-        BooksGenre(
-            name: 'Fantasy',
-            collection: list.sublist(3, 6).toList()),
-        BooksGenre(
-            name: 'Romantic',
-            collection: list.sublist(6, 9).toList()),
-      ];
+      List<BooksGenre> booksGenres = storeRepository.sortedCollections;
 
       return booksGenres;
     }

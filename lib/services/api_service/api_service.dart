@@ -6,11 +6,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../models/book_position.dart';
 
 part 'auth.dart';
-
 part 'books.dart';
-
+part 'bookshelves.dart';
+part 'collections.dart';
 part 'methods.dart';
-
 part 'users.dart';
 
 class ApiService {
@@ -18,6 +17,8 @@ class ApiService {
   late Auth auth;
   late BooksService books;
   late UserService user;
+  late CollectionsService collections;
+  late BookshelvesService bookshelves;
 
   final Dio _dio =
       Dio(BaseOptions(baseUrl: dotenv.get('BASE_SERVER_URL'), headers: {
@@ -27,6 +28,8 @@ class ApiService {
   ApiService() : super() {
     auth = Auth(dio_: _dio);
     books = BooksService(dio_: _dio);
+    collections = CollectionsService(dio_: _dio);
+    bookshelves = BookshelvesService(dio_: _dio);
     user = UserService(dio_: _dio);
   }
 
@@ -34,6 +37,8 @@ class ApiService {
     auth.refreshDio(_dio);
     books.refreshDio(_dio);
     user.refreshDio(_dio);
+    collections.refreshDio(_dio);
+    bookshelves.refreshDio(_dio);
   }
 
   /// получает статы пользователя после авторизации

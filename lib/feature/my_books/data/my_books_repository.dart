@@ -76,7 +76,7 @@ class MyBooksRepository {
   }
 
   Future _getAvailableBooks() async {
-    final data = await _apiService.books.getAvailableBooks();
+    final data = await _apiService.bookshelves.getAvailableBooks();
     wardrobe.availableBooks.clear();
     for (var json in data['books']) {
       wardrobe.availableBooks.add(Book.fromJson(json, true));
@@ -84,7 +84,7 @@ class MyBooksRepository {
   }
 
   Future _getShelves() async {
-    final data = await _apiService.books.getWardrobe();
+    final data = await _apiService.bookshelves.getWardrobe();
     wardrobe.shelves = [];
     for (var jsonShelf in data['shelves']) {
       wardrobe.shelves.add(ShelfData.fromJson(jsonShelf));
@@ -100,13 +100,13 @@ class MyBooksRepository {
     if (position == null) {
       throw Exception('no places');
     }
-    await _apiService.books.placeBook(position, id);
+    await _apiService.bookshelves.placeBook(position, id);
     await getWardrobe();
     _refreshMyBooks();
   }
 
   Future removeBook(String id) async {
-    await _apiService.books.removeBook(wardrobe.findBook(id)!);
+    await _apiService.bookshelves.removeBook(wardrobe.findBook(id)!);
     await getWardrobe();
     _refreshMyBooks();
   }
@@ -134,12 +134,12 @@ class MyBooksRepository {
   }
 
   Future buyPlace(String shelfId) async {
-    await _apiService.books.buyPlace(shelfId);
+    await _apiService.bookshelves.buyPlace(shelfId);
     await getWardrobe();
   }
 
   Future buyShelf() async {
-    await _apiService.books.buyShelf();
+    await _apiService.bookshelves.buyShelf();
     await getWardrobe();
   }
 

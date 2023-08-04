@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nft/models/books_category.dart';
 import 'package:nft/models/collection.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/containers/collection_horizontal_container.dart';
@@ -17,8 +16,9 @@ class CustomCategoryScroller extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
-    List<Collection> listCollection = category.collection.length <= 3 ? category.collection : category.collection.sublist(
-        0, 3);
+    List<Collection> listCollection = category.collections.length <= 3
+        ? category.collections
+        : category.collections.sublist(0, 3);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +29,8 @@ class CustomCategoryScroller extends StatelessWidget {
               strokeColor: AppColors.isNoActiveStrokeText,
               strokeWidth: 2.5,
               textStyle: AppTypography.font20gold.copyWith(fontSize: 14),
-              text: category.name,
+              text:
+                  '${category.name[0].toUpperCase()}${category.name.substring(1)}',
             )),
         Container(
           width: width,
@@ -64,21 +65,22 @@ class CustomCategoryScroller extends StatelessWidget {
                     color: AppColors.lvlText,
                   ),
                   Row(
-                    children: listCollection.map((e) => Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
-                                  child: CollectionHorizontalContainer(
-                                    collection: e,
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                          context, '/collection_info_screen',
-                                          arguments: {
-                                            'id': e.id,
-                                          });
-                                    },
-                                  ),
-                                ))
-                            .toList()
-                  ),
+                      children: listCollection
+                          .map((e) => Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 4, vertical: 5),
+                                child: CollectionHorizontalContainer(
+                                  collection: e,
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, '/collection_info_screen',
+                                        arguments: {
+                                          'id': e.id,
+                                        });
+                                  },
+                                ),
+                              ))
+                          .toList()),
                   Container(
                     width: width,
                     height: 2,
@@ -93,7 +95,7 @@ class CustomCategoryScroller extends StatelessWidget {
             padding: const EdgeInsets.only(right: 20),
             child: InkWell(
               onTap: () {
-                Navigator.pushNamed(context, '/category_books_screen');
+                Navigator.pushNamed(context, '/category_books_screen', arguments: {'collections': category.collections});
               },
               child: Column(
                 mainAxisSize: MainAxisSize.min,

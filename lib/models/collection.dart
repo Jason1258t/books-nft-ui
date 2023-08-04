@@ -1,4 +1,5 @@
 import 'package:nft/models/details.dart';
+part 'books_category.dart';
 
 class Collection {
   final String id;
