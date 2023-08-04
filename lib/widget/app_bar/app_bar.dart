@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nft/feature/my_books/data/my_books_repository.dart';
+import 'package:nft/models/stats.dart';
 import 'package:nft/utils/fonts.dart';
 
 import '../../utils/colors.dart';
@@ -17,72 +19,83 @@ class CustomAppBar extends AppBar {
           automaticallyImplyLeading: false,
           elevation: 5,
           backgroundColor: AppColors.bottomNavigationBackground,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              UserStat(
-                text: 'x1.4',
-                fill: 0,
-                asset: 'Assets/icons/Vector-2.svg',
-                width: (width - 39) * 0.19,
-                height: height * 0.03,
-              ),
-              UserStat(
-                text: '3,3/5',
-                fill: 3.3 / 5,
-                asset: 'Assets/icons/energy.svg',
-                width: (width - 39) * 0.19,
-                height: height * 0.03,
-              ),
-              UserStat(
-                text: '85%',
-                fill: 0.85,
-                asset: 'Assets/icons/shield.svg',
-                width: (width - 39) * 0.19,
-                height: height * 0.03,
-              ),
-              Container(
-                width: (width - 39) * 0.19,
-                height: height * 0.03,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: AppColors.statColor,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
+          title: StreamBuilder<UserStats>(
+              initialData: UserStats(
+                  stats: Stats.zero(), indicators: Indicators(0, 0, 0)),
+              stream: RepositoryProvider.of<MyBooksRepository>(context)
+                  .userProperties
+                  .stream,
+              builder: (context, snapshot) {
+                final indicators = snapshot.data!.indicators;
+                final stats = snapshot.data!.stats;
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SizedBox(
-                      width: 3,
+                    UserStat(
+                      text: 'x${indicators.mixed}',
+                      fill: 0,
+                      asset: 'Assets/icons/Vector-2.svg',
+                      width: (width - 39) * 0.19,
+                      height: height * 0.03,
                     ),
-                    SvgPicture.asset('Assets/icons/stars.svg'),
-                    const SizedBox(
-                      width: 3,
+                    UserStat(
+                      text: '${stats.energy}/${stats.energy}',
+                      fill: 1,
+                      asset: 'Assets/icons/energy.svg',
+                      width: (width - 39) * 0.19,
+                      height: height * 0.03,
                     ),
-                    Text(
-                      '2 430',
-                      style: AppTypography.font14white.copyWith(fontSize: 12),
-                    )
+                    UserStat(
+                      text: '${indicators.strength}%',
+                      fill: indicators.strength / 100,
+                      asset: 'Assets/icons/shield.svg',
+                      width: (width - 39) * 0.19,
+                      height: height * 0.03,
+                    ),
+                    Container(
+                      width: (width - 39) * 0.19,
+                      height: height * 0.03,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: AppColors.statColor,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 3,
+                          ),
+                          SvgPicture.asset('Assets/icons/stars.svg'),
+                          const SizedBox(
+                            width: 3,
+                          ),
+                          Text(
+                            '2 430',
+                            style: AppTypography.font14white
+                                .copyWith(fontSize: 12),
+                          )
+                        ],
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        if (isProfileButton) {
+                          Navigator.pushNamed(context, '/profile_screen');
+                        }
+                      },
+                      child: Container(
+                        width: (width - 39) * 0.19,
+                        height: height * 0.03,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: AppColors.statColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: SvgPicture.asset('Assets/icons/profile.svg'),
+                      ),
+                    ),
                   ],
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  if (isProfileButton) {
-                    Navigator.pushNamed(context, '/profile_screen');
-                  }
-                },
-                child: Container(
-                  width: (width - 39) * 0.19,
-                  height: height * 0.03,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: AppColors.statColor,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: SvgPicture.asset('Assets/icons/profile.svg'),
-                ),
-              ),
-            ],
-          ),
+                );
+              }),
         );
 }
