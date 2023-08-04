@@ -10,7 +10,6 @@ import 'package:nft/models/book_position.dart';
 import 'package:nft/utils/dialogs.dart';
 import 'package:nft/widget/custom_bottom_sheet/bottom_sheet.dart';
 import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
-import 'package:stroke_text/stroke_text.dart';
 
 import '../../models/shelf.dart';
 import '../../utils/colors.dart';
@@ -71,8 +70,13 @@ class BookWidget extends StatelessWidget {
               image: AssetImage('Assets/images/spine_bcg_${data?.type}.png'),
               fit: BoxFit.cover));
       // child = Image.network(data!.spine, fit: BoxFit.cover);
-      child =
-          BookContent(url: data!.image, name: data!.name, author: data!.author);
+      child = BookContent(
+        url: data!.image,
+        name: data!.name,
+        author: data!.author,
+        width: shelfWidth * 22 / 360,
+        height: shelfWidth * 32 / 360,
+      );
     }
 
     _bookType = bookType;
@@ -214,54 +218,78 @@ class BookWidget extends StatelessWidget {
 
 class BookContent extends StatelessWidget {
   const BookContent(
-      {super.key, required this.url, required this.name, required this.author});
+      {super.key,
+      required this.url,
+      required this.name,
+      required this.author,
+      required this.width,
+      required this.height});
 
   final String url;
   final String name;
   final String author;
 
+  final double width;
+  final double height;
+
   @override
   Widget build(BuildContext context) {
+    double textSize = width > 20 ? 5 : 3;
+
     return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.network(
-            url,
-            width: 20,
-            height: 30,
-          ),
-          const SizedBox(height: 4,),
-          RotatedBox(
-            quarterTurns: 3,
-            child: SizedBox(
-              width: 42,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 3,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 1),
-                    child: StrokeText(
-                      text: name,
-                      strokeWidth: 0.2,
-                      strokeColor: Colors.black,
-                      textStyle: AppTypography.font5white,
-                    ),
-                  ),
-                  StrokeText(
-                    text: author,
-                    strokeWidth: 0.2,
-                    strokeColor: Colors.black,
-                    textStyle: AppTypography.font5white.copyWith(fontSize: 6),
-                  ),
-                ],
-              ),
+      child: SizedBox(
+        width: width,
+        height: height * 76 / 32,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.network(
+              url,
+              width: width,
+              height: height,
             ),
-          )
-        ],
+            RotatedBox(
+              quarterTurns: 3,
+              child: SizedBox(
+                width: height * 1.25,
+                height: width,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 0),
+                      child: Text(
+                        name,
+                        maxLines: 2,
+                        style: AppTypography.font10white.copyWith(shadows: [
+                          const Shadow(
+                              color: Colors.black,
+                              offset: Offset.zero,
+                              blurRadius: 5)
+                        ], fontSize: textSize),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Text(
+                      author,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.font5white.copyWith(
+                          fontSize: textSize + 1,
+                          shadows: [
+                            const Shadow(
+                                color: Colors.black,
+                                offset: Offset.zero,
+                                blurRadius: 5)
+                          ]),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

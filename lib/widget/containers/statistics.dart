@@ -17,9 +17,11 @@ class StatisticsContainer extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
+    double textSize = width > 300 ? 9 : width > 250 ? 8 : 7;
+
     return SizedBox(
       width: (width - 40) * 0.31,
-      height:  height * 0.031 + 11,
+      height: height * 0.031 + 11,
       child: Stack(
         children: [
           Align(
