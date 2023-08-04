@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 
 import '../../../store/data/store_repository.dart';
 import '../../data/my_books_repository.dart';

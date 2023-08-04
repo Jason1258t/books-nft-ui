@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nft/models/details.dart';
 import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
 
-import '../../../models/shelf.dart';
 import '../../../utils/fonts.dart';
 import '../../../widget/app_bar/app_bar.dart';
 

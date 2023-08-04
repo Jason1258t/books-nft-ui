@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nft/data/app_repository.dart';
 import 'package:nft/feature/auth/bloc/login/login_cubit.dart';
 import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
 
 import '../../../bloc/app_cubit.dart';
-import '../../../utils/dialogs.dart';
 import '../../../utils/gradients.dart';
 import '../../../widget/app_bar/app_bar.dart';
 import '../../../widget/buttons/custom_elevated_button.dart';
@@ -89,8 +87,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-
-    final appRepository = RepositoryProvider.of<AppRepository>(context);
 
     return BlocListener<AppCubit, AppState>(
       listener: (context, state) {

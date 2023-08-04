@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/fonts.dart';
-import 'package:stroke_text/stroke_text.dart';
 
 import '../../models/shelf.dart';
 
