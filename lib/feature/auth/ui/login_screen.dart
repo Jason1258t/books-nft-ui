@@ -155,6 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         maxLength: 18,
                         isError: isVerificationCode,
                         hintText: 'Verification code',
+                        keyBoardType: TextInputType.phone,
                         onChange: (value) {
                           if (value.isNotEmpty) {
                             setState(() {

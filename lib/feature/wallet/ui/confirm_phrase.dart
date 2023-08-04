@@ -127,6 +127,7 @@ class _PhraseConfirmState extends State<PhraseConfirm> {
                 ),
                 CustomTextFieldWithButton(
                   controller: codeController,
+                  keyBoardType: TextInputType.phone,
                   suffixIcon: SmallElevatedButton(
                     text: 'SEND CODE',
                     onTap: () {},

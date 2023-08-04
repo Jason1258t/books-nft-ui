@@ -153,6 +153,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         obscureText: true,
                         maxLength: 18,
                         isError: isVerificationCode,
+                        keyBoardType: TextInputType.phone,
                         hintText: 'Verification code',
                         onChange: (value) {
                           if (value.isNotEmpty) {

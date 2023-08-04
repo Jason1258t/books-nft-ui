@@ -29,9 +29,9 @@ class Wallet extends StatelessWidget {
           context: context,
           isScrollControlled: true,
           builder: (BuildContext context) => Padding(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: CustomBottomSheet(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: CustomBottomSheet(
                   title: 'Withdraw',
                   children: [
                     SvgPicture.asset(
@@ -95,7 +95,7 @@ class Wallet extends StatelessWidget {
                     )
                   ],
                 ),
-          )).whenComplete(() => repository.showBottomSheet = false);
+              )).whenComplete(() => repository.showBottomSheet = false);
     }
 
     void showReceive() {
