@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/utils/fonts.dart';
@@ -15,17 +17,16 @@ class StatisticsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-
     double textSize = width > 300
-        ? 9
+        ? 11
         : width > 250
-            ? 8
-            : 7;
+            ? 10
+            : 9;
     double statsWidth = (width - 40) * 0.31;
 
     return SizedBox(
       width: statsWidth,
-      height: statsWidth * 20 / 86 + 11,
+      height: statsWidth * 20 / 86 + 10,
       child: Stack(
         children: [
           Align(
