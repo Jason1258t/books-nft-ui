@@ -91,7 +91,7 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 40),
                   child: Text(
-                    genre.name,
+                    '${genre.name[0].toUpperCase()}${genre.name.substring(1)}',
                     style: AppTypography.font20gold.copyWith(fontSize: 24),
                   ),
                 ),
