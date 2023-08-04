@@ -17,11 +17,16 @@ class StatisticsContainer extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-    double textSize = width > 300 ? 9 : width > 250 ? 8 : 7;
+    double textSize = width > 300
+        ? 9
+        : width > 250
+            ? 8
+            : 7;
+    double statsWidth = (width - 40) * 0.31;
 
     return SizedBox(
-      width: (width - 40) * 0.31,
-      height: height * 0.031 + 11,
+      width: statsWidth,
+      height: statsWidth * 20 / 86 + 11,
       child: Stack(
         children: [
           Align(
@@ -30,8 +35,8 @@ class StatisticsContainer extends StatelessWidget {
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
-              width: (width - 40) * 0.31,
-              height: height * 0.031,
+              width: statsWidth,
+              height: statsWidth * 20 / 86,
               alignment: Alignment.center,
               decoration: const BoxDecoration(
                 image: DecorationImage(
