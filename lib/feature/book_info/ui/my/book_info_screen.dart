@@ -117,8 +117,50 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                           image: DecorationImage(
                               image:
                                   AssetImage("Assets/images/book_cover.png"))),
-                      child: Image.network(
-                        book.image,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                          image: NetworkImage(book.image),
+                        )),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: width * 0.02,
+                                ),
+                                Container(
+                                    width: double.infinity,
+                                    color: Colors.black38,
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      book.name,
+                                      textAlign: TextAlign.center,
+                                      style: AppTypography.font14white,
+                                    ))
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                    width: double.infinity,
+                                    color: Colors.black38,
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      book.author,
+                                      textAlign: TextAlign.center,
+                                      style: AppTypography.font14white,
+                                    )),
+                                SizedBox(
+                                  height: width * 0.023,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(

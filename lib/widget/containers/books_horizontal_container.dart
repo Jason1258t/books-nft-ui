@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:stroke_text/stroke_text.dart';
 
 import '../../models/shelf.dart';
 
@@ -33,8 +34,53 @@ class _BooksHorizontalContainerState extends State<BooksHorizontalContainer> {
             padding: const EdgeInsets.fromLTRB(9.5, 9.5, 13, 13),
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('Assets/images/book_cover.png'), fit: BoxFit.cover)),
-            child: Image.network(widget.book.image),
+                    image: AssetImage('Assets/images/book_cover.png'),
+                    fit: BoxFit.cover)),
+            child: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                image: NetworkImage(widget.book.image),
+              )),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: width * 0.017,
+                      ),
+                      Container(
+                          width: double.infinity,
+                          color: Colors.black38,
+                          alignment: Alignment.center,
+                          child: Text(
+                            widget.book.name,
+                            style: AppTypography.font10white,
+                            textAlign: TextAlign.center,
+                          )),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                          width: double.infinity,
+                          color: Colors.black38,
+                          alignment: Alignment.center,
+                          child: Text(
+                            widget.book.author,
+                            style: AppTypography.font10white,
+                            textAlign: TextAlign.center,
+                          )),
+                      SizedBox(
+                        height: width * 0.016,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
           SizedBox(
             width: (width - 85) / 3,

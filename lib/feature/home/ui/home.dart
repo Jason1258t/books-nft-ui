@@ -21,8 +21,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedTab = 2;
-
   @override
   Widget build(BuildContext context) {
     final homeRepository = RepositoryProvider.of<HomeRepository>(context);
@@ -43,14 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
       Container(),
       const WalletScreen()
     ];
-
-    void onSelectTab(int index) {
-      if (_selectedTab == index) return;
-      setState(() {
-        homeRepository.setIsSecondScreen(index != 2);
-        _selectedTab = index;
-      });
-    }
 
     return WillPopScope(
       child: GestureDetector(
@@ -74,46 +64,51 @@ class _HomeScreenState extends State<HomeScreen> {
                 NavigatorBarItem(
                   asset: 'Assets/icons/store.svg',
                   activeAsset: 'Assets/icons/store_active.svg',
-                  isSelected: _selectedTab == 0,
+                  isSelected: homeRepository.selectedTab == 0,
                   text: 'Store',
                   onTap: () {
-                    onSelectTab(0);
+                    homeRepository.onSelectTab(0);
+                    setState(() {});
                   },
                 ),
                 NavigatorBarItem(
                   asset: 'Assets/icons/books.svg',
                   activeAsset: 'Assets/icons/books_active.svg',
-                  isSelected: _selectedTab == 1,
+                  isSelected: homeRepository.selectedTab == 1,
                   text: 'My books',
                   onTap: () {
-                    onSelectTab(1);
+                    homeRepository.onSelectTab(1);
+                    setState(() {});
                   },
                 ),
                 NavigatorBarItem(
                   asset: 'Assets/icons/home.svg',
                   activeAsset: 'Assets/icons/home_active.svg',
-                  isSelected: _selectedTab == 2,
+                  isSelected: homeRepository.selectedTab == 2,
                   text: 'Home',
                   onTap: () {
-                    onSelectTab(2);
+                    homeRepository.onSelectTab(2);
+                    setState(() {});
                   },
                 ),
                 NavigatorBarItem(
                   asset: 'Assets/icons/events.svg',
                   activeAsset: 'Assets/icons/events_active.svg',
-                  isSelected: _selectedTab == 3,
+                  isSelected: homeRepository.selectedTab == 3,
                   text: 'Events',
                   onTap: () {
-                    onSelectTab(3);
+                    homeRepository.onSelectTab(3);
+                    setState(() {});
                   },
                 ),
                 NavigatorBarItem(
                   asset: 'Assets/icons/wallet.svg',
                   activeAsset: 'Assets/icons/wallet_active.svg',
-                  isSelected: _selectedTab == 4,
+                  isSelected: homeRepository.selectedTab == 4,
                   text: 'Wallet',
                   onTap: () {
-                    onSelectTab(4);
+                    homeRepository.onSelectTab(4);
+                    setState(() {});
                   },
                 ),
               ],
@@ -129,8 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     image: AssetImage('Assets/images/Background.png'),
                     fit: BoxFit.cover,
                   )),
-                  child: widgetOptions[_selectedTab])
-              : widgetOptions[_selectedTab],
+                  child: widgetOptions[homeRepository.selectedTab])
+              : widgetOptions[homeRepository.selectedTab],
         ),
       ),
       onWillPop: () async => false,

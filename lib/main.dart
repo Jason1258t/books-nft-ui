@@ -74,6 +74,7 @@ class MyApp extends StatelessWidget {
         '/confirm_phrase_screen': (context) => const PhraseConfirm(),
         '/profile_screen': (context) => const ProfileScreen(),
         '/collection_info_screen': (context) => const CollectionInfoScreen(),
+        '/home_screen': (context) => const HomeScreen(),
       },
     );
   }
