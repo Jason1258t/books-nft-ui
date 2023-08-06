@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nft/feature/home/data/homa_repository.dart';
 import 'package:nft/feature/my_books/bloc/purchase/purchase_cubit.dart';
 
 import '../../utils/colors.dart';
@@ -10,7 +11,10 @@ import 'bottom_sheet.dart';
 
 class PurchaseBottomSheet extends StatefulWidget {
   const PurchaseBottomSheet(
-      {super.key, required this.title, required this.purchaseCallback, this.needTitleField = false});
+      {super.key,
+      required this.title,
+      required this.purchaseCallback,
+      this.needTitleField = false});
 
   final String title;
   final VoidCallback purchaseCallback;
@@ -30,6 +34,8 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final repository = RepositoryProvider.of<HomeRepository>(context);
+
     VoidCallback buttonCallback = () {
       widget.purchaseCallback();
       setState(() {
@@ -63,7 +69,10 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
           mainAxisAlignment = MainAxisAlignment.spaceBetween;
           buttonTitle = 'Done';
           buttonCallback = () {
-            Navigator.pop(context);
+            repository.setIsSecondScreen(true);
+            repository.onSelectTab(1);
+            Navigator.pushReplacementNamed(context, '/home_screen');
+            setState(() {});
           };
           children = [
             SvgPicture.asset('Assets/icons/check_mark.svg'),
@@ -98,7 +107,7 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
                         const SizedBox(
                           height: 15,
                         ),
-                        if (widget.needTitleField)...[
+                        if (widget.needTitleField) ...[
                           Container(
                             constraints: const BoxConstraints(minHeight: 60),
                             padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -135,7 +144,7 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
                                         children: [
                                           SvgPicture.asset(
                                               'Assets/icons/black_stars.svg'),
-                                          if (!widget.needTitleField)...[
+                                          if (!widget.needTitleField) ...[
                                             const SizedBox(
                                               width: 10,
                                             ),

@@ -35,7 +35,8 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
 
     String idCollection = arguments['id'];
 
-    Collection collection = storeBooksRepository.searchCollectionById(idCollection)!;
+    Collection collection =
+        storeBooksRepository.searchCollectionById(idCollection)!;
 
     void showBuyBook() {
       showModalBottomSheet(
