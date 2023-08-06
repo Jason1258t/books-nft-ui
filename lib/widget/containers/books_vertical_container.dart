@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:stroke_text/stroke_text.dart';
 
 import '../../models/shelf.dart';
-
+import '../../utils/colors.dart';
 
 class BooksVerticalContainer extends StatefulWidget {
-  const BooksVerticalContainer({super.key, required this.onTap, required this.book});
+  const BooksVerticalContainer(
+      {super.key, required this.onTap, required this.book});
 
   final Function() onTap;
   final Book book;
@@ -36,7 +38,51 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
                         'Assets/images/book_cover.png',
                       ),
                       fit: BoxFit.fill)),
-              child: Image.network(widget.book.image, ),
+              child: Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                  image: NetworkImage(widget.book.image),
+                )),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: width * 0.017,
+                        ),
+                        Container(
+                            width: double.infinity,
+                            color: Colors.black38,
+                            alignment: Alignment.center,
+                            child: Text(
+                              widget.book.name,
+                              style: AppTypography.font12white,
+                              textAlign: TextAlign.center,
+                            )),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                            width: double.infinity,
+                            color: Colors.black38,
+                            alignment: Alignment.center,
+                            child: Text(
+                              widget.book.author,
+                              style: AppTypography.font12white,
+                              textAlign: TextAlign.center,
+                            )),
+                        SizedBox(
+                          height: width * 0.016,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           Row(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nft/utils/fonts.dart';
+import 'package:stroke_text/stroke_text.dart';
 
 import '../../models/collection.dart';
 
@@ -38,8 +39,52 @@ class _CollectionVerticalContainerState
                         'Assets/images/book_cover.png',
                       ),
                       fit: BoxFit.fill)),
-              child: Image.network(
-                widget.collection.url,
+              child: Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                  image: NetworkImage(widget.collection.url),
+                )),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: width * 0.017,
+                        ),
+                        Container(
+                            width: double.infinity,
+                            color: Colors.black38,
+                            alignment: Alignment.center,
+                            child: Text(
+                              widget.collection.title,
+                              style:
+                              AppTypography.font12white,
+                              textAlign: TextAlign.center,
+                            )),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                            width: double.infinity,
+                            color: Colors.black38,
+                            alignment: Alignment.center,
+                            child: Text(
+                              widget.collection.author,
+                              style:
+                              AppTypography.font12white,
+                              textAlign: TextAlign.center,
+                            )),
+                        SizedBox(
+                          height: width * 0.016,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
