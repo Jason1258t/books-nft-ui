@@ -35,7 +35,8 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
 
     String idCollection = arguments['id'];
 
-    Collection collection = storeBooksRepository.searchCollectionById(idCollection)!;
+    Collection collection =
+        storeBooksRepository.searchCollectionById(idCollection)!;
 
     void showBuyBook() {
       showModalBottomSheet(
@@ -130,15 +131,15 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           _IconAndText(
-                            icon: 'Assets/icons/common_fire.svg',
+                            color: _IconAndText.commonColor,
                             text: '${collection.commonPercent}%',
                           ),
                           _IconAndText(
-                            icon: 'Assets/icons/silver_fire.svg',
+                            color: _IconAndText.silverColor,
                             text: '${collection.silverPercent}%',
                           ),
                           _IconAndText(
-                            icon: 'Assets/icons/gold_fire.svg',
+                            color: _IconAndText.goldColor,
                             text: '${collection.goldPercent}%',
                           ),
                         ],
@@ -148,18 +149,21 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                       height: 25,
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const _TextIconAndDescription(
-                          name: 'GOLDEN BOOK',
-                          description: '',
-                          icon: 'Assets/icons/red_star.svg',
-                          width: 200,
+                        _TextIconAndDescription(
+                          name:
+                          '${collection.availableBooks}/${collection.maxBooks}',
+                          description: 'Left',
+                          icon: 'Assets/icons/black_book.svg',
+                          width: 100,
+                          mainAxisAlignment: MainAxisAlignment.center,
                         ),
                         const _TextIconAndDescription(
                           name: 'The Adventures of Sherlock Holmes',
                           description: '',
                           icon: 'Assets/icons/black_info.svg',
-                          width: 200,
+                          width: null,
                         ),
                         Row(
                           children: [
@@ -188,25 +192,18 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                             const SizedBox(
                               width: 20,
                             ),
-                            Column(
+                            const Column(
                               children: [
-                                const _TextIconAndDescription(
+                                _TextIconAndDescription(
                                   name: '10-52',
                                   description: 'Income',
                                   icon: 'Assets/icons/black_dollar.svg',
                                   width: 100,
                                 ),
-                                const _TextIconAndDescription(
+                                _TextIconAndDescription(
                                   name: '13/16',
                                   description: 'Images',
                                   icon: 'Assets/icons/black_image.svg',
-                                  width: 100,
-                                ),
-                                _TextIconAndDescription(
-                                  name:
-                                      '${collection.availableBooks}/${collection.maxBooks}',
-                                  description: 'Left',
-                                  icon: 'Assets/icons/black_book.svg',
                                   width: 100,
                                 ),
                               ],
@@ -238,12 +235,13 @@ class _TextIconAndDescription extends StatelessWidget {
       {required this.name,
       required this.description,
       required this.icon,
-      required this.width});
+      required this.width, this.mainAxisAlignment});
 
   final String name;
   final String description;
   final String icon;
-  final double width;
+  final double? width;
+  final MainAxisAlignment? mainAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -251,6 +249,7 @@ class _TextIconAndDescription extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
         children: [
           SvgPicture.asset(
             icon,
@@ -289,10 +288,14 @@ class _TextIconAndDescription extends StatelessWidget {
 }
 
 class _IconAndText extends StatelessWidget {
-  const _IconAndText({required this.icon, required this.text});
+  const _IconAndText({required this.color, required this.text});
 
-  final String icon;
+  final Color color;
   final String text;
+
+  static const commonColor = Color(0xffA2786C);
+  static const silverColor = Color(0xff8C9091);
+  static const goldColor = Color(0xffDAAC2B);
 
   @override
   Widget build(BuildContext context) {
@@ -301,7 +304,14 @@ class _IconAndText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SvgPicture.asset(icon),
+        CircleAvatar(
+          radius: 12,
+          backgroundColor: color,
+          child: SvgPicture.asset(
+            'Assets/icons/book-icon.svg',
+            height: 20,
+          ),
+        ),
         const SizedBox(
           width: 4,
         ),
