@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
             if (state is FailState) {
               ScaffoldMessenger.of(context)
                   .showSnackBar(const SnackBar(content: Text('fail')));
-              isVerificationCode = true;
+              isValidEmail = false;
               setState(() {});
             }
           },

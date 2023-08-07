@@ -33,9 +33,7 @@ class DescribeProblem extends StatelessWidget {
                       Icons.arrow_back_ios,
                       color: Colors.white,
                     ),
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, '/');
-                    },
+                    onTap: () {},
                   ),
                 ],
               ),
