@@ -12,6 +12,7 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/gradients.dart';
 import '../../../../widget/app_bar/app_bar.dart';
 import '../../../../widget/buttons/custom_elevated_button.dart';
+import '../../../../widget/containers/big_book_container.dart';
 
 class CollectionInfoScreen extends StatefulWidget {
   const CollectionInfoScreen({super.key});
@@ -24,7 +25,6 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-
     final height = MediaQuery.of(context).size.height;
 
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
@@ -47,13 +47,16 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                   bottom: MediaQuery.of(context).viewInsets.bottom),
               child: PurchaseBottomSheet(
                 needTitleField: true,
-                title: collection.title,
+                title: collection.name,
                 purchaseCallback: () {
                   BlocProvider.of<PurchaseCubit>(context)
                       .buyBook(collection.id);
                 },
               )));
     }
+
+    print(width);
+    print(height);
 
     return CustomScaffold(
       isButtonBack: true,
@@ -84,7 +87,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                         SizedBox(
                           width: 240,
                           child: Text(
-                            collection.title,
+                            collection.name,
                             style: AppTypography.font20white
                                 .copyWith(fontSize: 24),
                             textAlign: TextAlign.center,
@@ -101,7 +104,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                                 arguments: {
                                   'details': collection.details,
                                   'description': collection.description,
-                                  'name': collection.title
+                                  'name': collection.name
                                 });
                           },
                         ),
@@ -110,44 +113,10 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      width: 240,
-                      height: 320,
-                      padding: const EdgeInsets.fromLTRB(25, 25, 30, 30),
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image:
-                                  AssetImage("Assets/images/book_cover.png"))),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                          image: NetworkImage(collection.url,),
-                              fit: BoxFit.fill
-                        )),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                                width: double.infinity,
-                                color: Colors.black38,
-                                alignment: Alignment.center,
-                                child: Text(
-                                  collection.title,
-                                  textAlign: TextAlign.center,
-                                  style: AppTypography.font14white,
-                                )),
-                            Container(
-                                width: double.infinity,
-                                color: Colors.black38,
-                                alignment: Alignment.center,
-                                child: Text(
-                                  collection.author,
-                                  textAlign: TextAlign.center,
-                                  style: AppTypography.font14white,
-                                )),
-                          ],
-                        ),
-                      ),
+                    BigBookContainer(
+                      name: collection.name,
+                      author: collection.author,
+                      image: collection.image,
                     ),
                     const SizedBox(
                       height: 10,
@@ -180,7 +149,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                       children: [
                         _TextIconAndDescription(
                           name:
-                          '${collection.availableBooks}/${collection.maxBooks}',
+                              '${collection.availableBooks}/${collection.maxBooks}',
                           description: 'Left',
                           icon: 'Assets/icons/black_book.svg',
                           width: 100,
@@ -262,7 +231,8 @@ class _TextIconAndDescription extends StatelessWidget {
       {required this.name,
       required this.description,
       required this.icon,
-      required this.width, this.mainAxisAlignment});
+      required this.width,
+      this.mainAxisAlignment});
 
   final String name;
   final String description;

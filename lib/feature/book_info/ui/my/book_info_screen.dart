@@ -13,6 +13,7 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/gradients.dart';
 import '../../../../widget/app_bar/app_bar.dart';
 import '../../../../widget/buttons/custom_elevated_button.dart';
+import '../../../../widget/containers/big_book_container.dart';
 
 class BookInfoScreen extends StatefulWidget {
   const BookInfoScreen({super.key});
@@ -109,44 +110,10 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      width: 240,
-                      height: 320,
-                      padding: const EdgeInsets.fromLTRB(25, 25, 30, 30),
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image:
-                                  AssetImage("Assets/images/book_cover.png"))),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                          image: NetworkImage(book.image),
-                              fit: BoxFit.fill
-                        )),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                                width: double.infinity,
-                                color: Colors.black38,
-                                alignment: Alignment.center,
-                                child: Text(
-                                  book.name,
-                                  textAlign: TextAlign.center,
-                                  style: AppTypography.font14white,
-                                )),
-                            Container(
-                                width: double.infinity,
-                                color: Colors.black38,
-                                alignment: Alignment.center,
-                                child: Text(
-                                  book.author,
-                                  textAlign: TextAlign.center,
-                                  style: AppTypography.font14white,
-                                )),
-                          ],
-                        ),
-                      ),
+                    BigBookContainer(
+                      name: book.name,
+                      author: book.author,
+                      image: book.image,
                     ),
                     const SizedBox(
                       height: 10,

@@ -70,9 +70,9 @@ class CustomCategoryScroller extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 4, vertical: 5),
                                 child: BooksHorizontalContainer(
-                                  name: e.title,
+                                  name: e.name,
                                   author: e.author,
-                                  image: e.url,
+                                  image: e.image,
                                   onTap: () {
                                     Navigator.pushNamed(
                                         context, '/collection_info_screen',

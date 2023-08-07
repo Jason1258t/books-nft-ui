@@ -13,9 +13,7 @@ class BooksService with MyApiMethods {
 
   Future getAllBooks() async => await get(_allBooks);
 
-  Future getMyBooks() async {
-    return await get(_books);
-  }
+  Future getMyBooks() async => await get(_books);
 
   Future getAvailableToBuyBooks() async => await get(_booksAvailableToBuy);
 

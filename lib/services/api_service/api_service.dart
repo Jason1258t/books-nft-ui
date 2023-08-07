@@ -13,7 +13,6 @@ part 'methods.dart';
 part 'users.dart';
 
 class ApiService {
-  String? _token;
   late Auth auth;
   late BooksService books;
   late UserService user;
@@ -55,10 +54,9 @@ class ApiService {
 
   /// ставит token в dio
   Future setToken(String token) async {
-    _token = token;
     _dio.options.headers = {
       'Content-Type': 'application/json',
-      'Authorization': _token
+      'Authorization': token
     };
     await getUserProperties();
     _updateAllServices();

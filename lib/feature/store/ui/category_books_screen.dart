@@ -50,9 +50,9 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
             Navigator.pushNamed(context, '/collection_info_screen',
                 arguments: {'id': genre.collections[i].id});
           },
-          name: genre.collections[i].title,
+          name: genre.collections[i].name,
           author: genre.collections[i].author,
-          image: genre.collections[i].url,
+          image: genre.collections[i].image,
         ),
         const SizedBox(
           width: 20,
@@ -66,9 +66,9 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
               Navigator.pushNamed(context, '/collection_info_screen',
                   arguments: {'id': genre.collections[i + 1].id});
             },
-            name: genre.collections[i + 1].title,
+            name: genre.collections[i + 1].name,
             author: genre.collections[i + 1].author,
-            image: genre.collections[i + 1].url,
+            image: genre.collections[i + 1].image,
           ),
         );
       } catch (e) {}
