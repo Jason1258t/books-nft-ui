@@ -73,6 +73,7 @@ class Assets {
   static const String imagesBlueBook = 'Assets/images/blueBook.png';
   static const String imagesBookCover = 'Assets/images/book_cover.png';
   static const String imagesConanDoyleBook = 'Assets/images/conan_doyle_book.png';
+  static const String imagesEnergy = 'Assets/images/Energy.png';
   static const String imagesEnergyBarBackground5 = 'Assets/images/Energy_bar_background5.png';
   static const String imagesGrandpa = 'Assets/images/grandpa.png';
   static const String imagesIconBig = 'Assets/images/icon_big.jpg';

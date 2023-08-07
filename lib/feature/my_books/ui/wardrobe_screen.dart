@@ -36,7 +36,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                 Stack(
                   children: [
                     Container(
-                      height: height * 0.20,
+                      height: height * 0.21,
                       alignment: Alignment.bottomCenter,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +45,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                             width: 10,
                           ),
                           Image.asset(
-                            'Assets/images/Energy_bar_background5.png',
+                            'Assets/images/Energy.png',
                             width: 270,
                             height: 100,
                             fit: BoxFit.fill,
@@ -55,7 +55,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
+                          horizontal: 20, vertical: 17),
                       child: SizedBox(
                         height: height * 0.17,
                         child: StreamBuilder<UserStats>(

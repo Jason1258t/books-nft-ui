@@ -177,6 +177,13 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                     ),
                     Column(
                       children: [
+                        const _TextIconAndDescription(
+                          name: '13/100',
+                          description: 'Left',
+                          icon: 'Assets/icons/black_book.svg',
+                          width: 100,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                        ),
                         _TextIconAndDescription(
                           name: '${book.type.toUpperCase()} BOOK',
                           description: '',
@@ -187,7 +194,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                           name: 'The Adventures of Sherlock Holmes',
                           description: '',
                           icon: 'Assets/icons/black_info.svg',
-                          width: 200,
+                          width: null,
                         ),
                         Row(
                           children: [
@@ -228,12 +235,6 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                                   name: '13/16',
                                   description: 'Images',
                                   icon: 'Assets/icons/black_image.svg',
-                                  width: 100,
-                                ),
-                                _TextIconAndDescription(
-                                  name: '13/100',
-                                  description: 'Left',
-                                  icon: 'Assets/icons/black_book.svg',
                                   width: 100,
                                 ),
                               ],
@@ -283,14 +284,15 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
 class _TextIconAndDescription extends StatelessWidget {
   const _TextIconAndDescription(
       {required this.name,
-      required this.description,
-      required this.icon,
-      required this.width});
+        required this.description,
+        required this.icon,
+        required this.width, this.mainAxisAlignment});
 
   final String name;
   final String description;
   final String icon;
-  final double width;
+  final double? width;
+  final MainAxisAlignment? mainAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -298,6 +300,7 @@ class _TextIconAndDescription extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
         children: [
           SvgPicture.asset(
             icon,
