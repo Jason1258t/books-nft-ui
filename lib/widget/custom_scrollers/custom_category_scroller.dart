@@ -73,6 +73,7 @@ class CustomCategoryScroller extends StatelessWidget {
                                   name: e.name,
                                   author: e.author,
                                   image: e.image,
+                                  type: 'silver',
                                   onTap: () {
                                     Navigator.pushNamed(
                                         context, '/collection_info_screen',

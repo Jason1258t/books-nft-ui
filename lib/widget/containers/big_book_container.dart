@@ -7,11 +7,13 @@ class BigBookContainer extends StatelessWidget {
       {super.key,
       required this.image,
       required this.name,
-      required this.author});
+      required this.author,
+      required this.type});
 
   final String image;
   final String author;
   final String name;
+  final String type;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,9 @@ class BigBookContainer extends StatelessWidget {
       height: width * 0.77,
       padding: EdgeInsets.fromLTRB(
           width * 0.06, width * 0.06, width * 0.072, width * 0.072),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
           image: DecorationImage(
-        image: AssetImage("Assets/images/book_cover.png"),
+        image: AssetImage("Assets/images/${type}_cover_book.png"),
       )),
       child: Container(
         decoration: BoxDecoration(

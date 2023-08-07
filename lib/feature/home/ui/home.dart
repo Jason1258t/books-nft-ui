@@ -94,12 +94,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 NavigatorBarItem(
                   asset: 'Assets/icons/events.svg',
                   activeAsset: 'Assets/icons/events_active.svg',
+                  isActive: false,
                   isSelected: homeRepository.selectedTab == 3,
                   text: 'Events',
-                  onTap: () {
-                    homeRepository.onSelectTab(3);
-                    setState(() {});
-                  },
+                  onTap: () {},
                 ),
                 NavigatorBarItem(
                   asset: 'Assets/icons/wallet.svg',
@@ -141,6 +139,7 @@ class NavigatorBarItem extends StatelessWidget {
       this.activeAsset,
       required this.isSelected,
       required this.text,
+      this.isActive = true,
       required this.onTap})
       : super(key: key) {
     activeAsset = activeAsset ?? asset;
@@ -151,20 +150,25 @@ class NavigatorBarItem extends StatelessWidget {
   final bool isSelected;
   final String text;
   final VoidCallback onTap;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     return InkWell(
       onTap: onTap,
       child: SizedBox(
-        width: 72,
+        width: width / 5,
         height: 64,
         child: Stack(children: [
           Container(
             alignment: Alignment.center,
             color: isSelected
                 ? AppColors.selectedBottomNavBarItem
-                : AppColors.empty,
+                : isActive
+                    ? AppColors.empty
+                    : Colors.black26,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -173,10 +177,14 @@ class NavigatorBarItem extends StatelessWidget {
                   isSelected ? activeAsset! : asset,
                   height: 24,
                   width: 24,
+                  color: isActive ? AppColors.goldText : Colors.blueGrey,
                 ),
                 Text(
                   text,
-                  style: AppTypography.font12w700,
+                  style: isActive
+                      ? AppTypography.font12w700
+                      : AppTypography.font12w700
+                          .copyWith(color: Colors.blueGrey),
                 )
               ],
             ),

@@ -40,7 +40,7 @@ class StatisticsContainer extends StatelessWidget {
               alignment: Alignment.center,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("Assets/images/backgroundStatisctic.png"),
+                    image: AssetImage("Assets/images/backgroundStatistic.png"),
                     fit: BoxFit.fill),
               ),
               child: Row(

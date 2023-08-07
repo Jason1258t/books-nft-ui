@@ -114,12 +114,13 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                       name: book.name,
                       author: book.author,
                       image: book.image,
+                      type: book.type,
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         _IconAndText(
                           icon: 'Assets/icons/black_brain.svg',
@@ -150,52 +151,51 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                           icon: 'Assets/icons/red_star.svg',
                           width: 200,
                         ),
-                        const _TextIconAndDescription(
-                          name: 'The Adventures of Sherlock Holmes',
-                          description: '',
-                          icon: 'Assets/icons/black_info.svg',
-                          width: null,
-                        ),
                         Row(
                           children: [
                             Column(
-                              children: [
+                              children: [_TextIconAndDescription(
+                                name: 'The Adventures of Sherlock Holmes',
+                                description: '',
+                                icon: 'Assets/icons/black_info.svg',
+                                width: (width - 163) / 2,
+                              ),
                                 _TextIconAndDescription(
                                   name: book.author,
                                   description: 'Author',
                                   icon: 'Assets/icons/black_pensil.svg',
-                                  width: 100,
+                                  width: (width - 163) / 2,
                                 ),
-                                const _TextIconAndDescription(
+                                _TextIconAndDescription(
                                   name: 'Serena',
                                   description: 'Creator',
                                   icon: 'Assets/icons/black_lightning.svg',
-                                  width: 100,
+                                  width: (width - 163) / 2,
                                 ),
                               ],
                             ),
                             const SizedBox(
                               width: 20,
                             ),
-                            const Column(
+                            Column(
                               children: [
                                 _TextIconAndDescription(
                                   name: '10-52',
                                   description: 'Income',
                                   icon: 'Assets/icons/black_dollar.svg',
-                                  width: 100,
+                                  width: (width - 163) / 2,
                                 ),
                                 _TextIconAndDescription(
                                   name: '13/16',
                                   description: 'Images',
                                   icon: 'Assets/icons/black_image.svg',
-                                  width: 100,
+                                  width: (width - 163) / 2,
                                 ),
                                 _TextIconAndDescription(
                                   name: '8-16',
                                   description: 'Activities',
                                   icon: 'Assets/icons/black_compas.svg',
-                                  width: 100,
+                                  width: (width - 163) / 2,
                                 ),
                               ],
                             ),
@@ -278,6 +278,8 @@ class _TextIconAndDescription extends StatelessWidget {
                 child: Text(
                   name,
                   style: AppTypography.font10black.copyWith(fontSize: 16),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               if (description != '') ...[

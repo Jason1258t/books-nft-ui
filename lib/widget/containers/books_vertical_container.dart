@@ -8,13 +8,17 @@ import '../../utils/colors.dart';
 
 class BooksVerticalContainer extends StatefulWidget {
   const BooksVerticalContainer(
-      {super.key, required this.onTap, required this.author,
+      {super.key,
+      required this.onTap,
+      required this.author,
       required this.name,
-      required this.image});
+      required this.image,
+      required this.type});
 
   final Function() onTap;
   final String name;
   final String image;
+  final String type;
   final String author;
 
   @override
@@ -36,10 +40,10 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
               width: width * 0.41,
               height: width * 0.55,
               padding: const EdgeInsets.fromLTRB(15, 15, 20, 20),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(
-                        'Assets/images/book_cover.png',
+                        'Assets/images/${widget.type}_cover_book.png',
                       ),
                       fit: BoxFit.fill)),
               child: Container(

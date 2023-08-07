@@ -10,12 +10,14 @@ class BooksHorizontalContainer extends StatefulWidget {
     required this.author,
     required this.name,
     required this.image,
+    required this.type,
     required this.onTap,
   });
 
   final String name;
   final String image;
   final String author;
+  final String type;
   final Function() onTap;
 
   @override
@@ -35,9 +37,9 @@ class _BooksHorizontalContainerState extends State<BooksHorizontalContainer> {
             width: (width - 85) / 3,
             height: (width - 85) / 2.25,
             padding: const EdgeInsets.fromLTRB(9.5, 12, 13, 13),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('Assets/images/book_cover.png'),
+                    image: AssetImage('Assets/images/${widget.type}_cover_book.png'),
                     fit: BoxFit.cover)),
             child: Container(
               decoration: BoxDecoration(
