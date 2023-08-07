@@ -144,13 +144,6 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                     ),
                     Column(
                       children: [
-                        const _TextIconAndDescription(
-                          name: '13/100',
-                          description: 'Left',
-                          icon: 'Assets/icons/black_book.svg',
-                          width: 100,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                        ),
                         _TextIconAndDescription(
                           name: '${book.type.toUpperCase()} BOOK',
                           description: '',
@@ -179,12 +172,6 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                                   icon: 'Assets/icons/black_lightning.svg',
                                   width: 100,
                                 ),
-                                const _TextIconAndDescription(
-                                  name: '8-16',
-                                  description: 'Activities',
-                                  icon: 'Assets/icons/black_compas.svg',
-                                  width: 100,
-                                ),
                               ],
                             ),
                             const SizedBox(
@@ -202,6 +189,12 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                                   name: '13/16',
                                   description: 'Images',
                                   icon: 'Assets/icons/black_image.svg',
+                                  width: 100,
+                                ),
+                                _TextIconAndDescription(
+                                  name: '8-16',
+                                  description: 'Activities',
+                                  icon: 'Assets/icons/black_compas.svg',
                                   width: 100,
                                 ),
                               ],

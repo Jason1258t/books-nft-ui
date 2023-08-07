@@ -21,7 +21,7 @@ import '../custom_bottom_sheet/purchase_bottom_sheet.dart';
 enum BookType { withData, add, lock }
 
 const String _addBookIcon = 'Assets/icons/plus.svg';
-const String _lockedBookIcon = 'Assets/icons/plus.svg';
+const String _lockedBookIcon = 'Assets/icons/lock.svg';
 
 const Color _addBookBorderColor = Color(0xff86BDFF);
 const Color _lockedBookBorderColor = Colors.white;
