@@ -31,7 +31,9 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
           onTap: () {
             widget.onTap(widget.books[i], context);
           },
-          book: widget.books[i],
+          name: widget.books[i].name,
+          author: widget.books[i].author,
+          image: widget.books[i].image,
         ),
         const SizedBox(
           width: 20,
@@ -44,7 +46,9 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
             onTap: () {
               widget.onTap(widget.books[i + 1], context);
             },
-            book: widget.books[i + 1],
+            name: widget.books[i + 1].name,
+            author: widget.books[i + 1].author,
+            image: widget.books[i + 1].image,
           ),
         );
       } catch (e) {}
@@ -108,7 +112,10 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
                               alignment: Alignment.center,
                               width: double.infinity,
                               height: 38,
-                              child: Text('You don`t have books', style: AppTypography.font16white,),
+                              child: Text(
+                                'You don`t have books',
+                                style: AppTypography.font16white,
+                              ),
                             ),
                             SizedBox(height: height - 200),
                           ],

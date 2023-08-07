@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/models/collection.dart';
 import 'package:nft/utils/fonts.dart';
-import 'package:nft/widget/containers/collection_horizontal_container.dart';
+import 'package:nft/widget/containers/books_horizontal_container.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 import '../../utils/colors.dart';
@@ -69,8 +69,10 @@ class CustomCategoryScroller extends StatelessWidget {
                           .map((e) => Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 4, vertical: 5),
-                                child: CollectionHorizontalContainer(
-                                  collection: e,
+                                child: BooksHorizontalContainer(
+                                  name: e.title,
+                                  author: e.author,
+                                  image: e.url,
                                   onTap: () {
                                     Navigator.pushNamed(
                                         context, '/collection_info_screen',

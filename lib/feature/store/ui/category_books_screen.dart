@@ -8,7 +8,7 @@ import 'package:nft/feature/store/data/store_repository.dart';
 import 'package:nft/models/collection.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
-import 'package:nft/widget/containers/collection_vertical_container.dart';
+import 'package:nft/widget/containers/books_vertical_container.dart';
 import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
 
 import '../../../utils/colors.dart';
@@ -45,12 +45,14 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
     List<Widget> listBook = [];
     for (int i = 0; i < genre.collections.length; i += 2) {
       Row row = Row(children: [
-        CollectionVerticalContainer(
+        BooksVerticalContainer(
           onTap: () {
             Navigator.pushNamed(context, '/collection_info_screen',
                 arguments: {'id': genre.collections[i].id});
           },
-          collection: genre.collections[i],
+          name: genre.collections[i].title,
+          author: genre.collections[i].author,
+          image: genre.collections[i].url,
         ),
         const SizedBox(
           width: 20,
@@ -59,12 +61,14 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
 
       try {
         row.children.add(
-          CollectionVerticalContainer(
+          BooksVerticalContainer(
             onTap: () {
               Navigator.pushNamed(context, '/collection_info_screen',
                   arguments: {'id': genre.collections[i + 1].id});
             },
-            collection: genre.collections[i + 1],
+            name: genre.collections[i + 1].title,
+            author: genre.collections[i + 1].author,
+            image: genre.collections[i + 1].url,
           ),
         );
       } catch (e) {}

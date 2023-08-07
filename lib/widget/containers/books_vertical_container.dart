@@ -8,10 +8,14 @@ import '../../utils/colors.dart';
 
 class BooksVerticalContainer extends StatefulWidget {
   const BooksVerticalContainer(
-      {super.key, required this.onTap, required this.book});
+      {super.key, required this.onTap, required this.author,
+      required this.name,
+      required this.image});
 
   final Function() onTap;
-  final Book book;
+  final String name;
+  final String image;
+  final String author;
 
   @override
   State<BooksVerticalContainer> createState() => _BooksVerticalContainerState();
@@ -41,7 +45,7 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
               child: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                  image: NetworkImage(widget.book.image),
+                  image: NetworkImage(widget.image),
                 )),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,7 +61,7 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
                             color: Colors.black38,
                             alignment: Alignment.center,
                             child: Text(
-                              widget.book.name,
+                              widget.name,
                               style: AppTypography.font12white,
                               textAlign: TextAlign.center,
                             )),
@@ -71,7 +75,7 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
                             color: Colors.black38,
                             alignment: Alignment.center,
                             child: Text(
-                              widget.book.author,
+                              widget.author,
                               style: AppTypography.font12white,
                               textAlign: TextAlign.center,
                             )),
