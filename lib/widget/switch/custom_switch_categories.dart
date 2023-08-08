@@ -74,7 +74,7 @@ class CustomCategoryButton extends StatelessWidget {
           onTap: callback,
           child: Container(
             width: width * 0.32,
-            height: height * 0.1,
+            height: width * 0.22,
             alignment: Alignment.center,
             padding: const EdgeInsets.only(left: 13, bottom: 3, right: 24),
             decoration: BoxDecoration(

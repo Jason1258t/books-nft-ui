@@ -29,7 +29,8 @@ class AuthScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SvgPicture.asset('Assets/icons/logo.svg',color: Colors.white,),
+                    SvgPicture.asset(
+                      'Assets/icons/logo.svg', color: Colors.white,),
                   ],
                 ),
               ),
