@@ -26,6 +26,7 @@ class AppCubit extends Cubit<AppState> {
         myBooksRepository.initial();
         storeRepository.getStoreCollections();
         homeRepository.isSecondScreen = false;
+        homeRepository.onSelectTab(2);
         emit(AppAuthState());
       }
       if (event == AppStateEnum.unAuth) {
