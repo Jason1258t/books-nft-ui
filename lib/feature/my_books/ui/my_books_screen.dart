@@ -50,7 +50,7 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
             name: widget.books[i + 1].name,
             author: widget.books[i + 1].author,
             image: widget.books[i + 1].image,
-            type: widget.books[i].type,
+            type: widget.books[i + 1].type,
           ),
         );
       } catch (e) {}
