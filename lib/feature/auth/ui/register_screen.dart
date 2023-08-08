@@ -47,7 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           if (state is LoginFailState) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text('register fail')));
-            isVerificationCode = true;
+            isValidEmail = false;
             setState(() {});
           }
           if (state is LoginLoadingState) {

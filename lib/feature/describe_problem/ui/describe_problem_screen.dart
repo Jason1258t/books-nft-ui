@@ -110,9 +110,7 @@ class DescribeProblem extends StatelessWidget {
                     ),
                     CustomElevatedButton(
                         text: 'SEND REQUEST',
-                        onTap: () {
-                          Navigator.pushReplacementNamed(context, '/home_screen');
-                        }),
+                        onTap: () {}),
                     const SizedBox(
                       height: 16,
                     ),
