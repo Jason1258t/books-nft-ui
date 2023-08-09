@@ -1,8 +1,9 @@
 class UserStats {
   Stats stats;
   Indicators indicators;
+  int lvl;
 
-  UserStats({required this.stats, required this.indicators});
+  UserStats({required this.stats, required this.indicators, required this.lvl});
 }
 
 class Stats {

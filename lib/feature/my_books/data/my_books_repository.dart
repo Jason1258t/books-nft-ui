@@ -14,6 +14,8 @@ class MyBooksRepository {
   late Wardrobe wardrobe;
   late UserStats userStats;
 
+  int userLvl = 1;
+
   BookPosition? _savedPlace;
 
   /// требуетс для добавления книги в конкретную ячейку
@@ -41,6 +43,7 @@ class MyBooksRepository {
       BehaviorSubject<LoadingStateEnum>.seeded(LoadingStateEnum.loading);
   BehaviorSubject<UserStats> userProperties = BehaviorSubject<UserStats>.seeded(
       UserStats(
+          lvl: 1,
           stats: Stats(energy: 0, intelligence: 0, luck: 0, strength: 0),
           indicators: Indicators(0, 0, 0)));
 
@@ -120,7 +123,9 @@ class MyBooksRepository {
     final stats = _apiService.user.getProperties();
     final indicators = _apiService.user.getIndicators();
     await Future.wait([stats, indicators]).then((value) {
+      userLvl = value[0]['lvl'];
       userStats = UserStats(
+          lvl: userLvl,
           stats: Stats.fromJson(value[0]),
           indicators: Indicators.fromJson(value[1]));
       userProperties.add(userStats);
@@ -156,4 +161,3 @@ class MyBooksRepository {
     await getMyBooks();
   }
 }
-

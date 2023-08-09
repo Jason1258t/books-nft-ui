@@ -5,7 +5,7 @@ import 'package:rxdart/rxdart.dart';
 import '../../my_books/data/my_books_repository.dart';
 
 class StoreRepository {
-  ApiService _apiService;
+  final ApiService _apiService;
 
   StoreRepository({required ApiService apiService}) : _apiService = apiService;
 

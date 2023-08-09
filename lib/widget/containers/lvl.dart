@@ -4,7 +4,9 @@ import 'package:nft/utils/fonts.dart';
 import '../../utils/colors.dart';
 
 class LvlContainer extends StatelessWidget {
-  const LvlContainer({super.key});
+  const LvlContainer({super.key, required this.lvl});
+
+  final int lvl;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class LvlContainer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('12', style: AppTypography.font24blue.copyWith(height: 0),),
+          Text('$lvl', style: AppTypography.font24blue.copyWith(height: 0),),
           Text('Level', style: AppTypography.font24blue.copyWith(fontSize: 12,height: 0),),
         ],
       ),

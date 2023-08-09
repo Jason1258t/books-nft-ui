@@ -64,11 +64,13 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                 .userProperties
                                 .stream,
                             initialData: UserStats(
+                                lvl: 1,
                                 stats: Stats.zero(),
                                 indicators: Indicators(0, 0, 0)),
                             builder: (context, snapshot) {
                               final stats = snapshot.data!.stats;
                               final indicators = snapshot.data!.indicators;
+                              final lvl = snapshot.data!.lvl;
                               return Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,7 +172,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                           width: (width - 40) * 0.3,
                                           height: height * 0.03,
                                         ),
-                                        const LvlContainer(),
+                                        LvlContainer(lvl: lvl),
                                         ConstIconsWithTextElevatedButton(
                                           onTap: () {
                                             Navigator.pushNamed(
