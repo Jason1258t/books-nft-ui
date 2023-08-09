@@ -23,7 +23,7 @@ enum BookType { withData, add, lock }
 const String _addBookIcon = 'Assets/icons/plus.svg';
 const String _lockedBookIcon = 'Assets/icons/lock.svg';
 
-const Color _addBookBorderColor = Color(0xff86BDFF);
+const Color _addBookBorderColor = AppColors.addBookBorder;
 const Color _lockedBookBorderColor = Colors.white;
 
 final BoxDecoration _bookDecoration =

@@ -138,10 +138,10 @@ class AppTypography {
   );
 
   static final font20hintText =
-      font20white.copyWith(color: const Color(0xFFA2A28C));
+      font20white.copyWith(color: AppColors.dirtyGold);
 
   static final font9brown = font20white.copyWith(
-    color: Color(0xFF3A2635),
+    color: AppColors.darkText,
     fontSize: 12,
     fontWeight: FontWeight.w700,
   );

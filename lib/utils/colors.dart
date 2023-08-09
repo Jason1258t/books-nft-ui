@@ -40,4 +40,9 @@ class AppColors {
   static const backGroundTextShowButtonSheet = Color(0xFF4F483D);
   static const backGroundLightAlertDialog = Color(0xFFC0A270);
   static const backGroundDarkAlertDialog = Color(0xFF7F7156);
+  static const commonBook = Color(0xffA2786C);
+  static const silverBook = Color(0xff8C9091);
+  static const goldBook = Color(0xffDAAC2B);
+  static const shadowDark = Color(0x72000000);
+  static const addBookBorder = Color(0xff86BDFF);
 }

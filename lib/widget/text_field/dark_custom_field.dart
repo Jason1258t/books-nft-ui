@@ -31,7 +31,7 @@ class DarkCustomTextField extends StatelessWidget {
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: const Color(0xFF4F483D)
+        color: AppColors.backGroundTextShowButtonSheet
       ),
       child: TextFormField(
         cursorColor: AppColors.cursorBackground,
