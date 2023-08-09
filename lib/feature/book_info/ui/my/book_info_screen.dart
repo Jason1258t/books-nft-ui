@@ -14,6 +14,7 @@ import '../../../../utils/gradients.dart';
 import '../../../../widget/app_bar/app_bar.dart';
 import '../../../../widget/buttons/custom_elevated_button.dart';
 import '../../../../widget/containers/big_book_container.dart';
+import '../../../../widget/containers/icon_text_description.dart';
 
 class BookInfoScreen extends StatefulWidget {
   const BookInfoScreen({super.key});
@@ -145,7 +146,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                     ),
                     Column(
                       children: [
-                        _TextIconAndDescription(
+                        TextIconAndDescription(
                           name: '${book.type.toUpperCase()} BOOK',
                           description: '',
                           icon: 'Assets/icons/red_star.svg',
@@ -154,19 +155,20 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                         Row(
                           children: [
                             Column(
-                              children: [_TextIconAndDescription(
-                                name: 'The Adventures of Sherlock Holmes',
-                                description: '',
-                                icon: 'Assets/icons/black_info.svg',
-                                width: (width - 163) / 2,
-                              ),
-                                _TextIconAndDescription(
+                              children: [
+                                TextIconAndDescription(
+                                  name: 'The Adventures of Sherlock Holmes',
+                                  description: '',
+                                  icon: 'Assets/icons/black_info.svg',
+                                  width: (width - 163) / 2,
+                                ),
+                                TextIconAndDescription(
                                   name: book.author,
                                   description: 'Author',
                                   icon: 'Assets/icons/black_pensil.svg',
                                   width: (width - 163) / 2,
                                 ),
-                                _TextIconAndDescription(
+                                TextIconAndDescription(
                                   name: 'Serena',
                                   description: 'Creator',
                                   icon: 'Assets/icons/black_lightning.svg',
@@ -179,19 +181,19 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                             ),
                             Column(
                               children: [
-                                _TextIconAndDescription(
+                                TextIconAndDescription(
                                   name: '10-52',
                                   description: 'Income',
                                   icon: 'Assets/icons/black_dollar.svg',
                                   width: (width - 163) / 2,
                                 ),
-                                _TextIconAndDescription(
+                                TextIconAndDescription(
                                   name: '13/16',
                                   description: 'Images',
                                   icon: 'Assets/icons/black_image.svg',
                                   width: (width - 163) / 2,
                                 ),
-                                _TextIconAndDescription(
+                                TextIconAndDescription(
                                   name: '8-16',
                                   description: 'Activities',
                                   icon: 'Assets/icons/black_compas.svg',
@@ -236,65 +238,6 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
             ),
           );
         },
-      ),
-    );
-  }
-}
-
-class _TextIconAndDescription extends StatelessWidget {
-  const _TextIconAndDescription(
-      {required this.name,
-        required this.description,
-        required this.icon,
-        required this.width, this.mainAxisAlignment});
-
-  final String name;
-  final String description;
-  final String icon;
-  final double? width;
-  final MainAxisAlignment? mainAxisAlignment;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
-        children: [
-          SvgPicture.asset(
-            icon,
-            width: 35,
-            height: 35,
-          ),
-          const SizedBox(
-            width: 16,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: width,
-                child: Text(
-                  name,
-                  style: AppTypography.font10black.copyWith(fontSize: 16),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              if (description != '') ...[
-                SizedBox(
-                  width: width,
-                  child: Text(
-                    description,
-                    style: AppTypography.font12dark
-                        .copyWith(fontSize: 14, fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ]
-            ],
-          ),
-        ],
       ),
     );
   }
