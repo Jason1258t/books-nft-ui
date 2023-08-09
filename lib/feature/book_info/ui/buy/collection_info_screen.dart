@@ -128,15 +128,15 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               _IconAndText(
-                                color: _IconAndText.commonColor,
+                                color: AppColors.commonBook,
                                 text: '${collection.commonPercent}%',
                               ),
                               _IconAndText(
-                                color: _IconAndText.silverColor,
+                                color: AppColors.silverBook,
                                 text: '${collection.silverPercent}%',
                               ),
                               _IconAndText(
-                                color: _IconAndText.goldColor,
+                                color: AppColors.goldBook,
                                 text: '${collection.goldPercent}%',
                               ),
                             ],
@@ -290,9 +290,6 @@ class _IconAndText extends StatelessWidget {
   final Color color;
   final String text;
 
-  static const commonColor = Color(0xffA2786C);
-  static const silverColor = Color(0xff8C9091);
-  static const goldColor = Color(0xffDAAC2B);
 
   @override
   Widget build(BuildContext context) {

@@ -61,4 +61,7 @@ class AppGradients {
       begin: Alignment(0, -1),
       end: Alignment(0, 1),
       colors: [AppColors.backGroundLightAlertDialog, AppColors.backGroundDarkAlertDialog]);
+
+
+    
 }

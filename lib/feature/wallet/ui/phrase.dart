@@ -79,7 +79,7 @@ class Phrase extends StatelessWidget {
                               radius: 1),
                           boxShadow: const [
                             BoxShadow(
-                              color: Color(0x72000000),
+                              color: AppColors.shadowDark,
                               blurRadius: 6,
                               offset: Offset(0, 4),
                               spreadRadius: 0,

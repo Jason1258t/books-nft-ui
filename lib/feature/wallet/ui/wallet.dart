@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/feature/home/data/homa_repository.dart';
+import 'package:nft/utils/colors.dart';
 import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/custom_bottom_sheet/bottom_sheet.dart';
 import 'package:nft/widget/buttons/custom_elevated_button.dart';
@@ -91,7 +92,7 @@ class Wallet extends StatelessWidget {
                       text: 'Confirm',
                       onTap: () {},
                       gradient: AppGradients.lightButton,
-                      borderColor: const Color(0xFF544043),
+                      borderColor: AppColors.smallEvButtonBorderDark,
                     )
                   ],
                 ),
@@ -129,7 +130,7 @@ class Wallet extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   },
                   gradient: AppGradients.lightButton,
-                  borderColor: const Color(0xFF544043),
+                  borderColor: AppColors.smallEvButtonBorderDark,
                 )
               ])).whenComplete(() => repository.showBottomSheet = false);
     }

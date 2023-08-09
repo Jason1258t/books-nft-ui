@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nft/utils/colors.dart';
 
 class FakeSplashScreen extends StatelessWidget {
   const FakeSplashScreen({super.key});
@@ -6,7 +7,7 @@ class FakeSplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff63594B),
+      backgroundColor: AppColors.bottomNavigationBackground,
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
@@ -23,7 +24,7 @@ class FakeSplashScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.only(bottom: 64),
               child: const CircleAvatar(radius: 16,
-                backgroundColor: Color(0xff3A2635),
+                backgroundColor: AppColors.darkText,
                 child: SizedBox(width: 20,
                   height: 20,
                   child: CircularProgressIndicator(
