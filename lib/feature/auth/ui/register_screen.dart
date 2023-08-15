@@ -158,12 +158,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         onChange: (value) {
                           if (value.isNotEmpty) {
                             setState(() {
-                              isVerificationCode = true;
+                              isVerificationCode = false;
                             });
                           } else {
                             setState(() {
                               codeState = "SEND CODE";
-                              isVerificationCode = false;
+                              isVerificationCode = true;
                             });
                           }
                         },

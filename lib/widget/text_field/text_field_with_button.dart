@@ -56,6 +56,7 @@ class CustomTextFieldWithButton extends StatelessWidget {
             onChanged: onChange ?? (value) {},
             style: AppTypography.font20gold,
             textAlignVertical: TextAlignVertical.top,
+            keyboardType: keyBoardType,
             controller: controller,
             decoration: InputDecoration(
               counterText: '',
