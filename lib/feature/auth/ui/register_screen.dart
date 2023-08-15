@@ -25,7 +25,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController codeController = TextEditingController();
 
   String codeState = "SEND CODE";
 
@@ -148,7 +148,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: 16,
                       ),
                       CustomTextFieldWithButton(
-                        controller: passwordController,
+                        controller: codeController,
                         height: 56,
                         obscureText: true,
                         maxLength: 18,
@@ -169,10 +169,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                         suffixIcon: SmallElevatedButton(
                           text: state is WaitState
-                                  ? state.remainingTime.toString()
-                                  : codeState,
+                              ? state.remainingTime.toString()
+                              : codeState,
                           onTap: () {
-                            if (codeState == 'SEND CODE' && state is! WaitState) {
+                            if (codeState == 'SEND CODE' &&
+                                state is! WaitState) {
                               log('--------- trying to send step 1');
                               if (RegExp(emailRegExp)
                                   .hasMatch(emailController.text)) {
@@ -218,10 +219,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onTap: () {
                             if (isValidEmail &&
                                 isTap &&
-                                passwordController.text.isNotEmpty) {
+                                codeController.text.isNotEmpty) {
                               BlocProvider.of<LoginCubit>(context).login(
                                   email: emailController.text.trim(),
-                                  code: passwordController.text.trim());
+                                  code: codeController.text.trim());
                             }
                             isErrorAccept = !isTap;
 
