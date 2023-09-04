@@ -14,6 +14,7 @@ import '../../../../widget/app_bar/app_bar.dart';
 import '../../../../widget/buttons/custom_elevated_button.dart';
 import '../../../../widget/containers/big_book_container.dart';
 import '../../../../widget/containers/icon_text_description.dart';
+import '../../../home/data/homa_repository.dart';
 
 class CollectionInfoScreen extends StatefulWidget {
   const CollectionInfoScreen({super.key});
@@ -32,12 +33,14 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
         <String, dynamic>{}) as Map;
 
     final storeBooksRepository =
-        RepositoryProvider.of<StoreRepository>(context);
+    RepositoryProvider.of<StoreRepository>(context);
 
     String idCollection = arguments['id'];
 
     Collection collection =
-        storeBooksRepository.searchCollectionById(idCollection)!;
+    storeBooksRepository.searchCollectionById(idCollection)!;
+
+    final repository = RepositoryProvider.of<HomeRepository>(context);
 
     void showBuyBook() {
       showModalBottomSheet(
@@ -52,6 +55,11 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                 purchaseCallback: () {
                   BlocProvider.of<PurchaseCubit>(context)
                       .buyBook(collection.id);
+                },
+                exitAction: () {
+                  repository.setIsSecondScreen(true);
+                  repository.onSelectTab(1);
+                  Navigator.pushReplacementNamed(context, '/home_screen');
                 },
               )));
     }
@@ -68,7 +76,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
             stream: storeBooksRepository.saleCollectionUpdateStream,
             builder: (context, snapshot) {
               Collection collection =
-                  storeBooksRepository.searchCollectionById(idCollection)!;
+              storeBooksRepository.searchCollectionById(idCollection)!;
 
               return Padding(
                   padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
@@ -148,7 +156,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                           children: [
                             TextIconAndDescription(
                               name:
-                                  '${collection.availableBooks}/${collection.maxBooks}',
+                              '${collection.availableBooks}/${collection.maxBooks}',
                               description: 'Left',
                               icon: 'Assets/icons/black_book.svg',
                               width: 100,

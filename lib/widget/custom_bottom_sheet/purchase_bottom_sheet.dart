@@ -12,12 +12,14 @@ import 'bottom_sheet.dart';
 class PurchaseBottomSheet extends StatefulWidget {
   const PurchaseBottomSheet(
       {super.key,
-      required this.title,
-      required this.purchaseCallback,
-      this.needTitleField = false});
+        required this.title,
+        required this.purchaseCallback,
+        this.exitAction,
+        this.needTitleField = false});
 
   final String title;
   final VoidCallback purchaseCallback;
+  final VoidCallback? exitAction;
   final bool needTitleField;
 
   @override
@@ -34,8 +36,6 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final repository = RepositoryProvider.of<HomeRepository>(context);
-
     VoidCallback buttonCallback = () {
       widget.purchaseCallback();
       setState(() {
@@ -68,11 +68,8 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
         } else if (state is PurchaseSuccess) {
           mainAxisAlignment = MainAxisAlignment.spaceBetween;
           buttonTitle = 'Done';
-          buttonCallback = () {
-            repository.setIsSecondScreen(true);
-            repository.onSelectTab(1);
-            Navigator.pushReplacementNamed(context, '/home_screen');
-            setState(() {});
+          buttonCallback = widget.exitAction ?? () {
+            Navigator.pop(context);
           };
           children = [
             SvgPicture.asset('Assets/icons/check_mark.svg'),
@@ -136,34 +133,34 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
                             alignment: Alignment.center,
                             child: wait
                                 ? Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          SvgPicture.asset(
-                                              'Assets/icons/black_stars.svg'),
-                                          if (!widget.needTitleField) ...[
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            Text(
-                                              widget.title,
-                                              textAlign: TextAlign.center,
-                                              style: AppTypography.font16white,
-                                            ),
-                                          ]
-                                        ],
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SvgPicture.asset(
+                                        'Assets/icons/black_stars.svg'),
+                                    if (!widget.needTitleField) ...[
+                                      const SizedBox(
+                                        width: 10,
                                       ),
-                                      Text('Free',
-                                          style: AppTypography.font16white),
-                                    ],
-                                  )
+                                      Text(
+                                        widget.title,
+                                        textAlign: TextAlign.center,
+                                        style: AppTypography.font16white,
+                                      ),
+                                    ]
+                                  ],
+                                ),
+                                Text('Free',
+                                    style: AppTypography.font16white),
+                              ],
+                            )
                                 : Row(
-                                    mainAxisAlignment: mainAxisAlignment,
-                                    children: children,
-                                  )),
+                              mainAxisAlignment: mainAxisAlignment,
+                              children: children,
+                            )),
                       ],
                     ),
                     CustomElevatedButton(
