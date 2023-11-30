@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../models/book_position.dart';
 
@@ -22,7 +23,7 @@ class ApiService {
   final Dio _dio =
       Dio(BaseOptions(baseUrl: dotenv.get('BASE_SERVER_URL'), headers: {
     'Content-Type': 'application/json',
-  }));
+  }))..interceptors.add(PrettyDioLogger());
 
   ApiService() : super() {
     auth = Auth(dio_: _dio);
