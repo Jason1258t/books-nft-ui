@@ -41,25 +41,13 @@ class ApiService {
     bookshelves.refreshDio(_dio);
   }
 
-  /// получает статы пользователя после авторизации
-  Future<Map> getUserProperties() async {
-    try {
-      final res = await _dio.get('/users/user_properties');
-      log(res.data.toString());
-      return res.data;
-    } catch (e) {
-      log('user_properties');
-      rethrow;
-    }
-  }
-
   /// ставит token в dio
   Future setToken(String token) async {
     _dio.options.headers = {
       'Content-Type': 'application/json',
-      'Authorization': token
+      'Authorization': 'Bearer $token'
     };
-    await getUserProperties();
+
     _updateAllServices();
   }
 

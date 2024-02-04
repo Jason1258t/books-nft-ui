@@ -31,23 +31,11 @@ class CodeCubit extends Cubit<CodeState> {
     });
   }
 
-  void signupCode(String email) async {
-    emit(SendingState());
-    try {
-      log('--------- trying to send step 3');
-      await _appRepository.getCodeOnSignUp(email);
-      emit(SentState());
-      _wait();
-    } catch (e) {
-      emit(FailState());
-      rethrow;
-    }
-  }
-
   void loginCode(String email) async {
     emit(SendingState());
     try {
       log('--------- trying to send step 3');
+      print(email);
       await _appRepository.getCode(email);
       emit(SentState());
       _wait();

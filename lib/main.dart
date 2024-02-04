@@ -21,7 +21,6 @@ import 'feature/auth/bloc/code/code_cubit.dart';
 import 'feature/auth/bloc/login/login_cubit.dart';
 import 'feature/auth/ui/auth_screen.dart';
 import 'feature/auth/ui/login_screen.dart';
-import 'feature/auth/ui/register_screen.dart';
 import 'feature/book_info/ui/buy/collection_info_screen.dart';
 import 'feature/book_info/ui/my/book_info_screen.dart';
 import 'feature/book_info/ui/second_info_screen.dart';
@@ -63,7 +62,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const MyHomePage(),
         '/login_screen': (context) => const LoginScreen(),
-        '/register_screen': (context) => const RegisterScreen(),
         '/describe_problem_screen': (context) => const DescribeProblem(),
         '/book_info_screen': (context) => const BookInfoScreen(),
         '/second_book_info_screen': (context) => const SecondBookInfoScreen(),

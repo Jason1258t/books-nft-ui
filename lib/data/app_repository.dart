@@ -45,12 +45,11 @@ class AppRepository {
     appState.add(AppStateEnum.unAuth);
   }
 
-  Future _auth(Future method) async {
+  Future _auth(String jwt) async {
     try {
-      final result = await method;
-      log(result.toString());
-      await _apiService.setToken('Bearer $result');
-      await _saveToken(result.toString());
+      await _apiService.setToken(jwt);
+      await _saveToken(jwt);
+
       try {
         _apiService.bookshelves.createWardrobe();
       } catch (e) {}
@@ -61,16 +60,13 @@ class AppRepository {
     }
   }
 
-  /// вызывает метод создания email на сервере и отправляет код
-  Future getCodeOnSignUp(String email) async {
-    await _apiService.auth.signUp(email);
-    await getCode(email);
-  }
-
   Future getCode(String email) async => await _apiService.auth.getCode(email);
 
   Future login(String email, int code) async {
-    await _auth(_apiService.auth.login(email, code));
+    final jwt = await _apiService.auth.login(email, code);
+    print(jwt);
+
+    await _auth(jwt);
   }
   
   Future deleteAccount() async {
