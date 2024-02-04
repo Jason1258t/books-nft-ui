@@ -103,6 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   asset: 'Assets/icons/wallet.svg',
                   activeAsset: 'Assets/icons/wallet_active.svg',
                   isSelected: homeRepository.selectedTab == 4,
+                  isActive: false,
                   text: 'Wallet',
                   onTap: () {
                     homeRepository.onSelectTab(4);
