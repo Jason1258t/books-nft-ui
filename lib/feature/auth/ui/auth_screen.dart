@@ -39,18 +39,12 @@ class AuthScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    CustomElevatedButton(text: 'LOGIN', onTap: () {
+                    CustomElevatedButton(text: 'SingIn', onTap: () {
                       Navigator.pushNamed(context, '/login_screen');
                     }),
                     const SizedBox(
-                      height: 16,
+                      height: 50,
                     ),
-                    CustomTextButton(text: 'REGISTER', onTap: () {
-                      Navigator.pushNamed(context, '/register_screen');
-                    }),
-                    const SizedBox(
-                      height: 30,
-                    )
                   ],
                 ),
               ),

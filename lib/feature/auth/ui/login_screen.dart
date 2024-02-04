@@ -216,7 +216,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 8,
                       ),
                       CustomElevatedButton(
-                          text: 'LOGIN',
+                          text: 'SingIn',
                           onTap: () {
                             FocusScope.of(context).requestFocus(FocusNode());
                             if (isValidEmail &&
