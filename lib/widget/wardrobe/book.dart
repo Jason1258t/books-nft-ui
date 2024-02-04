@@ -7,6 +7,7 @@ import 'package:nft/feature/my_books/bloc/purchase/purchase_cubit.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/feature/my_books/ui/my_books_screen.dart';
 import 'package:nft/models/book_position.dart';
+import 'package:nft/models/book_view.dart';
 import 'package:nft/utils/dialogs.dart';
 import 'package:nft/widget/custom_bottom_sheet/bottom_sheet.dart';
 import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
@@ -68,11 +69,11 @@ class BookWidget extends StatelessWidget {
       decoration = BoxDecoration(
           borderRadius: BorderRadius.circular(3),
           image: DecorationImage(
-              image: AssetImage('Assets/images/spine_bcg_${data?.type}.png'),
+              image: AssetImage('Assets/images/spine_bcg_${data?.rare}.png'),
               fit: BoxFit.cover));
       // child = Image.network(data!.spine, fit: BoxFit.cover);
       child = BookContent(
-        url: data!.image,
+        url: data!.cover_url,
         name: data!.name,
         author: data!.author,
         width: shelfWidth * 22 / 360,
@@ -118,7 +119,7 @@ class BookWidget extends StatelessWidget {
         arguments: {'book': book, 'owned': true});
   }
 
-  _addBook(Book book, BuildContext context) {
+  _addBook(int book_id, BuildContext context) {
     showBottomSheet(
         context: context,
         builder: (BuildContext context) =>
@@ -162,7 +163,7 @@ class BookWidget extends StatelessWidget {
                                       AppColors.backGroundTextShowButtonSheet),
                               alignment: Alignment.center,
                               child: Text(
-                                book.name,
+                                'book.name', // TODO
                                 textAlign: TextAlign.center,
                                 style: AppTypography.font16white,
                               ),
@@ -171,7 +172,7 @@ class BookWidget extends StatelessWidget {
                                 text: 'Confirm',
                                 onTap: () {
                                   BlocProvider.of<MoveBookCubit>(context)
-                                      .putBook(id: book.id, position: position);
+                                      .putBook(id: 'book.book_id', position: position); // TODO
                                 }),
                           ],
                         ),

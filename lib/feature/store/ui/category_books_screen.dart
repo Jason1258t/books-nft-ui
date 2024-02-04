@@ -54,6 +54,7 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
           author: genre.collections[i].author,
           image: genre.collections[i].image,
           type: 'silver',
+          percent: 10,
         ),
         const SizedBox(
           width: 20,
@@ -71,6 +72,7 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
             author: genre.collections[i + 1].author,
             image: genre.collections[i + 1].image,
             type: 'silver',
+            percent: 10,
           ),
         );
       } catch (e) {}

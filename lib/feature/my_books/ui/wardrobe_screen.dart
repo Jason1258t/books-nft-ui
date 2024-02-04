@@ -124,8 +124,9 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                                       children: [
                                         UserStat(
                                           text:
-                                              '${stats.energy}/${stats.energy}',
-                                          fill: 1,
+                                              '${indicators.current_energybar}/${indicators.total_energybar}',
+                                          fill: indicators.current_energybar /
+                                              indicators.total_energybar,
                                           asset: 'Assets/icons/energy.svg',
                                           width: (width - 40) * 0.3,
                                           height: height * 0.03,

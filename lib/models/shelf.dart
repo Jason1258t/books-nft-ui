@@ -23,7 +23,7 @@ class ShelfData {
     for (int i = 0; i < maxCount; i++) {
       var item = json['books'][i];
       if (item != null) {
-        booksData.add(Book.fromJson(item, true, available: false));
+        booksData.add(Book.fromJson(item, true));
       } else {
         booksData.add(BookPosition(shelf: shelfId, index: i));
       }

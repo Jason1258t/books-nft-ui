@@ -32,7 +32,7 @@ class Stats {
 }
 
 class Indicators {
-  final int mixed;
+  final double mixed;
   final int strength;
   final int current_energybar;
   final int total_energybar;
@@ -43,7 +43,7 @@ class Indicators {
 
   Indicators.fromJson(Map<String, dynamic> json)
       : mixed = json['multiplier'],
-        strength = json['strengthIndicator'],
+        strength = json['shield'],
         current_energybar = json['current_energybar'],
         total_energybar = json['total_energybar'],
         coin_balance = json['coin_balance'];

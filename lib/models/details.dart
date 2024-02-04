@@ -4,16 +4,16 @@ class Details {
   final String language;
   final String genre;
   final int pagesCount;
-  final String collectionId;
+  final String description;
 
   Details(this.ISBN, this.createAt, this.language, this.genre, this.pagesCount,
-      this.collectionId);
+      this.description);
 
   Details.fromJson(Map<String, dynamic> json)
-      : ISBN = json['details']['ISBN'],
+      : description = json['description'],
+        ISBN = json['details']['ISBN'],
         createAt = json['details']['publicationDate'],
         language = json['details']['language'],
         genre = json['details']['genre'],
-        collectionId = json['id'],
         pagesCount = json['details']['pagesCount'];
 }

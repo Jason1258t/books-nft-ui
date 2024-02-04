@@ -2,6 +2,7 @@ import 'package:nft/models/book_position.dart';
 import 'package:nft/services/api_service/api_service.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../models/book_view.dart';
 import '../../../models/shelf.dart';
 import '../../../models/stats.dart';
 import '../../../models/wardrobe.dart';
@@ -29,7 +30,8 @@ class MyBooksRepository {
 
   void initial() {
     wardrobe = Wardrobe();
-    getWardrobe().then((value) => getMyBooks());
+    // getWardrobe().then((value) => getMyBooks());
+    getMyBooks();
   }
 
   void clearWardrobe() {
@@ -47,23 +49,24 @@ class MyBooksRepository {
           stats: Stats(energy: 0, intelligence: 0, luck: 0, strength: 0),
           indicators: Indicators(0, 0, 0,0,0)));
 
-  List<Book> myBooks = [];
+  List<BookView> myBooks = [];
 
   Book? searchBookById(String id) {
-    for (Book book in myBooks) {
-      if (book.id == id) return book;
-    }
+    // for (Book book in myBooks) {
+    //   if (book.id == id) return book;
+    // }
     return null;
   }
 
   Future getMyBooks() async {
     myBooksState.add(LoadingStateEnum.loading);
     try {
-      final data = await _apiService.books.getMyBooks();
+      final data = (await _apiService.books.getMyBooks())['books'];
+      print(data);
+
       myBooks.clear();
       for (var json in data) {
-        myBooks.add(Book.fromJson(json, true,
-            available: wardrobe.contains(json['id'])));
+        myBooks.add(BookView.fromJson(json));
       }
       myBooksState.add(LoadingStateEnum.success);
     } catch (e) {
@@ -73,21 +76,21 @@ class MyBooksRepository {
   }
 
   void _refreshMyBooks() async {
-    try {
-      for (Book book in myBooks) {
-        book.available = wardrobe.contains(book.id);
-      }
-      myBooksState.add(LoadingStateEnum.success);
-    } catch (e) {
-      myBooksState.add(LoadingStateEnum.fail);
-    }
+    // try {
+    //   for (Book book in myBooks) {
+    //     book.available = wardrobe.contains(book.id);
+    //   }
+    //   myBooksState.add(LoadingStateEnum.success);
+    // } catch (e) {
+    //   myBooksState.add(LoadingStateEnum.fail);
+    // }
   }
 
   Future _getAvailableBooks() async {
     final data = await _apiService.bookshelves.getAvailableBooks();
     wardrobe.availableBooks.clear();
     for (var json in data['books']) {
-      wardrobe.availableBooks.add(Book.fromJson(json, true));
+      wardrobe.availableBooks.add(BookView.fromJson(json));
     }
   }
 
@@ -119,7 +122,7 @@ class MyBooksRepository {
     _refreshMyBooks();
   }
 
-  Future _getUserStats() async {
+  Future getUserStats() async {
     final stats = _apiService.user.getProperties();
     // final indicators = _apiService.user.getIndicators();
 
@@ -151,7 +154,7 @@ class MyBooksRepository {
     try {
       Future booksLoading = _getAvailableBooks();
       Future shelvesLoading = _getShelves();
-      Future userStatsLoading = _getUserStats();
+      Future userStatsLoading = getUserStats();
       await Future.wait([booksLoading, shelvesLoading, userStatsLoading]);
       wardrobeState.add(LoadingStateEnum.success);
     } catch (e) {

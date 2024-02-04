@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nft/feature/my_books/bloc/books/my_books_cubit.dart';
+import 'package:nft/models/book_view.dart';
 import 'package:nft/utils/fonts.dart';
 
-import '../../../models/shelf.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dialogs.dart';
 import '../../../widget/containers/books_vertical_container.dart';
@@ -12,8 +12,8 @@ import '../../../widget/switch/custom_switch.dart';
 class MyBooksScreen extends StatefulWidget {
   const MyBooksScreen({super.key, required this.onTap, required this.books});
 
-  final Function(Book, BuildContext) onTap;
-  final List<Book> books;
+  final Function(int, BuildContext) onTap;
+  final List<BookView> books;
 
   @override
   State<MyBooksScreen> createState() => _MyBooksScreenState();
@@ -29,12 +29,13 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
       Row row = Row(children: [
         BooksVerticalContainer(
           onTap: () {
-            widget.onTap(widget.books[i], context);
+            widget.onTap(widget.books[i].book_id, context);
           },
           name: widget.books[i].name,
           author: widget.books[i].author,
-          image: widget.books[i].image,
-          type: widget.books[i].type,
+          image: widget.books[i].cover_url,
+          type: widget.books[i].rare,
+          percent: widget.books[i].percent,
         ),
         const SizedBox(
           width: 20,
@@ -45,12 +46,13 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
         row.children.add(
           BooksVerticalContainer(
             onTap: () {
-              widget.onTap(widget.books[i + 1], context);
+              widget.onTap(widget.books[i + 1].book_id, context);
             },
             name: widget.books[i + 1].name,
             author: widget.books[i + 1].author,
-            image: widget.books[i + 1].image,
-            type: widget.books[i + 1].type,
+            image: widget.books[i + 1].cover_url,
+            type: widget.books[i + 1].rare,
+            percent: widget.books[i + 1].percent,
           ),
         );
       } catch (e) {}

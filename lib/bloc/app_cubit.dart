@@ -24,7 +24,8 @@ class AppCubit extends Cubit<AppState> {
     _appRepository.appState.stream.listen((event) {
       if (event == AppStateEnum.auth) {
         myBooksRepository.initial();
-        storeRepository.getStoreCollections();
+        myBooksRepository.getUserStats();
+        // storeRepository.getStoreCollections();
         homeRepository.isSecondScreen = false;
         homeRepository.onSelectTab(2);
         emit(AppAuthState());

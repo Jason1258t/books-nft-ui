@@ -35,7 +35,7 @@ class AppRepository {
 
   Future _saveToken(String token) async {
     final prefs = await _prefs;
-    prefs.setString(tokenKey, 'Bearer $token');
+    prefs.setString(tokenKey, token);
   }
 
   Future logout() async {

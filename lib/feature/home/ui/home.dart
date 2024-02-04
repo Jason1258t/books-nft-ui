@@ -31,9 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final List<Widget> widgetOptions = <Widget>[
       const StoreScreen(),
       MyBooksScreen(
-        onTap: (book, ctx) {
-          Navigator.pushNamed(ctx, '/book_info_screen',
-              arguments: {'book': book, 'owned': true});
+        onTap: (bookId, ctx) {
+          Navigator.pushNamed(ctx, '/book_info_screen', arguments: {'book_id': bookId});
         },
         books: RepositoryProvider.of<MyBooksRepository>(context).myBooks,
       ),

@@ -40,7 +40,7 @@ class CustomAppBar extends AppBar {
                       height: height * 0.03,
                     ),
                     UserStat(
-                      text: '${stats.energy}/${stats.energy}',
+                      text: '${indicators.current_energybar}/${indicators.total_energybar}',
                       fill: 1,
                       asset: 'Assets/icons/energy.svg',
                       width: (width - 39) * 0.19,
@@ -71,7 +71,7 @@ class CustomAppBar extends AppBar {
                             width: 3,
                           ),
                           Text(
-                            '2 430',
+                            '${indicators.coin_balance}',
                             style: AppTypography.font14white
                                 .copyWith(fontSize: 12),
                           )

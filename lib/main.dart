@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nft/bloc/app_cubit.dart';
+import 'package:nft/feature/book_info/bloc/book_info_bloc/book_info_cubit.dart';
+import 'package:nft/feature/book_info/data/book_info_repository.dart';
 import 'package:nft/feature/my_books/bloc/books/my_books_cubit.dart';
 import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
 import 'package:nft/feature/my_books/bloc/purchase/purchase_cubit.dart';
@@ -106,6 +108,7 @@ class MyRepositoryProviders extends StatelessWidget {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider(create: (_) => HomeRepository()),
       RepositoryProvider(create: (_) => WalletRepository()),
+      RepositoryProvider(create: (_) => BookInfoRepository(apiService: apiService)),
       RepositoryProvider(create: (_) => AppRepository(apiService: apiService)),
       RepositoryProvider(
           create: (_) => StoreRepository(apiService: apiService)),
@@ -142,6 +145,11 @@ class MyBlocProviders extends StatelessWidget {
       BlocProvider(
         create: (_) => LoginCubit(
             appRepository: RepositoryProvider.of<AppRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => BookInfoCubit(
+            bookInfoRepository: RepositoryProvider.of<BookInfoRepository>(context)),
         lazy: false,
       ),
       BlocProvider(

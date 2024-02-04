@@ -1,15 +1,16 @@
+import 'package:nft/models/book_view.dart';
 import 'package:nft/models/shelf.dart';
 
 import 'book_position.dart';
 
 class Wardrobe {
   late final String id;
-  List<Book> availableBooks = [];
+  List<BookView> availableBooks = [];
   List<ShelfData> shelves = [];
 
   bool contains(String id) {
-    for (Book book in availableBooks) {
-      if (book.id == id) return true;
+    for (BookView book in availableBooks) {
+      if ('${book.book_id}' == id) return true;
     }
     return false;
   }
@@ -19,7 +20,7 @@ class Wardrobe {
       if (!shelf.isLocked) {
         int index = 0;
         for (var book in shelf.booksData) {
-          if (book is Book && book.id == id) {
+          if (book is Book && '${book.book_id}' == id) {
             return BookPosition(shelf: shelf.shelfId, index: index);
           }
           index++;

@@ -13,13 +13,15 @@ class BooksVerticalContainer extends StatefulWidget {
       required this.author,
       required this.name,
       required this.image,
-      required this.type});
+      required this.type,
+      required this.percent});
 
   final Function() onTap;
   final String name;
   final String image;
   final String type;
   final String author;
+  final int percent;
 
   @override
   State<BooksVerticalContainer> createState() => _BooksVerticalContainerState();
@@ -50,6 +52,7 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                   image: NetworkImage(widget.image),
+                      fit: BoxFit.fill
                 )),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,9 +60,6 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          height: width * 0.017,
-                        ),
                         Container(
                             width: double.infinity,
                             color: Colors.black38,
@@ -83,9 +83,6 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
                               style: AppTypography.font12white,
                               textAlign: TextAlign.center,
                             )),
-                        SizedBox(
-                          height: width * 0.016,
-                        ),
                       ],
                     ),
                   ],
@@ -115,7 +112,7 @@ class _BooksVerticalContainerState extends State<BooksVerticalContainer> {
                   Container(
                     padding: const EdgeInsets.fromLTRB(9, 7, 0, 0),
                     child: Text(
-                      '78%',
+                      '${widget.percent}%',
                       style: AppTypography.font20white.copyWith(fontSize: 10),
                     ),
                   ),
