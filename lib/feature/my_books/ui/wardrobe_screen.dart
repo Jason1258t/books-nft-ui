@@ -66,7 +66,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                             initialData: UserStats(
                                 lvl: 1,
                                 stats: Stats.zero(),
-                                indicators: Indicators(0, 0, 0)),
+                                indicators: Indicators(0, 0, 0, 0)),
                             builder: (context, snapshot) {
                               final stats = snapshot.data!.stats;
                               final indicators = snapshot.data!.indicators;

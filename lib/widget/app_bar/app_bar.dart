@@ -21,7 +21,7 @@ class CustomAppBar extends AppBar {
           backgroundColor: AppColors.bottomNavigationBackground,
           title: StreamBuilder<UserStats>(
               initialData: UserStats(
-                  lvl: 1, stats: Stats.zero(), indicators: Indicators(0, 0, 0)),
+                  lvl: 1, stats: Stats.zero(), indicators: Indicators(0, 0, 0, 0)),
               stream: RepositoryProvider.of<MyBooksRepository>(context)
                   .userProperties
                   .stream,

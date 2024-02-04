@@ -2,7 +2,7 @@ part of 'api_service.dart';
 
 class BooksService with MyApiMethods {
   /// [_books] выдает книги пользователя а [_allBooks] все какие есть
-  static const String _books = '/books/get';
+  static const String _books = '/user/my-books/books';
   static const String _allBooks = '/books/get_all';
   static const String _booksAvailableToBuy = '/books/get_available';
   static const String _buyBook = '/books/buy/';

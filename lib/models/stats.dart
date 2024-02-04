@@ -34,12 +34,14 @@ class Stats {
 class Indicators {
   final int mixed;
   final int strength;
-  final int energy;
+  final int current_energybar;
+  final int total_energybar;
 
-  Indicators(this.mixed, this.strength, this.energy);
+  Indicators(this.mixed, this.strength, this.current_energybar, this.total_energybar);
 
   Indicators.fromJson(Map<String, dynamic> json)
-      : mixed = json['multiplierIndicator'],
+      : mixed = json['multiplier'],
         strength = json['strengthIndicator'],
-        energy = json['energyIndicator'];
+        current_energybar = json['current_energybar'],
+        total_energybar = json['total_energybar'];
 }

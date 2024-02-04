@@ -1,5 +1,6 @@
 import 'package:nft/models/shelf.dart';
 
+
 class BookPosition implements ShelfPlaceData{
   final String shelf;
   final int index;

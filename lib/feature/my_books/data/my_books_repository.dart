@@ -45,7 +45,7 @@ class MyBooksRepository {
       UserStats(
           lvl: 1,
           stats: Stats(energy: 0, intelligence: 0, luck: 0, strength: 0),
-          indicators: Indicators(0, 0, 0)));
+          indicators: Indicators(0, 0, 0,0)));
 
   List<Book> myBooks = [];
 
@@ -122,7 +122,10 @@ class MyBooksRepository {
   Future _getUserStats() async {
     final stats = _apiService.user.getProperties();
     final indicators = _apiService.user.getIndicators();
+
     await Future.wait([stats, indicators]).then((value) {
+      print(value);
+
       userLvl = value[0]['lvl'];
       userStats = UserStats(
           lvl: userLvl,
