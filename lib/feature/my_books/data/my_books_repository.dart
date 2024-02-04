@@ -45,7 +45,7 @@ class MyBooksRepository {
       UserStats(
           lvl: 1,
           stats: Stats(energy: 0, intelligence: 0, luck: 0, strength: 0),
-          indicators: Indicators(0, 0, 0,0)));
+          indicators: Indicators(0, 0, 0,0,0)));
 
   List<Book> myBooks = [];
 
@@ -121,16 +121,28 @@ class MyBooksRepository {
 
   Future _getUserStats() async {
     final stats = _apiService.user.getProperties();
-    final indicators = _apiService.user.getIndicators();
+    // final indicators = _apiService.user.getIndicators();
 
-    await Future.wait([stats, indicators]).then((value) {
+    // await Future.wait([stats, indicators]).then((value) {
+    //   print(value);
+    //
+    //   userLvl = value[0]['lvl'];
+    //   userStats = UserStats(
+    //       lvl: userLvl,
+    //       stats: Stats.fromJson(value[0]),
+    //       indicators: Indicators.fromJson(value[1]));
+    //   userProperties.add(userStats);
+    // });
+
+    await Future.wait([stats]).then((value) {
       print(value);
 
-      userLvl = value[0]['lvl'];
+      userLvl = 0;
       userStats = UserStats(
           lvl: userLvl,
-          stats: Stats.fromJson(value[0]),
-          indicators: Indicators.fromJson(value[1]));
+          stats: Stats.zero(),
+          indicators: Indicators.fromJson(value[0]));
+      print(userStats.indicators.coin_balance);
       userProperties.add(userStats);
     });
   }

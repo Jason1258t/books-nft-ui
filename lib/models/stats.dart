@@ -36,12 +36,15 @@ class Indicators {
   final int strength;
   final int current_energybar;
   final int total_energybar;
+  final int coin_balance;
 
-  Indicators(this.mixed, this.strength, this.current_energybar, this.total_energybar);
+  Indicators(this.mixed, this.strength, this.current_energybar,
+      this.total_energybar, this.coin_balance);
 
   Indicators.fromJson(Map<String, dynamic> json)
       : mixed = json['multiplier'],
         strength = json['strengthIndicator'],
         current_energybar = json['current_energybar'],
-        total_energybar = json['total_energybar'];
+        total_energybar = json['total_energybar'],
+        coin_balance = json['coin_balance'];
 }
