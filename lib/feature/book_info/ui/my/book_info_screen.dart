@@ -36,6 +36,8 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
 
     int bookId = arguments['book_id'];
 
+    RepositoryProvider.of<BookInfoRepository>(context).getBookInfoById(bookId);
+
     void removeFromShelf() async {
       BlocProvider.of<MoveBookCubit>(context).removeBook(id: '$bookId');
     }
@@ -71,6 +73,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                 builder: (context, state) {
               final book = RepositoryProvider.of<BookInfoRepository>(context)
                   .currentBook;
+
               if (state is BookInfoLoading) {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is BookInfoFail) {
