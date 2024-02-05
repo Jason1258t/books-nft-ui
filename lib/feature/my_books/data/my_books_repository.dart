@@ -124,18 +124,6 @@ class MyBooksRepository {
 
   Future getUserStats() async {
     final stats = _apiService.user.getProperties();
-    // final indicators = _apiService.user.getIndicators();
-
-    // await Future.wait([stats, indicators]).then((value) {
-    //   print(value);
-    //
-    //   userLvl = value[0]['lvl'];
-    //   userStats = UserStats(
-    //       lvl: userLvl,
-    //       stats: Stats.fromJson(value[0]),
-    //       indicators: Indicators.fromJson(value[1]));
-    //   userProperties.add(userStats);
-    // });
 
     await Future.wait([stats]).then((value) {
       print(value);
@@ -171,11 +159,5 @@ class MyBooksRepository {
   Future buyShelf() async {
     await _apiService.bookshelves.buyShelf();
     await getWardrobe();
-  }
-
-  Future buyBook(String bookId) async {
-    await _apiService.books.buyBook(bookId);
-    await _getAvailableBooks();
-    await getMyBooks();
   }
 }

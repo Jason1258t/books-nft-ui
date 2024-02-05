@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nft/feature/store/data/store_repository.dart';
-import 'package:nft/models/collection.dart';
+import 'package:nft/models/books_genre.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/utils/gradients.dart';
 import 'package:nft/widget/containers/books_vertical_container.dart';
@@ -48,11 +48,11 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
         BooksVerticalContainer(
           onTap: () {
             Navigator.pushNamed(context, '/collection_info_screen',
-                arguments: {'id': genre.collections[i].id});
+                arguments: {'id': genre.collections[i].collection_id});
           },
           name: genre.collections[i].name,
           author: genre.collections[i].author,
-          image: genre.collections[i].image,
+          image: genre.collections[i].cover_url,
           type: 'silver',
           percent: 10,
         ),
@@ -66,11 +66,11 @@ class _CategoryBooksScreenState extends State<CategoryBooksScreen> {
           BooksVerticalContainer(
             onTap: () {
               Navigator.pushNamed(context, '/collection_info_screen',
-                  arguments: {'id': genre.collections[i + 1].id});
+                  arguments: {'id': genre.collections[i + 1].collection_id});
             },
             name: genre.collections[i + 1].name,
             author: genre.collections[i + 1].author,
-            image: genre.collections[i + 1].image,
+            image: genre.collections[i + 1].cover_url,
             type: 'silver',
             percent: 10,
           ),

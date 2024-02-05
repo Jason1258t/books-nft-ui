@@ -26,24 +26,31 @@ class _CustomSwitchCategoriesState extends State<CustomSwitchCategories> {
       children: [
         CustomCategoryButton(
             padding: const EdgeInsets.only(left: 0),
-            text: 'Recommended',
+            text: 'Genres',
             active: active == 0,
             callback: () {
               selectTab(0);
             }),
         CustomCategoryButton(
             padding: EdgeInsets.only(left: width * 0.22),
-            text: 'New',
+            text: 'Recommended',
             active: active == 1,
             callback: () {
-              selectTab(1);
+              // selectTab(1);
             }),
         CustomCategoryButton(
             padding: EdgeInsets.only(left: width * 0.44),
-            text: 'Popular',
+            text: 'New',
             active: active == 2,
             callback: () {
-              selectTab(2);
+              // selectTab(2);
+            }),
+        CustomCategoryButton(
+            padding: EdgeInsets.only(left: width * 0.66),
+            text: 'Popular',
+            active: active == 3,
+            callback: () {
+              // selectTab(3);
             }),
       ],
     );
@@ -66,7 +73,6 @@ class CustomCategoryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
 
     return Padding(
       padding: padding,

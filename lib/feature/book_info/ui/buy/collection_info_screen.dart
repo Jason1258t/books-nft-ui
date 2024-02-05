@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nft/feature/book_info/bloc/collection_info/collection_info_cubit.dart';
+import 'package:nft/feature/book_info/bloc/collection_info/collection_info_state.dart';
 import 'package:nft/feature/my_books/bloc/purchase/purchase_cubit.dart';
 import 'package:nft/feature/store/data/store_repository.dart';
 import 'package:nft/utils/fonts.dart';
@@ -33,14 +35,15 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
         <String, dynamic>{}) as Map;
 
     final storeBooksRepository =
-    RepositoryProvider.of<StoreRepository>(context);
+        RepositoryProvider.of<StoreRepository>(context);
 
-    String idCollection = arguments['id'];
+    int idCollection = arguments['id'];
 
-    Collection collection =
-    storeBooksRepository.searchCollectionById(idCollection)!;
+    final storeRepository = RepositoryProvider.of<StoreRepository>(context);
 
-    final repository = RepositoryProvider.of<HomeRepository>(context);
+    storeRepository.getCollectionById(idCollection);
+
+    final homeRepository = RepositoryProvider.of<HomeRepository>(context);
 
     void showBuyBook() {
       showModalBottomSheet(
@@ -51,14 +54,15 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                   bottom: MediaQuery.of(context).viewInsets.bottom),
               child: PurchaseBottomSheet(
                 needTitleField: true,
-                title: collection.name,
+                // title: collection.name,
+                title: '',
                 purchaseCallback: () {
                   BlocProvider.of<PurchaseCubit>(context)
-                      .buyBook(collection.id);
+                      .buyBook("collection.id"); // TODO
                 },
                 exitAction: () {
-                  repository.setIsSecondScreen(true);
-                  repository.onSelectTab(1);
+                  homeRepository.setIsSecondScreen(true);
+                  homeRepository.onSelectTab(1);
                   Navigator.pushReplacementNamed(context, '/home_screen');
                 },
               )));
@@ -71,14 +75,17 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
         height: height,
         context: context,
       ),
-      child: SingleChildScrollView(
-        child: StreamBuilder<bool>(
-            stream: storeBooksRepository.saleCollectionUpdateStream,
-            builder: (context, snapshot) {
-              Collection collection =
-              storeBooksRepository.searchCollectionById(idCollection)!;
+      child: BlocBuilder<CollectionInfoCubit, CollectionInfoState>(
+        builder: (context, state) {
+          if (state is CollectionInfoLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is CollectionInfoFail) {
+            return Text('проблем');
+          } else {
+            var collection = storeRepository.currentCollection!;
 
-              return Padding(
+            return SingleChildScrollView(
+              child: Padding(
                   padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -106,11 +113,10 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                               child: SvgPicture.asset('Assets/icons/info.svg'),
                               onTap: () {
                                 Navigator.pushNamed(
-                                    context, '/second_book_info_screen',
+                                    context, '/second_collection_info_screen',
                                     arguments: {
-                                      'details': collection.details,
-                                      'description': collection.description,
-                                      'name': collection.name
+                                      'name': collection.name,
+                                      'collection_id': collection.collectionId,
                                     });
                               },
                             ),
@@ -122,7 +128,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                         BigBookContainer(
                           name: collection.name,
                           author: collection.author,
-                          image: collection.image,
+                          image: collection.coverUrl,
                           type: 'silver',
                         ),
                         const SizedBox(
@@ -135,7 +141,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                             children: [
                               _IconAndText(
                                 color: AppColors.commonBook,
-                                text: '${collection.commonPercent}%',
+                                text: '${collection.bronzePercent}%',
                               ),
                               _IconAndText(
                                 color: AppColors.silverBook,
@@ -156,7 +162,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                           children: [
                             TextIconAndDescription(
                               name:
-                              '${collection.availableBooks}/${collection.maxBooks}',
+                                  '${collection.traitsCollection.current_supply}/${collection.traitsCollection.total_supply}',
                               description: 'Left',
                               icon: 'Assets/icons/black_book.svg',
                               width: 100,
@@ -167,7 +173,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                                 Column(
                                   children: [
                                     TextIconAndDescription(
-                                      name: 'The Adventures of Sherlock Holmes',
+                                      name: collection.name,
                                       description: '',
                                       icon: 'Assets/icons/black_info.svg',
                                       width: (width - 163) / 2,
@@ -179,7 +185,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                                       width: (width - 163) / 2,
                                     ),
                                     TextIconAndDescription(
-                                      name: 'Serena',
+                                      name: collection.creator,
                                       description: 'Creator',
                                       icon: 'Assets/icons/black_lightning.svg',
                                       width: (width - 163) / 2,
@@ -192,19 +198,19 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                                 Column(
                                   children: [
                                     TextIconAndDescription(
-                                      name: '10-52',
+                                      name: '${collection.traitsCollection.min_income}-${collection.traitsCollection.max_income}',
                                       description: 'Income',
                                       icon: 'Assets/icons/black_dollar.svg',
                                       width: (width - 163) / 2,
                                     ),
                                     TextIconAndDescription(
-                                      name: '13/16',
+                                      name: '${collection.traitsCollection.max_images}',
                                       description: 'Images',
                                       icon: 'Assets/icons/black_image.svg',
                                       width: (width - 163) / 2,
                                     ),
                                     TextIconAndDescription(
-                                      name: '8-16',
+                                      name: '${collection.traitsCollection.min_activities}-${collection.traitsCollection.max_activities}',
                                       description: 'Activities',
                                       icon: 'Assets/icons/black_compas.svg',
                                       width: (width - 163) / 2,
@@ -224,8 +230,10 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                             ),
                           ],
                         ),
-                      ]));
-            }),
+                      ])),
+            );
+          }
+        },
       ),
     );
   }

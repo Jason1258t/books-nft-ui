@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:nft/feature/book_info/data/book_info_repository.dart';
 
 import '../data/app_repository.dart';
 import '../feature/home/data/homa_repository.dart';
@@ -12,12 +13,14 @@ class AppCubit extends Cubit<AppState> {
   final MyBooksRepository myBooksRepository;
   final HomeRepository homeRepository;
   final StoreRepository storeRepository;
+  final BookInfoRepository bookInfoRepository;
 
   AppCubit(
       {required AppRepository appRepository,
       required this.myBooksRepository,
       required this.homeRepository,
-      required this.storeRepository})
+      required this.storeRepository,
+      required this.bookInfoRepository})
       : _appRepository = appRepository,
         super(AppInitial()) {
     _appRepository.checkLogin();
@@ -25,7 +28,7 @@ class AppCubit extends Cubit<AppState> {
       if (event == AppStateEnum.auth) {
         myBooksRepository.initial();
         myBooksRepository.getUserStats();
-        // storeRepository.getStoreCollections();
+        storeRepository.getStoreCollections();
         homeRepository.isSecondScreen = false;
         homeRepository.onSelectTab(2);
         emit(AppAuthState());

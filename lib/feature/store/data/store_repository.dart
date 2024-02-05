@@ -1,3 +1,5 @@
+import 'package:nft/models/books_genre.dart';
+import 'package:nft/models/collectio_detail.dart';
 import 'package:nft/models/collection.dart';
 import 'package:nft/services/api_service/api_service.dart';
 import 'package:rxdart/rxdart.dart';
@@ -12,23 +14,33 @@ class StoreRepository {
   BehaviorSubject<LoadingStateEnum> saleCollectionState =
       BehaviorSubject<LoadingStateEnum>.seeded(LoadingStateEnum.loading);
 
-  BehaviorSubject<bool> saleCollectionUpdateStream =
-      BehaviorSubject<bool>.seeded(false);
+  BehaviorSubject<LoadingStateEnum> collectionInfo =
+      BehaviorSubject<LoadingStateEnum>.seeded(LoadingStateEnum.loading);
 
-  List<Collection> sailCollection = [];
+  BehaviorSubject<LoadingStateEnum> collectionDetail =
+      BehaviorSubject<LoadingStateEnum>.seeded(LoadingStateEnum.loading);
+
   List<BooksGenre> sortedCollections = [];
+
+  Collection? currentCollection;
+  CollectionDetails? currentCollectionDetails;
 
   Future getStoreCollections() async {
     saleCollectionState.add(LoadingStateEnum.loading);
     try {
       sortedCollections = [];
 
-      final data = await _apiService.collections.getGenres();
-      for (var json in data) {
-        sortedCollections.add(BooksGenre.fromJson(json));
+      final data = await _apiService.storeService.getStorePreview();
+      List<String> genres = [];
+
+      for(var genre in data['genres']){
+        genres.add(genre.toString());
       }
 
-      saleCollectionUpdateStream.add(true);
+      for (var genre in genres) {
+        sortedCollections.add(BooksGenre.fromJson(data['collections'][genre], genre));
+      }
+
       saleCollectionState.add(LoadingStateEnum.success);
     } catch (e) {
       saleCollectionState.add(LoadingStateEnum.fail);
@@ -36,18 +48,32 @@ class StoreRepository {
     }
   }
 
-  Future buyCollection(String collectionId) async {
-    await _apiService.books.buyBook(collectionId);
+  void getCollectionById(int collectionId) async {
+    collectionInfo.add(LoadingStateEnum.loading);
+    try {
+      final data = await _apiService.collections.getCollectionById(collectionId);
+
+      currentCollection = Collection.fromJson(data);
+
+      collectionInfo.add(LoadingStateEnum.success);
+    } catch (e) {
+      collectionInfo.add(LoadingStateEnum.fail);
+      rethrow;
+    }
   }
 
-  Collection? searchCollectionById(String id) {
-    for (BooksGenre genre in sortedCollections) {
-      for (Collection book in genre.collections) {
-        if (book.id == id) return book;
-      }
-    }
+  void getCollectionDetailById(int collectionId) async{
+    collectionDetail.add(LoadingStateEnum.loading);
+    try {
+      final data = await _apiService.collections.getCollectionDetailById(collectionId);
 
-    return null;
+      currentCollectionDetails = CollectionDetails.fromJson(data);
+
+      collectionDetail.add(LoadingStateEnum.success);
+    } catch (e) {
+      collectionDetail.add(LoadingStateEnum.fail);
+      rethrow;
+    }
   }
 
   BooksGenre? searchGenreByName(String name) {

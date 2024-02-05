@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nft/feature/book_info/bloc/book_info_bloc/book_info_cubit.dart';
+import 'package:nft/feature/book_info/bloc/book_info/book_info_cubit.dart';
 import 'package:nft/feature/book_info/data/book_info_repository.dart';
 import 'package:nft/feature/my_books/bloc/books/my_books_cubit.dart';
 import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
-import 'package:nft/feature/my_books/data/my_books_repository.dart';
 import 'package:nft/utils/dialogs.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
 
-import '../../../../models/shelf.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/gradients.dart';
 import '../../../../widget/app_bar/app_bar.dart';
@@ -26,6 +24,7 @@ class BookInfoScreen extends StatefulWidget {
 }
 
 class _BookInfoScreenState extends State<BookInfoScreen> {
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -34,9 +33,6 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
 
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
-
-    final bookInfoRepository =
-        RepositoryProvider.of<BookInfoRepository>(context);
 
     int bookId = arguments['book_id'];
 
@@ -48,7 +44,6 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
       BlocProvider.of<MoveBookCubit>(context).putBook(id: '$bookId');
     }
 
-    bookInfoRepository.getBookInfoById(bookId);
     return BlocListener<MoveBookCubit, MoveBookState>(
       listener: (context, state) {
         if (state is MoveBookLoadingState) {
@@ -77,14 +72,7 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
               final book = RepositoryProvider.of<BookInfoRepository>(context)
                   .currentBook;
               if (state is BookInfoLoading) {
-                // Dialogs.showModal(
-                //     context,
-                //     const Center(
-                //       child: CircularProgressIndicator(
-                //         color: Colors.amber,
-                //       ),
-                //     ));
-                return Container();
+                return const Center(child: CircularProgressIndicator());
               } else if (state is BookInfoFail) {
                 return Text('проблем');
               } else {
@@ -118,7 +106,10 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                               onTap: () {
                                 Navigator.pushNamed(
                                     context, '/second_book_info_screen',
-                                    arguments: {'book_id': bookId});
+                                    arguments: {
+                                      'book_id': bookId,
+                                      'name': book?.name ?? ''
+                                    });
                               },
                             ),
                           ],
@@ -228,11 +219,12 @@ class _BookInfoScreenState extends State<BookInfoScreen> {
                           children: [
                             CustomElevatedButton(
                               text: book?.on_shelf ?? true
-                                  ? 'Put on a shelf'
-                                  : 'Remove from shelf',
+                                  ? 'Remove from shelf'
+                                  : 'Put on a shelf',
                               borderColor: AppColors.darkBorder,
-                              onTap:
-                                  book?.on_shelf ?? true ? putOnShelf : removeFromShelf,
+                              onTap: book?.on_shelf ?? true
+                                  ? putOnShelf
+                                  : removeFromShelf,
                               gradient: AppGradients.lightButton,
                             ),
                             const SizedBox(

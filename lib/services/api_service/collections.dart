@@ -1,22 +1,14 @@
 part of 'api_service.dart';
 
 class CollectionsService with MyApiMethods {
-  static const String _allCollections = '/collections/get_all';
-  static const String _collectionById = '/collections/get';
-  static const String _collectionsGenres = '/collections/genres';
-  static const String _collectionsByGenre = '/collections/genres';
+  static String Function(int) get _collectionById => (int id) => '/store/collection/$id';
+  static String Function(int) get _collectionDetailById => (int id) => '/collection/$id/detail';
 
   CollectionsService({required Dio dio_}) {
     dio = dio_;
   }
 
-  Future getAllCollections() async => await get(_allCollections);
+  Future getCollectionById(int collectionId) async => await get(_collectionById(collectionId));
 
-  Future getCollectionById(String id) async =>
-      await get('$_collectionById/$id');
-
-  Future getGenres() async => get(_collectionsGenres);
-
-  Future getCollectionsByGenre(String genre) async =>
-      get('$_collectionsByGenre/$genre');
+  Future getCollectionDetailById(int collectionId) async => await get(_collectionDetailById(collectionId));
 }

@@ -1,29 +1,31 @@
-import 'package:nft/models/details.dart';
-part 'books_genre.dart';
+import 'package:nft/models/traits_collection.dart';
+
 
 class Collection {
-  final String id;
+  final int collectionId;
   final String name;
   final String author;
-  final int commonPercent;
+  final int bronzePercent;
   final int silverPercent;
   final int goldPercent;
-  final String description;
-  final Details details;
-  final String image;
-  final int availableBooks;
-  final int maxBooks;
+  final String coverUrl;
+  final int percent;
+  final int price;
+  final String creator;
+  final String tag;
+  final TraitsCollection traitsCollection;
 
   Collection.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        name = json['bookInfo']['title'],
-        author = json['bookInfo']['author'],
-        image = json['covers'][0]['url'],
-        commonPercent = json['commonPercentage'],
-        silverPercent = json['silverPercentage'],
-        goldPercent = json['goldPercentage'],
-        description = json['bookInfo']['description'],
-        details = Details.fromJson(json),
-        availableBooks = json['availableBooks'],
-        maxBooks = json['booksCount'];
+      : collectionId = json['collection_id'],
+        name = json['name'],
+        author = json['author'],
+        coverUrl = json['cover_url'],
+        percent = json['percent'],
+        price = json['price'],
+        creator = json['creator'],
+        bronzePercent = json['rates'][0],
+        silverPercent = json['rates'][1],
+        goldPercent = json['rates'][2],
+        tag = json['tags'][0],
+        traitsCollection = TraitsCollection.fromJson(json['traits']);
 }

@@ -16,7 +16,7 @@ class Auth with MyApiMethods {
   /// производит авторизацию и возврвщает токен
   Future login(String email, int code) async {
     final data = await post(_login, data: {'email': email, 'code': '$code'});
-    log('------------------------- $data');
+
     return data['jwt'];
   }
 

@@ -3,8 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nft/bloc/app_cubit.dart';
-import 'package:nft/feature/book_info/bloc/book_info_bloc/book_info_cubit.dart';
+import 'package:nft/feature/book_info/bloc/book_detail/book_detail_cubit.dart';
+import 'package:nft/feature/book_info/bloc/book_info/book_info_cubit.dart';
+import 'package:nft/feature/book_info/bloc/collection_detail/collection_detail_cubit.dart';
+import 'package:nft/feature/book_info/bloc/collection_info/collection_info_cubit.dart';
 import 'package:nft/feature/book_info/data/book_info_repository.dart';
+import 'package:nft/feature/book_info/ui/buy/second_collection_info_screen.dart';
+import 'package:nft/feature/book_info/ui/my/second_book_info_screen.dart';
 import 'package:nft/feature/my_books/bloc/books/my_books_cubit.dart';
 import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
 import 'package:nft/feature/my_books/bloc/purchase/purchase_cubit.dart';
@@ -25,7 +30,6 @@ import 'feature/auth/ui/auth_screen.dart';
 import 'feature/auth/ui/login_screen.dart';
 import 'feature/book_info/ui/buy/collection_info_screen.dart';
 import 'feature/book_info/ui/my/book_info_screen.dart';
-import 'feature/book_info/ui/second_info_screen.dart';
 import 'feature/describe_problem/ui/describe_problem_screen.dart';
 import 'feature/home/bloc/home_cubit.dart';
 import 'feature/home/data/homa_repository.dart';
@@ -66,7 +70,8 @@ class MyApp extends StatelessWidget {
         '/login_screen': (context) => const LoginScreen(),
         '/describe_problem_screen': (context) => const DescribeProblem(),
         '/book_info_screen': (context) => const BookInfoScreen(),
-        '/second_book_info_screen': (context) => const SecondBookInfoScreen(),
+        '/second_book_info_screen': (context) => const SecondBookDetailScreen(),
+        '/second_collection_info_screen': (context) => const SecondCollectionDetailScreen(),
         '/category_books_screen': (context) => const CategoryBooksScreen(),
         '/import_wallet_screen': (context) => const ImportWalletScreen(),
         '/PIN_screen': (context) => const PINScreen(),
@@ -108,7 +113,8 @@ class MyRepositoryProviders extends StatelessWidget {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider(create: (_) => HomeRepository()),
       RepositoryProvider(create: (_) => WalletRepository()),
-      RepositoryProvider(create: (_) => BookInfoRepository(apiService: apiService)),
+      RepositoryProvider(
+          create: (_) => BookInfoRepository(apiService: apiService)),
       RepositoryProvider(create: (_) => AppRepository(apiService: apiService)),
       RepositoryProvider(
           create: (_) => StoreRepository(apiService: apiService)),
@@ -139,7 +145,9 @@ class MyBlocProviders extends StatelessWidget {
             homeRepository: RepositoryProvider.of<HomeRepository>(context),
             myBooksRepository:
                 RepositoryProvider.of<MyBooksRepository>(context),
-            storeRepository: RepositoryProvider.of<StoreRepository>(context)),
+            storeRepository: RepositoryProvider.of<StoreRepository>(context),
+            bookInfoRepository:
+                RepositoryProvider.of<BookInfoRepository>(context)),
         lazy: false,
       ),
       BlocProvider(
@@ -149,12 +157,32 @@ class MyBlocProviders extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) => BookInfoCubit(
-            bookInfoRepository: RepositoryProvider.of<BookInfoRepository>(context)),
+            bookInfoRepository:
+                RepositoryProvider.of<BookInfoRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => BookDetailCubit(
+            bookInfoRepository:
+                RepositoryProvider.of<BookInfoRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => CollectionInfoCubit(
+            storeRepository:
+                RepositoryProvider.of<StoreRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => CollectionDetailCubit(
+            storeRepository:
+                RepositoryProvider.of<StoreRepository>(context)),
         lazy: false,
       ),
       BlocProvider(
         create: (_) => StoreCubit(
-            myBooksRepository: RepositoryProvider.of<MyBooksRepository>(context),
+            myBooksRepository:
+                RepositoryProvider.of<MyBooksRepository>(context),
             storeRepository: RepositoryProvider.of<StoreRepository>(context)),
         lazy: false,
       ),

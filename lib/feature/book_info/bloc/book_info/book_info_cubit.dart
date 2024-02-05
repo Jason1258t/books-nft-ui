@@ -9,10 +9,10 @@ class BookInfoCubit extends Cubit<BookInfoState> {
   final BookInfoRepository bookInfoRepository;
 
   BookInfoCubit({required this.bookInfoRepository}) : super(BookInfoInitial()){
-    bookInfoRepository.bookInfoState.listen((even) {
-      if(even == LoadingStateEnum.loading) emit(BookInfoLoading());
-      if(even == LoadingStateEnum.fail) emit(BookInfoFail());
-      if(even == LoadingStateEnum.success) emit(BookInfoSuccess());
+    bookInfoRepository.bookInfoState.listen((event) {
+      if(event == LoadingStateEnum.loading) emit(BookInfoLoading());
+      if(event == LoadingStateEnum.fail) emit(BookInfoFail());
+      if(event == LoadingStateEnum.success) emit(BookInfoSuccess());
     });
   }
 }

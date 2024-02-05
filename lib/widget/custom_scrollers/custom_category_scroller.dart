@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nft/models/collection.dart';
+import 'package:nft/models/books_genre.dart';
+import 'package:nft/models/collection_view.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/containers/books_horizontal_container.dart';
 import 'package:stroke_text/stroke_text.dart';
@@ -16,7 +17,7 @@ class CustomCategoryScroller extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
-    List<Collection> listCollection = genre.collections.length <= 3
+    List<CollectionView> listCollection = genre.collections.length <= 3
         ? genre.collections
         : genre.collections.sublist(0, 3);
 
@@ -72,13 +73,13 @@ class CustomCategoryScroller extends StatelessWidget {
                                 child: BooksHorizontalContainer(
                                   name: e.name,
                                   author: e.author,
-                                  image: e.image,
+                                  image: e.cover_url,
                                   type: 'silver',
                                   onTap: () {
                                     Navigator.pushNamed(
                                         context, '/collection_info_screen',
                                         arguments: {
-                                          'id': e.id,
+                                          'id': e.collection_id,
                                         });
                                   },
                                 ),

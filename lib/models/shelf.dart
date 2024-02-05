@@ -1,7 +1,5 @@
 import 'package:nft/models/book_position.dart';
 
-import 'details.dart';
-
 part 'book.dart';
 
 class ShelfData {

@@ -18,9 +18,4 @@ class StoreCubit extends Cubit<StoreState> {
       if (event == LoadingStateEnum.success) emit(StoreSuccessState());
     });
   }
-
-  void buyBook(String collectionId) async {
-    await storeRepository.buyCollection(collectionId);
-    await myBooksRepository.getWardrobe();
-  }
 }

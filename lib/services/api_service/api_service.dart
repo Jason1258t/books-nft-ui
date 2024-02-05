@@ -12,6 +12,7 @@ part 'bookshelves.dart';
 part 'collections.dart';
 part 'methods.dart';
 part 'users.dart';
+part 'store.dart';
 
 class ApiService {
   late Auth auth;
@@ -19,6 +20,7 @@ class ApiService {
   late UserService user;
   late CollectionsService collections;
   late BookshelvesService bookshelves;
+  late StoreService storeService;
 
   final Dio _dio =
       Dio(BaseOptions(baseUrl: dotenv.get('BASE_SERVER_URL'), headers: {
@@ -31,6 +33,7 @@ class ApiService {
     collections = CollectionsService(dio_: _dio);
     bookshelves = BookshelvesService(dio_: _dio);
     user = UserService(dio_: _dio);
+    storeService = StoreService(dio_: _dio);
   }
 
   _updateAllServices() {
@@ -39,6 +42,7 @@ class ApiService {
     user.refreshDio(_dio);
     collections.refreshDio(_dio);
     bookshelves.refreshDio(_dio);
+    storeService.refreshDio(_dio);
   }
 
   /// ставит token в dio
