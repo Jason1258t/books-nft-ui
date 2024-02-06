@@ -51,18 +51,10 @@ class MyBooksRepository {
 
   List<BookView> myBooks = [];
 
-  Book? searchBookById(String id) {
-    // for (Book book in myBooks) {
-    //   if (book.id == id) return book;
-    // }
-    return null;
-  }
-
   Future getMyBooks() async {
     myBooksState.add(LoadingStateEnum.loading);
     try {
       final data = (await _apiService.books.getMyBooks())['books'];
-      print(data);
 
       myBooks.clear();
       for (var json in data) {
@@ -126,14 +118,12 @@ class MyBooksRepository {
     final stats = _apiService.user.getProperties();
 
     await Future.wait([stats]).then((value) {
-      print(value);
-
       userLvl = 0;
       userStats = UserStats(
           lvl: userLvl,
           stats: Stats.zero(),
           indicators: Indicators.fromJson(value[0]));
-      print(userStats.indicators.coin_balance);
+
       userProperties.add(userStats);
     });
   }

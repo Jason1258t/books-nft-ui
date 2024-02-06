@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nft/feature/home/data/homa_repository.dart';
 import 'package:nft/feature/my_books/bloc/purchase/purchase_cubit.dart';
 
 import '../../utils/colors.dart';
@@ -15,9 +14,11 @@ class PurchaseBottomSheet extends StatefulWidget {
         required this.title,
         required this.purchaseCallback,
         this.exitAction,
-        this.needTitleField = false});
+        this.needTitleField = false,
+      required this.price});
 
   final String title;
+  final int price;
   final VoidCallback purchaseCallback;
   final VoidCallback? exitAction;
   final bool needTitleField;
@@ -153,7 +154,7 @@ class _PurchaseBottomSheetState extends State<PurchaseBottomSheet> {
                                     ]
                                   ],
                                 ),
-                                Text('Free',
+                                Text(widget.price.toString(),
                                     style: AppTypography.font16white),
                               ],
                             )

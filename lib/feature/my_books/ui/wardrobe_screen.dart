@@ -71,6 +71,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                               final stats = snapshot.data!.stats;
                               final indicators = snapshot.data!.indicators;
                               final lvl = snapshot.data!.lvl;
+
                               return Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -4,7 +4,7 @@ import 'package:nft/feature/store/data/store_repository.dart';
 
 import '../../../widget/custom_scrollers/custom_category_scroller.dart';
 import '../../../widget/switch/custom_switch_categories.dart';
-import '../bloc/store_cubit.dart';
+import '../bloc/store_bloc/store_cubit.dart';
 
 class StoreScreen extends StatefulWidget {
   const StoreScreen({super.key});

@@ -27,7 +27,6 @@ class CustomAppBar extends AppBar {
                   .stream,
               builder: (context, snapshot) {
                 final indicators = snapshot.data!.indicators;
-                final stats = snapshot.data!.stats;
 
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,7 +40,7 @@ class CustomAppBar extends AppBar {
                     ),
                     UserStat(
                       text: '${indicators.current_energybar}/${indicators.total_energybar}',
-                      fill: 1,
+                      fill: (indicators.current_energybar / indicators.total_energybar) ,
                       asset: 'Assets/icons/energy.svg',
                       width: (width - 39) * 0.19,
                       height: height * 0.03,

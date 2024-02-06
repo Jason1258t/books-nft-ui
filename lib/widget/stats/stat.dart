@@ -46,6 +46,10 @@ class UserStat extends StatelessWidget {
             : Container(
                 width: width * fill,
                 height: height,
+                constraints: BoxConstraints(
+                  maxWidth: width * 1,
+                  minWidth: 0,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.filedStatColor,
                   borderRadius: BorderRadius.circular(8),

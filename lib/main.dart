@@ -15,8 +15,10 @@ import 'package:nft/feature/my_books/bloc/moveBook/move_book_cubit.dart';
 import 'package:nft/feature/my_books/bloc/purchase/purchase_cubit.dart';
 import 'package:nft/feature/my_books/bloc/wardrobe/wardrobe_cubit.dart';
 import 'package:nft/feature/my_books/data/my_books_repository.dart';
-import 'package:nft/feature/store/bloc/store_cubit.dart';
+import 'package:nft/feature/store/bloc/genres_bloc/genres_cubit.dart';
+import 'package:nft/feature/store/bloc/store_bloc/store_cubit.dart';
 import 'package:nft/feature/store/data/store_repository.dart';
+import 'package:nft/feature/store/ui/genre_books_screen.dart';
 import 'package:nft/feature/wallet/bloc/wallet_cubit.dart';
 import 'package:nft/feature/wallet/data/wallet_repository.dart';
 import 'package:nft/feature/wallet/ui/pincode.dart';
@@ -36,7 +38,6 @@ import 'feature/home/data/homa_repository.dart';
 import 'feature/home/ui/home.dart';
 import 'feature/profile/ui/profile_screen.dart';
 import 'feature/splash/splash.dart';
-import 'feature/store/ui/category_books_screen.dart';
 import 'feature/wallet/ui/confirm_phrase.dart';
 import 'feature/wallet/ui/import_wallet.dart';
 import 'feature/wallet/ui/phrase.dart';
@@ -71,7 +72,8 @@ class MyApp extends StatelessWidget {
         '/describe_problem_screen': (context) => const DescribeProblem(),
         '/book_info_screen': (context) => const BookInfoScreen(),
         '/second_book_info_screen': (context) => const SecondBookDetailScreen(),
-        '/second_collection_info_screen': (context) => const SecondCollectionDetailScreen(),
+        '/second_collection_info_screen': (context) =>
+            const SecondCollectionDetailScreen(),
         '/category_books_screen': (context) => const CategoryBooksScreen(),
         '/import_wallet_screen': (context) => const ImportWalletScreen(),
         '/PIN_screen': (context) => const PINScreen(),
@@ -169,20 +171,23 @@ class MyBlocProviders extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) => CollectionInfoCubit(
-            storeRepository:
-                RepositoryProvider.of<StoreRepository>(context)),
+            storeRepository: RepositoryProvider.of<StoreRepository>(context)),
         lazy: false,
       ),
       BlocProvider(
         create: (_) => CollectionDetailCubit(
-            storeRepository:
-                RepositoryProvider.of<StoreRepository>(context)),
+            storeRepository: RepositoryProvider.of<StoreRepository>(context)),
         lazy: false,
       ),
       BlocProvider(
         create: (_) => StoreCubit(
             myBooksRepository:
                 RepositoryProvider.of<MyBooksRepository>(context),
+            storeRepository: RepositoryProvider.of<StoreRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => GenresCubit(
             storeRepository: RepositoryProvider.of<StoreRepository>(context)),
         lazy: false,
       ),

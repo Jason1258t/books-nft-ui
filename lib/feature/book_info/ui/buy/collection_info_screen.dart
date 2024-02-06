@@ -5,11 +5,11 @@ import 'package:nft/feature/book_info/bloc/collection_info/collection_info_cubit
 import 'package:nft/feature/book_info/bloc/collection_info/collection_info_state.dart';
 import 'package:nft/feature/my_books/bloc/purchase/purchase_cubit.dart';
 import 'package:nft/feature/store/data/store_repository.dart';
+import 'package:nft/models/collection.dart';
 import 'package:nft/utils/fonts.dart';
 import 'package:nft/widget/custom_bottom_sheet/purchase_bottom_sheet.dart';
 import 'package:nft/widget/custom_scaffold/custom_scaffold.dart';
 
-import '../../../../models/collection.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/gradients.dart';
 import '../../../../widget/app_bar/app_bar.dart';
@@ -45,7 +45,7 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
 
     final homeRepository = RepositoryProvider.of<HomeRepository>(context);
 
-    void showBuyBook() {
+    void showBuyBook(Collection collection) {
       showModalBottomSheet(
           context: context,
           isScrollControlled: true,
@@ -53,12 +53,11 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
               padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom),
               child: PurchaseBottomSheet(
+                price: collection.price,
                 needTitleField: true,
-                // title: collection.name,
-                title: '',
+                title: collection.name,
                 purchaseCallback: () {
-                  BlocProvider.of<PurchaseCubit>(context)
-                      .buyBook("collection.id"); // TODO
+                  BlocProvider.of<PurchaseCubit>(context).buyBook(collection.collectionId);
                 },
                 exitAction: () {
                   homeRepository.setIsSecondScreen(true);
@@ -198,19 +197,22 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                                 Column(
                                   children: [
                                     TextIconAndDescription(
-                                      name: '${collection.traitsCollection.min_income}-${collection.traitsCollection.max_income}',
+                                      name:
+                                          '${collection.traitsCollection.min_income}-${collection.traitsCollection.max_income}',
                                       description: 'Income',
                                       icon: 'Assets/icons/black_dollar.svg',
                                       width: (width - 163) / 2,
                                     ),
                                     TextIconAndDescription(
-                                      name: '${collection.traitsCollection.max_images}',
+                                      name:
+                                          '${collection.traitsCollection.max_images}',
                                       description: 'Images',
                                       icon: 'Assets/icons/black_image.svg',
                                       width: (width - 163) / 2,
                                     ),
                                     TextIconAndDescription(
-                                      name: '${collection.traitsCollection.min_activities}-${collection.traitsCollection.max_activities}',
+                                      name:
+                                          '${collection.traitsCollection.min_activities}-${collection.traitsCollection.max_activities}',
                                       description: 'Activities',
                                       icon: 'Assets/icons/black_compas.svg',
                                       width: (width - 163) / 2,
@@ -225,7 +227,9 @@ class _CollectionInfoScreenState extends State<CollectionInfoScreen> {
                             CustomElevatedButton(
                               text: 'Buy',
                               borderColor: AppColors.darkBorder,
-                              onTap: showBuyBook,
+                              onTap: () {
+                                showBuyBook(collection);
+                              },
                               gradient: AppGradients.redButton,
                             ),
                           ],

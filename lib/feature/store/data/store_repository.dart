@@ -20,17 +20,21 @@ class StoreRepository {
   BehaviorSubject<LoadingStateEnum> collectionDetail =
       BehaviorSubject<LoadingStateEnum>.seeded(LoadingStateEnum.loading);
 
+  BehaviorSubject<LoadingStateEnum> booksGenreStream =
+      BehaviorSubject<LoadingStateEnum>.seeded(LoadingStateEnum.loading);
+
   List<BooksGenre> sortedCollections = [];
 
   Collection? currentCollection;
   CollectionDetails? currentCollectionDetails;
+  BooksGenre? currentBooksGenre;
 
   Future getStoreCollections() async {
     saleCollectionState.add(LoadingStateEnum.loading);
     try {
       sortedCollections = [];
 
-      final data = await _apiService.storeService.getStorePreview();
+      final data = await _apiService.store.getStorePreview();
       List<String> genres = [];
 
       for(var genre in data['genres']){
@@ -76,11 +80,21 @@ class StoreRepository {
     }
   }
 
-  BooksGenre? searchGenreByName(String name) {
-    for (BooksGenre genre in sortedCollections) {
-      if (genre.name == name) return genre;
-    }
+  Future<void> getCollectionList(String booksGenreName) async{
+    booksGenreStream.add(LoadingStateEnum.loading);
+    try {
+      final data = await _apiService.store.getStoreList();
 
-    return null;
+      currentBooksGenre = BooksGenre.fromJson(data['collections'], booksGenreName);
+
+      booksGenreStream.add(LoadingStateEnum.success);
+    } catch (e) {
+      booksGenreStream.add(LoadingStateEnum.fail);
+      rethrow;
+    }
+  }
+
+  Future<void> buyCollectionById(int collectionId) async{
+    _apiService.store.buyCollectionById(collectionId);
   }
 }
